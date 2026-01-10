@@ -685,3 +685,13 @@ Based on:
 - [csharp v0.20.1] .
 ### Releases
 - [NuGet v0.20.1] https://www.nuget.org/packages/LukeHagar.PlexAPI.SDK/0.20.1 - .
+
+## 2026-01-10 14:38:41
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.684.0 (2.793.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [csharp v0.20.2] .
+### Releases
+- [NuGet v0.20.2] https://www.nuget.org/packages/LukeHagar.PlexAPI.SDK/0.20.2 - .

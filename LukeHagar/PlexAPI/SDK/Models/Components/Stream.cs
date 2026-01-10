@@ -9,6 +9,7 @@
 #nullable enable
 namespace LukeHagar.PlexAPI.SDK.Models.Components
 {
+    using LukeHagar.PlexAPI.SDK.Models.Components;
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
@@ -305,18 +306,8 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         [JsonProperty("streamIdentifier")]
         public int? StreamIdentifier { get; set; }
 
-        /// <summary>
-        /// Stream type:<br/>
-        /// 
-        /// <remarks>
-        ///   - VIDEO = 1<br/>
-        ///   - AUDIO = 2<br/>
-        ///   - SUBTITLE = 3<br/>
-        /// 
-        /// </remarks>
-        /// </summary>
         [JsonProperty("streamType")]
-        public long StreamType { get; } = 1;
+        public StreamType StreamType { get; set; } = default!;
 
         /// <summary>
         /// Width of the video stream.
