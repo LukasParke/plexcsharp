@@ -10,15 +10,11 @@
 namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
     using LukeHagar.PlexAPI.SDK.Utils;
-    
+
     /// <summary>
     /// - `0`: The country is divided into regions, and following the key will lead to a list of regions.<br/>
-    /// 
-    /// <remarks>
     /// - `1`: The county is divided by postal codes, and an example code is returned in `example`.<br/>
-    /// - `2`: The country has a single postal code, returned in `example`.<br/>
-    /// 
-    /// </remarks>
+    /// - `2`: The country has a single postal code, returned in `example`.
     /// </summary>
     public enum Flavor
     {
@@ -26,5 +22,4 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         One = 1,
         Two = 2,
     }
-
 }

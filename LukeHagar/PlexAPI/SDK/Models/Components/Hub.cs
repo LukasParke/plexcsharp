@@ -13,18 +13,17 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     public class Hub
     {
-
         /// <summary>
-        /// A title for this grouping of content
+        /// A title for this grouping of content.
         /// </summary>
         [JsonProperty("title")]
         public string? Title { get; set; }
 
         /// <summary>
-        /// The type of the items contained in this hub, or possibly `mixed` if there are multiple types
+        /// The type of the items contained in this hub, or possibly `mixed` if there are multiple types.
         /// </summary>
         [JsonProperty("type")]
         public string? Type { get; set; }
@@ -33,23 +32,19 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public string? Context { get; set; }
 
         /// <summary>
-        /// A unique identifier for the hub
+        /// A unique identifier for the hub.
         /// </summary>
         [JsonProperty("hubIdentifier")]
         public string? HubIdentifier { get; set; }
 
         /// <summary>
-        /// A key at which the exact content currently displayed can be fetched again. This is particularly important when a hub is marked as random and requesting the `key` may get different results. It&apos;s otherwise optional.<br/>
-        /// 
-        /// <remarks>
-        /// 
-        /// </remarks>
+        /// A key at which the exact content currently displayed can be fetched again. This is particularly important when a hub is marked as random and requesting the `key` may get different results. It's otherwise optional.
         /// </summary>
         [JsonProperty("hubKey")]
         public string? HubKey { get; set; }
 
         /// <summary>
-        /// The key at which all of the content for this hub can be retrieved
+        /// The key at which all of the content for this hub can be retrieved.
         /// </summary>
         [JsonProperty("key")]
         public string? Key { get; set; }
@@ -58,23 +53,19 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public List<Models.Components.Metadata>? Metadata { get; set; }
 
         /// <summary>
-        /// &quot;A boolean indicating that the hub contains more than what&apos;s included in the current response.&quot;<br/>
-        /// 
-        /// <remarks>
-        /// 
-        /// </remarks>
+        /// "A boolean indicating that the hub contains more than what's included in the current response."
         /// </summary>
         [JsonProperty("more")]
         public bool? More { get; set; }
 
         /// <summary>
-        /// Indicating if the hub should be promoted to the user&apos;s homescreen
+        /// Indicating if the hub should be promoted to the user's homescreen.
         /// </summary>
         [JsonProperty("promoted")]
         public bool? Promoted { get; set; }
 
         /// <summary>
-        /// Indicating that the contents of the hub may change on each request
+        /// Indicating that the contents of the hub may change on each request.
         /// </summary>
         [JsonProperty("random")]
         public bool? Random { get; set; }
@@ -83,13 +74,13 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public long? Size { get; set; }
 
         /// <summary>
-        /// A suggestion on how this hub&apos;s contents might be displayed by a client. Some examples include `hero`, `list`, `spotlight`, and `upsell`
+        /// A suggestion on how this hub's contents might be displayed by a client. Some examples include `hero`, `list`, `spotlight`, and `upsell`
         /// </summary>
         [JsonProperty("style")]
         public string? Style { get; set; }
 
         /// <summary>
-        /// The subtype of the items contained in this hub, or possibly `mixed` if there are multiple types
+        /// The subtype of the items contained in this hub, or possibly `mixed` if there are multiple types.
         /// </summary>
         [JsonProperty("subtype")]
         public string? Subtype { get; set; }

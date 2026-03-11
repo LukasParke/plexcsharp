@@ -11,12 +11,11 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class Language
     {
-
         /// <summary>
-        /// 3 letter language code
+        /// 3 letter language code.
         /// </summary>
         [JsonProperty("code")]
         public string? Code { get; set; }

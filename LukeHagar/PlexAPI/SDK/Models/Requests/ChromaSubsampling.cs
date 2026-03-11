@@ -10,17 +10,14 @@
 namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
     using LukeHagar.PlexAPI.SDK.Utils;
-    
+
     /// <summary>
     /// Use the specified chroma subsambling.<br/>
-    /// 
-    /// <remarks>
     ///   - 0: 411<br/>
     ///   - 1: 420<br/>
     ///   - 2: 422<br/>
     ///   - 3: 444<br/>
-    /// Defaults to 3 (444)
-    /// </remarks>
+    /// Defaults to 3 (444).
     /// </summary>
     public enum ChromaSubsampling
     {
@@ -29,5 +26,4 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         Two = 2,
         Three = 3,
     }
-
 }

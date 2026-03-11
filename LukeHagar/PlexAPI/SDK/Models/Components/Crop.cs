@@ -12,9 +12,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     /// <summary>
-    /// Where to crop source images to fit into composite image proportions
+    /// Where to crop source images to fit into composite image proportions.
     /// </summary>
     public enum Crop
     {
@@ -56,5 +56,4 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
             throw new Exception($"Unknown value {value} for enum Crop");
         }
     }
-
 }

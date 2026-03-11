@@ -1,5 +1,13 @@
 # GetPlaylistGeneratorSubtitles
 
+## Example Usage
+
+```csharp
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var value = GetPlaylistGeneratorSubtitles.Auto;
+```
+
 
 ## Values
 

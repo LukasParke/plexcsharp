@@ -13,17 +13,12 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     /// <summary>
-    /// Each `Filter` object contains a description of the filter. Note that it is not an exhaustive list of the full media query language, but an important subset useful for top-level API.<br/>
-    /// 
-    /// <remarks>
-    /// 
-    /// </remarks>
+    /// Each `Filter` object contains a description of the filter. Note that it is not an exhaustive list of the full media query language, but an important subset useful for top-level API.
     /// </summary>
     public class Filter
     {
-
         /// <summary>
         /// The title for the filter.
         /// </summary>
@@ -58,7 +53,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public string? Identifier { get; set; }
 
         /// <summary>
-        /// This provides the endpoint where the possible range of values for the filter can be retrieved (e.g. for a &quot;Genre&quot; filter, it returns a list of all the genres in the library). This will include a `type` argument that matches the metadata type of the Type element.
+        /// This provides the endpoint where the possible range of values for the filter can be retrieved (e.g. for a "Genre" filter, it returns a list of all the genres in the library). This will include a `type` argument that matches the metadata type of the Type element.
         /// </summary>
         [JsonProperty("key")]
         public string? Key { get; set; }

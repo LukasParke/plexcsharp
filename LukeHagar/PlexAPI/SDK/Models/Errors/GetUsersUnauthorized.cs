@@ -22,7 +22,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Errors
         public List<GetUsersUsersErrors>? Errors { get; set; }
 
         /// <summary>
-        /// Raw HTTP response; suitable for custom response parsing
+        /// Raw HTTP response; suitable for custom response parsing.
         /// </summary>
         [JsonProperty("-")]
         public HttpResponseMessage? RawResponse { get; set; }
@@ -54,5 +54,4 @@ namespace LukeHagar.PlexAPI.SDK.Models.Errors
            #pragma warning restore CS0618
         }
     }
-
 }

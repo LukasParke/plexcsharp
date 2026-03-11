@@ -24,70 +24,81 @@ namespace LukeHagar.PlexAPI.SDK
 
     /// <summary>
     /// Activities provide a way to monitor and control asynchronous operations on the server. In order to receive real-time updates for activities, a client would normally subscribe via either EventSource or Websocket endpoints.<br/>
-    /// 
-    /// <remarks>
     /// <br/>
     /// Activities are associated with HTTP replies via a special `X-Plex-Activity` header which contains the UUID of the activity.<br/>
     /// <br/>
-    /// Activities are optional cancellable. If cancellable, they may be cancelled via the `DELETE` endpoint.<br/>
-    /// 
-    /// </remarks>
+    /// Activities are optional cancellable. If cancellable, they may be cancelled via the `DELETE` endpoint.
     /// </summary>
     public interface IActivities
     {
+        /// <summary>
+        /// Get all activities.
+        /// </summary>
+        /// <remarks>
+        /// List all activities on the server.  Admins can see all activities but other users can only see their own.
+        /// </remarks>
+        /// <returns>An awaitable task that returns a <see cref="ListActivitiesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<ListActivitiesResponse> ListActivitiesAsync();
 
         /// <summary>
-        /// Get all activities
-        /// 
-        /// <remarks>
-        /// List all activities on the server.  Admins can see all activities but other users can only see their own
-        /// </remarks>
+        /// Cancel a running activity.
         /// </summary>
-        Task<ListActivitiesResponse> ListActivitiesAsync();
-
-        /// <summary>
-        /// Cancel a running activity
-        /// 
         /// <remarks>
-        /// Cancel a running activity.  Admins can cancel all activities but other users can only cancel their own
+        /// Cancel a running activity.  Admins can cancel all activities but other users can only cancel their own.
         /// </remarks>
-        /// </summary>
-        Task<CancelActivityResponse> CancelActivityAsync(CancelActivityRequest request);
+        /// <param name="request">A <see cref="CancelActivityRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="CancelActivityResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<CancelActivityResponse> CancelActivityAsync(CancelActivityRequest request);
     }
 
     /// <summary>
     /// Activities provide a way to monitor and control asynchronous operations on the server. In order to receive real-time updates for activities, a client would normally subscribe via either EventSource or Websocket endpoints.<br/>
-    /// 
-    /// <remarks>
     /// <br/>
     /// Activities are associated with HTTP replies via a special `X-Plex-Activity` header which contains the UUID of the activity.<br/>
     /// <br/>
-    /// Activities are optional cancellable. If cancellable, they may be cancelled via the `DELETE` endpoint.<br/>
-    /// 
-    /// </remarks>
+    /// Activities are optional cancellable. If cancellable, they may be cancelled via the `DELETE` endpoint.
     /// </summary>
     public class Activities: IActivities
     {
+        /// <summary>
+        /// SDK Configuration.
+        /// <see cref="SDKConfig"/>
+        /// </summary>
         public SDKConfig SDKConfiguration { get; private set; }
-
-        private const string _language = Constants.Language;
-        private const string _sdkVersion = Constants.SdkVersion;
-        private const string _sdkGenVersion = Constants.SdkGenVersion;
-        private const string _openapiDocVersion = Constants.OpenApiDocVersion;
 
         public Activities(SDKConfig config)
         {
             SDKConfiguration = config;
         }
 
-        public async Task<ListActivitiesResponse> ListActivitiesAsync()
+        /// <summary>
+        /// Get all activities.
+        /// </summary>
+        /// <remarks>
+        /// List all activities on the server.  Admins can see all activities but other users can only see their own.
+        /// </remarks>
+        /// <returns>An awaitable task that returns a <see cref="ListActivitiesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<ListActivitiesResponse> ListActivitiesAsync()
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-
             var urlString = baseUrl + "/activities";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -113,9 +124,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -169,12 +180,21 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<CancelActivityResponse> CancelActivityAsync(CancelActivityRequest request)
+
+        /// <summary>
+        /// Cancel a running activity.
+        /// </summary>
+        /// <remarks>
+        /// Cancel a running activity.  Admins can cancel all activities but other users can only cancel their own.
+        /// </remarks>
+        /// <param name="request">A <see cref="CancelActivityRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="CancelActivityResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<CancelActivityResponse> CancelActivityAsync(CancelActivityRequest request)
         {
-            if (request == null)
-            {
-                request = new CancelActivityRequest();
-            }
+            if (request == null) throw new ArgumentNullException(nameof(request));
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -186,13 +206,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/activities/{activityId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "*/*");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -209,7 +234,7 @@ namespace LukeHagar.PlexAPI.SDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == 400 || _statusCode == 404 || _statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
+                if (_statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -218,9 +243,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -244,7 +269,7 @@ namespace LukeHagar.PlexAPI.SDK
                     RawResponse = httpResponse
                 };
             }
-            else if(responseStatusCode == 400 || responseStatusCode == 404 || responseStatusCode >= 400 && responseStatusCode < 500)
+            else if(responseStatusCode >= 400 && responseStatusCode < 500)
             {
                 throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
@@ -255,5 +280,6 @@ namespace LukeHagar.PlexAPI.SDK
 
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
+
     }
 }

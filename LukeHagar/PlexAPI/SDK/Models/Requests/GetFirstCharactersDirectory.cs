@@ -11,15 +11,14 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class GetFirstCharactersDirectory
     {
-
         [JsonProperty("key")]
         public string? Key { get; set; }
 
         /// <summary>
-        /// The number of items starting with this character
+        /// The number of items starting with this character.
         /// </summary>
         [JsonProperty("size")]
         public long? Size { get; set; }

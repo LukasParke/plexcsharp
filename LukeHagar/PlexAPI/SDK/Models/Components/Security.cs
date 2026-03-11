@@ -10,10 +10,9 @@
 namespace LukeHagar.PlexAPI.SDK.Models.Components
 {
     using LukeHagar.PlexAPI.SDK.Utils;
-    
+
     public class Security
     {
-
         [SpeakeasyMetadata("security:scheme=true,type=apiKey,subType=header,name=X-Plex-Token")]
         public string? Token { get; set; }
     }

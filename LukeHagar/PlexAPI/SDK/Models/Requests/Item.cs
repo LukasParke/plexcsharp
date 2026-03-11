@@ -12,12 +12,11 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Models.Requests;
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class Item
     {
-
         /// <summary>
-        /// The composite thumbnail image path
+        /// The composite thumbnail image path.
         /// </summary>
         [JsonProperty("composite")]
         public string? Composite { get; set; }
@@ -44,7 +43,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public string? Target { get; set; }
 
         /// <summary>
-        /// The tag of this generator&apos;s settings
+        /// The tag of this generator's settings.
         /// </summary>
         [JsonProperty("targetTagID")]
         public long? TargetTagID { get; set; }
@@ -53,7 +52,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public string? Title { get; set; }
 
         /// <summary>
-        /// The type of this generator
+        /// The type of this generator.
         /// </summary>
         [JsonProperty("type")]
         public GetPlaylistGeneratorType? Type { get; set; }

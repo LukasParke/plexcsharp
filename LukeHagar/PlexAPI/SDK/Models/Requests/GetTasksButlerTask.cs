@@ -11,18 +11,17 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class GetTasksButlerTask
     {
-
         /// <summary>
-        /// A user-friendly description of the task
+        /// A user-friendly description of the task.
         /// </summary>
         [JsonProperty("description")]
         public string? Description { get; set; }
 
         /// <summary>
-        /// Whether this task is enabled or not
+        /// Whether this task is enabled or not.
         /// </summary>
         [JsonProperty("enabled")]
         public bool? Enabled { get; set; }
@@ -34,19 +33,19 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public long? Interval { get; set; }
 
         /// <summary>
-        /// The name of the task
+        /// The name of the task.
         /// </summary>
         [JsonProperty("name")]
         public string? Name { get; set; }
 
         /// <summary>
-        /// Indicates whether the timing of the task is randomized within the butler interval
+        /// Indicates whether the timing of the task is randomized within the butler interval.
         /// </summary>
         [JsonProperty("scheduleRandomized")]
         public bool? ScheduleRandomized { get; set; }
 
         /// <summary>
-        /// A user-friendly title of the task
+        /// A user-friendly title of the task.
         /// </summary>
         [JsonProperty("title")]
         public string? Title { get; set; }

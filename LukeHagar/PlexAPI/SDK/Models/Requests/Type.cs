@@ -12,9 +12,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     /// <summary>
-    /// The type of play queue to create
+    /// The type of play queue to create.
     /// </summary>
     public enum Type
     {
@@ -58,5 +58,4 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
             throw new Exception($"Unknown value {value} for enum Type");
         }
     }
-
 }

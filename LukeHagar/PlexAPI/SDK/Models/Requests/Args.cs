@@ -10,9 +10,9 @@
 namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
     using LukeHagar.PlexAPI.SDK.Utils;
-    
+
     /// <summary>
-    /// The new values for the metadata item
+    /// The new values for the metadata item.
     /// </summary>
     public class Args
     {

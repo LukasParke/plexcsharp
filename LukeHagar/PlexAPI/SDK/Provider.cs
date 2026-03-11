@@ -27,42 +27,54 @@ namespace LukeHagar.PlexAPI.SDK
     /// </summary>
     public interface IProvider
     {
-
         /// <summary>
-        /// Get the list of available media providers
-        /// 
+        /// Get the list of available media providers.
+        /// </summary>
         /// <remarks>
         /// Get the list of all available media providers for this PMS.  This will generally include the library provider and possibly EPG if DVR is set up.
         /// </remarks>
-        /// </summary>
-        Task<ListProvidersResponse> ListProvidersAsync();
+        /// <returns>An awaitable task that returns a <see cref="ListProvidersResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<ListProvidersResponse> ListProvidersAsync();
 
         /// <summary>
-        /// Add a media provider
-        /// 
+        /// Add a media provider.
+        /// </summary>
         /// <remarks>
         /// This endpoint registers a media provider with the server. Once registered, the media server acts as a reverse proxy to the provider, allowing both local and remote providers to work.
         /// </remarks>
-        /// </summary>
-        Task<AddProviderResponse> AddProviderAsync(AddProviderRequest request);
+        /// <param name="request">A <see cref="AddProviderRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="AddProviderResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<AddProviderResponse> AddProviderAsync(AddProviderRequest request);
 
         /// <summary>
-        /// Refresh media providers
-        /// 
+        /// Refresh media providers.
+        /// </summary>
         /// <remarks>
         /// Refresh all known media providers. This is useful in case a provider has updated features.
         /// </remarks>
-        /// </summary>
-        Task<RefreshProvidersResponse> RefreshProvidersAsync();
+        /// <returns>An awaitable task that returns a <see cref="RefreshProvidersResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<RefreshProvidersResponse> RefreshProvidersAsync();
 
         /// <summary>
-        /// Delete a media provider
-        /// 
-        /// <remarks>
-        /// Deletes a media provider with the given id
-        /// </remarks>
+        /// Delete a media provider.
         /// </summary>
-        Task<DeleteMediaProviderResponse> DeleteMediaProviderAsync(DeleteMediaProviderRequest request);
+        /// <remarks>
+        /// Deletes a media provider with the given id.
+        /// </remarks>
+        /// <param name="request">A <see cref="DeleteMediaProviderRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="DeleteMediaProviderResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<DeleteMediaProviderResponse> DeleteMediaProviderAsync(DeleteMediaProviderRequest request);
     }
 
     /// <summary>
@@ -70,26 +82,39 @@ namespace LukeHagar.PlexAPI.SDK
     /// </summary>
     public class Provider: IProvider
     {
+        /// <summary>
+        /// SDK Configuration.
+        /// <see cref="SDKConfig"/>
+        /// </summary>
         public SDKConfig SDKConfiguration { get; private set; }
-
-        private const string _language = Constants.Language;
-        private const string _sdkVersion = Constants.SdkVersion;
-        private const string _sdkGenVersion = Constants.SdkGenVersion;
-        private const string _openapiDocVersion = Constants.OpenApiDocVersion;
 
         public Provider(SDKConfig config)
         {
             SDKConfiguration = config;
         }
 
-        public async Task<ListProvidersResponse> ListProvidersAsync()
+        /// <summary>
+        /// Get the list of available media providers.
+        /// </summary>
+        /// <remarks>
+        /// Get the list of all available media providers for this PMS.  This will generally include the library provider and possibly EPG if DVR is set up.
+        /// </remarks>
+        /// <returns>An awaitable task that returns a <see cref="ListProvidersResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<ListProvidersResponse> ListProvidersAsync()
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-
             var urlString = baseUrl + "/media/providers";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -115,9 +140,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -171,12 +196,21 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<AddProviderResponse> AddProviderAsync(AddProviderRequest request)
+
+        /// <summary>
+        /// Add a media provider.
+        /// </summary>
+        /// <remarks>
+        /// This endpoint registers a media provider with the server. Once registered, the media server acts as a reverse proxy to the provider, allowing both local and remote providers to work.
+        /// </remarks>
+        /// <param name="request">A <see cref="AddProviderRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="AddProviderResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<AddProviderResponse> AddProviderAsync(AddProviderRequest request)
         {
-            if (request == null)
-            {
-                request = new AddProviderRequest();
-            }
+            if (request == null) throw new ArgumentNullException(nameof(request));
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -188,13 +222,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/media/providers", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "*/*");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -211,7 +250,7 @@ namespace LukeHagar.PlexAPI.SDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == 400 || _statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
+                if (_statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -220,9 +259,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -246,7 +285,7 @@ namespace LukeHagar.PlexAPI.SDK
                     RawResponse = httpResponse
                 };
             }
-            else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500)
+            else if(responseStatusCode >= 400 && responseStatusCode < 500)
             {
                 throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
@@ -258,14 +297,28 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<RefreshProvidersResponse> RefreshProvidersAsync()
+
+        /// <summary>
+        /// Refresh media providers.
+        /// </summary>
+        /// <remarks>
+        /// Refresh all known media providers. This is useful in case a provider has updated features.
+        /// </remarks>
+        /// <returns>An awaitable task that returns a <see cref="RefreshProvidersResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<RefreshProvidersResponse> RefreshProvidersAsync()
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-
             var urlString = baseUrl + "/media/providers/refresh";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "*/*");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -291,9 +344,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -329,12 +382,21 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<DeleteMediaProviderResponse> DeleteMediaProviderAsync(DeleteMediaProviderRequest request)
+
+        /// <summary>
+        /// Delete a media provider.
+        /// </summary>
+        /// <remarks>
+        /// Deletes a media provider with the given id.
+        /// </remarks>
+        /// <param name="request">A <see cref="DeleteMediaProviderRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="DeleteMediaProviderResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<DeleteMediaProviderResponse> DeleteMediaProviderAsync(DeleteMediaProviderRequest request)
         {
-            if (request == null)
-            {
-                request = new DeleteMediaProviderRequest();
-            }
+            if (request == null) throw new ArgumentNullException(nameof(request));
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -346,13 +408,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/media/providers/{provider}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "*/*");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -369,7 +436,7 @@ namespace LukeHagar.PlexAPI.SDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == 400 || _statusCode == 403 || _statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
+                if (_statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -378,9 +445,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -404,7 +471,7 @@ namespace LukeHagar.PlexAPI.SDK
                     RawResponse = httpResponse
                 };
             }
-            else if(responseStatusCode == 400 || responseStatusCode == 403 || responseStatusCode >= 400 && responseStatusCode < 500)
+            else if(responseStatusCode >= 400 && responseStatusCode < 500)
             {
                 throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
@@ -415,5 +482,6 @@ namespace LukeHagar.PlexAPI.SDK
 
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
+
     }
 }

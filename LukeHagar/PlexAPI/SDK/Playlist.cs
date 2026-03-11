@@ -23,59 +23,86 @@ namespace LukeHagar.PlexAPI.SDK
     using System.Threading.Tasks;
 
     /// <summary>
-    /// Media playlists that can be created and played back
+    /// Media playlists that can be created and played back.
     /// </summary>
     public interface IPlaylist
     {
-
         /// <summary>
-        /// List playlists
-        /// 
+        /// List playlists.
+        /// </summary>
         /// <remarks>
         /// Gets a list of playlists and playlist folders for a user. General filters are permitted, such as `sort=lastViewedAt:desc`. A flat playlist list can be retrieved using `type=15` to limit the collection to just playlists.
         /// </remarks>
-        /// </summary>
-        Task<ListPlaylistsResponse> ListPlaylistsAsync(ListPlaylistsRequest? request = null);
+        /// <param name="request">A <see cref="ListPlaylistsRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="ListPlaylistsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<ListPlaylistsResponse> ListPlaylistsAsync(ListPlaylistsRequest? request = null);
 
         /// <summary>
-        /// Retrieve Playlist
-        /// 
+        /// Retrieve Playlist.
+        /// </summary>
         /// <remarks>
         /// Gets detailed metadata for a playlist. A playlist for many purposes (rating, editing metadata, tagging), can be treated like a regular metadata item:<br/>
         /// Smart playlist details contain the `content` attribute. This is the content URI for the generator. This can then be parsed by a client to provide smart playlist editing.
         /// </remarks>
-        /// </summary>
-        Task<GetPlaylistResponse> GetPlaylistAsync(GetPlaylistRequest request);
+        /// <param name="request">A <see cref="GetPlaylistRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetPlaylistResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<GetPlaylistResponse> GetPlaylistAsync(GetPlaylistRequest request);
 
         /// <summary>
-        /// Retrieve Playlist Contents
-        /// 
+        /// Retrieve Playlist Contents.
+        /// </summary>
         /// <remarks>
         /// Gets the contents of a playlist. Should be paged by clients via standard mechanisms. By default leaves are returned (e.g. episodes, movies). In order to return other types you can use the `type` parameter. For example, you could use this to display a list of recently added albums vis a smart playlist. Note that for dumb playlists, items have a `playlistItemID` attribute which is used for deleting or moving items.
         /// </remarks>
-        /// </summary>
-        Task<GetPlaylistItemsResponse> GetPlaylistItemsAsync(GetPlaylistItemsRequest request);
+        /// <param name="request">A <see cref="GetPlaylistItemsRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetPlaylistItemsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<GetPlaylistItemsResponse> GetPlaylistItemsAsync(GetPlaylistItemsRequest request);
     }
 
     /// <summary>
-    /// Media playlists that can be created and played back
+    /// Media playlists that can be created and played back.
     /// </summary>
     public class Playlist: IPlaylist
     {
+        /// <summary>
+        /// SDK Configuration.
+        /// <see cref="SDKConfig"/>
+        /// </summary>
         public SDKConfig SDKConfiguration { get; private set; }
-
-        private const string _language = Constants.Language;
-        private const string _sdkVersion = Constants.SdkVersion;
-        private const string _sdkGenVersion = Constants.SdkGenVersion;
-        private const string _openapiDocVersion = Constants.OpenApiDocVersion;
 
         public Playlist(SDKConfig config)
         {
             SDKConfiguration = config;
         }
 
-        public async Task<ListPlaylistsResponse> ListPlaylistsAsync(ListPlaylistsRequest? request = null)
+        /// <summary>
+        /// List playlists.
+        /// </summary>
+        /// <remarks>
+        /// Gets a list of playlists and playlist folders for a user. General filters are permitted, such as `sort=lastViewedAt:desc`. A flat playlist list can be retrieved using `type=15` to limit the collection to just playlists.
+        /// </remarks>
+        /// <param name="request">A <see cref="ListPlaylistsRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="ListPlaylistsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<ListPlaylistsResponse> ListPlaylistsAsync(ListPlaylistsRequest? request = null)
         {
+            if (request == null)
+            {
+                request = new ListPlaylistsRequest();
+            }
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -87,13 +114,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/playlists", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -119,9 +151,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -155,7 +187,8 @@ namespace LukeHagar.PlexAPI.SDK
                     {
                         StatusCode = responseStatusCode,
                         ContentType = contentType,
-                        RawResponse = httpResponse
+                        RawResponse = httpResponse,
+                        Headers = Utilities.CollectHeaders(httpResponse.Headers)
                     };
                     response.MediaContainerWithPlaylistMetadata = obj;
                     return response;
@@ -175,12 +208,23 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<GetPlaylistResponse> GetPlaylistAsync(GetPlaylistRequest request)
+
+        /// <summary>
+        /// Retrieve Playlist.
+        /// </summary>
+        /// <remarks>
+        /// Gets detailed metadata for a playlist. A playlist for many purposes (rating, editing metadata, tagging), can be treated like a regular metadata item:<br/>
+        /// Smart playlist details contain the `content` attribute. This is the content URI for the generator. This can then be parsed by a client to provide smart playlist editing.
+        /// </remarks>
+        /// <param name="request">A <see cref="GetPlaylistRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetPlaylistResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<GetPlaylistResponse> GetPlaylistAsync(GetPlaylistRequest request)
         {
-            if (request == null)
-            {
-                request = new GetPlaylistRequest();
-            }
+            if (request == null) throw new ArgumentNullException(nameof(request));
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -192,13 +236,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/playlists/{playlistId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -215,7 +264,7 @@ namespace LukeHagar.PlexAPI.SDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == 404 || _statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
+                if (_statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -224,9 +273,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -268,7 +317,7 @@ namespace LukeHagar.PlexAPI.SDK
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
-            else if(responseStatusCode == 404 || responseStatusCode >= 400 && responseStatusCode < 500)
+            else if(responseStatusCode >= 400 && responseStatusCode < 500)
             {
                 throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
@@ -280,12 +329,22 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<GetPlaylistItemsResponse> GetPlaylistItemsAsync(GetPlaylistItemsRequest request)
+
+        /// <summary>
+        /// Retrieve Playlist Contents.
+        /// </summary>
+        /// <remarks>
+        /// Gets the contents of a playlist. Should be paged by clients via standard mechanisms. By default leaves are returned (e.g. episodes, movies). In order to return other types you can use the `type` parameter. For example, you could use this to display a list of recently added albums vis a smart playlist. Note that for dumb playlists, items have a `playlistItemID` attribute which is used for deleting or moving items.
+        /// </remarks>
+        /// <param name="request">A <see cref="GetPlaylistItemsRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetPlaylistItemsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<GetPlaylistItemsResponse> GetPlaylistItemsAsync(GetPlaylistItemsRequest request)
         {
-            if (request == null)
-            {
-                request = new GetPlaylistItemsRequest();
-            }
+            if (request == null) throw new ArgumentNullException(nameof(request));
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -297,13 +356,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/playlists/{playlistId}/items", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -320,7 +384,7 @@ namespace LukeHagar.PlexAPI.SDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == 404 || _statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
+                if (_statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -329,9 +393,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -365,7 +429,8 @@ namespace LukeHagar.PlexAPI.SDK
                     {
                         StatusCode = responseStatusCode,
                         ContentType = contentType,
-                        RawResponse = httpResponse
+                        RawResponse = httpResponse,
+                        Headers = Utilities.CollectHeaders(httpResponse.Headers)
                     };
                     response.MediaContainerWithMetadata = obj;
                     return response;
@@ -373,7 +438,7 @@ namespace LukeHagar.PlexAPI.SDK
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
-            else if(responseStatusCode == 404 || responseStatusCode >= 400 && responseStatusCode < 500)
+            else if(responseStatusCode >= 400 && responseStatusCode < 500)
             {
                 throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
@@ -384,5 +449,6 @@ namespace LukeHagar.PlexAPI.SDK
 
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
+
     }
 }

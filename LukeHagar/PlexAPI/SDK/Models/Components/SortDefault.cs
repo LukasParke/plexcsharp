@@ -12,9 +12,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     /// <summary>
-    /// If present, this sort is the default and in this direction
+    /// If present, this sort is the default and in this direction.
     /// </summary>
     public enum SortDefault
     {
@@ -56,5 +56,4 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
             throw new Exception($"Unknown value {value} for enum SortDefault");
         }
     }
-
 }

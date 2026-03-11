@@ -12,48 +12,47 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using LukeHagar.PlexAPI.SDK.Models.Components;
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class Connections
     {
-
         /// <summary>
-        /// The protocol used for the connection (http, https, etc)
+        /// The protocol used for the connection (http, https, etc).
         /// </summary>
         [JsonProperty("protocol")]
         public PlexDeviceProtocol Protocol { get; set; } = default!;
 
         /// <summary>
-        /// The (ip) address or domain name used for the connection
+        /// The (ip) address or domain name used for the connection.
         /// </summary>
         [JsonProperty("address")]
         public string Address { get; set; } = default!;
 
         /// <summary>
-        /// The port used for the connection
+        /// The port used for the connection.
         /// </summary>
         [JsonProperty("port")]
         public int Port { get; set; } = default!;
 
         /// <summary>
-        /// The full URI of the connection
+        /// The full URI of the connection.
         /// </summary>
         [JsonProperty("uri")]
         public string Uri { get; set; } = default!;
 
         /// <summary>
-        /// If the connection is local address
+        /// If the connection is local address.
         /// </summary>
         [JsonProperty("local")]
         public bool Local { get; set; } = default!;
 
         /// <summary>
-        /// If the connection is relayed through plex.direct
+        /// If the connection is relayed through plex.direct.
         /// </summary>
         [JsonProperty("relay")]
         public bool Relay { get; set; } = default!;
 
         /// <summary>
-        /// If the connection is using IPv6
+        /// If the connection is using IPv6.
         /// </summary>
         [JsonProperty("IPv6")]
         public bool IPv6 { get; set; } = default!;

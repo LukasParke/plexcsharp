@@ -27,61 +27,84 @@ namespace LukeHagar.PlexAPI.SDK
     /// </summary>
     public interface IStatus
     {
-
         /// <summary>
-        /// List Sessions
-        /// 
-        /// <remarks>
-        /// List all current playbacks on this server
-        /// </remarks>
+        /// List Sessions.
         /// </summary>
-        Task<ListSessionsResponse> ListSessionsAsync();
-
-        /// <summary>
-        /// Get background tasks
-        /// 
         /// <remarks>
-        /// Get the list of all background tasks
+        /// List all current playbacks on this server.
         /// </remarks>
-        /// </summary>
-        Task<GetBackgroundTasksResponse> GetBackgroundTasksAsync();
+        /// <returns>An awaitable task that returns a <see cref="ListSessionsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<ListSessionsResponse> ListSessionsAsync();
 
         /// <summary>
-        /// List Playback History
-        /// 
+        /// Get background tasks.
+        /// </summary>
+        /// <remarks>
+        /// Get the list of all background tasks.
+        /// </remarks>
+        /// <returns>An awaitable task that returns a <see cref="GetBackgroundTasksResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<GetBackgroundTasksResponse> GetBackgroundTasksAsync();
+
+        /// <summary>
+        /// List Playback History.
+        /// </summary>
         /// <remarks>
         /// List all playback history (Admin can see all users, others can only see their own).<br/>
         /// Pagination should be used on this endpoint.  Additionally this endpoint supports `includeFields`, `excludeFields`, `includeElements`, and `excludeElements` parameters.
         /// </remarks>
-        /// </summary>
-        Task<ListPlaybackHistoryResponse> ListPlaybackHistoryAsync(ListPlaybackHistoryRequest? request = null);
+        /// <param name="request">A <see cref="ListPlaybackHistoryRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="ListPlaybackHistoryResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<ListPlaybackHistoryResponse> ListPlaybackHistoryAsync(ListPlaybackHistoryRequest? request = null);
 
         /// <summary>
-        /// Terminate a session
-        /// 
-        /// <remarks>
-        /// Terminate a playback session kicking off the user
-        /// </remarks>
+        /// Terminate a session.
         /// </summary>
-        Task<TerminateSessionResponse> TerminateSessionAsync(TerminateSessionRequest request);
+        /// <remarks>
+        /// Terminate a playback session kicking off the user.
+        /// </remarks>
+        /// <param name="request">A <see cref="TerminateSessionRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="TerminateSessionResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<TerminateSessionResponse> TerminateSessionAsync(TerminateSessionRequest request);
 
         /// <summary>
-        /// Delete Single History Item
-        /// 
-        /// <remarks>
-        /// Delete a single history item by id
-        /// </remarks>
+        /// Delete Single History Item.
         /// </summary>
-        Task<DeleteHistoryResponse> DeleteHistoryAsync(DeleteHistoryRequest request);
+        /// <remarks>
+        /// Delete a single history item by id.
+        /// </remarks>
+        /// <param name="request">A <see cref="DeleteHistoryRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="DeleteHistoryResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<DeleteHistoryResponse> DeleteHistoryAsync(DeleteHistoryRequest request);
 
         /// <summary>
-        /// Get Single History Item
-        /// 
-        /// <remarks>
-        /// Get a single history item by id
-        /// </remarks>
+        /// Get Single History Item.
         /// </summary>
-        Task<GetHistoryItemResponse> GetHistoryItemAsync(GetHistoryItemRequest request);
+        /// <remarks>
+        /// Get a single history item by id.
+        /// </remarks>
+        /// <param name="request">A <see cref="GetHistoryItemRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetHistoryItemResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<GetHistoryItemResponse> GetHistoryItemAsync(GetHistoryItemRequest request);
     }
 
     /// <summary>
@@ -89,26 +112,39 @@ namespace LukeHagar.PlexAPI.SDK
     /// </summary>
     public class Status: IStatus
     {
+        /// <summary>
+        /// SDK Configuration.
+        /// <see cref="SDKConfig"/>
+        /// </summary>
         public SDKConfig SDKConfiguration { get; private set; }
-
-        private const string _language = Constants.Language;
-        private const string _sdkVersion = Constants.SdkVersion;
-        private const string _sdkGenVersion = Constants.SdkGenVersion;
-        private const string _openapiDocVersion = Constants.OpenApiDocVersion;
 
         public Status(SDKConfig config)
         {
             SDKConfiguration = config;
         }
 
-        public async Task<ListSessionsResponse> ListSessionsAsync()
+        /// <summary>
+        /// List Sessions.
+        /// </summary>
+        /// <remarks>
+        /// List all current playbacks on this server.
+        /// </remarks>
+        /// <returns>An awaitable task that returns a <see cref="ListSessionsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<ListSessionsResponse> ListSessionsAsync()
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-
             var urlString = baseUrl + "/status/sessions";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -134,9 +170,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -170,7 +206,8 @@ namespace LukeHagar.PlexAPI.SDK
                     {
                         StatusCode = responseStatusCode,
                         ContentType = contentType,
-                        RawResponse = httpResponse
+                        RawResponse = httpResponse,
+                        Headers = Utilities.CollectHeaders(httpResponse.Headers)
                     };
                     response.Object = obj;
                     return response;
@@ -190,14 +227,29 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<GetBackgroundTasksResponse> GetBackgroundTasksAsync()
+
+        /// <summary>
+        /// Get background tasks.
+        /// </summary>
+        /// <remarks>
+        /// Get the list of all background tasks.
+        /// </remarks>
+        /// <returns>An awaitable task that returns a <see cref="GetBackgroundTasksResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<GetBackgroundTasksResponse> GetBackgroundTasksAsync()
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-
             var urlString = baseUrl + "/status/sessions/background";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -223,9 +275,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -279,8 +331,27 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<ListPlaybackHistoryResponse> ListPlaybackHistoryAsync(ListPlaybackHistoryRequest? request = null)
+
+        /// <summary>
+        /// List Playback History.
+        /// </summary>
+        /// <remarks>
+        /// List all playback history (Admin can see all users, others can only see their own).<br/>
+        /// Pagination should be used on this endpoint.  Additionally this endpoint supports `includeFields`, `excludeFields`, `includeElements`, and `excludeElements` parameters.
+        /// </remarks>
+        /// <param name="request">A <see cref="ListPlaybackHistoryRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="ListPlaybackHistoryResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<ListPlaybackHistoryResponse> ListPlaybackHistoryAsync(
+            ListPlaybackHistoryRequest? request = null
+        )
         {
+            if (request == null)
+            {
+                request = new ListPlaybackHistoryRequest();
+            }
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -292,13 +363,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/status/sessions/history/all", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -324,9 +400,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -360,7 +436,8 @@ namespace LukeHagar.PlexAPI.SDK
                     {
                         StatusCode = responseStatusCode,
                         ContentType = contentType,
-                        RawResponse = httpResponse
+                        RawResponse = httpResponse,
+                        Headers = Utilities.CollectHeaders(httpResponse.Headers)
                     };
                     response.Object = obj;
                     return response;
@@ -380,12 +457,21 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<TerminateSessionResponse> TerminateSessionAsync(TerminateSessionRequest request)
+
+        /// <summary>
+        /// Terminate a session.
+        /// </summary>
+        /// <remarks>
+        /// Terminate a playback session kicking off the user.
+        /// </remarks>
+        /// <param name="request">A <see cref="TerminateSessionRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="TerminateSessionResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<TerminateSessionResponse> TerminateSessionAsync(TerminateSessionRequest request)
         {
-            if (request == null)
-            {
-                request = new TerminateSessionRequest();
-            }
+            if (request == null) throw new ArgumentNullException(nameof(request));
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -397,13 +483,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/status/sessions/terminate", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "*/*");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -420,7 +511,7 @@ namespace LukeHagar.PlexAPI.SDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == 401 || _statusCode == 403 || _statusCode == 404 || _statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
+                if (_statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -429,9 +520,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -455,7 +546,7 @@ namespace LukeHagar.PlexAPI.SDK
                     RawResponse = httpResponse
                 };
             }
-            else if(responseStatusCode == 401 || responseStatusCode == 403 || responseStatusCode == 404 || responseStatusCode >= 400 && responseStatusCode < 500)
+            else if(responseStatusCode >= 400 && responseStatusCode < 500)
             {
                 throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
@@ -467,12 +558,22 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<DeleteHistoryResponse> DeleteHistoryAsync(DeleteHistoryRequest request)
+
+        /// <summary>
+        /// Delete Single History Item.
+        /// </summary>
+        /// <remarks>
+        /// Delete a single history item by id.
+        /// </remarks>
+        /// <param name="request">A <see cref="DeleteHistoryRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="DeleteHistoryResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<DeleteHistoryResponse> DeleteHistoryAsync(DeleteHistoryRequest request)
         {
-            if (request == null)
-            {
-                request = new DeleteHistoryRequest();
-            }
+            if (request == null) throw new ArgumentNullException(nameof(request));
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -484,13 +585,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/status/sessions/history/{historyId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -507,7 +613,7 @@ namespace LukeHagar.PlexAPI.SDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == 404 || _statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
+                if (_statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -516,9 +622,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -552,7 +658,8 @@ namespace LukeHagar.PlexAPI.SDK
                     {
                         StatusCode = responseStatusCode,
                         ContentType = contentType,
-                        RawResponse = httpResponse
+                        RawResponse = httpResponse,
+                        Headers = Utilities.CollectHeaders(httpResponse.Headers)
                     };
                     response.MediaContainer = obj;
                     return response;
@@ -560,7 +667,7 @@ namespace LukeHagar.PlexAPI.SDK
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
-            else if(responseStatusCode == 404 || responseStatusCode >= 400 && responseStatusCode < 500)
+            else if(responseStatusCode >= 400 && responseStatusCode < 500)
             {
                 throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
@@ -572,12 +679,22 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<GetHistoryItemResponse> GetHistoryItemAsync(GetHistoryItemRequest request)
+
+        /// <summary>
+        /// Get Single History Item.
+        /// </summary>
+        /// <remarks>
+        /// Get a single history item by id.
+        /// </remarks>
+        /// <param name="request">A <see cref="GetHistoryItemRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetHistoryItemResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<GetHistoryItemResponse> GetHistoryItemAsync(GetHistoryItemRequest request)
         {
-            if (request == null)
-            {
-                request = new GetHistoryItemRequest();
-            }
+            if (request == null) throw new ArgumentNullException(nameof(request));
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -589,13 +706,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/status/sessions/history/{historyId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -612,7 +734,7 @@ namespace LukeHagar.PlexAPI.SDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == 404 || _statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
+                if (_statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -621,9 +743,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -657,7 +779,8 @@ namespace LukeHagar.PlexAPI.SDK
                     {
                         StatusCode = responseStatusCode,
                         ContentType = contentType,
-                        RawResponse = httpResponse
+                        RawResponse = httpResponse,
+                        Headers = Utilities.CollectHeaders(httpResponse.Headers)
                     };
                     response.HistoryAllGetResponses200 = obj;
                     return response;
@@ -665,7 +788,7 @@ namespace LukeHagar.PlexAPI.SDK
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
-            else if(responseStatusCode == 404 || responseStatusCode >= 400 && responseStatusCode < 500)
+            else if(responseStatusCode >= 400 && responseStatusCode < 500)
             {
                 throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
@@ -676,5 +799,6 @@ namespace LukeHagar.PlexAPI.SDK
 
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
+
     }
 }

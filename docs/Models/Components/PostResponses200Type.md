@@ -1,5 +1,13 @@
 # PostResponses200Type
 
+## Example Usage
+
+```csharp
+using LukeHagar.PlexAPI.SDK.Models.Components;
+
+var value = PostResponses200Type.Intro;
+```
+
 
 ## Values
 

@@ -12,72 +12,71 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Models.Components;
     using LukeHagar.PlexAPI.SDK.Models.Requests;
     using LukeHagar.PlexAPI.SDK.Utils;
-    
+
     public class ReportRequest
     {
-
         /// <summary>
-        /// Indicates the client accepts the indicated media types
+        /// Indicates the client accepts the indicated media types.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=accepts")]
         public Accepts? Accepts { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml;
 
         /// <summary>
-        /// An opaque identifier unique to the client
+        /// An opaque identifier unique to the client.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Client-Identifier")]
         public string? ClientIdentifier { get; set; }
 
         /// <summary>
-        /// The name of the client product
+        /// The name of the client product.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Product")]
         public string? Product { get; set; }
 
         /// <summary>
-        /// The version of the client application
+        /// The version of the client application.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Version")]
         public string? Version { get; set; }
 
         /// <summary>
-        /// The platform of the client
+        /// The platform of the client.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Platform")]
         public string? Platform { get; set; }
 
         /// <summary>
-        /// The version of the platform
+        /// The version of the platform.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Platform-Version")]
         public string? PlatformVersion { get; set; }
 
         /// <summary>
-        /// A relatively friendly name for the client device
+        /// A relatively friendly name for the client device.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Device")]
         public string? Device { get; set; }
 
         /// <summary>
-        /// A potentially less friendly identifier for the device model
+        /// A potentially less friendly identifier for the device model.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Model")]
         public string? Model { get; set; }
 
         /// <summary>
-        /// The device vendor
+        /// The device vendor.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Device-Vendor")]
         public string? DeviceVendor { get; set; }
 
         /// <summary>
-        /// A friendly name for the client
+        /// A friendly name for the client.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Device-Name")]
         public string? DeviceName { get; set; }
 
         /// <summary>
-        /// The marketplace on which the client application is distributed
+        /// The marketplace on which the client application is distributed.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Marketplace")]
         public string? Marketplace { get; set; }
@@ -101,7 +100,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public State? State { get; set; }
 
         /// <summary>
-        /// If playing media from a play queue, the play queue&apos;s ID.
+        /// If playing media from a play queue, the play queue's ID.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=playQueueItemID")]
         public string? PlayQueueItemID { get; set; }
@@ -131,7 +130,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public long? Updated { get; set; }
 
         /// <summary>
-        /// Also used by sync clients, used to indicate that a timeline is being synced from being offline, as opposed to being &quot;live&quot;.
+        /// Also used by sync clients, used to indicate that a timeline is being synced from being offline, as opposed to being "live".
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=offline")]
         public BoolInt? Offline { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
@@ -161,13 +160,13 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public long? BufferedTime { get; set; }
 
         /// <summary>
-        /// Size in kilobytes of data buffered by client.  Omit if computed by `bufferedTime` above
+        /// Size in kilobytes of data buffered by client.  Omit if computed by `bufferedTime` above.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=bufferedSize")]
         public long? BufferedSize { get; set; }
 
         /// <summary>
-        /// Unique per client playback session.  Used if a client can playback multiple items at a time (such as a browser with multiple tabs)
+        /// Unique per client playback session.  Used if a client can playback multiple items at a time (such as a browser with multiple tabs).
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Session-Identifier")]
         public string? XPlexSessionIdentifier { get; set; }

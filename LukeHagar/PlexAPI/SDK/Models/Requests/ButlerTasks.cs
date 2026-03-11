@@ -13,10 +13,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     public class ButlerTasks
     {
-
         [JsonProperty("ButlerTask")]
         public List<GetTasksButlerTask>? ButlerTask { get; set; }
     }

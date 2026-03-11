@@ -1,5 +1,13 @@
 # Subtitles
 
+## Example Usage
+
+```csharp
+using LukeHagar.PlexAPI.SDK.Models.Components;
+
+var value = Subtitles.Auto;
+```
+
 
 ## Values
 

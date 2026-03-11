@@ -23,72 +23,100 @@ namespace LukeHagar.PlexAPI.SDK
     using System.Threading.Tasks;
 
     /// <summary>
-    /// The search feature within a media provider
+    /// The search feature within a media provider.
     /// </summary>
     public interface ISearch
     {
-
         /// <summary>
-        /// Search Hub
-        /// 
+        /// Search Hub.
+        /// </summary>
         /// <remarks>
         /// Perform a search and get the result as hubs<br/>
         /// <br/>
         /// This endpoint performs a search across all library sections, or a single section, and returns matches as hubs, split up by type. It performs spell checking, looks for partial matches, and orders the hubs based on quality of results. In addition, based on matches, it will return other related matches (e.g. for a genre match, it may return movies in that genre, or for an actor match, movies with that actor).<br/>
         /// <br/>
-        /// In the response&apos;s items, the following extra attributes are returned to further describe or disambiguate the result:<br/>
+        /// In the response's items, the following extra attributes are returned to further describe or disambiguate the result:<br/>
         /// <br/>
         /// - `reason`: The reason for the result, if not because of a direct search term match; can be either:<br/>
         ///   - `section`: There are multiple identical results from different sections.<br/>
         ///   - `originalTitle`: There was a search term match from the original title field (sometimes those can be very different or in a foreign language).<br/>
-        ///   - `&lt;hub identifier&gt;`: If the reason for the result is due to a result in another hub, the source hub identifier is returned. For example, if the search is for &quot;dylan&quot; then Bob Dylan may be returned as an artist result, an a few of his albums returned as album results with a reason code of `artist` (the identifier of that particular hub). Or if the search is for &quot;arnold&quot;, there might be movie results returned with a reason of `actor`<br/>
-        /// - `reasonTitle`: The string associated with the reason code. For a section reason, it&apos;ll be the section name; For a hub identifier, it&apos;ll be a string associated with the match (e.g. `Arnold Schwarzenegger` for movies which were returned because the search was for &quot;arnold&quot;).<br/>
+        ///   - `&lt;hub identifier&gt;`: If the reason for the result is due to a result in another hub, the source hub identifier is returned. For example, if the search is for "dylan" then Bob Dylan may be returned as an artist result, an a few of his albums returned as album results with a reason code of `artist` (the identifier of that particular hub). Or if the search is for "arnold", there might be movie results returned with a reason of `actor`<br/>
+        /// - `reasonTitle`: The string associated with the reason code. For a section reason, it'll be the section name; For a hub identifier, it'll be a string associated with the match (e.g. `Arnold Schwarzenegger` for movies which were returned because the search was for "arnold").<br/>
         /// - `reasonID`: The ID of the item associated with the reason for the result. This might be a section ID, a tag ID, an artist ID, or a show ID.<br/>
         /// <br/>
-        /// This request is intended to be very fast, and called as the user types.<br/>
-        /// 
+        /// This request is intended to be very fast, and called as the user types.
         /// </remarks>
-        /// </summary>
-        Task<SearchHubsResponse> SearchHubsAsync(SearchHubsRequest request);
+        /// <param name="request">A <see cref="SearchHubsRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="SearchHubsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<SearchHubsResponse> SearchHubsAsync(SearchHubsRequest request);
 
         /// <summary>
-        /// Voice Search Hub
-        /// 
+        /// Voice Search Hub.
+        /// </summary>
         /// <remarks>
         /// Perform a search tailored to voice input and get the result as hubs<br/>
         /// <br/>
         /// This endpoint performs a search specifically tailored towards voice or other imprecise input which may work badly with the substring and spell-checking heuristics used by the `/hubs/search` endpoint. It uses a <a href="https://en.wikipedia.org/wiki/Levenshtein_distance">Levenshtein distance</a> heuristic to search titles, and as such is much slower than the other search endpoint. Whenever possible, clients should limit the search to the appropriate type.<br/>
         /// <br/>
-        /// Results, as well as their containing per-type hubs, contain a `distance` attribute which can be used to judge result quality.<br/>
-        /// 
+        /// Results, as well as their containing per-type hubs, contain a `distance` attribute which can be used to judge result quality.
         /// </remarks>
-        /// </summary>
-        Task<VoiceSearchHubsResponse> VoiceSearchHubsAsync(VoiceSearchHubsRequest request);
+        /// <param name="request">A <see cref="VoiceSearchHubsRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="VoiceSearchHubsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<VoiceSearchHubsResponse> VoiceSearchHubsAsync(VoiceSearchHubsRequest request);
     }
 
     /// <summary>
-    /// The search feature within a media provider
+    /// The search feature within a media provider.
     /// </summary>
     public class Search: ISearch
     {
+        /// <summary>
+        /// SDK Configuration.
+        /// <see cref="SDKConfig"/>
+        /// </summary>
         public SDKConfig SDKConfiguration { get; private set; }
-
-        private const string _language = Constants.Language;
-        private const string _sdkVersion = Constants.SdkVersion;
-        private const string _sdkGenVersion = Constants.SdkGenVersion;
-        private const string _openapiDocVersion = Constants.OpenApiDocVersion;
 
         public Search(SDKConfig config)
         {
             SDKConfiguration = config;
         }
 
-        public async Task<SearchHubsResponse> SearchHubsAsync(SearchHubsRequest request)
+        /// <summary>
+        /// Search Hub.
+        /// </summary>
+        /// <remarks>
+        /// Perform a search and get the result as hubs<br/>
+        /// <br/>
+        /// This endpoint performs a search across all library sections, or a single section, and returns matches as hubs, split up by type. It performs spell checking, looks for partial matches, and orders the hubs based on quality of results. In addition, based on matches, it will return other related matches (e.g. for a genre match, it may return movies in that genre, or for an actor match, movies with that actor).<br/>
+        /// <br/>
+        /// In the response's items, the following extra attributes are returned to further describe or disambiguate the result:<br/>
+        /// <br/>
+        /// - `reason`: The reason for the result, if not because of a direct search term match; can be either:<br/>
+        ///   - `section`: There are multiple identical results from different sections.<br/>
+        ///   - `originalTitle`: There was a search term match from the original title field (sometimes those can be very different or in a foreign language).<br/>
+        ///   - `&lt;hub identifier&gt;`: If the reason for the result is due to a result in another hub, the source hub identifier is returned. For example, if the search is for "dylan" then Bob Dylan may be returned as an artist result, an a few of his albums returned as album results with a reason code of `artist` (the identifier of that particular hub). Or if the search is for "arnold", there might be movie results returned with a reason of `actor`<br/>
+        /// - `reasonTitle`: The string associated with the reason code. For a section reason, it'll be the section name; For a hub identifier, it'll be a string associated with the match (e.g. `Arnold Schwarzenegger` for movies which were returned because the search was for "arnold").<br/>
+        /// - `reasonID`: The ID of the item associated with the reason for the result. This might be a section ID, a tag ID, an artist ID, or a show ID.<br/>
+        /// <br/>
+        /// This request is intended to be very fast, and called as the user types.
+        /// </remarks>
+        /// <param name="request">A <see cref="SearchHubsRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="SearchHubsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<SearchHubsResponse> SearchHubsAsync(SearchHubsRequest request)
         {
-            if (request == null)
-            {
-                request = new SearchHubsRequest();
-            }
+            if (request == null) throw new ArgumentNullException(nameof(request));
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -100,13 +128,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/hubs/search", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -123,7 +156,7 @@ namespace LukeHagar.PlexAPI.SDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == 400 || _statusCode == 404 || _statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
+                if (_statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -132,9 +165,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -168,7 +201,8 @@ namespace LukeHagar.PlexAPI.SDK
                     {
                         StatusCode = responseStatusCode,
                         ContentType = contentType,
-                        RawResponse = httpResponse
+                        RawResponse = httpResponse,
+                        Headers = Utilities.CollectHeaders(httpResponse.Headers)
                     };
                     response.Object = obj;
                     return response;
@@ -176,7 +210,7 @@ namespace LukeHagar.PlexAPI.SDK
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
-            else if(responseStatusCode == 400 || responseStatusCode == 404 || responseStatusCode >= 400 && responseStatusCode < 500)
+            else if(responseStatusCode >= 400 && responseStatusCode < 500)
             {
                 throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
@@ -188,12 +222,26 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<VoiceSearchHubsResponse> VoiceSearchHubsAsync(VoiceSearchHubsRequest request)
+
+        /// <summary>
+        /// Voice Search Hub.
+        /// </summary>
+        /// <remarks>
+        /// Perform a search tailored to voice input and get the result as hubs<br/>
+        /// <br/>
+        /// This endpoint performs a search specifically tailored towards voice or other imprecise input which may work badly with the substring and spell-checking heuristics used by the `/hubs/search` endpoint. It uses a <a href="https://en.wikipedia.org/wiki/Levenshtein_distance">Levenshtein distance</a> heuristic to search titles, and as such is much slower than the other search endpoint. Whenever possible, clients should limit the search to the appropriate type.<br/>
+        /// <br/>
+        /// Results, as well as their containing per-type hubs, contain a `distance` attribute which can be used to judge result quality.
+        /// </remarks>
+        /// <param name="request">A <see cref="VoiceSearchHubsRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="VoiceSearchHubsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<VoiceSearchHubsResponse> VoiceSearchHubsAsync(VoiceSearchHubsRequest request)
         {
-            if (request == null)
-            {
-                request = new VoiceSearchHubsRequest();
-            }
+            if (request == null) throw new ArgumentNullException(nameof(request));
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -205,13 +253,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/hubs/search/voice", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -228,7 +281,7 @@ namespace LukeHagar.PlexAPI.SDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == 400 || _statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
+                if (_statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -237,9 +290,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -273,7 +326,8 @@ namespace LukeHagar.PlexAPI.SDK
                     {
                         StatusCode = responseStatusCode,
                         ContentType = contentType,
-                        RawResponse = httpResponse
+                        RawResponse = httpResponse,
+                        Headers = Utilities.CollectHeaders(httpResponse.Headers)
                     };
                     response.Object = obj;
                     return response;
@@ -281,7 +335,7 @@ namespace LukeHagar.PlexAPI.SDK
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
-            else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500)
+            else if(responseStatusCode >= 400 && responseStatusCode < 500)
             {
                 throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
@@ -292,5 +346,6 @@ namespace LukeHagar.PlexAPI.SDK
 
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
+
     }
 }

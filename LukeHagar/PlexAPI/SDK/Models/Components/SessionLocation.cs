@@ -12,9 +12,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     /// <summary>
-    /// The location of the client
+    /// The location of the client.
     /// </summary>
     public enum SessionLocation
     {
@@ -56,5 +56,4 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
             throw new Exception($"Unknown value {value} for enum SessionLocation");
         }
     }
-
 }

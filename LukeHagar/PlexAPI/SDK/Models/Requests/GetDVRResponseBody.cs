@@ -12,13 +12,12 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Models.Requests;
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     /// <summary>
-    /// OK
+    /// OK.
     /// </summary>
     public class GetDVRResponseBody
     {
-
         [JsonProperty("MediaContainer")]
         public GetDVRMediaContainer? MediaContainer { get; set; }
     }

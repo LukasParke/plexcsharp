@@ -23,142 +23,192 @@ namespace LukeHagar.PlexAPI.SDK
     using System.Threading.Tasks;
 
     /// <summary>
-    /// API Operations against the Download Queue
+    /// API Operations against the Download Queue.
     /// </summary>
     public interface IDownloadQueue
     {
-
         /// <summary>
-        /// Create download queue
-        /// 
+        /// Create download queue.
+        /// </summary>
         /// <remarks>
         /// Available: 0.2.0<br/>
         /// <br/>
-        /// Creates a download queue for this client if one doesn&apos;t exist, or returns the existing queue for this client and user.<br/>
-        /// 
+        /// Creates a download queue for this client if one doesn't exist, or returns the existing queue for this client and user.
         /// </remarks>
-        /// </summary>
-        Task<CreateDownloadQueueResponse> CreateDownloadQueueAsync();
+        /// <returns>An awaitable task that returns a <see cref="CreateDownloadQueueResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<CreateDownloadQueueResponse> CreateDownloadQueueAsync();
 
         /// <summary>
-        /// Get a download queue
-        /// 
+        /// Get a download queue.
+        /// </summary>
         /// <remarks>
         /// Available: 0.2.0<br/>
         /// <br/>
-        /// Get a download queue by its id<br/>
-        /// 
+        /// Get a download queue by its id.
         /// </remarks>
-        /// </summary>
-        Task<GetDownloadQueueResponse> GetDownloadQueueAsync(GetDownloadQueueRequest request);
+        /// <param name="request">A <see cref="GetDownloadQueueRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetDownloadQueueResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<GetDownloadQueueResponse> GetDownloadQueueAsync(GetDownloadQueueRequest request);
 
         /// <summary>
-        /// Add to download queue
-        /// 
+        /// Add to download queue.
+        /// </summary>
         /// <remarks>
         /// Available: 0.2.0<br/>
         /// <br/>
-        /// Add items to the download queue<br/>
-        /// 
+        /// Add items to the download queue.
         /// </remarks>
-        /// </summary>
-        Task<AddDownloadQueueItemsResponse> AddDownloadQueueItemsAsync(AddDownloadQueueItemsRequest request);
+        /// <param name="request">A <see cref="AddDownloadQueueItemsRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="AddDownloadQueueItemsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<AddDownloadQueueItemsResponse> AddDownloadQueueItemsAsync(AddDownloadQueueItemsRequest request);
 
         /// <summary>
-        /// Get download queue items
-        /// 
+        /// Get download queue items.
+        /// </summary>
         /// <remarks>
         /// Available: 0.2.0<br/>
         /// <br/>
-        /// Get items from a download queue<br/>
-        /// 
+        /// Get items from a download queue.
         /// </remarks>
-        /// </summary>
-        Task<ListDownloadQueueItemsResponse> ListDownloadQueueItemsAsync(ListDownloadQueueItemsRequest request);
+        /// <param name="request">A <see cref="ListDownloadQueueItemsRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="ListDownloadQueueItemsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<ListDownloadQueueItemsResponse> ListDownloadQueueItemsAsync(ListDownloadQueueItemsRequest request);
 
         /// <summary>
-        /// Grab download queue item decision
-        /// 
+        /// Grab download queue item decision.
+        /// </summary>
         /// <remarks>
         /// Available: 0.2.0<br/>
         /// <br/>
-        /// Grab the decision for a download queue item<br/>
-        /// 
+        /// Grab the decision for a download queue item.
         /// </remarks>
-        /// </summary>
-        Task<GetItemDecisionResponse> GetItemDecisionAsync(GetItemDecisionRequest request);
+        /// <param name="request">A <see cref="GetItemDecisionRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetItemDecisionResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<GetItemDecisionResponse> GetItemDecisionAsync(GetItemDecisionRequest request);
 
         /// <summary>
-        /// Grab download queue media
-        /// 
+        /// Grab download queue media.
+        /// </summary>
         /// <remarks>
         /// Available: 0.2.0<br/>
         /// <br/>
-        /// Grab the media for a download queue item<br/>
-        /// 
+        /// Grab the media for a download queue item.
         /// </remarks>
-        /// </summary>
-        Task<GetDownloadQueueMediaResponse> GetDownloadQueueMediaAsync(GetDownloadQueueMediaRequest request);
+        /// <param name="request">A <see cref="GetDownloadQueueMediaRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetDownloadQueueMediaResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<GetDownloadQueueMediaResponse> GetDownloadQueueMediaAsync(GetDownloadQueueMediaRequest request);
 
         /// <summary>
-        /// Delete download queue items
-        /// 
+        /// Delete download queue items.
+        /// </summary>
         /// <remarks>
-        /// delete items from a download queue
+        /// delete items from a download queue.
         /// </remarks>
-        /// </summary>
-        Task<RemoveDownloadQueueItemsResponse> RemoveDownloadQueueItemsAsync(RemoveDownloadQueueItemsRequest request);
+        /// <param name="request">A <see cref="RemoveDownloadQueueItemsRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="RemoveDownloadQueueItemsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<RemoveDownloadQueueItemsResponse> RemoveDownloadQueueItemsAsync(
+            RemoveDownloadQueueItemsRequest request
+        );
 
         /// <summary>
-        /// Get download queue items
-        /// 
-        /// <remarks>
-        /// Available: 0.2.0<br/>
-        /// <br/>
-        /// Get items from a download queue<br/>
-        /// 
-        /// </remarks>
+        /// Get download queue items.
         /// </summary>
-        Task<GetDownloadQueueItemsResponse> GetDownloadQueueItemsAsync(GetDownloadQueueItemsRequest request);
-
-        /// <summary>
-        /// Restart processing of items from the decision
-        /// 
         /// <remarks>
         /// Available: 0.2.0<br/>
         /// <br/>
-        /// Reprocess download queue items with previous decision parameters<br/>
-        /// 
+        /// Get items from a download queue.
         /// </remarks>
+        /// <param name="request">A <see cref="GetDownloadQueueItemsRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetDownloadQueueItemsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<GetDownloadQueueItemsResponse> GetDownloadQueueItemsAsync(GetDownloadQueueItemsRequest request);
+
+        /// <summary>
+        /// Restart processing of items from the decision.
         /// </summary>
-        Task<RestartProcessingDownloadQueueItemsResponse> RestartProcessingDownloadQueueItemsAsync(RestartProcessingDownloadQueueItemsRequest request);
+        /// <remarks>
+        /// Available: 0.2.0<br/>
+        /// <br/>
+        /// Reprocess download queue items with previous decision parameters.
+        /// </remarks>
+        /// <param name="request">A <see cref="RestartProcessingDownloadQueueItemsRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="RestartProcessingDownloadQueueItemsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<RestartProcessingDownloadQueueItemsResponse> RestartProcessingDownloadQueueItemsAsync(
+            RestartProcessingDownloadQueueItemsRequest request
+        );
     }
 
     /// <summary>
-    /// API Operations against the Download Queue
+    /// API Operations against the Download Queue.
     /// </summary>
     public class DownloadQueue: IDownloadQueue
     {
+        /// <summary>
+        /// SDK Configuration.
+        /// <see cref="SDKConfig"/>
+        /// </summary>
         public SDKConfig SDKConfiguration { get; private set; }
-
-        private const string _language = Constants.Language;
-        private const string _sdkVersion = Constants.SdkVersion;
-        private const string _sdkGenVersion = Constants.SdkGenVersion;
-        private const string _openapiDocVersion = Constants.OpenApiDocVersion;
 
         public DownloadQueue(SDKConfig config)
         {
             SDKConfiguration = config;
         }
 
-        public async Task<CreateDownloadQueueResponse> CreateDownloadQueueAsync()
+        /// <summary>
+        /// Create download queue.
+        /// </summary>
+        /// <remarks>
+        /// Available: 0.2.0<br/>
+        /// <br/>
+        /// Creates a download queue for this client if one doesn't exist, or returns the existing queue for this client and user.
+        /// </remarks>
+        /// <returns>An awaitable task that returns a <see cref="CreateDownloadQueueResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<CreateDownloadQueueResponse> CreateDownloadQueueAsync()
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-
             var urlString = baseUrl + "/downloadQueue";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -184,9 +234,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -240,12 +290,24 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<GetDownloadQueueResponse> GetDownloadQueueAsync(GetDownloadQueueRequest request)
+
+        /// <summary>
+        /// Get a download queue.
+        /// </summary>
+        /// <remarks>
+        /// Available: 0.2.0<br/>
+        /// <br/>
+        /// Get a download queue by its id.
+        /// </remarks>
+        /// <param name="request">A <see cref="GetDownloadQueueRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetDownloadQueueResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<GetDownloadQueueResponse> GetDownloadQueueAsync(GetDownloadQueueRequest request)
         {
-            if (request == null)
-            {
-                request = new GetDownloadQueueRequest();
-            }
+            if (request == null) throw new ArgumentNullException(nameof(request));
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -257,13 +319,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/downloadQueue/{queueId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -289,9 +356,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -345,12 +412,26 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<AddDownloadQueueItemsResponse> AddDownloadQueueItemsAsync(AddDownloadQueueItemsRequest request)
+
+        /// <summary>
+        /// Add to download queue.
+        /// </summary>
+        /// <remarks>
+        /// Available: 0.2.0<br/>
+        /// <br/>
+        /// Add items to the download queue.
+        /// </remarks>
+        /// <param name="request">A <see cref="AddDownloadQueueItemsRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="AddDownloadQueueItemsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<AddDownloadQueueItemsResponse> AddDownloadQueueItemsAsync(
+            AddDownloadQueueItemsRequest request
+        )
         {
-            if (request == null)
-            {
-                request = new AddDownloadQueueItemsRequest();
-            }
+            if (request == null) throw new ArgumentNullException(nameof(request));
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -362,13 +443,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/downloadQueue/{queueId}/add", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -394,9 +480,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -450,12 +536,26 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<ListDownloadQueueItemsResponse> ListDownloadQueueItemsAsync(ListDownloadQueueItemsRequest request)
+
+        /// <summary>
+        /// Get download queue items.
+        /// </summary>
+        /// <remarks>
+        /// Available: 0.2.0<br/>
+        /// <br/>
+        /// Get items from a download queue.
+        /// </remarks>
+        /// <param name="request">A <see cref="ListDownloadQueueItemsRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="ListDownloadQueueItemsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<ListDownloadQueueItemsResponse> ListDownloadQueueItemsAsync(
+            ListDownloadQueueItemsRequest request
+        )
         {
-            if (request == null)
-            {
-                request = new ListDownloadQueueItemsRequest();
-            }
+            if (request == null) throw new ArgumentNullException(nameof(request));
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -467,13 +567,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/downloadQueue/{queueId}/items", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -499,9 +604,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -555,12 +660,24 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<GetItemDecisionResponse> GetItemDecisionAsync(GetItemDecisionRequest request)
+
+        /// <summary>
+        /// Grab download queue item decision.
+        /// </summary>
+        /// <remarks>
+        /// Available: 0.2.0<br/>
+        /// <br/>
+        /// Grab the decision for a download queue item.
+        /// </remarks>
+        /// <param name="request">A <see cref="GetItemDecisionRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetItemDecisionResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<GetItemDecisionResponse> GetItemDecisionAsync(GetItemDecisionRequest request)
         {
-            if (request == null)
-            {
-                request = new GetItemDecisionRequest();
-            }
+            if (request == null) throw new ArgumentNullException(nameof(request));
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -572,13 +689,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/downloadQueue/{queueId}/item/{itemId}/decision", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -595,7 +717,7 @@ namespace LukeHagar.PlexAPI.SDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == 400 || _statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
+                if (_statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -604,9 +726,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -648,7 +770,7 @@ namespace LukeHagar.PlexAPI.SDK
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
-            else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500)
+            else if(responseStatusCode >= 400 && responseStatusCode < 500)
             {
                 throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
@@ -660,12 +782,25 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<GetDownloadQueueMediaResponse> GetDownloadQueueMediaAsync(GetDownloadQueueMediaRequest request)
+
+        /// <summary>
+        /// Grab download queue media.
+        /// </summary>
+        /// <remarks>
+        /// Available: 0.2.0<br/>
+        /// <br/>
+        /// Grab the media for a download queue item.
+        /// </remarks>
+        /// <param name="request">A <see cref="GetDownloadQueueMediaRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetDownloadQueueMediaResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<GetDownloadQueueMediaResponse> GetDownloadQueueMediaAsync(
+            GetDownloadQueueMediaRequest request
+        )
         {
-            if (request == null)
-            {
-                request = new GetDownloadQueueMediaRequest();
-            }
+            if (request == null) throw new ArgumentNullException(nameof(request));
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -677,13 +812,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/downloadQueue/{queueId}/item/{itemId}/media", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "*/*");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -700,7 +840,7 @@ namespace LukeHagar.PlexAPI.SDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode >= 400 && _statusCode < 500 || _statusCode == 503 || _statusCode >= 500 && _statusCode < 600)
+                if (_statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -709,9 +849,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -732,7 +872,8 @@ namespace LukeHagar.PlexAPI.SDK
                 {
                     StatusCode = responseStatusCode,
                     ContentType = contentType,
-                    RawResponse = httpResponse
+                    RawResponse = httpResponse,
+                    Headers = Utilities.CollectHeaders(httpResponse.Headers)
                 };
             }
             else if(responseStatusCode == 503)
@@ -751,12 +892,23 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<RemoveDownloadQueueItemsResponse> RemoveDownloadQueueItemsAsync(RemoveDownloadQueueItemsRequest request)
+
+        /// <summary>
+        /// Delete download queue items.
+        /// </summary>
+        /// <remarks>
+        /// delete items from a download queue.
+        /// </remarks>
+        /// <param name="request">A <see cref="RemoveDownloadQueueItemsRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="RemoveDownloadQueueItemsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<RemoveDownloadQueueItemsResponse> RemoveDownloadQueueItemsAsync(
+            RemoveDownloadQueueItemsRequest request
+        )
         {
-            if (request == null)
-            {
-                request = new RemoveDownloadQueueItemsRequest();
-            }
+            if (request == null) throw new ArgumentNullException(nameof(request));
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -768,13 +920,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/downloadQueue/{queueId}/items/{itemId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "*/*");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -800,9 +957,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -838,12 +995,26 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<GetDownloadQueueItemsResponse> GetDownloadQueueItemsAsync(GetDownloadQueueItemsRequest request)
+
+        /// <summary>
+        /// Get download queue items.
+        /// </summary>
+        /// <remarks>
+        /// Available: 0.2.0<br/>
+        /// <br/>
+        /// Get items from a download queue.
+        /// </remarks>
+        /// <param name="request">A <see cref="GetDownloadQueueItemsRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetDownloadQueueItemsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<GetDownloadQueueItemsResponse> GetDownloadQueueItemsAsync(
+            GetDownloadQueueItemsRequest request
+        )
         {
-            if (request == null)
-            {
-                request = new GetDownloadQueueItemsRequest();
-            }
+            if (request == null) throw new ArgumentNullException(nameof(request));
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -855,13 +1026,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/downloadQueue/{queueId}/items/{itemId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -887,9 +1063,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -943,12 +1119,25 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<RestartProcessingDownloadQueueItemsResponse> RestartProcessingDownloadQueueItemsAsync(RestartProcessingDownloadQueueItemsRequest request)
+
+        /// <summary>
+        /// Restart processing of items from the decision.
+        /// </summary>
+        /// <remarks>
+        /// Available: 0.2.0<br/>
+        /// <br/>
+        /// Reprocess download queue items with previous decision parameters.
+        /// </remarks>
+        /// <param name="request">A <see cref="RestartProcessingDownloadQueueItemsRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="RestartProcessingDownloadQueueItemsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<RestartProcessingDownloadQueueItemsResponse> RestartProcessingDownloadQueueItemsAsync(
+            RestartProcessingDownloadQueueItemsRequest request
+        )
         {
-            if (request == null)
-            {
-                request = new RestartProcessingDownloadQueueItemsRequest();
-            }
+            if (request == null) throw new ArgumentNullException(nameof(request));
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -960,13 +1149,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/downloadQueue/{queueId}/items/{itemId}/restart", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "*/*");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -992,9 +1186,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1029,5 +1223,6 @@ namespace LukeHagar.PlexAPI.SDK
 
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
+
     }
 }

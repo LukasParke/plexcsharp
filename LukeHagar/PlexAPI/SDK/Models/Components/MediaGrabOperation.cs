@@ -12,17 +12,12 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using LukeHagar.PlexAPI.SDK.Models.Components;
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     /// <summary>
-    /// A media grab opration represents a scheduled or active recording of media<br/>
-    /// 
-    /// <remarks>
-    /// 
-    /// </remarks>
+    /// A media grab opration represents a scheduled or active recording of media.
     /// </summary>
     public class MediaGrabOperation
     {
-
         [JsonProperty("currentSize")]
         public long? CurrentSize { get; set; }
 
@@ -45,15 +40,11 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public long? MediaSubscriptionID { get; set; }
 
         /// <summary>
-        /// Items in a library are referred to as &quot;metadata items.&quot; These metadata items are distinct from &quot;media items&quot; which represent actual instances of media that can be consumed. Consider a TV library that has a single video file in it for a particular episode of a show. The library has a single media item, but it has three metadata items: one for the show, one for the season, and one for the episode. Consider a movie library that has two video files in it: the same movie, but two different resolutions. The library has a single metadata item for the movie, but that metadata item has two media items, one for each resolution. Additionally a &quot;media item&quot; will have one or more &quot;media parts&quot; where the the parts are intended to be watched together, such as a CD1 and CD2 parts of the same movie.<br/>
-        /// 
-        /// <remarks>
+        /// Items in a library are referred to as "metadata items." These metadata items are distinct from "media items" which represent actual instances of media that can be consumed. Consider a TV library that has a single video file in it for a particular episode of a show. The library has a single media item, but it has three metadata items: one for the show, one for the season, and one for the episode. Consider a movie library that has two video files in it: the same movie, but two different resolutions. The library has a single metadata item for the movie, but that metadata item has two media items, one for each resolution. Additionally a "media item" will have one or more "media parts" where the the parts are intended to be watched together, such as a CD1 and CD2 parts of the same movie.<br/>
         /// <br/>
-        /// Note that when a metadata item has multiple media items, those media items should be isomorphic. That is, a 4K version and 1080p version of a movie are different versions of the same movie. They have the same duration, same summary, same rating, etc. and they can generally be considered interchangeable. A theatrical release vs. director&apos;s cut vs. unrated version on the other hand would be separate metadata items.<br/>
+        /// Note that when a metadata item has multiple media items, those media items should be isomorphic. That is, a 4K version and 1080p version of a movie are different versions of the same movie. They have the same duration, same summary, same rating, etc. and they can generally be considered interchangeable. A theatrical release vs. director's cut vs. unrated version on the other hand would be separate metadata items.<br/>
         /// <br/>
-        /// Metadata items can often live in a hierarchy with relationships between them.  For example, the metadata item for an episodes is associated with a season metadata item which is associated with a show metadata item.  A similar hierarchy exists with track, album, and artist and photos and photo album.  The relationships may be expressed via relative terms and absolute terms.  For example, &quot;leaves&quot; refer to metadata items which has associated media (there is no media for a season nor show).  A show will have &quot;children&quot; in the form of seasons and a season will have &quot;children&quot; in the form of episodes and episodes have &quot;parent&quot; in the form of a season which has a &quot;parent&quot; in the form of a show.  Similarly, a show has &quot;grandchildren&quot; in the form of episodse and an episode has a &quot;grandparent&quot; in the form of a show.<br/>
-        /// 
-        /// </remarks>
+        /// Metadata items can often live in a hierarchy with relationships between them.  For example, the metadata item for an episodes is associated with a season metadata item which is associated with a show metadata item.  A similar hierarchy exists with track, album, and artist and photos and photo album.  The relationships may be expressed via relative terms and absolute terms.  For example, "leaves" refer to metadata items which has associated media (there is no media for a season nor show).  A show will have "children" in the form of seasons and a season will have "children" in the form of episodes and episodes have "parent" in the form of a season which has a "parent" in the form of a show.  Similarly, a show has "grandchildren" in the form of episodse and an episode has a "grandparent" in the form of a show.
         /// </summary>
         [JsonProperty("Metadata")]
         public Models.Components.Metadata? Metadata { get; set; }

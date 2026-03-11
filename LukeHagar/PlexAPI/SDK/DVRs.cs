@@ -23,153 +23,211 @@ namespace LukeHagar.PlexAPI.SDK
     using System.Threading.Tasks;
 
     /// <summary>
-    /// The DVR provides means to watch and record live TV.  This section of endpoints describes how to setup the DVR itself<br/>
-    /// 
-    /// <remarks>
-    /// 
-    /// </remarks>
+    /// The DVR provides means to watch and record live TV.  This section of endpoints describes how to setup the DVR itself.
     /// </summary>
     public interface IDVRs
     {
+        /// <summary>
+        /// Get DVRs.
+        /// </summary>
+        /// <remarks>
+        /// Get the list of all available DVRs.
+        /// </remarks>
+        /// <returns>An awaitable task that returns a <see cref="ListDVRsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<ListDVRsResponse> ListDVRsAsync();
 
         /// <summary>
-        /// Get DVRs
-        /// 
-        /// <remarks>
-        /// Get the list of all available DVRs
-        /// </remarks>
+        /// Create a DVR.
         /// </summary>
-        Task<ListDVRsResponse> ListDVRsAsync();
+        /// <remarks>
+        /// Creation of a DVR, after creation of a devcie and a lineup is selected.
+        /// </remarks>
+        /// <param name="request">A <see cref="CreateDVRRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="CreateDVRResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<CreateDVRResponse> CreateDVRAsync(CreateDVRRequest? request = null);
 
         /// <summary>
-        /// Create a DVR
-        /// 
-        /// <remarks>
-        /// Creation of a DVR, after creation of a devcie and a lineup is selected
-        /// </remarks>
+        /// Delete a single DVR.
         /// </summary>
-        Task<CreateDVRResponse> CreateDVRAsync(CreateDVRRequest? request = null);
+        /// <remarks>
+        /// Delete a single DVR by its id (key).
+        /// </remarks>
+        /// <param name="request">A <see cref="DeleteDVRRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="DeleteDVRResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<DeleteDVRResponse> DeleteDVRAsync(DeleteDVRRequest request);
 
         /// <summary>
-        /// Delete a single DVR
-        /// 
-        /// <remarks>
-        /// Delete a single DVR by its id (key)
-        /// </remarks>
+        /// Get a single DVR.
         /// </summary>
-        Task<DeleteDVRResponse> DeleteDVRAsync(DeleteDVRRequest request);
+        /// <remarks>
+        /// Get a single DVR by its id (key).
+        /// </remarks>
+        /// <param name="request">A <see cref="GetDVRRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetDVRResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<GetDVRResponse> GetDVRAsync(GetDVRRequest request);
 
         /// <summary>
-        /// Get a single DVR
-        /// 
-        /// <remarks>
-        /// Get a single DVR by its id (key)
-        /// </remarks>
+        /// Delete a DVR Lineup.
         /// </summary>
-        Task<GetDVRResponse> GetDVRAsync(GetDVRRequest request);
+        /// <remarks>
+        /// Deletes a DVR device's lineup.
+        /// </remarks>
+        /// <param name="request">A <see cref="DeleteLineupRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="DeleteLineupResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<DeleteLineupResponse> DeleteLineupAsync(DeleteLineupRequest request);
 
         /// <summary>
-        /// Delete a DVR Lineup
-        /// 
-        /// <remarks>
-        /// Deletes a DVR device&apos;s lineup.
-        /// </remarks>
+        /// Add a DVR Lineup.
         /// </summary>
-        Task<DeleteLineupResponse> DeleteLineupAsync(DeleteLineupRequest request);
+        /// <remarks>
+        /// Add a lineup to a DVR device's set of lineups.
+        /// </remarks>
+        /// <param name="request">A <see cref="AddLineupRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="AddLineupResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<AddLineupResponse> AddLineupAsync(AddLineupRequest request);
 
         /// <summary>
-        /// Add a DVR Lineup
-        /// 
-        /// <remarks>
-        /// Add a lineup to a DVR device&apos;s set of lineups.
-        /// </remarks>
+        /// Set DVR preferences.
         /// </summary>
-        Task<AddLineupResponse> AddLineupAsync(AddLineupRequest request);
+        /// <remarks>
+        /// Set DVR preferences by name avd value.
+        /// </remarks>
+        /// <param name="request">A <see cref="SetDVRPreferencesRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="SetDVRPreferencesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<SetDVRPreferencesResponse> SetDVRPreferencesAsync(SetDVRPreferencesRequest request);
 
         /// <summary>
-        /// Set DVR preferences
-        /// 
-        /// <remarks>
-        /// Set DVR preferences by name avd value
-        /// </remarks>
+        /// Tell a DVR to stop reloading program guide.
         /// </summary>
-        Task<SetDVRPreferencesResponse> SetDVRPreferencesAsync(SetDVRPreferencesRequest request);
+        /// <remarks>
+        /// Tell a DVR to stop reloading program guide.
+        /// </remarks>
+        /// <param name="request">A <see cref="StopDVRReloadRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="StopDVRReloadResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<StopDVRReloadResponse> StopDVRReloadAsync(StopDVRReloadRequest request);
 
         /// <summary>
-        /// Tell a DVR to stop reloading program guide
-        /// 
-        /// <remarks>
-        /// Tell a DVR to stop reloading program guide
-        /// </remarks>
+        /// Tell a DVR to reload program guide.
         /// </summary>
-        Task<StopDVRReloadResponse> StopDVRReloadAsync(StopDVRReloadRequest request);
+        /// <remarks>
+        /// Tell a DVR to reload program guide.
+        /// </remarks>
+        /// <param name="request">A <see cref="ReloadGuideRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="ReloadGuideResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<ReloadGuideResponse> ReloadGuideAsync(ReloadGuideRequest request);
 
         /// <summary>
-        /// Tell a DVR to reload program guide
-        /// 
-        /// <remarks>
-        /// Tell a DVR to reload program guide
-        /// </remarks>
+        /// Tune a channel on a DVR.
         /// </summary>
-        Task<ReloadGuideResponse> ReloadGuideAsync(ReloadGuideRequest request);
+        /// <remarks>
+        /// Tune a channel on a DVR to the provided channel.
+        /// </remarks>
+        /// <param name="request">A <see cref="TuneChannelRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="TuneChannelResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<TuneChannelResponse> TuneChannelAsync(TuneChannelRequest request);
 
         /// <summary>
-        /// Tune a channel on a DVR
-        /// 
-        /// <remarks>
-        /// Tune a channel on a DVR to the provided channel
-        /// </remarks>
+        /// Remove a device from an existing DVR.
         /// </summary>
-        Task<TuneChannelResponse> TuneChannelAsync(TuneChannelRequest request);
+        /// <remarks>
+        /// Remove a device from an existing DVR.
+        /// </remarks>
+        /// <param name="request">A <see cref="RemoveDeviceFromDVRRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="RemoveDeviceFromDVRResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<RemoveDeviceFromDVRResponse> RemoveDeviceFromDVRAsync(RemoveDeviceFromDVRRequest request);
 
         /// <summary>
-        /// Remove a device from an existing DVR
-        /// 
-        /// <remarks>
-        /// Remove a device from an existing DVR
-        /// </remarks>
+        /// Add a device to an existing DVR.
         /// </summary>
-        Task<RemoveDeviceFromDVRResponse> RemoveDeviceFromDVRAsync(RemoveDeviceFromDVRRequest request);
-
-        /// <summary>
-        /// Add a device to an existing DVR
-        /// 
         /// <remarks>
-        /// Add a device to an existing DVR
+        /// Add a device to an existing DVR.
         /// </remarks>
-        /// </summary>
-        Task<AddDeviceToDVRResponse> AddDeviceToDVRAsync(AddDeviceToDVRRequest request);
+        /// <param name="request">A <see cref="AddDeviceToDVRRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="AddDeviceToDVRResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<AddDeviceToDVRResponse> AddDeviceToDVRAsync(AddDeviceToDVRRequest request);
     }
 
     /// <summary>
-    /// The DVR provides means to watch and record live TV.  This section of endpoints describes how to setup the DVR itself<br/>
-    /// 
-    /// <remarks>
-    /// 
-    /// </remarks>
+    /// The DVR provides means to watch and record live TV.  This section of endpoints describes how to setup the DVR itself.
     /// </summary>
     public class DVRs: IDVRs
     {
+        /// <summary>
+        /// SDK Configuration.
+        /// <see cref="SDKConfig"/>
+        /// </summary>
         public SDKConfig SDKConfiguration { get; private set; }
-
-        private const string _language = Constants.Language;
-        private const string _sdkVersion = Constants.SdkVersion;
-        private const string _sdkGenVersion = Constants.SdkGenVersion;
-        private const string _openapiDocVersion = Constants.OpenApiDocVersion;
 
         public DVRs(SDKConfig config)
         {
             SDKConfiguration = config;
         }
 
-        public async Task<ListDVRsResponse> ListDVRsAsync()
+        /// <summary>
+        /// Get DVRs.
+        /// </summary>
+        /// <remarks>
+        /// Get the list of all available DVRs.
+        /// </remarks>
+        /// <returns>An awaitable task that returns a <see cref="ListDVRsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<ListDVRsResponse> ListDVRsAsync()
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-
             var urlString = baseUrl + "/livetv/dvrs";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -195,9 +253,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -231,7 +289,8 @@ namespace LukeHagar.PlexAPI.SDK
                     {
                         StatusCode = responseStatusCode,
                         ContentType = contentType,
-                        RawResponse = httpResponse
+                        RawResponse = httpResponse,
+                        Headers = Utilities.CollectHeaders(httpResponse.Headers)
                     };
                     response.Object = obj;
                     return response;
@@ -251,8 +310,24 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<CreateDVRResponse> CreateDVRAsync(CreateDVRRequest? request = null)
+
+        /// <summary>
+        /// Create a DVR.
+        /// </summary>
+        /// <remarks>
+        /// Creation of a DVR, after creation of a devcie and a lineup is selected.
+        /// </remarks>
+        /// <param name="request">A <see cref="CreateDVRRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="CreateDVRResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<CreateDVRResponse> CreateDVRAsync(CreateDVRRequest? request = null)
         {
+            if (request == null)
+            {
+                request = new CreateDVRRequest();
+            }
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -264,13 +339,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/livetv/dvrs", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -296,9 +376,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -332,7 +412,8 @@ namespace LukeHagar.PlexAPI.SDK
                     {
                         StatusCode = responseStatusCode,
                         ContentType = contentType,
-                        RawResponse = httpResponse
+                        RawResponse = httpResponse,
+                        Headers = Utilities.CollectHeaders(httpResponse.Headers)
                     };
                     response.DvrRequestHandlerSlashGetResponses200 = obj;
                     return response;
@@ -352,12 +433,21 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<DeleteDVRResponse> DeleteDVRAsync(DeleteDVRRequest request)
+
+        /// <summary>
+        /// Delete a single DVR.
+        /// </summary>
+        /// <remarks>
+        /// Delete a single DVR by its id (key).
+        /// </remarks>
+        /// <param name="request">A <see cref="DeleteDVRRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="DeleteDVRResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<DeleteDVRResponse> DeleteDVRAsync(DeleteDVRRequest request)
         {
-            if (request == null)
-            {
-                request = new DeleteDVRRequest();
-            }
+            if (request == null) throw new ArgumentNullException(nameof(request));
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -369,13 +459,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/livetv/dvrs/{dvrId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "*/*");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -401,9 +496,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -439,12 +534,22 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<GetDVRResponse> GetDVRAsync(GetDVRRequest request)
+
+        /// <summary>
+        /// Get a single DVR.
+        /// </summary>
+        /// <remarks>
+        /// Get a single DVR by its id (key).
+        /// </remarks>
+        /// <param name="request">A <see cref="GetDVRRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetDVRResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<GetDVRResponse> GetDVRAsync(GetDVRRequest request)
         {
-            if (request == null)
-            {
-                request = new GetDVRRequest();
-            }
+            if (request == null) throw new ArgumentNullException(nameof(request));
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -456,13 +561,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/livetv/dvrs/{dvrId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -488,9 +598,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -524,7 +634,8 @@ namespace LukeHagar.PlexAPI.SDK
                     {
                         StatusCode = responseStatusCode,
                         ContentType = contentType,
-                        RawResponse = httpResponse
+                        RawResponse = httpResponse,
+                        Headers = Utilities.CollectHeaders(httpResponse.Headers)
                     };
                     response.Object = obj;
                     return response;
@@ -544,12 +655,22 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<DeleteLineupResponse> DeleteLineupAsync(DeleteLineupRequest request)
+
+        /// <summary>
+        /// Delete a DVR Lineup.
+        /// </summary>
+        /// <remarks>
+        /// Deletes a DVR device's lineup.
+        /// </remarks>
+        /// <param name="request">A <see cref="DeleteLineupRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="DeleteLineupResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<DeleteLineupResponse> DeleteLineupAsync(DeleteLineupRequest request)
         {
-            if (request == null)
-            {
-                request = new DeleteLineupRequest();
-            }
+            if (request == null) throw new ArgumentNullException(nameof(request));
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -561,13 +682,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/livetv/dvrs/{dvrId}/lineups", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -593,9 +719,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -629,7 +755,8 @@ namespace LukeHagar.PlexAPI.SDK
                     {
                         StatusCode = responseStatusCode,
                         ContentType = contentType,
-                        RawResponse = httpResponse
+                        RawResponse = httpResponse,
+                        Headers = Utilities.CollectHeaders(httpResponse.Headers)
                     };
                     response.Object = obj;
                     return response;
@@ -649,12 +776,22 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<AddLineupResponse> AddLineupAsync(AddLineupRequest request)
+
+        /// <summary>
+        /// Add a DVR Lineup.
+        /// </summary>
+        /// <remarks>
+        /// Add a lineup to a DVR device's set of lineups.
+        /// </remarks>
+        /// <param name="request">A <see cref="AddLineupRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="AddLineupResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<AddLineupResponse> AddLineupAsync(AddLineupRequest request)
         {
-            if (request == null)
-            {
-                request = new AddLineupRequest();
-            }
+            if (request == null) throw new ArgumentNullException(nameof(request));
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -666,13 +803,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/livetv/dvrs/{dvrId}/lineups", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Put, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -698,9 +840,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -734,7 +876,8 @@ namespace LukeHagar.PlexAPI.SDK
                     {
                         StatusCode = responseStatusCode,
                         ContentType = contentType,
-                        RawResponse = httpResponse
+                        RawResponse = httpResponse,
+                        Headers = Utilities.CollectHeaders(httpResponse.Headers)
                     };
                     response.Object = obj;
                     return response;
@@ -754,12 +897,22 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<SetDVRPreferencesResponse> SetDVRPreferencesAsync(SetDVRPreferencesRequest request)
+
+        /// <summary>
+        /// Set DVR preferences.
+        /// </summary>
+        /// <remarks>
+        /// Set DVR preferences by name avd value.
+        /// </remarks>
+        /// <param name="request">A <see cref="SetDVRPreferencesRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="SetDVRPreferencesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<SetDVRPreferencesResponse> SetDVRPreferencesAsync(SetDVRPreferencesRequest request)
         {
-            if (request == null)
-            {
-                request = new SetDVRPreferencesRequest();
-            }
+            if (request == null) throw new ArgumentNullException(nameof(request));
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -771,13 +924,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/livetv/dvrs/{dvrId}/prefs", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Put, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -803,9 +961,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -839,7 +997,8 @@ namespace LukeHagar.PlexAPI.SDK
                     {
                         StatusCode = responseStatusCode,
                         ContentType = contentType,
-                        RawResponse = httpResponse
+                        RawResponse = httpResponse,
+                        Headers = Utilities.CollectHeaders(httpResponse.Headers)
                     };
                     response.Object = obj;
                     return response;
@@ -859,12 +1018,21 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<StopDVRReloadResponse> StopDVRReloadAsync(StopDVRReloadRequest request)
+
+        /// <summary>
+        /// Tell a DVR to stop reloading program guide.
+        /// </summary>
+        /// <remarks>
+        /// Tell a DVR to stop reloading program guide.
+        /// </remarks>
+        /// <param name="request">A <see cref="StopDVRReloadRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="StopDVRReloadResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<StopDVRReloadResponse> StopDVRReloadAsync(StopDVRReloadRequest request)
         {
-            if (request == null)
-            {
-                request = new StopDVRReloadRequest();
-            }
+            if (request == null) throw new ArgumentNullException(nameof(request));
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -876,13 +1044,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/livetv/dvrs/{dvrId}/reloadGuide", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "*/*");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -908,9 +1081,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -946,12 +1119,21 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<ReloadGuideResponse> ReloadGuideAsync(ReloadGuideRequest request)
+
+        /// <summary>
+        /// Tell a DVR to reload program guide.
+        /// </summary>
+        /// <remarks>
+        /// Tell a DVR to reload program guide.
+        /// </remarks>
+        /// <param name="request">A <see cref="ReloadGuideRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="ReloadGuideResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<ReloadGuideResponse> ReloadGuideAsync(ReloadGuideRequest request)
         {
-            if (request == null)
-            {
-                request = new ReloadGuideRequest();
-            }
+            if (request == null) throw new ArgumentNullException(nameof(request));
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -963,13 +1145,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/livetv/dvrs/{dvrId}/reloadGuide", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "*/*");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -995,9 +1182,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1018,7 +1205,8 @@ namespace LukeHagar.PlexAPI.SDK
                 {
                     StatusCode = responseStatusCode,
                     ContentType = contentType,
-                    RawResponse = httpResponse
+                    RawResponse = httpResponse,
+                    Headers = Utilities.CollectHeaders(httpResponse.Headers)
                 };
             }
             else if(responseStatusCode >= 400 && responseStatusCode < 500)
@@ -1033,12 +1221,22 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<TuneChannelResponse> TuneChannelAsync(TuneChannelRequest request)
+
+        /// <summary>
+        /// Tune a channel on a DVR.
+        /// </summary>
+        /// <remarks>
+        /// Tune a channel on a DVR to the provided channel.
+        /// </remarks>
+        /// <param name="request">A <see cref="TuneChannelRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="TuneChannelResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<TuneChannelResponse> TuneChannelAsync(TuneChannelRequest request)
         {
-            if (request == null)
-            {
-                request = new TuneChannelRequest();
-            }
+            if (request == null) throw new ArgumentNullException(nameof(request));
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -1050,13 +1248,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/livetv/dvrs/{dvrId}/channels/{channel}/tune", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -1073,7 +1276,7 @@ namespace LukeHagar.PlexAPI.SDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode >= 400 && _statusCode < 500 || _statusCode == 500 || _statusCode >= 500 && _statusCode < 600)
+                if (_statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1082,9 +1285,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1118,7 +1321,8 @@ namespace LukeHagar.PlexAPI.SDK
                     {
                         StatusCode = responseStatusCode,
                         ContentType = contentType,
-                        RawResponse = httpResponse
+                        RawResponse = httpResponse,
+                        Headers = Utilities.CollectHeaders(httpResponse.Headers)
                     };
                     response.MediaContainerWithMetadata = obj;
                     return response;
@@ -1130,7 +1334,7 @@ namespace LukeHagar.PlexAPI.SDK
             {
                 throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
-            else if(responseStatusCode == 500 || responseStatusCode >= 500 && responseStatusCode < 600)
+            else if(responseStatusCode >= 500 && responseStatusCode < 600)
             {
                 throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
@@ -1138,12 +1342,22 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<RemoveDeviceFromDVRResponse> RemoveDeviceFromDVRAsync(RemoveDeviceFromDVRRequest request)
+
+        /// <summary>
+        /// Remove a device from an existing DVR.
+        /// </summary>
+        /// <remarks>
+        /// Remove a device from an existing DVR.
+        /// </remarks>
+        /// <param name="request">A <see cref="RemoveDeviceFromDVRRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="RemoveDeviceFromDVRResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<RemoveDeviceFromDVRResponse> RemoveDeviceFromDVRAsync(RemoveDeviceFromDVRRequest request)
         {
-            if (request == null)
-            {
-                request = new RemoveDeviceFromDVRRequest();
-            }
+            if (request == null) throw new ArgumentNullException(nameof(request));
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -1155,13 +1369,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/livetv/dvrs/{dvrId}/devices/{deviceId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -1187,9 +1406,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1223,7 +1442,8 @@ namespace LukeHagar.PlexAPI.SDK
                     {
                         StatusCode = responseStatusCode,
                         ContentType = contentType,
-                        RawResponse = httpResponse
+                        RawResponse = httpResponse,
+                        Headers = Utilities.CollectHeaders(httpResponse.Headers)
                     };
                     response.Object = obj;
                     return response;
@@ -1243,12 +1463,22 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<AddDeviceToDVRResponse> AddDeviceToDVRAsync(AddDeviceToDVRRequest request)
+
+        /// <summary>
+        /// Add a device to an existing DVR.
+        /// </summary>
+        /// <remarks>
+        /// Add a device to an existing DVR.
+        /// </remarks>
+        /// <param name="request">A <see cref="AddDeviceToDVRRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="AddDeviceToDVRResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<AddDeviceToDVRResponse> AddDeviceToDVRAsync(AddDeviceToDVRRequest request)
         {
-            if (request == null)
-            {
-                request = new AddDeviceToDVRRequest();
-            }
+            if (request == null) throw new ArgumentNullException(nameof(request));
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -1260,13 +1490,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/livetv/dvrs/{dvrId}/devices/{deviceId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Put, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -1292,9 +1527,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1328,7 +1563,8 @@ namespace LukeHagar.PlexAPI.SDK
                     {
                         StatusCode = responseStatusCode,
                         ContentType = contentType,
-                        RawResponse = httpResponse
+                        RawResponse = httpResponse,
+                        Headers = Utilities.CollectHeaders(httpResponse.Headers)
                     };
                     response.Object = obj;
                     return response;
@@ -1347,5 +1583,6 @@ namespace LukeHagar.PlexAPI.SDK
 
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
+
     }
 }

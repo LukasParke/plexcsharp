@@ -13,17 +13,12 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     /// <summary>
-    /// `Part` represents a particular file or &quot;part&quot; of a media item. The part is the playable unit of the media hierarchy. Suppose that a movie library contains a movie that is broken up into files, reminiscent of a movie split across two BDs. The metadata item represents information about the movie, the media item represents this instance of the movie at this resolution and quality, and the part items represent the two playable files.  If another media were added which contained the joining of these two parts transcoded down to a lower resolution, then this metadata would contain 2 medias, one with 2 parts and one with 1 part.<br/>
-    /// 
-    /// <remarks>
-    /// 
-    /// </remarks>
+    /// `Part` represents a particular file or "part" of a media item. The part is the playable unit of the media hierarchy. Suppose that a movie library contains a movie that is broken up into files, reminiscent of a movie split across two BDs. The metadata item represents information about the movie, the media item represents this instance of the movie at this resolution and quality, and the part items represent the two playable files.  If another media were added which contained the joining of these two parts transcoded down to a lower resolution, then this metadata would contain 2 medias, one with 2 parts and one with 1 part.
     /// </summary>
     public class MediaContainerWithDecisionPart
     {
-
         /// <summary>
         /// Indicates if the part is accessible.
         /// </summary>
@@ -40,7 +35,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public string? Container { get; set; }
 
         /// <summary>
-        /// The duration of the media item, in milliseconds
+        /// The duration of the media item, in milliseconds.
         /// </summary>
         [JsonProperty("duration")]
         public int? Duration { get; set; }
@@ -52,7 +47,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public bool? Exists { get; set; }
 
         /// <summary>
-        /// The local file path at which the part is stored on the server
+        /// The local file path at which the part is stored on the server.
         /// </summary>
         [JsonProperty("file")]
         public string? File { get; set; }
@@ -67,7 +62,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public string? Indexes { get; set; }
 
         /// <summary>
-        /// The key from which the media can be streamed
+        /// The key from which the media can be streamed.
         /// </summary>
         [JsonProperty("key")]
         public string Key { get; set; } = default!;
@@ -76,7 +71,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public bool? OptimizedForStreaming { get; set; }
 
         /// <summary>
-        /// The size of the media, in bytes
+        /// The size of the media, in bytes.
         /// </summary>
         [JsonProperty("size")]
         public long? Size { get; set; }

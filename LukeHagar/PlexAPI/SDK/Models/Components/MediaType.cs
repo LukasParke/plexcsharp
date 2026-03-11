@@ -10,11 +10,9 @@
 namespace LukeHagar.PlexAPI.SDK.Models.Components
 {
     using LukeHagar.PlexAPI.SDK.Utils;
-    
+
     /// <summary>
     /// The type of media to retrieve or filter by.<br/>
-    /// 
-    /// <remarks>
     /// <br/>
     /// 1 = movie<br/>
     /// 2 = show<br/>
@@ -26,9 +24,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     /// 8 = photo_album<br/>
     /// 9 = photo<br/>
     /// <br/>
-    /// E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries<br/>
-    /// 
-    /// </remarks>
+    /// E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries.
     /// </summary>
     public enum MediaType
     {
@@ -42,5 +38,4 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         PhotoAlbum = 8,
         Photo = 9,
     }
-
 }

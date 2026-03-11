@@ -2,6 +2,14 @@
 
 The error which could have occurred (or `good`)
 
+## Example Usage
+
+```csharp
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var value = ProcessingStateContext.Good;
+```
+
 
 ## Values
 

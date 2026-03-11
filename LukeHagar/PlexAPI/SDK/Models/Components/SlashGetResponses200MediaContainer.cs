@@ -13,18 +13,14 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     public class SlashGetResponses200MediaContainer
     {
-
         /// <summary>
         /// The flavors of directory found here:<br/>
-        /// 
-        /// <remarks>
-        ///   - Primary: (e.g. all, On Deck) These are still used in some clients to provide &quot;shortcuts&quot; to subsets of media. However, with the exception of On Deck, all of them can be created by media queries, and the desire is to allow these to be customized by users.<br/>
-        ///   - Secondary: These are marked with `&quot;secondary&quot;: true` and were used by old clients to provide nested menus allowing for primative (but structured) navigation.<br/>
-        ///   - Special: There is a By Folder entry which allows browsing the media by the underlying filesystem structure, and there&apos;s a completely obsolete entry marked `&quot;search&quot;: true` which used to be used to allow clients to build search dialogs on the fly.
-        /// </remarks>
+        ///   - Primary: (e.g. all, On Deck) These are still used in some clients to provide "shortcuts" to subsets of media. However, with the exception of On Deck, all of them can be created by media queries, and the desire is to allow these to be customized by users.<br/>
+        ///   - Secondary: These are marked with `"secondary": true` and were used by old clients to provide nested menus allowing for primative (but structured) navigation.<br/>
+        ///   - Special: There is a By Folder entry which allows browsing the media by the underlying filesystem structure, and there's a completely obsolete entry marked `"search": true` which used to be used to allow clients to build search dialogs on the fly.
         /// </summary>
         [JsonProperty("content")]
         public string? Content { get; set; }

@@ -13,30 +13,29 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     public class GetUpdatesStatusMediaContainer
     {
-
         /// <summary>
-        /// The version of the updater (currently `1`)
+        /// The version of the updater (currently `1`).
         /// </summary>
         [JsonProperty("autoUpdateVersion")]
         public long? AutoUpdateVersion { get; set; }
 
         /// <summary>
-        /// Indicates whether this install can be updated through these endpoints (typically only on MacOS and Windows)
+        /// Indicates whether this install can be updated through these endpoints (typically only on MacOS and Windows).
         /// </summary>
         [JsonProperty("canInstall")]
         public bool? CanInstall { get; set; }
 
         /// <summary>
-        /// The last time a check for updates was performed
+        /// The last time a check for updates was performed.
         /// </summary>
         [JsonProperty("checkedAt")]
         public long? CheckedAt { get; set; }
 
         /// <summary>
-        /// The URL where the update is available
+        /// The URL where the update is available.
         /// </summary>
         [JsonProperty("downloadURL")]
         public string? DownloadURL { get; set; }
@@ -45,7 +44,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public List<Release>? Release { get; set; }
 
         /// <summary>
-        /// The current error code (`0` means no error)
+        /// The current error code (`0` means no error).
         /// </summary>
         [JsonProperty("status")]
         public long? Status { get; set; }

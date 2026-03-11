@@ -11,18 +11,17 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class GetIdentityMediaContainer
     {
-
         /// <summary>
-        /// Indicates whether this server has been claimed by a user
+        /// Indicates whether this server has been claimed by a user.
         /// </summary>
         [JsonProperty("claimed")]
         public bool? Claimed { get; set; }
 
         /// <summary>
-        /// A unique identifier of the computer
+        /// A unique identifier of the computer.
         /// </summary>
         [JsonProperty("machineIdentifier")]
         public string? MachineIdentifier { get; set; }
@@ -31,7 +30,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public long? Size { get; set; }
 
         /// <summary>
-        /// The full version string of the PMS
+        /// The full version string of the PMS.
         /// </summary>
         [JsonProperty("version")]
         public string? Version { get; set; }

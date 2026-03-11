@@ -11,27 +11,26 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
 {
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     /// <summary>
-    /// The user playing the content
+    /// The user playing the content.
     /// </summary>
     public class User
     {
-
         /// <summary>
-        /// The username
+        /// The username.
         /// </summary>
         [JsonProperty("title")]
         public string? Title { get; set; }
 
         /// <summary>
-        /// The id of the user
+        /// The id of the user.
         /// </summary>
         [JsonProperty("id")]
         public string? Id { get; set; }
 
         /// <summary>
-        /// Thumb image to display for the user
+        /// Thumb image to display for the user.
         /// </summary>
         [JsonProperty("thumb")]
         public string? Thumb { get; set; }

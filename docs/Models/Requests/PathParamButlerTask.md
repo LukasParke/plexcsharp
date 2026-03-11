@@ -2,6 +2,14 @@
 
 The task name
 
+## Example Usage
+
+```csharp
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var value = PathParamButlerTask.AutomaticUpdates;
+```
+
 
 ## Values
 

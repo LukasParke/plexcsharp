@@ -12,27 +12,26 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Utils;
     using System;
     using System.Net.Http;
-    
+
     public class StartTranscodeSessionResponse
     {
-
         /// <summary>
-        /// HTTP response content type for this operation
+        /// HTTP response content type for this operation.
         /// </summary>
         public string? ContentType { get; set; } = default!;
 
         /// <summary>
-        /// HTTP response status code for this operation
+        /// HTTP response status code for this operation.
         /// </summary>
         public int StatusCode { get; set; } = default!;
 
         /// <summary>
-        /// Raw HTTP response; suitable for custom response parsing
+        /// Raw HTTP response; suitable for custom response parsing.
         /// </summary>
         public HttpResponseMessage RawResponse { get; set; } = default!;
 
         /// <summary>
-        /// MPD file (see ISO/IEC 23009-1:2022), m3u8 file (see RFC 8216), or binary http stream
+        /// MPD file (see ISO/IEC 23009-1:2022), m3u8 file (see RFC 8216), or binary http stream.
         /// </summary>
         public byte[]? Bytes { get; set; }
     }

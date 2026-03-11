@@ -12,78 +12,77 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Models.Components;
     using LukeHagar.PlexAPI.SDK.Models.Requests;
     using LukeHagar.PlexAPI.SDK.Utils;
-    
+
     public class CreateSubscriptionRequest
     {
-
         /// <summary>
-        /// Indicates the client accepts the indicated media types
+        /// Indicates the client accepts the indicated media types.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=accepts")]
         public Accepts? Accepts { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml;
 
         /// <summary>
-        /// An opaque identifier unique to the client
+        /// An opaque identifier unique to the client.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Client-Identifier")]
         public string? ClientIdentifier { get; set; }
 
         /// <summary>
-        /// The name of the client product
+        /// The name of the client product.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Product")]
         public string? Product { get; set; }
 
         /// <summary>
-        /// The version of the client application
+        /// The version of the client application.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Version")]
         public string? Version { get; set; }
 
         /// <summary>
-        /// The platform of the client
+        /// The platform of the client.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Platform")]
         public string? Platform { get; set; }
 
         /// <summary>
-        /// The version of the platform
+        /// The version of the platform.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Platform-Version")]
         public string? PlatformVersion { get; set; }
 
         /// <summary>
-        /// A relatively friendly name for the client device
+        /// A relatively friendly name for the client device.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Device")]
         public string? Device { get; set; }
 
         /// <summary>
-        /// A potentially less friendly identifier for the device model
+        /// A potentially less friendly identifier for the device model.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Model")]
         public string? Model { get; set; }
 
         /// <summary>
-        /// The device vendor
+        /// The device vendor.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Device-Vendor")]
         public string? DeviceVendor { get; set; }
 
         /// <summary>
-        /// A friendly name for the client
+        /// A friendly name for the client.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Device-Name")]
         public string? DeviceName { get; set; }
 
         /// <summary>
-        /// The marketplace on which the client application is distributed
+        /// The marketplace on which the client application is distributed.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Marketplace")]
         public string? Marketplace { get; set; }
 
         /// <summary>
-        /// The library section into which we&apos;ll grab the media.  Not actually required when the subscription is to a playlist.
+        /// The library section into which we'll grab the media.  Not actually required when the subscription is to a playlist.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=targetLibrarySectionID")]
         public long? TargetLibrarySectionID { get; set; }
@@ -95,13 +94,13 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public long? TargetSectionLocationID { get; set; }
 
         /// <summary>
-        /// The type of the thing we&apos;re subscribing too (e.g. show, season).
+        /// The type of the thing we're subscribing too (e.g. show, season).
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=type")]
         public long? Type { get; set; }
 
         /// <summary>
-        /// Hints describing what we&apos;re looking for.  Note: The hint `ratingKey` is required for downloading from a PMS remote.
+        /// Hints describing what we're looking for.  Note: The hint `ratingKey` is required for downloading from a PMS remote.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=hints")]
         public Hints? Hints { get; set; }
@@ -114,12 +113,8 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 
         /// <summary>
         /// Subscription parameters.<br/>
-        /// 
-        /// <remarks>
         ///   - `mediaProviderID`: Required for downloads to indicate which MP the subscription will download into<br/>
-        ///   - `source`: Required for downloads to indicate the source of the downloaded content.<br/>
-        /// 
-        /// </remarks>
+        ///   - `source`: Required for downloads to indicate the source of the downloaded content.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=params")]
         public Params? Params { get; set; }

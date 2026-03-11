@@ -6,6 +6,14 @@ Stream type:
   - SUBTITLE = 3 (Subtitle stream)
 
 
+## Example Usage
+
+```csharp
+using LukeHagar.PlexAPI.SDK.Models.Components;
+
+var value = StreamType.Video;
+```
+
 
 ## Values
 

@@ -12,13 +12,12 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Models.Requests;
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     /// <summary>
-    /// OK
+    /// OK.
     /// </summary>
     public class CreateDownloadQueueResponseBody
     {
-
         [JsonProperty("MediaContainer")]
         public CreateDownloadQueueMediaContainer? MediaContainer { get; set; }
     }

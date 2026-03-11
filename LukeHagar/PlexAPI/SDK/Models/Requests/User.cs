@@ -13,42 +13,41 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     public class User
     {
-
         /// <summary>
-        /// User&apos;s unique ID.
+        /// User's unique ID.
         /// </summary>
         [JsonProperty("id")]
         public long Id { get; set; } = default!;
 
         /// <summary>
-        /// User&apos;s display name.
+        /// User's display name.
         /// </summary>
         [JsonProperty("title")]
         public string Title { get; set; } = default!;
 
         /// <summary>
-        /// User&apos;s username.
+        /// User's username.
         /// </summary>
         [JsonProperty("username")]
         public string Username { get; set; } = default!;
 
         /// <summary>
-        /// User&apos;s email address.
+        /// User's email address.
         /// </summary>
         [JsonProperty("email")]
         public string Email { get; set; } = default!;
 
         /// <summary>
-        /// ID of the user&apos;s recommendation playlist.
+        /// ID of the user's recommendation playlist.
         /// </summary>
         [JsonProperty("recommendationsPlaylistId")]
         public string? RecommendationsPlaylistId { get; set; } = null;
 
         /// <summary>
-        /// URL to the user&apos;s avatar image.
+        /// URL to the user's avatar image.
         /// </summary>
         [JsonProperty("thumb")]
         public string Thumb { get; set; } = default!;

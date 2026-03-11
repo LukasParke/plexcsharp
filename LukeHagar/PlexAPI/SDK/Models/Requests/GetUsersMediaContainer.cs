@@ -13,13 +13,12 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     /// <summary>
     /// Container holding user and server details.
     /// </summary>
     public class GetUsersMediaContainer
     {
-
         /// <summary>
         /// The friendly name of the Plex instance.
         /// </summary>

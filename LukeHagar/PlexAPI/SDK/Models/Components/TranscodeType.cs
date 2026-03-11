@@ -12,7 +12,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     public enum TranscodeType
     {
         [JsonProperty("video")]
@@ -57,5 +57,4 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
             throw new Exception($"Unknown value {value} for enum TranscodeType");
         }
     }
-
 }

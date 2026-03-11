@@ -54,9 +54,8 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         }
     }
 
-
     /// <summary>
-    /// The current value of this setting
+    /// The current value of this setting.
     /// </summary>
     [JsonConverter(typeof(Value.ValueConverter))]
     public class Value

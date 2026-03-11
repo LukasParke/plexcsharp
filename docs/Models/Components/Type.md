@@ -2,6 +2,14 @@
 
 The type of the value of this setting
 
+## Example Usage
+
+```csharp
+using LukeHagar.PlexAPI.SDK.Models.Components;
+
+var value = Type.Bool;
+```
+
 
 ## Values
 

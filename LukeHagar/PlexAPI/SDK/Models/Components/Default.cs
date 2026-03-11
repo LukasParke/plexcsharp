@@ -54,9 +54,8 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         }
     }
 
-
     /// <summary>
-    /// The default value of this setting
+    /// The default value of this setting.
     /// </summary>
     [JsonConverter(typeof(Default.DefaultConverter))]
     public class Default

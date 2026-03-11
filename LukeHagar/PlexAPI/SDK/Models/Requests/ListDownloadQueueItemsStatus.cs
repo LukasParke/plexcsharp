@@ -12,19 +12,15 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     /// <summary>
     /// The state of the item:<br/>
-    /// 
-    /// <remarks>
     ///   - deciding: The item decision is pending<br/>
     ///   - waiting: The item is waiting for transcode<br/>
     ///   - processing: The item is being transcoded<br/>
     ///   - available: The item is available for download<br/>
     ///   - error: The item encountered an error in the decision or transcode<br/>
-    ///   - expired: The transcoded item has timed out and is no longer available<br/>
-    /// 
-    /// </remarks>
+    ///   - expired: The transcoded item has timed out and is no longer available.
     /// </summary>
     public enum ListDownloadQueueItemsStatus
     {
@@ -74,5 +70,4 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
             throw new Exception($"Unknown value {value} for enum ListDownloadQueueItemsStatus");
         }
     }
-
 }

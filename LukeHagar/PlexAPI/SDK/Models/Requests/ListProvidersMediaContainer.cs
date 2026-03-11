@@ -13,19 +13,14 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     /// <summary>
     /// `MediaContainer` is the root element of most Plex API responses. It serves as a generic container for various types of content (Metadata, Hubs, Directories, etc.) and includes pagination information (offset, size, totalSize) when applicable.<br/>
-    /// 
-    /// <remarks>
     /// Common attributes: - identifier: Unique identifier for this container - size: Number of items in this response page - totalSize: Total number of items available (for pagination) - offset: Starting index of this page (for pagination)<br/>
-    /// The container often &quot;hoists&quot; common attributes from its children. For example, if all tracks in a container share the same album title, the `parentTitle` attribute may appear on the MediaContainer rather than being repeated on each track.<br/>
-    /// 
-    /// </remarks>
+    /// The container often "hoists" common attributes from its children. For example, if all tracks in a container share the same album title, the `parentTitle` attribute may appear on the MediaContainer rather than being repeated on each track.
     /// </summary>
     public class ListProvidersMediaContainer
     {
-
         /// <summary>
         /// A unique identifier for the provider, e.g. `com.plexapp.plugins.library`.
         /// </summary>
@@ -33,11 +28,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public string? Identifier { get; set; }
 
         /// <summary>
-        /// The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.<br/>
-        /// 
-        /// <remarks>
-        /// 
-        /// </remarks>
+        /// The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
         /// </summary>
         [JsonProperty("offset")]
         public long? Offset { get; set; }
@@ -46,11 +37,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public long? Size { get; set; }
 
         /// <summary>
-        /// The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.<br/>
-        /// 
-        /// <remarks>
-        /// 
-        /// </remarks>
+        /// The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
         /// </summary>
         [JsonProperty("totalSize")]
         public long? TotalSize { get; set; }
@@ -134,7 +121,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public object? OfflineTranscode { get; set; }
 
         /// <summary>
-        /// A comma-separated list of features which are enabled for the server owner
+        /// A comma-separated list of features which are enabled for the server owner.
         /// </summary>
         [JsonProperty("ownerFeatures")]
         public string? OwnerFeatures { get; set; }
@@ -182,7 +169,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public bool? TranscoderVideo { get; set; }
 
         /// <summary>
-        /// The suggested video quality bitrates to present to the user
+        /// The suggested video quality bitrates to present to the user.
         /// </summary>
         [JsonProperty("transcoderVideoBitrates")]
         public object? TranscoderVideoBitrates { get; set; }
@@ -191,7 +178,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public string? TranscoderVideoQualities { get; set; }
 
         /// <summary>
-        /// The suggested video resolutions to the above quality bitrates
+        /// The suggested video resolutions to the above quality bitrates.
         /// </summary>
         [JsonProperty("transcoderVideoResolutions")]
         public object? TranscoderVideoResolutions { get; set; }
@@ -213,10 +200,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 
         /// <summary>
         /// A comma-separated list of default protocols for the provider, which can be:<br/>
-        /// 
-        /// <remarks>
         /// - `stream`: The provider allows streaming media directly from the provider (e.g. for Vimeo). - `download`: The provider allows downloading media for offline storage, sync, etc. (e.g. Podcasts). - `livetv`: The provider provides live content which is only available on a schedule basis.
-        /// </remarks>
         /// </summary>
         [JsonProperty("protocols")]
         public string? Protocols { get; set; }

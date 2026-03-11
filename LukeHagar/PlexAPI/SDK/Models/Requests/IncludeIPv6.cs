@@ -10,14 +10,13 @@
 namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
     using LukeHagar.PlexAPI.SDK.Utils;
-    
+
     /// <summary>
-    /// Include IPv6 entries in the results
+    /// Include IPv6 entries in the results.
     /// </summary>
     public enum IncludeIPv6
     {
         False = 0,
         True = 1,
     }
-
 }

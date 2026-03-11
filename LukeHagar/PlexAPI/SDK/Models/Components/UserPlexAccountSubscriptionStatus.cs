@@ -15,9 +15,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
-    
+
     /// <summary>
-    /// String representation of subscriptionActive
+    /// String representation of subscriptionActive.
     /// </summary>
     [JsonConverter(typeof(OpenEnumConverter))]
     public class UserPlexAccountSubscriptionStatus : IEquatable<UserPlexAccountSubscriptionStatus>
@@ -74,5 +74,4 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
 
         public override int GetHashCode() => Value.GetHashCode();
     }
-
 }

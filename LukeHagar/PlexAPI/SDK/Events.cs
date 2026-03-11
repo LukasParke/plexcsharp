@@ -23,60 +23,73 @@ namespace LukeHagar.PlexAPI.SDK
 
     /// <summary>
     /// The server can notify clients in real-time of a wide range of events, from library scanning, to preferences being modified, to changes to media, and many other things. This is also the mechanism by which activity progress is reported.<br/>
-    /// 
-    /// <remarks>
     /// <br/>
-    /// Two protocols for receiving the events are available: EventSource (also known as SSE), and WebSocket.<br/>
-    /// 
-    /// </remarks>
+    /// Two protocols for receiving the events are available: EventSource (also known as SSE), and WebSocket.
     /// </summary>
     public interface IEvents
     {
+        /// <summary>
+        /// Connect to Eventsource.
+        /// </summary>
+        /// <remarks>
+        /// Connect to the event source to get a stream of events.
+        /// </remarks>
+        /// <param name="request">A <see cref="GetNotificationsRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetNotificationsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<GetNotificationsResponse> GetNotificationsAsync(GetNotificationsRequest? request = null);
 
         /// <summary>
-        /// Connect to Eventsource
-        /// 
-        /// <remarks>
-        /// Connect to the event source to get a stream of events
-        /// </remarks>
+        /// Connect to WebSocket.
         /// </summary>
-        Task<GetNotificationsResponse> GetNotificationsAsync(GetNotificationsRequest? request = null);
-
-        /// <summary>
-        /// Connect to WebSocket
-        /// 
         /// <remarks>
-        /// Connect to the web socket to get a stream of events
+        /// Connect to the web socket to get a stream of events.
         /// </remarks>
-        /// </summary>
-        Task<ConnectWebSocketResponse> ConnectWebSocketAsync(ConnectWebSocketRequest? request = null);
+        /// <param name="request">A <see cref="ConnectWebSocketRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="ConnectWebSocketResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<ConnectWebSocketResponse> ConnectWebSocketAsync(ConnectWebSocketRequest? request = null);
     }
 
     /// <summary>
     /// The server can notify clients in real-time of a wide range of events, from library scanning, to preferences being modified, to changes to media, and many other things. This is also the mechanism by which activity progress is reported.<br/>
-    /// 
-    /// <remarks>
     /// <br/>
-    /// Two protocols for receiving the events are available: EventSource (also known as SSE), and WebSocket.<br/>
-    /// 
-    /// </remarks>
+    /// Two protocols for receiving the events are available: EventSource (also known as SSE), and WebSocket.
     /// </summary>
     public class Events: IEvents
     {
+        /// <summary>
+        /// SDK Configuration.
+        /// <see cref="SDKConfig"/>
+        /// </summary>
         public SDKConfig SDKConfiguration { get; private set; }
-
-        private const string _language = Constants.Language;
-        private const string _sdkVersion = Constants.SdkVersion;
-        private const string _sdkGenVersion = Constants.SdkGenVersion;
-        private const string _openapiDocVersion = Constants.OpenApiDocVersion;
 
         public Events(SDKConfig config)
         {
             SDKConfiguration = config;
         }
 
-        public async Task<GetNotificationsResponse> GetNotificationsAsync(GetNotificationsRequest? request = null)
+        /// <summary>
+        /// Connect to Eventsource.
+        /// </summary>
+        /// <remarks>
+        /// Connect to the event source to get a stream of events.
+        /// </remarks>
+        /// <param name="request">A <see cref="GetNotificationsRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetNotificationsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<GetNotificationsResponse> GetNotificationsAsync(GetNotificationsRequest? request = null)
         {
+            if (request == null)
+            {
+                request = new GetNotificationsRequest();
+            }
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -88,13 +101,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/:/eventsource/notifications", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/octet-stream");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -120,9 +138,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -165,8 +183,24 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<ConnectWebSocketResponse> ConnectWebSocketAsync(ConnectWebSocketRequest? request = null)
+
+        /// <summary>
+        /// Connect to WebSocket.
+        /// </summary>
+        /// <remarks>
+        /// Connect to the web socket to get a stream of events.
+        /// </remarks>
+        /// <param name="request">A <see cref="ConnectWebSocketRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="ConnectWebSocketResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<ConnectWebSocketResponse> ConnectWebSocketAsync(ConnectWebSocketRequest? request = null)
         {
+            if (request == null)
+            {
+                request = new ConnectWebSocketRequest();
+            }
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -178,13 +212,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/:/websocket/notifications", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/octet-stream");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -210,9 +249,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -254,5 +293,6 @@ namespace LukeHagar.PlexAPI.SDK
 
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
+
     }
 }

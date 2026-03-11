@@ -13,17 +13,12 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     /// <summary>
-    /// Each `Sort` object contains a description of the sort field.<br/>
-    /// 
-    /// <remarks>
-    /// 
-    /// </remarks>
+    /// Each `Sort` object contains a description of the sort field.
     /// </summary>
     public class Sort
     {
-
         /// <summary>
         /// The title of the field.
         /// </summary>
@@ -55,7 +50,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public string? Identifier { get; set; }
 
         /// <summary>
-        /// The key to use in the sort field to make items sort by this item
+        /// The key to use in the sort field to make items sort by this item.
         /// </summary>
         [JsonProperty("key")]
         public string? Key { get; set; }
@@ -76,25 +71,25 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public string? TitleBar { get; set; }
 
         /// <summary>
-        /// If present, this sort is the default and in this direction
+        /// If present, this sort is the default and in this direction.
         /// </summary>
         [JsonProperty("default")]
         public SortDefault? Default { get; set; }
 
         /// <summary>
-        /// This default diction of this sort
+        /// This default diction of this sort.
         /// </summary>
         [JsonProperty("defaultDirection")]
         public DefaultDirection? DefaultDirection { get; set; }
 
         /// <summary>
-        /// The key for sorting this field in reverse order
+        /// The key for sorting this field in reverse order.
         /// </summary>
         [JsonProperty("descKey")]
         public string? DescKey { get; set; }
 
         /// <summary>
-        /// The key to use to get items sorted by this field and indexed by the first character
+        /// The key to use to get items sorted by this field and indexed by the first character.
         /// </summary>
         [JsonProperty("firstCharacterKey")]
         public string? FirstCharacterKey { get; set; }

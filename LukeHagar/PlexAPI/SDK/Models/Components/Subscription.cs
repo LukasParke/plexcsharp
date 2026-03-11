@@ -16,45 +16,44 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
-    
+
     /// <summary>
-    /// If the account&apos;s Plex Pass subscription is active
+    /// If the account's Plex Pass subscription is active.
     /// </summary>
     public class Subscription
     {
-
         /// <summary>
-        /// List of features allowed on your Plex Pass subscription
+        /// List of features allowed on your Plex Pass subscription.
         /// </summary>
         [JsonProperty("features")]
         public List<string>? Features { get; set; }
 
         /// <summary>
-        /// If the account&apos;s Plex Pass subscription is active
+        /// If the account's Plex Pass subscription is active.
         /// </summary>
         [JsonProperty("active")]
         public bool? Active { get; set; }
 
         /// <summary>
-        /// Date the account subscribed to Plex Pass
+        /// Date the account subscribed to Plex Pass.
         /// </summary>
         [JsonProperty("subscribedAt")]
         public string? SubscribedAt { get; set; } = null;
 
         /// <summary>
-        /// String representation of subscriptionActive
+        /// String representation of subscriptionActive.
         /// </summary>
         [JsonProperty("status")]
         public UserPlexAccountSubscriptionStatus? Status { get; set; }
 
         /// <summary>
-        /// Payment service used for your Plex Pass subscription
+        /// Payment service used for your Plex Pass subscription.
         /// </summary>
         [JsonProperty("paymentService")]
         public string? PaymentService { get; set; } = null;
 
         /// <summary>
-        /// Name of Plex Pass subscription plan
+        /// Name of Plex Pass subscription plan.
         /// </summary>
         [JsonProperty("plan")]
         public string? Plan { get; set; } = null;

@@ -15,7 +15,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
-    
+
     [JsonConverter(typeof(OpenEnumConverter))]
     public class Status : IEquatable<Status>
     {
@@ -71,5 +71,4 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 
         public override int GetHashCode() => Value.GetHashCode();
     }
-
 }

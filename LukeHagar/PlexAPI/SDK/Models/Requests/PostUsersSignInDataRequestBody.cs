@@ -10,13 +10,12 @@
 namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
     using LukeHagar.PlexAPI.SDK.Utils;
-    
+
     /// <summary>
-    /// Login credentials
+    /// Login credentials.
     /// </summary>
     public class PostUsersSignInDataRequestBody
     {
-
         [SpeakeasyMetadata("form:name=login")]
         public string Login { get; set; } = default!;
 

@@ -10,11 +10,10 @@
 namespace LukeHagar.PlexAPI.SDK.Models.Components
 {
     using LukeHagar.PlexAPI.SDK.Utils;
-    
+
     public enum BoolInt
     {
         False = 0,
         True = 1,
     }
-
 }

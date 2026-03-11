@@ -19,52 +19,41 @@ namespace LukeHagar.PlexAPI.SDK
     using System.Collections.Generic;
     using System.Net.Http;
     using System.Threading.Tasks;
-
-
     public interface IPlexAPI
     {
-
         /// <summary>
-        /// General endpoints for basic PMS operation not specific to any media provider
+        /// General endpoints for basic PMS operation not specific to any media provider.
         /// </summary>
         public IGeneral General { get; }
 
         /// <summary>
         /// The server can notify clients in real-time of a wide range of events, from library scanning, to preferences being modified, to changes to media, and many other things. This is also the mechanism by which activity progress is reported.<br/>
-        /// 
-        /// <remarks>
         /// <br/>
-        /// Two protocols for receiving the events are available: EventSource (also known as SSE), and WebSocket.<br/>
-        /// 
-        /// </remarks>
+        /// Two protocols for receiving the events are available: EventSource (also known as SSE), and WebSocket.
         /// </summary>
         public IEvents Events { get; }
 
         /// <summary>
-        /// API Operations against the Preferences
+        /// API Operations against the Preferences.
         /// </summary>
         public IPreferences Preferences { get; }
 
         /// <summary>
-        /// Operations for rating media items (thumbs up/down, star ratings, etc.)
+        /// Operations for rating media items (thumbs up/down, star ratings, etc.).
         /// </summary>
         public IRate Rate { get; }
 
         /// <summary>
-        /// The actions feature within a media provider
+        /// The actions feature within a media provider.
         /// </summary>
         public ITimeline Timeline { get; }
 
         /// <summary>
         /// Activities provide a way to monitor and control asynchronous operations on the server. In order to receive real-time updates for activities, a client would normally subscribe via either EventSource or Websocket endpoints.<br/>
-        /// 
-        /// <remarks>
         /// <br/>
         /// Activities are associated with HTTP replies via a special `X-Plex-Activity` header which contains the UUID of the activity.<br/>
         /// <br/>
-        /// Activities are optional cancellable. If cancellable, they may be cancelled via the `DELETE` endpoint.<br/>
-        /// 
-        /// </remarks>
+        /// Activities are optional cancellable. If cancellable, they may be cancelled via the `DELETE` endpoint.
         /// </summary>
         public IActivities Activities { get; }
 
@@ -74,17 +63,17 @@ namespace LukeHagar.PlexAPI.SDK
         public IButler Butler { get; }
 
         /// <summary>
-        /// API Operations against the Download Queue
+        /// API Operations against the Download Queue.
         /// </summary>
         public IDownloadQueue DownloadQueue { get; }
 
         /// <summary>
-        /// The hubs within a media provider
+        /// The hubs within a media provider.
         /// </summary>
         public IHubs Hubs { get; }
 
         /// <summary>
-        /// The search feature within a media provider
+        /// The search feature within a media provider.
         /// </summary>
         public ISearch Search { get; }
 
@@ -94,52 +83,38 @@ namespace LukeHagar.PlexAPI.SDK
         public ILibrary Library { get; }
 
         /// <summary>
-        /// API Operations against the Collections
+        /// API Operations against the Collections.
         /// </summary>
         public ICollections Collections { get; }
 
         /// <summary>
-        /// The DVR provides means to watch and record live TV.  This section of endpoints describes how to setup the DVR itself<br/>
-        /// 
-        /// <remarks>
-        /// 
-        /// </remarks>
+        /// The DVR provides means to watch and record live TV.  This section of endpoints describes how to setup the DVR itself.
         /// </summary>
         public IDVRs DVRs { get; }
 
         /// <summary>
-        /// The EPG (Electronic Program Guide) is responsible for obtaining metadata for what is airing on each channel and when<br/>
-        /// 
-        /// <remarks>
-        /// 
-        /// </remarks>
+        /// The EPG (Electronic Program Guide) is responsible for obtaining metadata for what is airing on each channel and when.
         /// </summary>
         public IEpg Epg { get; }
 
         /// <summary>
-        /// LiveTV contains the playback sessions of a channel from a DVR device<br/>
-        /// 
-        /// <remarks>
-        /// 
-        /// </remarks>
+        /// LiveTV contains the playback sessions of a channel from a DVR device.
         /// </summary>
         public ILiveTV LiveTV { get; }
 
         /// <summary>
-        /// Logging mechanism to allow clients to log to the server
+        /// Logging mechanism to allow clients to log to the server.
         /// </summary>
         public ILog Log { get; }
 
         /// <summary>
         /// Media grabbers provide ways for media to be obtained for a given protocol. The simplest ones are `stream` and `download`. More complex grabbers can have associated devices<br/>
-        /// 
-        /// <remarks>
         /// <br/>
         /// Network tuners can present themselves on the network using the Simple Service Discovery Protocol and Plex Media Server will discover them. The following XML is an example of the data returned from SSDP. The `deviceType`, `serviceType`, and `serviceId` values must remain as they are in the example in order for PMS to properly discover the device. Other less-obvious fields are described in the parameters section below.<br/>
         /// <br/>
         /// Example SSDP output<br/>
         /// ```<br/>
-        /// &lt;root xmlns=&quot;urn:schemas-upnp-org:device-1-0&quot;&gt;<br/>
+        /// &lt;root xmlns="urn:schemas-upnp-org:device-1-0"&gt;<br/>
         ///     &lt;specVersion&gt;<br/>
         ///         &lt;major&gt;1&lt;/major&gt;<br/>
         ///         &lt;minor&gt;0&lt;/minor&gt;<br/>
@@ -166,9 +141,7 @@ namespace LukeHagar.PlexAPI.SDK
         /// ```<br/>
         /// <br/>
         ///   - UDN: (string) A UUID for the device. This should be unique across models of a device at minimum.<br/>
-        ///   - URLBase: (string) The base HTTP URL for the device from which all of the other endpoints are hosted.<br/>
-        /// 
-        /// </remarks>
+        ///   - URLBase: (string) The base HTTP URL for the device from which all of the other endpoints are hosted.
         /// </summary>
         public IDevices Devices { get; }
 
@@ -178,21 +151,17 @@ namespace LukeHagar.PlexAPI.SDK
         public IProvider Provider { get; }
 
         /// <summary>
-        /// Subscriptions determine which media will be recorded and the criteria for selecting an airing when multiple are available<br/>
-        /// 
-        /// <remarks>
-        /// 
-        /// </remarks>
+        /// Subscriptions determine which media will be recorded and the criteria for selecting an airing when multiple are available.
         /// </summary>
         public ISubscriptions Subscriptions { get; }
 
         /// <summary>
-        /// API Operations against the Transcoder
+        /// API Operations against the Transcoder.
         /// </summary>
         public ITranscoder Transcoder { get; }
 
         /// <summary>
-        /// Media playlists that can be created and played back
+        /// Media playlists that can be created and played back.
         /// </summary>
         public IPlaylist Playlist { get; }
 
@@ -203,14 +172,11 @@ namespace LukeHagar.PlexAPI.SDK
 
         /// <summary>
         /// The playqueue feature within a media provider<br/>
-        /// 
-        /// <remarks>
         /// A play queue represents the current list of media for playback. Although queues are persisted by the server, they should be regarded by the user as a fairly lightweight, an ephemeral list of items queued up for playback in a session.  There is generally one active queue for each type of media (music, video, photos) that can be added to or destroyed and replaced with a fresh queue.<br/>
-        /// Play Queues has a region, which we refer to in this doc (partially for historical reasons) as &quot;Up Next&quot;. This region is defined by `playQueueLastAddedItemID` existing on the media container. This follows iTunes&apos; terminology. It is a special region after the currently playing item but before the originally-played items. This enables &quot;Party Mode&quot; listening/viewing, where items can be added on-the-fly, and normal queue playback resumed when completed. <br/>
+        /// Play Queues has a region, which we refer to in this doc (partially for historical reasons) as "Up Next". This region is defined by `playQueueLastAddedItemID` existing on the media container. This follows iTunes' terminology. It is a special region after the currently playing item but before the originally-played items. This enables "Party Mode" listening/viewing, where items can be added on-the-fly, and normal queue playback resumed when completed. <br/>
         /// You can visualize the play queue as a sliding window in the complete list of media queued for playback. This model is important when scaling to larger play queues (e.g. shuffling 40,000 audio tracks). The client only needs visibility into small areas of the queue at any given time, and the server can optimize access in this fashion.<br/>
-        /// All created play queues will have an empty &quot;Up Next&quot; area - unless the item is an album and no `key` is provided. In this case the &quot;Up Next&quot; area will be populated by the contents of the album. This is to allow queueing of multiple albums - since the &apos;Add to Up Next&apos; will insert after all the tracks. This means that If you&apos;re creating a PQ from an album, you can only shuffle it if you set `key`. This is due to the above implicit queueing of albums when no `key` is provided as well as the current limitation that you cannot shuffle a PQ with an &quot;Up Next&quot; area.<br/>
+        /// All created play queues will have an empty "Up Next" area - unless the item is an album and no `key` is provided. In this case the "Up Next" area will be populated by the contents of the album. This is to allow queueing of multiple albums - since the 'Add to Up Next' will insert after all the tracks. This means that If you're creating a PQ from an album, you can only shuffle it if you set `key`. This is due to the above implicit queueing of albums when no `key` is provided as well as the current limitation that you cannot shuffle a PQ with an "Up Next" area.<br/>
         /// The play queue window advances as the server receives timeline requests. The client needs to retrieve the play queue as the “now playing” item changes. There is no play queue API to update the playing item.
-        /// </remarks>
         /// </summary>
         public IPlayQueue PlayQueue { get; }
 
@@ -226,19 +192,18 @@ namespace LukeHagar.PlexAPI.SDK
 
         /// <summary>
         /// This describes the API for searching and applying updates to the Plex Media Server.<br/>
-        /// 
-        /// <remarks>
-        /// Updates to the status can be observed via the Event API.<br/>
-        /// 
-        /// </remarks>
+        /// Updates to the status can be observed via the Event API.
         /// </summary>
         public IUpdater Updater { get; }
+
         public IAuthentication Authentication { get; }
+
         public IUsers Users { get; }
+
         public IPlex Plex { get; }
 
         /// <summary>
-        /// The actual content of the media provider
+        /// The actual content of the media provider.
         /// </summary>
         public IContent Content { get; }
 
@@ -248,47 +213,141 @@ namespace LukeHagar.PlexAPI.SDK
         public ILibraryCollections LibraryCollections { get; }
     }
 
-
     public class PlexAPI: IPlexAPI
     {
+        /// <summary>
+        /// The main SDK Configuration.
+        /// </summary>
         public SDKConfig SDKConfiguration { get; private set; }
-
-        private const string _language = Constants.Language;
-        private const string _sdkVersion = Constants.SdkVersion;
-        private const string _sdkGenVersion = Constants.SdkGenVersion;
-        private const string _openapiDocVersion = Constants.OpenApiDocVersion;
+        /// <summary>
+        /// The General sub-SDK.
+        /// </summary>
         public IGeneral General { get; private set; }
+        /// <summary>
+        /// The Events sub-SDK.
+        /// </summary>
         public IEvents Events { get; private set; }
+        /// <summary>
+        /// The Preferences sub-SDK.
+        /// </summary>
         public IPreferences Preferences { get; private set; }
+        /// <summary>
+        /// The Rate sub-SDK.
+        /// </summary>
         public IRate Rate { get; private set; }
+        /// <summary>
+        /// The Timeline sub-SDK.
+        /// </summary>
         public ITimeline Timeline { get; private set; }
+        /// <summary>
+        /// The Activities sub-SDK.
+        /// </summary>
         public IActivities Activities { get; private set; }
+        /// <summary>
+        /// The Butler sub-SDK.
+        /// </summary>
         public IButler Butler { get; private set; }
+        /// <summary>
+        /// The DownloadQueue sub-SDK.
+        /// </summary>
         public IDownloadQueue DownloadQueue { get; private set; }
+        /// <summary>
+        /// The Hubs sub-SDK.
+        /// </summary>
         public IHubs Hubs { get; private set; }
+        /// <summary>
+        /// The Search sub-SDK.
+        /// </summary>
         public ISearch Search { get; private set; }
+        /// <summary>
+        /// The Library sub-SDK.
+        /// </summary>
         public ILibrary Library { get; private set; }
+        /// <summary>
+        /// The Collections sub-SDK.
+        /// </summary>
         public ICollections Collections { get; private set; }
+        /// <summary>
+        /// The DVRs sub-SDK.
+        /// </summary>
         public IDVRs DVRs { get; private set; }
+        /// <summary>
+        /// The Epg sub-SDK.
+        /// </summary>
         public IEpg Epg { get; private set; }
+        /// <summary>
+        /// The LiveTV sub-SDK.
+        /// </summary>
         public ILiveTV LiveTV { get; private set; }
+        /// <summary>
+        /// The Log sub-SDK.
+        /// </summary>
         public ILog Log { get; private set; }
+        /// <summary>
+        /// The Devices sub-SDK.
+        /// </summary>
         public IDevices Devices { get; private set; }
+        /// <summary>
+        /// The Provider sub-SDK.
+        /// </summary>
         public IProvider Provider { get; private set; }
+        /// <summary>
+        /// The Subscriptions sub-SDK.
+        /// </summary>
         public ISubscriptions Subscriptions { get; private set; }
+        /// <summary>
+        /// The Transcoder sub-SDK.
+        /// </summary>
         public ITranscoder Transcoder { get; private set; }
+        /// <summary>
+        /// The Playlist sub-SDK.
+        /// </summary>
         public IPlaylist Playlist { get; private set; }
+        /// <summary>
+        /// The LibraryPlaylists sub-SDK.
+        /// </summary>
         public ILibraryPlaylists LibraryPlaylists { get; private set; }
+        /// <summary>
+        /// The PlayQueue sub-SDK.
+        /// </summary>
         public IPlayQueue PlayQueue { get; private set; }
+        /// <summary>
+        /// The UltraBlur sub-SDK.
+        /// </summary>
         public IUltraBlur UltraBlur { get; private set; }
+        /// <summary>
+        /// The Status sub-SDK.
+        /// </summary>
         public IStatus Status { get; private set; }
+        /// <summary>
+        /// The Updater sub-SDK.
+        /// </summary>
         public IUpdater Updater { get; private set; }
+        /// <summary>
+        /// The Authentication sub-SDK.
+        /// </summary>
         public IAuthentication Authentication { get; private set; }
+        /// <summary>
+        /// The Users sub-SDK.
+        /// </summary>
         public IUsers Users { get; private set; }
+        /// <summary>
+        /// The Plex sub-SDK.
+        /// </summary>
         public IPlex Plex { get; private set; }
+        /// <summary>
+        /// The Content sub-SDK.
+        /// </summary>
         public IContent Content { get; private set; }
+        /// <summary>
+        /// The LibraryCollections sub-SDK.
+        /// </summary>
         public ILibraryCollections LibraryCollections { get; private set; }
 
+        /// <summary>
+        /// Initializes a new instance of the SDK based on a <see cref="SDKConfig"/> configuration object.
+        /// </summary>
+        /// <param name="config">The SDK configuration object.</param>
         public PlexAPI(SDKConfig config)
         {
             SDKConfiguration = config;
@@ -362,17 +421,17 @@ namespace LukeHagar.PlexAPI.SDK
         /// </summary>
         /// <param name="token">The security configuration to use for API requests. If provided, this will be used as a static security configuration.</param>
         /// <param name="tokenSource">A function that returns the security configuration dynamically. This takes precedence over the static security parameter if both are provided.</param>
-        /// <param name="accepts">Indicates the client accepts the indicated media types</param>
-        /// <param name="clientIdentifier">An opaque identifier unique to the client</param>
-        /// <param name="product">The name of the client product</param>
-        /// <param name="version">The version of the client application</param>
-        /// <param name="platform">The platform of the client</param>
-        /// <param name="platformVersion">The version of the platform</param>
-        /// <param name="device">A relatively friendly name for the client device</param>
-        /// <param name="model">A potentially less friendly identifier for the device model</param>
-        /// <param name="deviceVendor">The device vendor</param>
-        /// <param name="deviceName">A friendly name for the client</param>
-        /// <param name="marketplace">The marketplace on which the client application is distributed</param>
+        /// <param name="accepts">Indicates the client accepts the indicated media types.</param>
+        /// <param name="clientIdentifier">An opaque identifier unique to the client.</param>
+        /// <param name="product">The name of the client product.</param>
+        /// <param name="version">The version of the client application.</param>
+        /// <param name="platform">The platform of the client.</param>
+        /// <param name="platformVersion">The version of the platform.</param>
+        /// <param name="device">A relatively friendly name for the client device.</param>
+        /// <param name="model">A potentially less friendly identifier for the device model.</param>
+        /// <param name="deviceVendor">The device vendor.</param>
+        /// <param name="deviceName">A friendly name for the client.</param>
+        /// <param name="marketplace">The marketplace on which the client application is distributed.</param>
         /// <param name="serverIndex">The index of the server to use from the predefined server list. Must be between 0 and the length of the server list. Defaults to 0 if not specified.</param>
         /// <param name="identifier">Server variable for identifier. This will replace the {identifier} placeholder in server URLs.</param>
         /// <param name="ipDescription">Server variable for IP-description. This will replace the {IP-description} placeholder in server URLs.</param>
@@ -384,14 +443,39 @@ namespace LukeHagar.PlexAPI.SDK
         /// <param name="urlParams">A dictionary of parameters to use for templating the serverUrl. Only used when serverUrl is provided.</param>
         /// <param name="client">A custom HTTP client implementation to use for making API requests. If not provided, the default SpeakeasyHttpClient will be used.</param>
         /// <param name="retryConfig">Configuration for retry behavior when API requests fail. Defines retry strategies, backoff policies, and maximum retry attempts.</param>
-        /// <exception cref="Exception">Thrown when the serverIndex is out of range (less than 0 or greater than or equal to the server list length).</exception>
-        public PlexAPI(string? token = null, Func<string>? tokenSource = null, Accepts? accepts = null, string? clientIdentifier = null, string? product = null, string? version = null, string? platform = null, string? platformVersion = null, string? device = null, string? model = null, string? deviceVendor = null, string? deviceName = null, string? marketplace = null, int? serverIndex = null, string? identifier = null, string? ipDescription = null, string? port = null, string? protocol = null, string? host = null, string? fullServerUrl = null, string? serverUrl = null, Dictionary<string, string>? urlParams = null, ISpeakeasyHttpClient? client = null, RetryConfig? retryConfig = null)
+        /// <exception cref="ArgumentOutOfRangeException">Invalid value provided for <paramref name="serverIndex"/>: must be between 0 (inclusive) and 3 (exclusive).</exception>
+        public PlexAPI(
+            string? token = null,
+            Func<string>? tokenSource = null,
+            Accepts? accepts = null,
+            string? clientIdentifier = null,
+            string? product = null,
+            string? version = null,
+            string? platform = null,
+            string? platformVersion = null,
+            string? device = null,
+            string? model = null,
+            string? deviceVendor = null,
+            string? deviceName = null,
+            string? marketplace = null,
+            int? serverIndex = null,
+            string? identifier = null,
+            string? ipDescription = null,
+            string? port = null,
+            string? protocol = null,
+            string? host = null,
+            string? fullServerUrl = null,
+            string? serverUrl = null,
+            Dictionary<string, string>? urlParams = null,
+            ISpeakeasyHttpClient? client = null,
+            RetryConfig? retryConfig = null
+        )
         {
             if (serverIndex != null)
             {
                 if (serverIndex.Value < 0 || serverIndex.Value >= SDKConfig.ServerList.Length)
                 {
-                    throw new Exception($"Invalid server index {serverIndex.Value}");
+                    throw new ArgumentOutOfRangeException($"Invalid server index {serverIndex}: must be between 0 (inclusive) and {SDKConfig.ServerList.Length} (exclusive)." );
                 }
             }
 
@@ -540,58 +624,85 @@ namespace LukeHagar.PlexAPI.SDK
             SDKConfiguration = config;
         }
 
+        /// <summary>
+        /// Builder class for constructing an instance of the SDK.
+        /// </summary>
         public class SDKBuilder
         {
             private SDKConfig _sdkConfig = new SDKConfig(client: new SpeakeasyHttpClient());
 
             public SDKBuilder() { }
 
+            /// <summary>
+            /// Overrides the default server by index.
+            /// </summary>
             public SDKBuilder WithServerIndex(int serverIndex)
             {
                 if (serverIndex < 0 || serverIndex >= SDKConfig.ServerList.Length)
                 {
-                    throw new Exception($"Invalid server index {serverIndex}");
+                    throw new ArgumentOutOfRangeException($"Invalid server index {serverIndex}: must be between 0 (inclusive) and {SDKConfig.ServerList.Length} (exclusive)." );
                 }
                 _sdkConfig.ServerIndex = serverIndex;
                 return this;
             }
 
+            /// <summary>
+            /// Sets the identifier server variable for the templated server URL.
+            /// </summary>
             public SDKBuilder WithIdentifier(string identifier)
             {
                 _sdkConfig.SetServerVariable("identifier", identifier);
                 return this;
             }
 
+            /// <summary>
+            /// Sets the IP-description server variable for the templated server URL.
+            /// </summary>
             public SDKBuilder WithIPDescription(string ipDescription)
             {
                 _sdkConfig.SetServerVariable("IP-description", ipDescription);
                 return this;
             }
 
+            /// <summary>
+            /// Sets the port server variable for the templated server URL.
+            /// </summary>
             public SDKBuilder WithPort(string port)
             {
                 _sdkConfig.SetServerVariable("port", port);
                 return this;
             }
 
+            /// <summary>
+            /// Sets the protocol server variable for the templated server URL.
+            /// </summary>
             public SDKBuilder WithProtocol(string protocol)
             {
                 _sdkConfig.SetServerVariable("protocol", protocol);
                 return this;
             }
 
+            /// <summary>
+            /// Sets the host server variable for the templated server URL.
+            /// </summary>
             public SDKBuilder WithHost(string host)
             {
                 _sdkConfig.SetServerVariable("host", host);
                 return this;
             }
 
+            /// <summary>
+            /// Sets the full_server_url server variable for the templated server URL.
+            /// </summary>
             public SDKBuilder WithFullServerUrl(string fullServerUrl)
             {
                 _sdkConfig.SetServerVariable("full_server_url", fullServerUrl);
                 return this;
             }
 
+            /// <summary>
+            /// Overrides the default server URL for the SDK.
+            /// </summary>
             public SDKBuilder WithServerUrl(string serverUrl, Dictionary<string, string>? serverVariables = null)
             {
                 if (serverVariables != null)
@@ -601,97 +712,134 @@ namespace LukeHagar.PlexAPI.SDK
                 _sdkConfig.ServerUrl = serverUrl;
                 return this;
             }
-
+            /// <summary>
+            /// Sets the Accepts global parameter for the SDK.
+            /// </summary>
             public SDKBuilder WithAccepts(Accepts accepts)
             {
                 _sdkConfig.Accepts = accepts;
                 return this;
             }
-
+            /// <summary>
+            /// Sets the ClientIdentifier global parameter for the SDK.
+            /// </summary>
             public SDKBuilder WithClientIdentifier(string clientIdentifier)
             {
                 _sdkConfig.ClientIdentifier = clientIdentifier;
                 return this;
             }
-
+            /// <summary>
+            /// Sets the Product global parameter for the SDK.
+            /// </summary>
             public SDKBuilder WithProduct(string product)
             {
                 _sdkConfig.Product = product;
                 return this;
             }
-
+            /// <summary>
+            /// Sets the Version global parameter for the SDK.
+            /// </summary>
             public SDKBuilder WithVersion(string version)
             {
                 _sdkConfig.Version = version;
                 return this;
             }
-
+            /// <summary>
+            /// Sets the Platform global parameter for the SDK.
+            /// </summary>
             public SDKBuilder WithPlatform(string platform)
             {
                 _sdkConfig.Platform = platform;
                 return this;
             }
-
+            /// <summary>
+            /// Sets the PlatformVersion global parameter for the SDK.
+            /// </summary>
             public SDKBuilder WithPlatformVersion(string platformVersion)
             {
                 _sdkConfig.PlatformVersion = platformVersion;
                 return this;
             }
-
+            /// <summary>
+            /// Sets the Device global parameter for the SDK.
+            /// </summary>
             public SDKBuilder WithDevice(string device)
             {
                 _sdkConfig.Device = device;
                 return this;
             }
-
+            /// <summary>
+            /// Sets the Model global parameter for the SDK.
+            /// </summary>
             public SDKBuilder WithModel(string model)
             {
                 _sdkConfig.Model = model;
                 return this;
             }
-
+            /// <summary>
+            /// Sets the DeviceVendor global parameter for the SDK.
+            /// </summary>
             public SDKBuilder WithDeviceVendor(string deviceVendor)
             {
                 _sdkConfig.DeviceVendor = deviceVendor;
                 return this;
             }
-
+            /// <summary>
+            /// Sets the DeviceName global parameter for the SDK.
+            /// </summary>
             public SDKBuilder WithDeviceName(string deviceName)
             {
                 _sdkConfig.DeviceName = deviceName;
                 return this;
             }
-
+            /// <summary>
+            /// Sets the Marketplace global parameter for the SDK.
+            /// </summary>
             public SDKBuilder WithMarketplace(string marketplace)
             {
                 _sdkConfig.Marketplace = marketplace;
                 return this;
             }
 
+            /// <summary>
+            /// Sets the tokenSource security parameter for the SDK.
+            /// </summary>
             public SDKBuilder WithTokenSource(Func<string> tokenSource)
             {
                 _sdkConfig.SecuritySource = () => new LukeHagar.PlexAPI.SDK.Models.Components.Security() { Token = tokenSource() };
                 return this;
             }
 
+            /// <summary>
+            /// Sets the token security parameter for the SDK.
+            /// </summary>
             public SDKBuilder WithToken(string token)
             {
                 _sdkConfig.SecuritySource = () => new LukeHagar.PlexAPI.SDK.Models.Components.Security() { Token = token };
                 return this;
             }
 
+            /// <summary>
+            /// Sets a custom HTTP client to be used by the SDK.
+            /// </summary>
             public SDKBuilder WithClient(ISpeakeasyHttpClient client)
             {
                 _sdkConfig.Client = client;
                 return this;
             }
 
+            /// <summary>
+            /// Sets the retry configuration for the SDK.
+            /// </summary>
             public SDKBuilder WithRetryConfig(RetryConfig retryConfig)
             {
                 _sdkConfig.RetryConfig = retryConfig;
                 return this;
             }
 
+            /// <summary>
+            /// Builds and returns the SDK instance.
+            /// </summary>
             public PlexAPI Build()
             {
               return new PlexAPI(_sdkConfig);

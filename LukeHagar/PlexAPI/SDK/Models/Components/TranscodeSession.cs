@@ -11,13 +11,12 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
 {
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     /// <summary>
-    /// The transcode session if item is currently being transcoded
+    /// The transcode session if item is currently being transcoded.
     /// </summary>
     public class TranscodeSession
     {
-
         [JsonProperty("complete")]
         public bool? Complete { get; set; }
 

@@ -12,9 +12,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     /// <summary>
-    /// The protocol used for the connection (http, https, etc)
+    /// The protocol used for the connection (http, https, etc).
     /// </summary>
     public enum PlexDeviceProtocol
     {
@@ -56,5 +56,4 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
             throw new Exception($"Unknown value {value} for enum PlexDeviceProtocol");
         }
     }
-
 }

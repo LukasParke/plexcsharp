@@ -13,28 +13,19 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     /// <summary>
     /// `MediaContainer` is the root element of most Plex API responses. It serves as a generic container for various types of content (Metadata, Hubs, Directories, etc.) and includes pagination information (offset, size, totalSize) when applicable.<br/>
-    /// 
-    /// <remarks>
     /// Common attributes: - identifier: Unique identifier for this container - size: Number of items in this response page - totalSize: Total number of items available (for pagination) - offset: Starting index of this page (for pagination)<br/>
-    /// The container often &quot;hoists&quot; common attributes from its children. For example, if all tracks in a container share the same album title, the `parentTitle` attribute may appear on the MediaContainer rather than being repeated on each track.<br/>
-    /// 
-    /// </remarks>
+    /// The container often "hoists" common attributes from its children. For example, if all tracks in a container share the same album title, the `parentTitle` attribute may appear on the MediaContainer rather than being repeated on each track.
     /// </summary>
     public class SearchHubsMediaContainer
     {
-
         [JsonProperty("identifier")]
         public string? Identifier { get; set; }
 
         /// <summary>
-        /// The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.<br/>
-        /// 
-        /// <remarks>
-        /// 
-        /// </remarks>
+        /// The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
         /// </summary>
         [JsonProperty("offset")]
         public long? Offset { get; set; }
@@ -43,11 +34,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public long? Size { get; set; }
 
         /// <summary>
-        /// The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.<br/>
-        /// 
-        /// <remarks>
-        /// 
-        /// </remarks>
+        /// The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
         /// </summary>
         [JsonProperty("totalSize")]
         public long? TotalSize { get; set; }

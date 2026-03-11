@@ -3,6 +3,14 @@
 The type of media content in the Plex library. This can represent videos, music, or photos.
 
 
+## Example Usage
+
+```csharp
+using LukeHagar.PlexAPI.SDK.Models.Components;
+
+var value = MediaTypeString.Movie;
+```
+
 
 ## Values
 

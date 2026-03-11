@@ -2,6 +2,14 @@
 
 Network type of the client, can be used to help determine target bitrate.
 
+## Example Usage
+
+```csharp
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var value = Location.Lan;
+```
+
 
 ## Values
 

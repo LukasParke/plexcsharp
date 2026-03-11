@@ -2,6 +2,14 @@
 
 Whether or not the account has media reviews visibility enabled
 
+## Example Usage
+
+```csharp
+using LukeHagar.PlexAPI.SDK.Models.Components;
+
+var value = MediaReviewsVisibility.NoOne;
+```
+
 
 ## Values
 

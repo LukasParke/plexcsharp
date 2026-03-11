@@ -5,6 +5,14 @@
 - `2`: The country has a single postal code, returned in `example`.
 
 
+## Example Usage
+
+```csharp
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var value = Flavor.Zero;
+```
+
 
 ## Values
 

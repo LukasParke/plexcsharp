@@ -11,10 +11,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class GetPlaylistGeneratorLocation
     {
-
         [JsonProperty("librarySectionID")]
         public long? LibrarySectionID { get; set; }
 

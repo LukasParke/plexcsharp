@@ -11,15 +11,14 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class Connection
     {
-
         [JsonProperty("address")]
         public string? Address { get; set; }
 
         /// <summary>
-        /// Indicates if the connection is the server&apos;s LAN address
+        /// Indicates if the connection is the server's LAN address.
         /// </summary>
         [JsonProperty("local")]
         public bool? Local { get; set; }
@@ -31,7 +30,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public string? Protocol { get; set; }
 
         /// <summary>
-        /// Indicates the connection is over a relayed connection
+        /// Indicates the connection is over a relayed connection.
         /// </summary>
         [JsonProperty("relay")]
         public bool? Relay { get; set; }

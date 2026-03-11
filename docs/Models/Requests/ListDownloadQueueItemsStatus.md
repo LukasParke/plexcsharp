@@ -9,6 +9,14 @@ The state of the item:
   - expired: The transcoded item has timed out and is no longer available
 
 
+## Example Usage
+
+```csharp
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var value = ListDownloadQueueItemsStatus.Deciding;
+```
+
 
 ## Values
 

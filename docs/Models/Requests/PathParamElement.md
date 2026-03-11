@@ -1,5 +1,13 @@
 # PathParamElement
 
+## Example Usage
+
+```csharp
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var value = PathParamElement.Thumb;
+```
+
 
 ## Values
 

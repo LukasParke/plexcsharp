@@ -27,60 +27,70 @@ namespace LukeHagar.PlexAPI.SDK
     /// </summary>
     public interface IButler
     {
-
         /// <summary>
-        /// Stop all Butler tasks
-        /// 
+        /// Stop all Butler tasks.
+        /// </summary>
         /// <remarks>
         /// This endpoint will stop all currently running tasks and remove any scheduled tasks from the queue.
         /// </remarks>
-        /// </summary>
-        Task<StopTasksResponse> StopTasksAsync();
+        /// <returns>An awaitable task that returns a <see cref="StopTasksResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<StopTasksResponse> StopTasksAsync();
 
         /// <summary>
-        /// Get all Butler tasks
-        /// 
+        /// Get all Butler tasks.
+        /// </summary>
         /// <remarks>
-        /// Get the list of butler tasks and their scheduling<br/>
-        /// 
+        /// Get the list of butler tasks and their scheduling.
         /// </remarks>
-        /// </summary>
-        Task<GetTasksResponse> GetTasksAsync();
+        /// <returns>An awaitable task that returns a <see cref="GetTasksResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<GetTasksResponse> GetTasksAsync();
 
         /// <summary>
-        /// Start all Butler tasks
-        /// 
+        /// Start all Butler tasks.
+        /// </summary>
         /// <remarks>
-        /// This endpoint will attempt to start all Butler tasks that are enabled in the settings. Butler tasks normally run automatically during a time window configured on the server&apos;s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria:<br/>
+        /// This endpoint will attempt to start all Butler tasks that are enabled in the settings. Butler tasks normally run automatically during a time window configured on the server's Settings page but can be manually started using this endpoint. Tasks will run with the following criteria:<br/>
         /// <br/>
         ///   1. Any tasks not scheduled to run on the current day will be skipped.<br/>
         ///   2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately.<br/>
         ///   3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window.<br/>
-        ///   4. If we are outside the configured window, the task will start immediately.<br/>
-        /// 
+        ///   4. If we are outside the configured window, the task will start immediately.
         /// </remarks>
-        /// </summary>
-        Task<StartTasksResponse> StartTasksAsync();
+        /// <returns>An awaitable task that returns a <see cref="StartTasksResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<StartTasksResponse> StartTasksAsync();
 
         /// <summary>
-        /// Stop a single Butler task
-        /// 
-        /// <remarks>
-        /// This endpoint will stop a currently running task by name, or remove it from the list of scheduled tasks if it exists<br/>
-        /// 
-        /// </remarks>
+        /// Stop a single Butler task.
         /// </summary>
-        Task<StopTaskResponse> StopTaskAsync(StopTaskRequest request);
+        /// <remarks>
+        /// This endpoint will stop a currently running task by name, or remove it from the list of scheduled tasks if it exists.
+        /// </remarks>
+        /// <param name="request">A <see cref="StopTaskRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="StopTaskResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<StopTaskResponse> StopTaskAsync(StopTaskRequest request);
 
         /// <summary>
-        /// Start a single Butler task
-        /// 
-        /// <remarks>
-        /// This endpoint will attempt to start a specific Butler task by name.<br/>
-        /// 
-        /// </remarks>
+        /// Start a single Butler task.
         /// </summary>
-        Task<StartTaskResponse> StartTaskAsync(StartTaskRequest request);
+        /// <remarks>
+        /// This endpoint will attempt to start a specific Butler task by name.
+        /// </remarks>
+        /// <param name="request">A <see cref="StartTaskRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="StartTaskResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<StartTaskResponse> StartTaskAsync(StartTaskRequest request);
     }
 
     /// <summary>
@@ -88,26 +98,38 @@ namespace LukeHagar.PlexAPI.SDK
     /// </summary>
     public class Butler: IButler
     {
+        /// <summary>
+        /// SDK Configuration.
+        /// <see cref="SDKConfig"/>
+        /// </summary>
         public SDKConfig SDKConfiguration { get; private set; }
-
-        private const string _language = Constants.Language;
-        private const string _sdkVersion = Constants.SdkVersion;
-        private const string _sdkGenVersion = Constants.SdkGenVersion;
-        private const string _openapiDocVersion = Constants.OpenApiDocVersion;
 
         public Butler(SDKConfig config)
         {
             SDKConfiguration = config;
         }
 
-        public async Task<StopTasksResponse> StopTasksAsync()
+        /// <summary>
+        /// Stop all Butler tasks.
+        /// </summary>
+        /// <remarks>
+        /// This endpoint will stop all currently running tasks and remove any scheduled tasks from the queue.
+        /// </remarks>
+        /// <returns>An awaitable task that returns a <see cref="StopTasksResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<StopTasksResponse> StopTasksAsync()
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-
             var urlString = baseUrl + "/butler";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "*/*");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -133,9 +155,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -171,14 +193,29 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<GetTasksResponse> GetTasksAsync()
+
+        /// <summary>
+        /// Get all Butler tasks.
+        /// </summary>
+        /// <remarks>
+        /// Get the list of butler tasks and their scheduling.
+        /// </remarks>
+        /// <returns>An awaitable task that returns a <see cref="GetTasksResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<GetTasksResponse> GetTasksAsync()
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-
             var urlString = baseUrl + "/butler";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -204,9 +241,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -260,14 +297,33 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<StartTasksResponse> StartTasksAsync()
+
+        /// <summary>
+        /// Start all Butler tasks.
+        /// </summary>
+        /// <remarks>
+        /// This endpoint will attempt to start all Butler tasks that are enabled in the settings. Butler tasks normally run automatically during a time window configured on the server's Settings page but can be manually started using this endpoint. Tasks will run with the following criteria:<br/>
+        /// <br/>
+        ///   1. Any tasks not scheduled to run on the current day will be skipped.<br/>
+        ///   2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately.<br/>
+        ///   3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window.<br/>
+        ///   4. If we are outside the configured window, the task will start immediately.
+        /// </remarks>
+        /// <returns>An awaitable task that returns a <see cref="StartTasksResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<StartTasksResponse> StartTasksAsync()
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-
             var urlString = baseUrl + "/butler";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "*/*");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -293,9 +349,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -331,12 +387,21 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<StopTaskResponse> StopTaskAsync(StopTaskRequest request)
+
+        /// <summary>
+        /// Stop a single Butler task.
+        /// </summary>
+        /// <remarks>
+        /// This endpoint will stop a currently running task by name, or remove it from the list of scheduled tasks if it exists.
+        /// </remarks>
+        /// <param name="request">A <see cref="StopTaskRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="StopTaskResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<StopTaskResponse> StopTaskAsync(StopTaskRequest request)
         {
-            if (request == null)
-            {
-                request = new StopTaskRequest();
-            }
+            if (request == null) throw new ArgumentNullException(nameof(request));
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -348,13 +413,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/butler/{butlerTask}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "*/*");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -371,7 +441,7 @@ namespace LukeHagar.PlexAPI.SDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == 404 || _statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
+                if (_statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -380,9 +450,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -406,7 +476,7 @@ namespace LukeHagar.PlexAPI.SDK
                     RawResponse = httpResponse
                 };
             }
-            else if(responseStatusCode == 404 || responseStatusCode >= 400 && responseStatusCode < 500)
+            else if(responseStatusCode >= 400 && responseStatusCode < 500)
             {
                 throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
@@ -418,12 +488,21 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<StartTaskResponse> StartTaskAsync(StartTaskRequest request)
+
+        /// <summary>
+        /// Start a single Butler task.
+        /// </summary>
+        /// <remarks>
+        /// This endpoint will attempt to start a specific Butler task by name.
+        /// </remarks>
+        /// <param name="request">A <see cref="StartTaskRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="StartTaskResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<StartTaskResponse> StartTaskAsync(StartTaskRequest request)
         {
-            if (request == null)
-            {
-                request = new StartTaskRequest();
-            }
+            if (request == null) throw new ArgumentNullException(nameof(request));
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -435,13 +514,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/butler/{butlerTask}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "*/*");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -458,7 +542,7 @@ namespace LukeHagar.PlexAPI.SDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == 404 || _statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
+                if (_statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -467,9 +551,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -493,7 +577,7 @@ namespace LukeHagar.PlexAPI.SDK
                     RawResponse = httpResponse
                 };
             }
-            else if(responseStatusCode == 404 || responseStatusCode >= 400 && responseStatusCode < 500)
+            else if(responseStatusCode >= 400 && responseStatusCode < 500)
             {
                 throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
@@ -504,5 +588,6 @@ namespace LukeHagar.PlexAPI.SDK
 
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
+
     }
 }

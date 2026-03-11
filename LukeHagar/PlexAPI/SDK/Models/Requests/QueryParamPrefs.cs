@@ -10,9 +10,9 @@
 namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
     using LukeHagar.PlexAPI.SDK.Utils;
-    
+
     /// <summary>
-    /// The preferences for this section
+    /// The preferences for this section.
     /// </summary>
     public class QueryParamPrefs
     {

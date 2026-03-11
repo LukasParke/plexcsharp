@@ -11,10 +11,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class GetCountryRegionsCountry
     {
-
         [JsonProperty("key")]
         public string? Key { get; set; }
 

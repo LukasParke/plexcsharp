@@ -13,18 +13,17 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     public class UserProfile
     {
-
         /// <summary>
-        /// If the account has automatically select audio and subtitle tracks enabled
+        /// If the account has automatically select audio and subtitle tracks enabled.
         /// </summary>
         [JsonProperty("autoSelectAudio")]
         public bool? AutoSelectAudio { get; set; } = true;
 
         /// <summary>
-        /// The preferred audio language for the account
+        /// The preferred audio language for the account.
         /// </summary>
         [JsonProperty("defaultAudioLanguage", NullValueHandling = NullValueHandling.Include)]
         public string? DefaultAudioLanguage { get; set; }
@@ -33,19 +32,19 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public DefaultAudioAccessibility? DefaultAudioAccessibility { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.DefaultAudioAccessibility.PreferNonAccessibility;
 
         /// <summary>
-        /// The preferred audio languages for the account
+        /// The preferred audio languages for the account.
         /// </summary>
         [JsonProperty("defaultAudioLanguages")]
         public List<string>? DefaultAudioLanguages { get; set; } = null;
 
         /// <summary>
-        /// The preferred subtitle language for the account
+        /// The preferred subtitle language for the account.
         /// </summary>
         [JsonProperty("defaultSubtitleLanguage", NullValueHandling = NullValueHandling.Include)]
         public string? DefaultSubtitleLanguage { get; set; }
 
         /// <summary>
-        /// The preferred subtitle languages for the account
+        /// The preferred subtitle languages for the account.
         /// </summary>
         [JsonProperty("defaultSubtitleLanguages")]
         public List<string>? DefaultSubtitleLanguages { get; set; } = null;
@@ -66,7 +65,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public MediaReviewsVisibility? MediaReviewsVisibility { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.MediaReviewsVisibility.NoOne;
 
         /// <summary>
-        /// The languages for media reviews visibility
+        /// The languages for media reviews visibility.
         /// </summary>
         [JsonProperty("mediaReviewsLanguages")]
         public List<string>? MediaReviewsLanguages { get; set; } = null;

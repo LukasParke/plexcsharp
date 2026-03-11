@@ -12,7 +12,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     /// <summary>
     /// Network type of the client, can be used to help determine target bitrate.
     /// </summary>
@@ -58,5 +58,4 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
             throw new Exception($"Unknown value {value} for enum StartTranscodeSessionQueryParamLocation");
         }
     }
-
 }

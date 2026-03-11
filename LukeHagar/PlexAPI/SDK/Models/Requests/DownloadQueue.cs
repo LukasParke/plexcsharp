@@ -12,10 +12,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Models.Requests;
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class DownloadQueue
     {
-
         [JsonProperty("id")]
         public long? Id { get; set; }
 
@@ -24,15 +23,11 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 
         /// <summary>
         /// The state of this queue<br/>
-        /// 
-        /// <remarks>
         ///   - deciding: At least one item is still being decided<br/>
         ///   - waiting: At least one item is waiting for transcode and none are currently transcoding<br/>
         ///   - processing: At least one item is being transcoded<br/>
         ///   - done: All items are available (or potentially expired)<br/>
-        ///   - error: At least one item has encountered an error<br/>
-        /// 
-        /// </remarks>
+        ///   - error: At least one item has encountered an error.
         /// </summary>
         [JsonProperty("status")]
         public CreateDownloadQueueStatus? Status { get; set; }

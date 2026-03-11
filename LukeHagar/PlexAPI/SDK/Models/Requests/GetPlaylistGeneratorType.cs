@@ -10,14 +10,13 @@
 namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
     using LukeHagar.PlexAPI.SDK.Utils;
-    
+
     /// <summary>
-    /// The type of this generator
+    /// The type of this generator.
     /// </summary>
     public enum GetPlaylistGeneratorType
     {
         Minus1 = -1,
         FortyTwo = 42,
     }
-
 }

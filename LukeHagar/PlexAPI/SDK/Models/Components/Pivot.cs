@@ -11,10 +11,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
 {
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class Pivot
     {
-
         [JsonProperty("title")]
         public string? Title { get; set; }
 

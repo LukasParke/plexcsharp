@@ -12,9 +12,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     /// <summary>
-    /// This default diction of this sort
+    /// This default diction of this sort.
     /// </summary>
     public enum DefaultDirection
     {
@@ -56,5 +56,4 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
             throw new Exception($"Unknown value {value} for enum DefaultDirection");
         }
     }
-
 }

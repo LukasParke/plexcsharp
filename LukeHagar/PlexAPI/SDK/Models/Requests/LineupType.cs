@@ -10,18 +10,14 @@
 namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
     using LukeHagar.PlexAPI.SDK.Utils;
-    
+
     /// <summary>
     /// - `-1`: N/A<br/>
-    /// 
-    /// <remarks>
     /// - `0`: Over the air<br/>
     /// - `1`: Cable<br/>
     /// - `2`: Satellite<br/>
     /// - `3`: IPTV<br/>
-    /// - `4`: Virtual<br/>
-    /// 
-    /// </remarks>
+    /// - `4`: Virtual.
     /// </summary>
     public enum LineupType
     {
@@ -32,5 +28,4 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         Three = 3,
         Four = 4,
     }
-
 }

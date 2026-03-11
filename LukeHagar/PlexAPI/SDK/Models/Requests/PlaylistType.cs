@@ -12,9 +12,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     /// <summary>
-    /// Limit to a type of playlist
+    /// Limit to a type of playlist.
     /// </summary>
     public enum PlaylistType
     {
@@ -58,5 +58,4 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
             throw new Exception($"Unknown value {value} for enum PlaylistType");
         }
     }
-
 }

@@ -12,11 +12,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     /// <summary>
     /// The status of this update.<br/>
-    /// 
-    /// <remarks>
     /// <br/>
     /// - available - This release is available<br/>
     /// - downloading - This release is downloading<br/>
@@ -26,9 +24,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     /// - skipped - This release has been skipped<br/>
     /// - error - This release has an error<br/>
     /// - notify - This release is only notifying it is available (typically because it cannot be installed on this setup)<br/>
-    /// - done - This release is complete<br/>
-    /// 
-    /// </remarks>
+    /// - done - This release is complete.
     /// </summary>
     public enum GetUpdatesStatusState
     {
@@ -84,5 +80,4 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
             throw new Exception($"Unknown value {value} for enum GetUpdatesStatusState");
         }
     }
-
 }

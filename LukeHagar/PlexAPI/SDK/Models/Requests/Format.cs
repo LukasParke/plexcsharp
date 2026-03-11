@@ -12,9 +12,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     /// <summary>
-    /// The output format for the image; defaults to jpg
+    /// The output format for the image; defaults to jpg.
     /// </summary>
     public enum Format
     {
@@ -60,5 +60,4 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
             throw new Exception($"Unknown value {value} for enum Format");
         }
     }
-
 }

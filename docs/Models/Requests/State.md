@@ -2,6 +2,14 @@
 
 The current state of the media.
 
+## Example Usage
+
+```csharp
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var value = State.Stopped;
+```
+
 
 ## Values
 

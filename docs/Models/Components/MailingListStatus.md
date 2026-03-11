@@ -2,6 +2,14 @@
 
 Your current mailing list status
 
+## Example Usage
+
+```csharp
+using LukeHagar.PlexAPI.SDK.Models.Components;
+
+var value = MailingListStatus.Active;
+```
+
 
 ## Values
 

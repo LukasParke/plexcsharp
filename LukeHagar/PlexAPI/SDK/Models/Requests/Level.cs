@@ -10,18 +10,14 @@
 namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
     using LukeHagar.PlexAPI.SDK.Utils;
-    
+
     /// <summary>
     /// An integer log level to write to the PMS log with.<br/>
-    /// 
-    /// <remarks>
     ///   - 0: Error<br/>
     ///   - 1: Warning<br/>
     ///   - 2: Info<br/>
     ///   - 3: Debug<br/>
-    ///   - 4: Verbose<br/>
-    /// 
-    /// </remarks>
+    ///   - 4: Verbose.
     /// </summary>
     public enum Level
     {
@@ -31,5 +27,4 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         Three = 3,
         Four = 4,
     }
-
 }

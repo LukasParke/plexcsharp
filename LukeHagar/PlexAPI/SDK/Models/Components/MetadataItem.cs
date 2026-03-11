@@ -14,23 +14,18 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using Newtonsoft.Json;
     using NodaTime;
     using System.Collections.Generic;
-    
+
     /// <summary>
-    /// Items in a library are referred to as &quot;metadata items.&quot; These metadata items are distinct from &quot;media items&quot; which represent actual instances of media that can be consumed. Consider a TV library that has a single video file in it for a particular episode of a show. The library has a single media item, but it has three metadata items: one for the show, one for the season, and one for the episode. Consider a movie library that has two video files in it: the same movie, but two different resolutions. The library has a single metadata item for the movie, but that metadata item has two media items, one for each resolution. Additionally a &quot;media item&quot; will have one or more &quot;media parts&quot; where the the parts are intended to be watched together, such as a CD1 and CD2 parts of the same movie.<br/>
-    /// 
-    /// <remarks>
+    /// Items in a library are referred to as "metadata items." These metadata items are distinct from "media items" which represent actual instances of media that can be consumed. Consider a TV library that has a single video file in it for a particular episode of a show. The library has a single media item, but it has three metadata items: one for the show, one for the season, and one for the episode. Consider a movie library that has two video files in it: the same movie, but two different resolutions. The library has a single metadata item for the movie, but that metadata item has two media items, one for each resolution. Additionally a "media item" will have one or more "media parts" where the the parts are intended to be watched together, such as a CD1 and CD2 parts of the same movie.<br/>
     /// <br/>
-    /// Note that when a metadata item has multiple media items, those media items should be isomorphic. That is, a 4K version and 1080p version of a movie are different versions of the same movie. They have the same duration, same summary, same rating, etc. and they can generally be considered interchangeable. A theatrical release vs. director&apos;s cut vs. unrated version on the other hand would be separate metadata items.<br/>
+    /// Note that when a metadata item has multiple media items, those media items should be isomorphic. That is, a 4K version and 1080p version of a movie are different versions of the same movie. They have the same duration, same summary, same rating, etc. and they can generally be considered interchangeable. A theatrical release vs. director's cut vs. unrated version on the other hand would be separate metadata items.<br/>
     /// <br/>
-    /// Metadata items can often live in a hierarchy with relationships between them.  For example, the metadata item for an episodes is associated with a season metadata item which is associated with a show metadata item.  A similar hierarchy exists with track, album, and artist and photos and photo album.  The relationships may be expressed via relative terms and absolute terms.  For example, &quot;leaves&quot; refer to metadata items which has associated media (there is no media for a season nor show).  A show will have &quot;children&quot; in the form of seasons and a season will have &quot;children&quot; in the form of episodes and episodes have &quot;parent&quot; in the form of a season which has a &quot;parent&quot; in the form of a show.  Similarly, a show has &quot;grandchildren&quot; in the form of episodse and an episode has a &quot;grandparent&quot; in the form of a show.<br/>
-    /// 
-    /// </remarks>
+    /// Metadata items can often live in a hierarchy with relationships between them.  For example, the metadata item for an episodes is associated with a season metadata item which is associated with a show metadata item.  A similar hierarchy exists with track, album, and artist and photos and photo album.  The relationships may be expressed via relative terms and absolute terms.  For example, "leaves" refer to metadata items which has associated media (there is no media for a season nor show).  A show will have "children" in the form of seasons and a season will have "children" in the form of episodes and episodes have "parent" in the form of a season which has a "parent" in the form of a show.  Similarly, a show has "grandchildren" in the form of episodse and an episode has a "grandparent" in the form of a show.
     /// </summary>
     public class MetadataItem
     {
-
         /// <summary>
-        /// The title of the item (e.g. “300” or “The Simpsons”)
+        /// The title of the item (e.g. “300” or “The Simpsons”).
         /// </summary>
         [JsonProperty("title")]
         public string Title { get; set; } = default!;
@@ -60,7 +55,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public string? Art { get; set; }
 
         /// <summary>
-        /// Some rating systems separate reviewer ratings from audience ratings
+        /// Some rating systems separate reviewer ratings from audience ratings.
         /// </summary>
         [JsonProperty("audienceRating")]
         public float? AudienceRating { get; set; }
@@ -117,7 +112,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public int? Duration { get; set; }
 
         /// <summary>
-        /// Typically only seen in metadata at a library&apos;s top level
+        /// Typically only seen in metadata at a library's top level.
         /// </summary>
         [JsonProperty("Filter")]
         public List<Filter>? Filter { get; set; }
@@ -126,7 +121,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public List<Tag>? Genre { get; set; }
 
         /// <summary>
-        /// The `art` of the grandparent
+        /// The `art` of the grandparent.
         /// </summary>
         [JsonProperty("grandparentArt")]
         public string? GrandparentArt { get; set; }
@@ -138,37 +133,37 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public string? GrandparentGuid { get; set; }
 
         /// <summary>
-        /// The `hero` of the grandparent
+        /// The `hero` of the grandparent.
         /// </summary>
         [JsonProperty("grandparentHero")]
         public string? GrandparentHero { get; set; }
 
         /// <summary>
-        /// The `key` of the grandparent
+        /// The `key` of the grandparent.
         /// </summary>
         [JsonProperty("grandparentKey")]
         public string? GrandparentKey { get; set; }
 
         /// <summary>
-        /// The `ratingKey` of the grandparent
+        /// The `ratingKey` of the grandparent.
         /// </summary>
         [JsonProperty("grandparentRatingKey")]
         public string? GrandparentRatingKey { get; set; }
 
         /// <summary>
-        /// The `theme` of the grandparent
+        /// The `theme` of the grandparent.
         /// </summary>
         [JsonProperty("grandparentTheme")]
         public string? GrandparentTheme { get; set; }
 
         /// <summary>
-        /// The `thumb` of the grandparent
+        /// The `thumb` of the grandparent.
         /// </summary>
         [JsonProperty("grandparentThumb")]
         public string? GrandparentThumb { get; set; }
 
         /// <summary>
-        /// The `title` of the grandparent
+        /// The `title` of the grandparent.
         /// </summary>
         [JsonProperty("grandparentTitle")]
         public string? GrandparentTitle { get; set; }
@@ -198,7 +193,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public int? Index { get; set; }
 
         /// <summary>
-        /// The key at which the item&apos;s details can be fetched.  In many cases a metadata item may be passed without all the details (such as in a hub) and this key corresponds to the endpoint to fetch additional details.
+        /// The key at which the item's details can be fetched.  In many cases a metadata item may be passed without all the details (such as in a hub) and this key corresponds to the endpoint to fetch additional details.
         /// </summary>
         [JsonProperty("key")]
         public string Key { get; set; } = default!;
@@ -216,13 +211,13 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public List<Media>? Media { get; set; }
 
         /// <summary>
-        /// When present, in the format YYYY-MM-DD [HH:MM:SS] (the hours/minutes/seconds part is not always present). The air date, or a higher resolution release date for an item, depending on type. For example, episodes usually have air date like 1979-08-10 (we don&apos;t use epoch seconds because media existed prior to 1970). In some cases, recorded over-the-air content has higher resolution air date which includes a time component. Albums and movies may have day-resolution release dates as well.
+        /// When present, in the format YYYY-MM-DD [HH:MM:SS] (the hours/minutes/seconds part is not always present). The air date, or a higher resolution release date for an item, depending on type. For example, episodes usually have air date like 1979-08-10 (we don't use epoch seconds because media existed prior to 1970). In some cases, recorded over-the-air content has higher resolution air date which includes a time component. Albums and movies may have day-resolution release dates as well.
         /// </summary>
         [JsonProperty("originallyAvailableAt")]
         public LocalDate? OriginallyAvailableAt { get; set; }
 
         /// <summary>
-        /// When present, used to indicate an item&apos;s original title, e.g. a movie&apos;s foreign title.
+        /// When present, used to indicate an item's original title, e.g. a movie's foreign title.
         /// </summary>
         [JsonProperty("originalTitle")]
         public string? OriginalTitle { get; set; }
@@ -234,37 +229,37 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public string? ParentGuid { get; set; }
 
         /// <summary>
-        /// The `hero` of the parent
+        /// The `hero` of the parent.
         /// </summary>
         [JsonProperty("parentHero")]
         public string? ParentHero { get; set; }
 
         /// <summary>
-        /// The `index` of the parent
+        /// The `index` of the parent.
         /// </summary>
         [JsonProperty("parentIndex")]
         public int? ParentIndex { get; set; }
 
         /// <summary>
-        /// The `key` of the parent
+        /// The `key` of the parent.
         /// </summary>
         [JsonProperty("parentKey")]
         public string? ParentKey { get; set; }
 
         /// <summary>
-        /// The `ratingKey` of the parent
+        /// The `ratingKey` of the parent.
         /// </summary>
         [JsonProperty("parentRatingKey")]
         public string? ParentRatingKey { get; set; }
 
         /// <summary>
-        /// The `thumb` of the parent
+        /// The `thumb` of the parent.
         /// </summary>
         [JsonProperty("parentThumb")]
         public string? ParentThumb { get; set; }
 
         /// <summary>
-        /// The `title` of the parent
+        /// The `title` of the parent.
         /// </summary>
         [JsonProperty("parentTitle")]
         public string? ParentTitle { get; set; }
@@ -276,7 +271,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public string? PrimaryExtraKey { get; set; }
 
         /// <summary>
-        /// Prompt to give the user for this directory (such as `Search Movies`)
+        /// Prompt to give the user for this directory (such as `Search Movies`).
         /// </summary>
         [JsonProperty("prompt")]
         public string? Prompt { get; set; }
@@ -291,7 +286,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public List<Tag>? RatingArray { get; set; }
 
         /// <summary>
-        /// Number of ratings under this metadata
+        /// Number of ratings under this metadata.
         /// </summary>
         [JsonProperty("ratingCount")]
         public int? RatingCount { get; set; }
@@ -312,7 +307,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public List<Tag>? Role { get; set; }
 
         /// <summary>
-        /// Indicates this is a search directory
+        /// Indicates this is a search directory.
         /// </summary>
         [JsonProperty("search")]
         public bool? Search { get; set; }
@@ -336,7 +331,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public bool? SkipParent { get; set; }
 
         /// <summary>
-        /// Typically only seen in metadata at a library&apos;s top level
+        /// Typically only seen in metadata at a library's top level.
         /// </summary>
         [JsonProperty("Sort")]
         public List<Sort>? Sort { get; set; }
@@ -348,7 +343,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public string? Studio { get; set; }
 
         /// <summary>
-        /// The subtype of the video item, such as `photo` when the video item is in a photo library
+        /// The subtype of the video item, such as `photo` when the video item is in a photo library.
         /// </summary>
         [JsonProperty("subtype")]
         public string? Subtype { get; set; }
@@ -378,7 +373,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public string? Thumb { get; set; }
 
         /// <summary>
-        /// Whene present, this is the string used for sorting the item. It&apos;s usually the title with any leading articles removed (e.g. “Simpsons”).
+        /// Whene present, this is the string used for sorting the item. It's usually the title with any leading articles removed (e.g. “Simpsons”).
         /// </summary>
         [JsonProperty("titleSort")]
         public string? TitleSort { get; set; }
@@ -390,7 +385,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public long? UpdatedAt { get; set; }
 
         /// <summary>
-        /// When the user has rated an item, this contains the user rating
+        /// When the user has rated an item, this contains the user rating.
         /// </summary>
         [JsonProperty("userRating")]
         public float? UserRating { get; set; }
@@ -417,7 +412,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public List<Tag>? Writer { get; set; }
 
         /// <summary>
-        /// When present, the year associated with the item&apos;s release (e.g. release year for a movie).
+        /// When present, the year associated with the item's release (e.g. release year for a movie).
         /// </summary>
         [JsonProperty("year")]
         public int? Year { get; set; }

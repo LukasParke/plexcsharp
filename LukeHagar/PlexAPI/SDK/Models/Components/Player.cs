@@ -11,99 +11,98 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
 {
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     /// <summary>
-    /// Information about the player being used for playback
+    /// Information about the player being used for playback.
     /// </summary>
     public class Player
     {
-
         /// <summary>
-        /// The title of the client
+        /// The title of the client.
         /// </summary>
         [JsonProperty("title")]
         public string? Title { get; set; }
 
         /// <summary>
-        /// The remote address
+        /// The remote address.
         /// </summary>
         [JsonProperty("address")]
         public string? Address { get; set; }
 
         /// <summary>
-        /// Indicating if the client is playing from the local LAN
+        /// Indicating if the client is playing from the local LAN.
         /// </summary>
         [JsonProperty("local")]
         public bool? Local { get; set; }
 
         /// <summary>
-        /// The identifier of the client
+        /// The identifier of the client.
         /// </summary>
         [JsonProperty("machineIdentifier")]
         public string? MachineIdentifier { get; set; }
 
         /// <summary>
-        /// The model of the client
+        /// The model of the client.
         /// </summary>
         [JsonProperty("model")]
         public string? Model { get; set; }
 
         /// <summary>
-        /// The platform of the client
+        /// The platform of the client.
         /// </summary>
         [JsonProperty("platform")]
         public string? Platform { get; set; }
 
         /// <summary>
-        /// The platformVersion of the client
+        /// The platformVersion of the client.
         /// </summary>
         [JsonProperty("platformVersion")]
         public string? PlatformVersion { get; set; }
 
         /// <summary>
-        /// The product name of the client
+        /// The product name of the client.
         /// </summary>
         [JsonProperty("product")]
         public string? Product { get; set; }
 
         /// <summary>
-        /// Indicating if the client is playing over a relay connection
+        /// Indicating if the client is playing over a relay connection.
         /// </summary>
         [JsonProperty("relayed")]
         public bool? Relayed { get; set; }
 
         /// <summary>
-        /// The client&apos;s public address
+        /// The client's public address.
         /// </summary>
         [JsonProperty("remotePublicAddress")]
         public string? RemotePublicAddress { get; set; }
 
         /// <summary>
-        /// Indicating if the client is playing over HTTPS
+        /// Indicating if the client is playing over HTTPS.
         /// </summary>
         [JsonProperty("secure")]
         public bool? Secure { get; set; }
 
         /// <summary>
-        /// The client&apos;s last reported state
+        /// The client's last reported state.
         /// </summary>
         [JsonProperty("state")]
         public string? State { get; set; }
 
         /// <summary>
-        /// The id of the user
+        /// The id of the user.
         /// </summary>
         [JsonProperty("userID")]
         public long? UserID { get; set; }
 
         /// <summary>
-        /// The vendor of the client
+        /// The vendor of the client.
         /// </summary>
         [JsonProperty("vendor")]
         public string? Vendor { get; set; }
 
         /// <summary>
-        /// The version of the client
+        /// The version of the client.
         /// </summary>
         [JsonProperty("version")]
         public string? Version { get; set; }

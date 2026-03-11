@@ -13,120 +13,119 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Models.Requests;
     using LukeHagar.PlexAPI.SDK.Utils;
     using System.Collections.Generic;
-    
+
     public class EditSectionRequest
     {
-
         /// <summary>
-        /// Indicates the client accepts the indicated media types
+        /// Indicates the client accepts the indicated media types.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=accepts")]
         public Accepts? Accepts { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml;
 
         /// <summary>
-        /// An opaque identifier unique to the client
+        /// An opaque identifier unique to the client.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Client-Identifier")]
         public string? ClientIdentifier { get; set; }
 
         /// <summary>
-        /// The name of the client product
+        /// The name of the client product.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Product")]
         public string? Product { get; set; }
 
         /// <summary>
-        /// The version of the client application
+        /// The version of the client application.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Version")]
         public string? Version { get; set; }
 
         /// <summary>
-        /// The platform of the client
+        /// The platform of the client.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Platform")]
         public string? Platform { get; set; }
 
         /// <summary>
-        /// The version of the platform
+        /// The version of the platform.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Platform-Version")]
         public string? PlatformVersion { get; set; }
 
         /// <summary>
-        /// A relatively friendly name for the client device
+        /// A relatively friendly name for the client device.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Device")]
         public string? Device { get; set; }
 
         /// <summary>
-        /// A potentially less friendly identifier for the device model
+        /// A potentially less friendly identifier for the device model.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Model")]
         public string? Model { get; set; }
 
         /// <summary>
-        /// The device vendor
+        /// The device vendor.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Device-Vendor")]
         public string? DeviceVendor { get; set; }
 
         /// <summary>
-        /// A friendly name for the client
+        /// A friendly name for the client.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Device-Name")]
         public string? DeviceName { get; set; }
 
         /// <summary>
-        /// The marketplace on which the client application is distributed
+        /// The marketplace on which the client application is distributed.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Marketplace")]
         public string? Marketplace { get; set; }
 
         /// <summary>
-        /// The section identifier
+        /// The section identifier.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=sectionId")]
         public string SectionId { get; set; } = default!;
 
         /// <summary>
-        /// The name of the new section
+        /// The name of the new section.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=name")]
         public string? Name { get; set; }
 
         /// <summary>
-        /// The scanner this section should use
+        /// The scanner this section should use.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=scanner")]
         public string? Scanner { get; set; }
 
         /// <summary>
-        /// The agent this section should use for metadata
+        /// The agent this section should use for metadata.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=agent")]
         public string Agent { get; set; } = default!;
 
         /// <summary>
-        /// The agent group id for this section
+        /// The agent group id for this section.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=metadataAgentProviderGroupId")]
         public string? MetadataAgentProviderGroupId { get; set; }
 
         /// <summary>
-        /// The language of this section
+        /// The language of this section.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=language")]
         public string? Language { get; set; }
 
         /// <summary>
-        /// The locations on disk to add to this section
+        /// The locations on disk to add to this section.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=locations")]
         public List<string>? Locations { get; set; }
 
         /// <summary>
-        /// The preferences for this section
+        /// The preferences for this section.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=prefs")]
         public EditSectionQueryParamPrefs? Prefs { get; set; }

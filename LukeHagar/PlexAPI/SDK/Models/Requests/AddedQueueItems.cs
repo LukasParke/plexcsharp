@@ -11,18 +11,17 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class AddedQueueItems
     {
-
         /// <summary>
-        /// The queue item id that was added or the existing one if an item already exists in this queue with the same parameters
+        /// The queue item id that was added or the existing one if an item already exists in this queue with the same parameters.
         /// </summary>
         [JsonProperty("id")]
         public long? Id { get; set; }
 
         /// <summary>
-        /// The key added to the queue
+        /// The key added to the queue.
         /// </summary>
         [JsonProperty("key")]
         public string? Key { get; set; }

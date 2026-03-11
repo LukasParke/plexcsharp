@@ -2,6 +2,14 @@
 
 Indicates if the user owns the server.
 
+## Example Usage
+
+```csharp
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var value = Owned.Disable;
+```
+
 
 ## Values
 

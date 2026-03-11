@@ -13,12 +13,11 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     public class MediaContainerWithArtworkMetadata
     {
-
         /// <summary>
-        /// The title of the item
+        /// The title of the item.
         /// </summary>
         [JsonProperty("title")]
         public string? Title { get; set; }
@@ -27,7 +26,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public MediaContainerWithArtworkType? Type { get; set; }
 
         /// <summary>
-        /// The path to the artwork
+        /// The path to the artwork.
         /// </summary>
         [JsonProperty("key")]
         public string? Key { get; set; }

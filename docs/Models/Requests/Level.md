@@ -8,6 +8,14 @@ An integer log level to write to the PMS log with.
   - 4: Verbose
 
 
+## Example Usage
+
+```csharp
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var value = Level.Zero;
+```
+
 
 ## Values
 

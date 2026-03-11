@@ -1,5 +1,13 @@
 # MediaContainerWithDecisionDecision
 
+## Example Usage
+
+```csharp
+using LukeHagar.PlexAPI.SDK.Models.Components;
+
+var value = MediaContainerWithDecisionDecision.Copy;
+```
+
 
 ## Values
 

@@ -12,13 +12,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     /// <summary>
-    /// The type of media content in the Plex library. This can represent videos, music, or photos.<br/>
-    /// 
-    /// <remarks>
-    /// 
-    /// </remarks>
+    /// The type of media content in the Plex library. This can represent videos, music, or photos.
     /// </summary>
     public enum MediaTypeString
     {
@@ -76,5 +72,4 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
             throw new Exception($"Unknown value {value} for enum MediaTypeString");
         }
     }
-
 }

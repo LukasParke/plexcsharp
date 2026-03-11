@@ -12,7 +12,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     /// <summary>
     /// The value `all` is the only supported `scope` parameter.
     /// </summary>
@@ -54,5 +54,4 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
             throw new Exception($"Unknown value {value} for enum Scope");
         }
     }
-
 }

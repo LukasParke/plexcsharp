@@ -11,10 +11,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class UltraBlurColors
     {
-
         /// <summary>
         /// The color (hex) for the bottom left quadrant.
         /// </summary>

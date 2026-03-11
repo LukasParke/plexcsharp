@@ -13,13 +13,12 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     /// <summary>
-    /// A list of media times and bandwidths when trascoding is using with auto adjustment of bandwidth
+    /// A list of media times and bandwidths when trascoding is using with auto adjustment of bandwidth.
     /// </summary>
     public class Bandwidths
     {
-
         [JsonProperty("Bandwidth")]
         public List<Bandwidth>? Bandwidth { get; set; }
     }

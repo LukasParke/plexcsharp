@@ -12,7 +12,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     /// <summary>
     /// Describes both the purpose and intended presentation of the image.
     /// </summary>
@@ -64,5 +64,4 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
             throw new Exception($"Unknown value {value} for enum ImageType");
         }
     }
-
 }

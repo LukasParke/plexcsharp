@@ -11,72 +11,71 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
 {
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class HistoryAllGetResponses200Metadata
     {
-
         /// <summary>
-        /// The account id of this playback
+        /// The account id of this playback.
         /// </summary>
         [JsonProperty("accountID")]
         public long? AccountID { get; set; }
 
         /// <summary>
-        /// The device id which played the item
+        /// The device id which played the item.
         /// </summary>
         [JsonProperty("deviceID")]
         public long? DeviceID { get; set; }
 
         /// <summary>
-        /// The key for this individual history item
+        /// The key for this individual history item.
         /// </summary>
         [JsonProperty("historyKey")]
         public string? HistoryKey { get; set; }
 
         /// <summary>
-        /// The metadata key for the item played
+        /// The metadata key for the item played.
         /// </summary>
         [JsonProperty("key")]
         public string? Key { get; set; }
 
         /// <summary>
-        /// The library section id containing the item played
+        /// The library section id containing the item played.
         /// </summary>
         [JsonProperty("librarySectionID")]
         public string? LibrarySectionID { get; set; }
 
         /// <summary>
-        /// The originally available at of the item played
+        /// The originally available at of the item played.
         /// </summary>
         [JsonProperty("originallyAvailableAt")]
         public string? OriginallyAvailableAt { get; set; }
 
         /// <summary>
-        /// The rating key for the item played
+        /// The rating key for the item played.
         /// </summary>
         [JsonProperty("ratingKey")]
         public string? RatingKey { get; set; }
 
         /// <summary>
-        /// The thumb of the item played
+        /// The thumb of the item played.
         /// </summary>
         [JsonProperty("thumb")]
         public string? Thumb { get; set; }
 
         /// <summary>
-        /// The title of the item played
+        /// The title of the item played.
         /// </summary>
         [JsonProperty("title")]
         public string? Title { get; set; }
 
         /// <summary>
-        /// The metadata type of the item played
+        /// The metadata type of the item played.
         /// </summary>
         [JsonProperty("type")]
         public string? Type { get; set; }
 
         /// <summary>
-        /// The time when the item was played
+        /// The time when the item was played.
         /// </summary>
         [JsonProperty("viewedAt")]
         public long? ViewedAt { get; set; }

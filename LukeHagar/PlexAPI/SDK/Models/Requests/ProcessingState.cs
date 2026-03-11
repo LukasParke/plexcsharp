@@ -12,9 +12,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     /// <summary>
-    /// The state of processing if this generator is part of an optimizer playlist
+    /// The state of processing if this generator is part of an optimizer playlist.
     /// </summary>
     public enum ProcessingState
     {
@@ -64,5 +64,4 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
             throw new Exception($"Unknown value {value} for enum ProcessingState");
         }
     }
-
 }

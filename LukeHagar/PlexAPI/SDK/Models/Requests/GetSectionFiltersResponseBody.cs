@@ -12,13 +12,12 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Models.Requests;
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     /// <summary>
-    /// The filters on the section
+    /// The filters on the section.
     /// </summary>
     public class GetSectionFiltersResponseBody
     {
-
         [JsonProperty("MediaContainer")]
         public GetSectionFiltersMediaContainer? MediaContainer { get; set; }
     }

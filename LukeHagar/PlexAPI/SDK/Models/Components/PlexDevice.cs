@@ -14,10 +14,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    
+
     public class PlexDevice
     {
-
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
@@ -49,7 +48,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public string Provides { get; set; } = default!;
 
         /// <summary>
-        /// ownerId is null when the device is owned by the token used to send the request
+        /// ownerId is null when the device is owned by the token used to send the request.
         /// </summary>
         [JsonProperty("ownerId", NullValueHandling = NullValueHandling.Include)]
         public long? OwnerId { get; set; }

@@ -10,7 +10,7 @@
 namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
     using LukeHagar.PlexAPI.SDK.Utils;
-    
+
     /// <summary>
     /// Indicates if the server is pending approval.
     /// </summary>
@@ -19,5 +19,4 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         Disable = 0,
         Enable = 1,
     }
-
 }

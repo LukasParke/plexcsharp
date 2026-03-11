@@ -10,21 +10,16 @@
 namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
     using LukeHagar.PlexAPI.SDK.Utils;
-    
+
     /// <summary>
     /// The type of playlist generator.<br/>
-    /// 
-    /// <remarks>
     /// <br/>
     ///   - -1: A smart playlist generator<br/>
-    ///   - 42: A optimized version generator<br/>
-    /// 
-    /// </remarks>
+    ///   - 42: A optimized version generator.
     /// </summary>
     public enum GetPlaylistGeneratorsType
     {
         Minus1 = -1,
         FortyTwo = 42,
     }
-
 }

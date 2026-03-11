@@ -13,25 +13,20 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     /// <summary>
-    /// A media subscription contains a representation of metadata desired to be recorded<br/>
-    /// 
-    /// <remarks>
-    /// 
-    /// </remarks>
+    /// A media subscription contains a representation of metadata desired to be recorded.
     /// </summary>
     public class MediaSubscription
     {
-
         /// <summary>
-        /// The title of this subscription type
+        /// The title of this subscription type.
         /// </summary>
         [JsonProperty("title")]
         public string? Title { get; set; }
 
         /// <summary>
-        /// Metadata type number
+        /// Metadata type number.
         /// </summary>
         [JsonProperty("type")]
         public long? Type { get; set; }
@@ -43,13 +38,13 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public long? CreatedAt { get; set; }
 
         /// <summary>
-        /// Media Matching Hints
+        /// Media Matching Hints.
         /// </summary>
         [JsonProperty("Directory")]
         public Dictionary<string, object>? Directory { get; set; }
 
         /// <summary>
-        /// Only included if `includeStorage` is specified
+        /// Only included if `includeStorage` is specified.
         /// </summary>
         [JsonProperty("durationTotal")]
         public long? DurationTotal { get; set; }
@@ -67,7 +62,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public List<MediaGrabOperation>? MediaGrabOperation { get; set; }
 
         /// <summary>
-        /// Media Matching Hints
+        /// Media Matching Hints.
         /// </summary>
         [JsonProperty("Playlist")]
         public Dictionary<string, object>? Playlist { get; set; }
@@ -76,31 +71,31 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public List<Setting>? Setting { get; set; }
 
         /// <summary>
-        /// Only included if `includeStorage` is specified
+        /// Only included if `includeStorage` is specified.
         /// </summary>
         [JsonProperty("storageTotal")]
         public long? StorageTotal { get; set; }
 
         /// <summary>
-        /// Where this subscription will record to
+        /// Where this subscription will record to.
         /// </summary>
         [JsonProperty("targetLibrarySectionID")]
         public long? TargetLibrarySectionID { get; set; }
 
         /// <summary>
-        /// The library section location id for where the item is to be recorded
+        /// The library section location id for where the item is to be recorded.
         /// </summary>
         [JsonProperty("targetSectionLocationID")]
         public long? TargetSectionLocationID { get; set; }
 
         /// <summary>
-        /// Media Matching Hints
+        /// Media Matching Hints.
         /// </summary>
         [JsonProperty("Video")]
         public Dictionary<string, object>? Video { get; set; }
 
         /// <summary>
-        /// Parameter string for creating this subscription
+        /// Parameter string for creating this subscription.
         /// </summary>
         [JsonProperty("parameters")]
         public string? Parameters { get; set; }

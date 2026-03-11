@@ -11,12 +11,11 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class DeviceChannel
     {
-
         /// <summary>
-        /// Indicates the channel is DRMed and thus may not be playable
+        /// Indicates the channel is DRMed and thus may not be playable.
         /// </summary>
         [JsonProperty("drm")]
         public bool? Drm { get; set; }

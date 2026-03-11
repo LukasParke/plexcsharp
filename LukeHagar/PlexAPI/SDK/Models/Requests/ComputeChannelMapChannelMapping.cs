@@ -11,15 +11,14 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class ComputeChannelMapChannelMapping
     {
-
         [JsonProperty("channelKey")]
         public string? ChannelKey { get; set; }
 
         /// <summary>
-        /// The channel description on the device
+        /// The channel description on the device.
         /// </summary>
         [JsonProperty("deviceIdentifier")]
         public string? DeviceIdentifier { get; set; }
@@ -28,7 +27,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public bool? Favorite { get; set; }
 
         /// <summary>
-        /// The channel identifier in the lineup
+        /// The channel identifier in the lineup.
         /// </summary>
         [JsonProperty("lineupIdentifier")]
         public string? LineupIdentifier { get; set; }

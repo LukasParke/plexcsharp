@@ -13,10 +13,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     public class SubscriptionTemplate
     {
-
         [JsonProperty("MediaSubscription")]
         public List<Models.Requests.MediaSubscription>? MediaSubscription { get; set; }
     }

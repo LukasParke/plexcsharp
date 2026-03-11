@@ -1,5 +1,13 @@
 # AdvancedSubtitles
 
+## Example Usage
+
+```csharp
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var value = AdvancedSubtitles.Auto;
+```
+
 
 ## Values
 

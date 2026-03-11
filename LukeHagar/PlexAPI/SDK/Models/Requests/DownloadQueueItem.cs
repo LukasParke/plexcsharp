@@ -13,15 +13,14 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Models.Requests;
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class DownloadQueueItem
     {
-
         [JsonProperty("DecisionResult")]
         public DecisionResult? DecisionResult { get; set; }
 
         /// <summary>
-        /// The error encountered in transcoding or decision
+        /// The error encountered in transcoding or decision.
         /// </summary>
         [JsonProperty("error")]
         public string? Error { get; set; }
@@ -37,28 +36,24 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 
         /// <summary>
         /// The state of the item:<br/>
-        /// 
-        /// <remarks>
         ///   - deciding: The item decision is pending<br/>
         ///   - waiting: The item is waiting for transcode<br/>
         ///   - processing: The item is being transcoded<br/>
         ///   - available: The item is available for download<br/>
         ///   - error: The item encountered an error in the decision or transcode<br/>
-        ///   - expired: The transcoded item has timed out and is no longer available<br/>
-        /// 
-        /// </remarks>
+        ///   - expired: The transcoded item has timed out and is no longer available.
         /// </summary>
         [JsonProperty("status")]
         public ListDownloadQueueItemsStatus? Status { get; set; }
 
         /// <summary>
-        /// The transcode session object which is not yet documented otherwise it&apos;d be a $ref here.
+        /// The transcode session object which is not yet documented otherwise it'd be a $ref here.
         /// </summary>
         [JsonProperty("transcode")]
         public Transcode? Transcode { get; set; }
 
         /// <summary>
-        /// The transcode session if item is currently being transcoded
+        /// The transcode session if item is currently being transcoded.
         /// </summary>
         [JsonProperty("TranscodeSession")]
         public TranscodeSession? TranscodeSession { get; set; }

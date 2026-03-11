@@ -16,10 +16,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
-    
+
     public class Services
     {
-
         [JsonProperty("identifier")]
         public string Identifier { get; set; } = default!;
 

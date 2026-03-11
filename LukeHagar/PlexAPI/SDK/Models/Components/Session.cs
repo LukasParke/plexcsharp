@@ -12,27 +12,26 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using LukeHagar.PlexAPI.SDK.Models.Components;
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     /// <summary>
-    /// Information about the playback session
+    /// Information about the playback session.
     /// </summary>
     public class Session
     {
-
         /// <summary>
-        /// The bandwidth used by this client&apos;s playback in kbps
+        /// The bandwidth used by this client's playback in kbps.
         /// </summary>
         [JsonProperty("bandwidth")]
         public long? Bandwidth { get; set; }
 
         /// <summary>
-        /// The id of the playback session
+        /// The id of the playback session.
         /// </summary>
         [JsonProperty("id")]
         public string? Id { get; set; }
 
         /// <summary>
-        /// The location of the client
+        /// The location of the client.
         /// </summary>
         [JsonProperty("location")]
         public SessionLocation? Location { get; set; }

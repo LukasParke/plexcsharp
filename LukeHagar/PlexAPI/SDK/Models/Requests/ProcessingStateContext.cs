@@ -12,9 +12,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     /// <summary>
-    /// The error which could have occurred (or `good`)
+    /// The error which could have occurred (or `good`).
     /// </summary>
     public enum ProcessingStateContext
     {
@@ -76,5 +76,4 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
             throw new Exception($"Unknown value {value} for enum ProcessingStateContext");
         }
     }
-
 }

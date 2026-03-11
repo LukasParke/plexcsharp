@@ -12,13 +12,12 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Models.Requests;
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     /// <summary>
-    /// Butler tasks
+    /// Butler tasks.
     /// </summary>
     public class GetTasksResponseBody
     {
-
         [JsonProperty("ButlerTasks")]
         public ButlerTasks? ButlerTasks { get; set; }
     }

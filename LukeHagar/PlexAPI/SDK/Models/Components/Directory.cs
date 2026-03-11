@@ -13,10 +13,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     public class Directory
     {
-
         [JsonProperty("title")]
         public string? Title { get; set; }
 

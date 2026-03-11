@@ -12,21 +12,20 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Models.Requests;
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class Policy
     {
-
         [JsonProperty("scope")]
         public GetPlaylistGeneratorScope? Scope { get; set; }
 
         /// <summary>
-        /// True if only unwatched items are optimized
+        /// True if only unwatched items are optimized.
         /// </summary>
         [JsonProperty("unwatched")]
         public bool? Unwatched { get; set; }
 
         /// <summary>
-        /// If the scope is count, the number of items to optimize
+        /// If the scope is count, the number of items to optimize.
         /// </summary>
         [JsonProperty("value")]
         public long? Value { get; set; }

@@ -11,18 +11,17 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
 {
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     /// <summary>
-    /// Represents a top-level location on disk where media in this library section is stored
+    /// Represents a top-level location on disk where media in this library section is stored.
     /// </summary>
     public class LibrarySectionLocation
     {
-
         [JsonProperty("id")]
         public long? Id { get; set; }
 
         /// <summary>
-        /// The path of where this directory exists on disk
+        /// The path of where this directory exists on disk.
         /// </summary>
         [JsonProperty("path")]
         public object? Path { get; set; }

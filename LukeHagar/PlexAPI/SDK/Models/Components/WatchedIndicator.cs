@@ -10,9 +10,9 @@
 namespace LukeHagar.PlexAPI.SDK.Models.Components
 {
     using LukeHagar.PlexAPI.SDK.Utils;
-    
+
     /// <summary>
-    /// Whether or not media watched indicators are enabled (little orange dot on media)
+    /// Whether or not media watched indicators are enabled (little orange dot on media).
     /// </summary>
     public enum WatchedIndicator
     {
@@ -21,5 +21,4 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         Movies = 2,
         TvShows = 3,
     }
-
 }

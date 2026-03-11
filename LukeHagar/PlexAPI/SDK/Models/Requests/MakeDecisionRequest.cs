@@ -12,100 +12,95 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Models.Components;
     using LukeHagar.PlexAPI.SDK.Models.Requests;
     using LukeHagar.PlexAPI.SDK.Utils;
-    
+
     public class MakeDecisionRequest
     {
-
         /// <summary>
-        /// Indicates the client accepts the indicated media types
+        /// Indicates the client accepts the indicated media types.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=accepts")]
         public Accepts? Accepts { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml;
 
         /// <summary>
-        /// An opaque identifier unique to the client
+        /// An opaque identifier unique to the client.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Client-Identifier")]
         public string? ClientIdentifier { get; set; }
 
         /// <summary>
-        /// The name of the client product
+        /// The name of the client product.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Product")]
         public string? Product { get; set; }
 
         /// <summary>
-        /// The version of the client application
+        /// The version of the client application.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Version")]
         public string? Version { get; set; }
 
         /// <summary>
-        /// The platform of the client
+        /// The platform of the client.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Platform")]
         public string? Platform { get; set; }
 
         /// <summary>
-        /// The version of the platform
+        /// The version of the platform.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Platform-Version")]
         public string? PlatformVersion { get; set; }
 
         /// <summary>
-        /// A relatively friendly name for the client device
+        /// A relatively friendly name for the client device.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Device")]
         public string? Device { get; set; }
 
         /// <summary>
-        /// A potentially less friendly identifier for the device model
+        /// A potentially less friendly identifier for the device model.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Model")]
         public string? Model { get; set; }
 
         /// <summary>
-        /// The device vendor
+        /// The device vendor.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Device-Vendor")]
         public string? DeviceVendor { get; set; }
 
         /// <summary>
-        /// A friendly name for the client
+        /// A friendly name for the client.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Device-Name")]
         public string? DeviceName { get; set; }
 
         /// <summary>
-        /// The marketplace on which the client application is distributed
+        /// The marketplace on which the client application is distributed.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Marketplace")]
         public string? Marketplace { get; set; }
 
         /// <summary>
-        /// Type of transcode media
+        /// Type of transcode media.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=transcodeType")]
         public TranscodeType TranscodeType { get; set; } = default!;
 
         /// <summary>
-        /// Transcode session UUID
+        /// Transcode session UUID.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=transcodeSessionId")]
         public string? TranscodeSessionId { get; set; }
 
         /// <summary>
-        /// Indicates how incompatible advanced subtitles (such as ass/ssa) should be included: * &apos;burn&apos; - Burn incompatible advanced text subtitles into the video stream * &apos;text&apos; - Transcode incompatible advanced text subtitles to a compatible text format, even if some markup is lost<br/>
-        /// 
-        /// <remarks>
-        /// 
-        /// </remarks>
+        /// Indicates how incompatible advanced subtitles (such as ass/ssa) should be included: * 'burn' - Burn incompatible advanced text subtitles into the video stream * 'text' - Transcode incompatible advanced text subtitles to a compatible text format, even if some markup is lost.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=advancedSubtitles")]
         public Models.Components.AdvancedSubtitles? AdvancedSubtitles { get; set; }
 
         /// <summary>
-        /// Percentage of original audio loudness to use when transcoding (100 is equivalent to original volume, 50 is half, 200 is double, etc)
+        /// Percentage of original audio loudness to use when transcoding (100 is equivalent to original volume, 50 is half, 200 is double, etc).
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=audioBoost")]
         public long? AudioBoost { get; set; }
@@ -153,7 +148,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public BoolInt? DisableResolutionRotation { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
 
         /// <summary>
-        /// Ignore client profiles when determining if direct play is possible. Only has an effect when directPlay=1 and both mediaIndex and partIndex are specified and neither are -1
+        /// Ignore client profiles when determining if direct play is possible. Only has an effect when directPlay=1 and both mediaIndex and partIndex are specified and neither are -1.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=hasMDE")]
         public BoolInt? HasMDE { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
@@ -189,7 +184,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public double? Offset { get; set; }
 
         /// <summary>
-        /// Index of the part to transcode. -1 or not specified indicates the server should join parts together in a transcode
+        /// Index of the part to transcode. -1 or not specified indicates the server should join parts together in a transcode.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=partIndex")]
         public long? PartIndex { get; set; }
@@ -213,33 +208,25 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public string? PhotoResolution { get; set; }
 
         /// <summary>
-        /// Indicates the network streaming protocol to be used for the transcode session: * &apos;http&apos; - include the file in the http response such as MKV streaming * &apos;hls&apos; - hls stream (RFC 8216) * &apos;dash&apos; - dash stream (ISO/IEC 23009-1:2022)<br/>
-        /// 
-        /// <remarks>
-        /// 
-        /// </remarks>
+        /// Indicates the network streaming protocol to be used for the transcode session: * 'http' - include the file in the http response such as MKV streaming * 'hls' - hls stream (RFC 8216) * 'dash' - dash stream (ISO/IEC 23009-1:2022).
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=protocol")]
         public Models.Requests.Protocol? Protocol { get; set; }
 
         /// <summary>
-        /// Number of seconds to include in each transcoded segment
+        /// Number of seconds to include in each transcoded segment.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=secondsPerSegment")]
         public long? SecondsPerSegment { get; set; }
 
         /// <summary>
-        /// Percentage of original subtitle size to use when burning subtitles (100 is equivalent to original size, 50 is half, ect)
+        /// Percentage of original subtitle size to use when burning subtitles (100 is equivalent to original size, 50 is half, ect).
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=subtitleSize")]
         public long? SubtitleSize { get; set; }
 
         /// <summary>
-        /// Indicates how subtitles should be included: * &apos;auto&apos; - Compute the appropriate subtitle setting automatically * &apos;burn&apos; - Burn the selected subtitle; auto if no selected subtitle * &apos;none&apos; - Ignore all subtitle streams * &apos;sidecar&apos; - The selected subtitle should be provided as a sidecar * &apos;embedded&apos; - The selected subtitle should be provided as an embedded stream * &apos;segmented&apos; - The selected subtitle should be provided as a segmented stream<br/>
-        /// 
-        /// <remarks>
-        /// 
-        /// </remarks>
+        /// Indicates how subtitles should be included: * 'auto' - Compute the appropriate subtitle setting automatically * 'burn' - Burn the selected subtitle; auto if no selected subtitle * 'none' - Ignore all subtitle streams * 'sidecar' - The selected subtitle should be provided as a sidecar * 'embedded' - The selected subtitle should be provided as an embedded stream * 'segmented' - The selected subtitle should be provided as a segmented stream.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=subtitles")]
         public Models.Requests.Subtitles? Subtitles { get; set; }
@@ -275,7 +262,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public string? XPlexClientProfileName { get; set; }
 
         /// <summary>
-        /// Unique per client playback session.  Used if a client can playback multiple items at a time (such as a browser with multiple tabs)
+        /// Unique per client playback session.  Used if a client can playback multiple items at a time (such as a browser with multiple tabs).
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Session-Identifier")]
         public string? XPlexSessionIdentifier { get; set; }

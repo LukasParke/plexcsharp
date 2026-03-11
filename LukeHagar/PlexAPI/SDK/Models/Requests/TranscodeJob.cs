@@ -12,10 +12,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Models.Requests;
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class TranscodeJob
     {
-
         [JsonProperty("generatorID")]
         public long? GeneratorID { get; set; }
 
@@ -29,19 +28,19 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public string? RatingKey { get; set; }
 
         /// <summary>
-        /// The number of seconds remaining in this job
+        /// The number of seconds remaining in this job.
         /// </summary>
         [JsonProperty("remaining")]
         public long? Remaining { get; set; }
 
         /// <summary>
-        /// The size of the result so far
+        /// The size of the result so far.
         /// </summary>
         [JsonProperty("size")]
         public long? Size { get; set; }
 
         /// <summary>
-        /// The speed of the transcode; 1.0 means real-time
+        /// The speed of the transcode; 1.0 means real-time.
         /// </summary>
         [JsonProperty("speed")]
         public double? Speed { get; set; }

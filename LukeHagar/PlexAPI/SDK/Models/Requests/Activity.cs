@@ -12,60 +12,59 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     public class Activity
     {
-
         /// <summary>
-        /// Indicates whether this activity can be cancelled
+        /// Indicates whether this activity can be cancelled.
         /// </summary>
         [JsonProperty("cancellable")]
         public bool? Cancellable { get; set; }
 
         /// <summary>
-        /// An object with additional values
+        /// An object with additional values.
         /// </summary>
         [JsonProperty("Context")]
         public Dictionary<string, object>? Context { get; set; }
 
         /// <summary>
-        /// A progress percentage.  A value of -1 means the progress is indeterminate
+        /// A progress percentage.  A value of -1 means the progress is indeterminate.
         /// </summary>
         [JsonProperty("progress")]
         public double? Progress { get; set; }
 
         /// <summary>
-        /// An object with the response to the async opperation
+        /// An object with the response to the async opperation.
         /// </summary>
         [JsonProperty("Response")]
         public Dictionary<string, object>? Response { get; set; }
 
         /// <summary>
-        /// A user-friendly sub-title for this activity
+        /// A user-friendly sub-title for this activity.
         /// </summary>
         [JsonProperty("subtitle")]
         public string? Subtitle { get; set; }
 
         /// <summary>
-        /// A user-friendly title for this activity
+        /// A user-friendly title for this activity.
         /// </summary>
         [JsonProperty("title")]
         public string? Title { get; set; }
 
         /// <summary>
-        /// The type of activity
+        /// The type of activity.
         /// </summary>
         [JsonProperty("type")]
         public string? Type { get; set; }
 
         /// <summary>
-        /// The user this activity belongs to
+        /// The user this activity belongs to.
         /// </summary>
         [JsonProperty("userID")]
         public long? UserID { get; set; }
 
         /// <summary>
-        /// The ID of the activity
+        /// The ID of the activity.
         /// </summary>
         [JsonProperty("uuid")]
         public string? Uuid { get; set; }

@@ -12,13 +12,12 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Models.Requests;
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     /// <summary>
-    /// OK
+    /// OK.
     /// </summary>
     public class GetPlaylistGeneratorsResponseBody
     {
-
         [JsonProperty("MediaContainer")]
         public GetPlaylistGeneratorsMediaContainer? MediaContainer { get; set; }
     }

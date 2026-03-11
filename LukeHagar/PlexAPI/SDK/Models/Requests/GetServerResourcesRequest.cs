@@ -12,41 +12,36 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Models.Components;
     using LukeHagar.PlexAPI.SDK.Models.Requests;
     using LukeHagar.PlexAPI.SDK.Utils;
-    
+
     public class GetServerResourcesRequest
     {
-
         /// <summary>
-        /// Indicates the client accepts the indicated media types
+        /// Indicates the client accepts the indicated media types.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=accepts")]
         public Accepts? Accepts { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml;
 
         /// <summary>
-        /// An opaque identifier unique to the client
+        /// An opaque identifier unique to the client.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Client-Identifier")]
         public string? ClientIdentifier { get; set; }
 
         /// <summary>
-        /// Include Https entries in the results
+        /// Include Https entries in the results.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeHttps")]
         public IncludeHttps? IncludeHttps { get; set; } = LukeHagar.PlexAPI.SDK.Models.Requests.IncludeHttps.False;
 
         /// <summary>
         /// Include Relay addresses in the results <br/>
-        /// 
-        /// <remarks>
-        /// E.g: https://10-0-0-25.bbf8e10c7fa20447cacee74cd9914cde.plex.direct:32400<br/>
-        /// 
-        /// </remarks>
+        /// E.g: https://10-0-0-25.bbf8e10c7fa20447cacee74cd9914cde.plex.direct:32400.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeRelay")]
         public IncludeRelay? IncludeRelay { get; set; } = LukeHagar.PlexAPI.SDK.Models.Requests.IncludeRelay.False;
 
         /// <summary>
-        /// Include IPv6 entries in the results
+        /// Include IPv6 entries in the results.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeIPv6")]
         public IncludeIPv6? IncludeIPv6 { get; set; } = LukeHagar.PlexAPI.SDK.Models.Requests.IncludeIPv6.False;

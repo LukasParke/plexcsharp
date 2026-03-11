@@ -10,7 +10,7 @@
 namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
     using LukeHagar.PlexAPI.SDK.Utils;
-    
+
     /// <summary>
     /// The mapping of changes, passed as a map of device channel to lineup VCN.
     /// </summary>

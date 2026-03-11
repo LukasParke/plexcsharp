@@ -24,67 +24,80 @@ namespace LukeHagar.PlexAPI.SDK
 
     /// <summary>
     /// This describes the API for searching and applying updates to the Plex Media Server.<br/>
-    /// 
-    /// <remarks>
-    /// Updates to the status can be observed via the Event API.<br/>
-    /// 
-    /// </remarks>
+    /// Updates to the status can be observed via the Event API.
     /// </summary>
     public interface IUpdater
     {
-
         /// <summary>
-        /// Applying updates
-        /// 
+        /// Applying updates.
+        /// </summary>
         /// <remarks>
         /// Apply any downloaded updates.  Note that the two parameters `tonight` and `skip` are effectively mutually exclusive. The `tonight` parameter takes precedence and `skip` will be ignored if `tonight` is also passed.
         /// </remarks>
-        /// </summary>
-        Task<ApplyUpdatesResponse> ApplyUpdatesAsync(ApplyUpdatesRequest? request = null);
+        /// <param name="request">A <see cref="ApplyUpdatesRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="ApplyUpdatesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<ApplyUpdatesResponse> ApplyUpdatesAsync(ApplyUpdatesRequest? request = null);
 
         /// <summary>
-        /// Checking for updates
-        /// 
-        /// <remarks>
-        /// Perform an update check and potentially download
-        /// </remarks>
+        /// Checking for updates.
         /// </summary>
-        Task<CheckUpdatesResponse> CheckUpdatesAsync(CheckUpdatesRequest? request = null);
+        /// <remarks>
+        /// Perform an update check and potentially download.
+        /// </remarks>
+        /// <param name="request">A <see cref="CheckUpdatesRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="CheckUpdatesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<CheckUpdatesResponse> CheckUpdatesAsync(CheckUpdatesRequest? request = null);
 
         /// <summary>
-        /// Querying status of updates
-        /// 
-        /// <remarks>
-        /// Get the status of updating the server
-        /// </remarks>
+        /// Querying status of updates.
         /// </summary>
-        Task<GetUpdatesStatusResponse> GetUpdatesStatusAsync();
+        /// <remarks>
+        /// Get the status of updating the server.
+        /// </remarks>
+        /// <returns>An awaitable task that returns a <see cref="GetUpdatesStatusResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<GetUpdatesStatusResponse> GetUpdatesStatusAsync();
     }
 
     /// <summary>
     /// This describes the API for searching and applying updates to the Plex Media Server.<br/>
-    /// 
-    /// <remarks>
-    /// Updates to the status can be observed via the Event API.<br/>
-    /// 
-    /// </remarks>
+    /// Updates to the status can be observed via the Event API.
     /// </summary>
     public class Updater: IUpdater
     {
+        /// <summary>
+        /// SDK Configuration.
+        /// <see cref="SDKConfig"/>
+        /// </summary>
         public SDKConfig SDKConfiguration { get; private set; }
-
-        private const string _language = Constants.Language;
-        private const string _sdkVersion = Constants.SdkVersion;
-        private const string _sdkGenVersion = Constants.SdkGenVersion;
-        private const string _openapiDocVersion = Constants.OpenApiDocVersion;
 
         public Updater(SDKConfig config)
         {
             SDKConfiguration = config;
         }
 
-        public async Task<ApplyUpdatesResponse> ApplyUpdatesAsync(ApplyUpdatesRequest? request = null)
+        /// <summary>
+        /// Applying updates.
+        /// </summary>
+        /// <remarks>
+        /// Apply any downloaded updates.  Note that the two parameters `tonight` and `skip` are effectively mutually exclusive. The `tonight` parameter takes precedence and `skip` will be ignored if `tonight` is also passed.
+        /// </remarks>
+        /// <param name="request">A <see cref="ApplyUpdatesRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="ApplyUpdatesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<ApplyUpdatesResponse> ApplyUpdatesAsync(ApplyUpdatesRequest? request = null)
         {
+            if (request == null)
+            {
+                request = new ApplyUpdatesRequest();
+            }
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -96,13 +109,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/updater/apply", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Put, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "*/*");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -119,7 +137,7 @@ namespace LukeHagar.PlexAPI.SDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == 400 || _statusCode >= 400 && _statusCode < 500 || _statusCode == 500 || _statusCode >= 500 && _statusCode < 600)
+                if (_statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -128,9 +146,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -154,11 +172,11 @@ namespace LukeHagar.PlexAPI.SDK
                     RawResponse = httpResponse
                 };
             }
-            else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500)
+            else if(responseStatusCode >= 400 && responseStatusCode < 500)
             {
                 throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
-            else if(responseStatusCode == 500 || responseStatusCode >= 500 && responseStatusCode < 600)
+            else if(responseStatusCode >= 500 && responseStatusCode < 600)
             {
                 throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
@@ -166,8 +184,23 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<CheckUpdatesResponse> CheckUpdatesAsync(CheckUpdatesRequest? request = null)
+
+        /// <summary>
+        /// Checking for updates.
+        /// </summary>
+        /// <remarks>
+        /// Perform an update check and potentially download.
+        /// </remarks>
+        /// <param name="request">A <see cref="CheckUpdatesRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="CheckUpdatesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<CheckUpdatesResponse> CheckUpdatesAsync(CheckUpdatesRequest? request = null)
         {
+            if (request == null)
+            {
+                request = new CheckUpdatesRequest();
+            }
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -179,13 +212,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/updater/check", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Put, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "*/*");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -211,9 +249,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -249,14 +287,29 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<GetUpdatesStatusResponse> GetUpdatesStatusAsync()
+
+        /// <summary>
+        /// Querying status of updates.
+        /// </summary>
+        /// <remarks>
+        /// Get the status of updating the server.
+        /// </remarks>
+        /// <returns>An awaitable task that returns a <see cref="GetUpdatesStatusResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<GetUpdatesStatusResponse> GetUpdatesStatusAsync()
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-
             var urlString = baseUrl + "/updater/status";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -282,9 +335,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -337,5 +390,6 @@ namespace LukeHagar.PlexAPI.SDK
 
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
+
     }
 }

@@ -1,5 +1,13 @@
 # Status
 
+## Example Usage
+
+```csharp
+using LukeHagar.PlexAPI.SDK.Models.Components;
+
+var value = Status.Inactive;
+```
+
 
 ## Values
 

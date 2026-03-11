@@ -22,71 +22,93 @@ namespace LukeHagar.PlexAPI.SDK
     using System.Threading.Tasks;
 
     /// <summary>
-    /// Logging mechanism to allow clients to log to the server
+    /// Logging mechanism to allow clients to log to the server.
     /// </summary>
     public interface ILog
     {
-
         /// <summary>
-        /// Logging a multi-line message to the Plex Media Server log
-        /// 
-        /// <remarks>
-        /// This endpoint will write multiple lines to the main Plex Media Server log in a single request. It takes a set of query strings as would normally sent to the above PUT endpoint as a linefeed-separated block of POST data. The parameters for each query string match as above.<br/>
-        /// 
-        /// </remarks>
+        /// Logging a multi-line message to the Plex Media Server log.
         /// </summary>
-        Task<WriteLogResponse> WriteLogAsync(byte[] request);
+        /// <remarks>
+        /// This endpoint will write multiple lines to the main Plex Media Server log in a single request. It takes a set of query strings as would normally sent to the above PUT endpoint as a linefeed-separated block of POST data. The parameters for each query string match as above.
+        /// </remarks>
+        /// <param name="request">Line separated list of log items.</param>
+        /// <returns>An awaitable task that returns a <see cref="WriteLogResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<WriteLogResponse> WriteLogAsync(byte[] request);
 
         /// <summary>
-        /// Logging a single-line message to the Plex Media Server log
-        /// 
+        /// Logging a single-line message to the Plex Media Server log.
+        /// </summary>
         /// <remarks>
         /// This endpoint will write a single-line log message, including a level and source to the main Plex Media Server log.<br/>
         /// <br/>
-        /// Note: This endpoint responds to all HTTP verbs **except POST** but PUT is preferred<br/>
-        /// 
+        /// Note: This endpoint responds to all HTTP verbs **except POST** but PUT is preferred.
         /// </remarks>
-        /// </summary>
-        Task<WriteMessageResponse> WriteMessageAsync(WriteMessageRequest? request = null);
+        /// <param name="request">A <see cref="WriteMessageRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="WriteMessageResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<WriteMessageResponse> WriteMessageAsync(WriteMessageRequest? request = null);
 
         /// <summary>
-        /// Enabling Papertrail
-        /// 
+        /// Enabling Papertrail.
+        /// </summary>
         /// <remarks>
         /// This endpoint will enable all Plex Media Server logs to be sent to the Papertrail networked logging site for a period of time<br/>
         /// <br/>
-        /// Note: This endpoint responds to all HTTP verbs but POST is preferred<br/>
-        /// 
+        /// Note: This endpoint responds to all HTTP verbs but POST is preferred.
         /// </remarks>
-        /// </summary>
-        Task<EnablePapertrailResponse> EnablePapertrailAsync(EnablePapertrailRequest? request = null);
+        /// <param name="request">A <see cref="EnablePapertrailRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="EnablePapertrailResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<EnablePapertrailResponse> EnablePapertrailAsync(EnablePapertrailRequest? request = null);
     }
 
     /// <summary>
-    /// Logging mechanism to allow clients to log to the server
+    /// Logging mechanism to allow clients to log to the server.
     /// </summary>
     public class Log: ILog
     {
+        /// <summary>
+        /// SDK Configuration.
+        /// <see cref="SDKConfig"/>
+        /// </summary>
         public SDKConfig SDKConfiguration { get; private set; }
-
-        private const string _language = Constants.Language;
-        private const string _sdkVersion = Constants.SdkVersion;
-        private const string _sdkGenVersion = Constants.SdkGenVersion;
-        private const string _openapiDocVersion = Constants.OpenApiDocVersion;
 
         public Log(SDKConfig config)
         {
             SDKConfiguration = config;
         }
 
-        public async Task<WriteLogResponse> WriteLogAsync(byte[] request)
+        /// <summary>
+        /// Logging a multi-line message to the Plex Media Server log.
+        /// </summary>
+        /// <remarks>
+        /// This endpoint will write multiple lines to the main Plex Media Server log in a single request. It takes a set of query strings as would normally sent to the above PUT endpoint as a linefeed-separated block of POST data. The parameters for each query string match as above.
+        /// </remarks>
+        /// <param name="request">Line separated list of log items.</param>
+        /// <returns>An awaitable task that returns a <see cref="WriteLogResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<WriteLogResponse> WriteLogAsync(byte[] request)
         {
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            if (request == null) throw new ArgumentNullException(nameof(request));
 
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = baseUrl + "/log";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "*/*");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "Request", "raw", false, false);
             if (serializedBody != null)
@@ -109,7 +131,7 @@ namespace LukeHagar.PlexAPI.SDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == 400 || _statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
+                if (_statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -118,9 +140,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -144,7 +166,7 @@ namespace LukeHagar.PlexAPI.SDK
                     RawResponse = httpResponse
                 };
             }
-            else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500)
+            else if(responseStatusCode >= 400 && responseStatusCode < 500)
             {
                 throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
@@ -156,8 +178,25 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<WriteMessageResponse> WriteMessageAsync(WriteMessageRequest? request = null)
+
+        /// <summary>
+        /// Logging a single-line message to the Plex Media Server log.
+        /// </summary>
+        /// <remarks>
+        /// This endpoint will write a single-line log message, including a level and source to the main Plex Media Server log.<br/>
+        /// <br/>
+        /// Note: This endpoint responds to all HTTP verbs **except POST** but PUT is preferred.
+        /// </remarks>
+        /// <param name="request">A <see cref="WriteMessageRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="WriteMessageResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<WriteMessageResponse> WriteMessageAsync(WriteMessageRequest? request = null)
         {
+            if (request == null)
+            {
+                request = new WriteMessageRequest();
+            }
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -169,13 +208,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/log", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Put, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "*/*");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -201,9 +245,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -239,8 +283,25 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<EnablePapertrailResponse> EnablePapertrailAsync(EnablePapertrailRequest? request = null)
+
+        /// <summary>
+        /// Enabling Papertrail.
+        /// </summary>
+        /// <remarks>
+        /// This endpoint will enable all Plex Media Server logs to be sent to the Papertrail networked logging site for a period of time<br/>
+        /// <br/>
+        /// Note: This endpoint responds to all HTTP verbs but POST is preferred.
+        /// </remarks>
+        /// <param name="request">A <see cref="EnablePapertrailRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="EnablePapertrailResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<EnablePapertrailResponse> EnablePapertrailAsync(EnablePapertrailRequest? request = null)
         {
+            if (request == null)
+            {
+                request = new EnablePapertrailRequest();
+            }
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -252,13 +313,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/log/networked", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "*/*");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -275,7 +341,7 @@ namespace LukeHagar.PlexAPI.SDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == 403 || _statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
+                if (_statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -284,9 +350,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -310,7 +376,7 @@ namespace LukeHagar.PlexAPI.SDK
                     RawResponse = httpResponse
                 };
             }
-            else if(responseStatusCode == 403 || responseStatusCode >= 400 && responseStatusCode < 500)
+            else if(responseStatusCode >= 400 && responseStatusCode < 500)
             {
                 throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
@@ -321,5 +387,6 @@ namespace LukeHagar.PlexAPI.SDK
 
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
+
     }
 }

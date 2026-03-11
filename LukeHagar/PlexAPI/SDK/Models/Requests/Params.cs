@@ -10,15 +10,11 @@
 namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
     using LukeHagar.PlexAPI.SDK.Utils;
-    
+
     /// <summary>
     /// Subscription parameters.<br/>
-    /// 
-    /// <remarks>
     ///   - `mediaProviderID`: Required for downloads to indicate which MP the subscription will download into<br/>
-    ///   - `source`: Required for downloads to indicate the source of the downloaded content.<br/>
-    /// 
-    /// </remarks>
+    ///   - `source`: Required for downloads to indicate the source of the downloaded content.
     /// </summary>
     public class Params
     {

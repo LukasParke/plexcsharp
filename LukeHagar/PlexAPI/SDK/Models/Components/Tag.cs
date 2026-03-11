@@ -11,19 +11,14 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
 {
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     /// <summary>
-    /// A variety of extra information about a metadata item is included as tags. These tags use their own element names such as `Genre`, `Writer`, `Directory`, and `Role`. Individual tag types may introduce their own extra attributes.<br/>
-    /// 
-    /// <remarks>
-    /// 
-    /// </remarks>
+    /// A variety of extra information about a metadata item is included as tags. These tags use their own element names such as `Genre`, `Writer`, `Directory`, and `Role`. Individual tag types may introduce their own extra attributes.
     /// </summary>
     public class Tag
     {
-
         /// <summary>
-        /// Measure of the confidence of an automatic tag
+        /// Measure of the confidence of an automatic tag.
         /// </summary>
         [JsonProperty("confidence")]
         public double? Confidence { get; set; }
@@ -47,19 +42,19 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public string? RatingKey { get; set; }
 
         /// <summary>
-        /// The role this actor played
+        /// The role this actor played.
         /// </summary>
         [JsonProperty("role")]
         public string? Role { get; set; }
 
         /// <summary>
-        /// The value of the tag (the name)
+        /// The value of the tag (the name).
         /// </summary>
         [JsonProperty("tag")]
         public string TagValue { get; set; } = default!;
 
         /// <summary>
-        /// Plex identifier for this tag which can be used to fetch additional information from plex.tv
+        /// Plex identifier for this tag which can be used to fetch additional information from plex.tv.
         /// </summary>
         [JsonProperty("tagKey")]
         public string? TagKey { get; set; }

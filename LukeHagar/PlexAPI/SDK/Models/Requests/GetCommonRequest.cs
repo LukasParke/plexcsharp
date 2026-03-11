@@ -11,92 +11,89 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
     using LukeHagar.PlexAPI.SDK.Models.Components;
     using LukeHagar.PlexAPI.SDK.Utils;
-    
+
     public class GetCommonRequest
     {
-
         /// <summary>
-        /// Indicates the client accepts the indicated media types
+        /// Indicates the client accepts the indicated media types.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=accepts")]
         public Accepts? Accepts { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml;
 
         /// <summary>
-        /// An opaque identifier unique to the client
+        /// An opaque identifier unique to the client.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Client-Identifier")]
         public string? ClientIdentifier { get; set; }
 
         /// <summary>
-        /// The name of the client product
+        /// The name of the client product.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Product")]
         public string? Product { get; set; }
 
         /// <summary>
-        /// The version of the client application
+        /// The version of the client application.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Version")]
         public string? Version { get; set; }
 
         /// <summary>
-        /// The platform of the client
+        /// The platform of the client.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Platform")]
         public string? Platform { get; set; }
 
         /// <summary>
-        /// The version of the platform
+        /// The version of the platform.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Platform-Version")]
         public string? PlatformVersion { get; set; }
 
         /// <summary>
-        /// A relatively friendly name for the client device
+        /// A relatively friendly name for the client device.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Device")]
         public string? Device { get; set; }
 
         /// <summary>
-        /// A potentially less friendly identifier for the device model
+        /// A potentially less friendly identifier for the device model.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Model")]
         public string? Model { get; set; }
 
         /// <summary>
-        /// The device vendor
+        /// The device vendor.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Device-Vendor")]
         public string? DeviceVendor { get; set; }
 
         /// <summary>
-        /// A friendly name for the client
+        /// A friendly name for the client.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Device-Name")]
         public string? DeviceName { get; set; }
 
         /// <summary>
-        /// The marketplace on which the client application is distributed
+        /// The marketplace on which the client application is distributed.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Marketplace")]
         public string? Marketplace { get; set; }
 
         /// <summary>
-        /// Section identifier
+        /// Section identifier.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=sectionId")]
         public long SectionId { get; set; } = default!;
 
         /// <summary>
-        /// Item type
+        /// Item type.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=type")]
         public long? Type { get; set; }
 
         /// <summary>
         /// A querystring-based filtering language used to select subsets of media. Can be provided as an object with typed properties for type safety, or as a string for complex queries with operators and boolean logic.<br/>
-        /// 
-        /// <remarks>
         /// <br/>
         /// The query supports:<br/>
         /// - Fields: integer, boolean, tag, string, date, language<br/>
@@ -107,13 +104,11 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// - Limits: limit parameter<br/>
         /// <br/>
         /// Examples:<br/>
-        /// - Object format: `{type: 4, sourceType: 2, title: &quot;24&quot;}` → `type=4&amp;sourceType=2&amp;title=24`<br/>
-        /// - String format: `type=4&amp;sourceType=2&amp;title==24` - type = 4 AND sourceType = 2 AND title = &quot;24&quot;<br/>
+        /// - Object format: `{type: 4, sourceType: 2, title: "24"}` → `type=4&amp;sourceType=2&amp;title=24`<br/>
+        /// - String format: `type=4&amp;sourceType=2&amp;title==24` - type = 4 AND sourceType = 2 AND title = "24"<br/>
         /// - Complex: `push=1&amp;index=1&amp;or=1&amp;rating=2&amp;pop=1&amp;duration=10` - (index = 1 OR rating = 2) AND duration = 10<br/>
         /// <br/>
-        /// See <a href="#section/API-Info/Media-Queries">API Info section</a> for detailed information on building media queries.<br/>
-        /// 
-        /// </remarks>
+        /// See <a href="#section/API-Info/Media-Queries">API Info section</a> for detailed information on building media queries.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=mediaQuery")]
         public MediaQuery? MediaQuery { get; set; }

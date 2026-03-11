@@ -11,12 +11,11 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class GetDownloadQueueItemsDecisionResult
     {
-
         /// <summary>
-        /// The maximum bitrate set when item was added
+        /// The maximum bitrate set when item was added.
         /// </summary>
         [JsonProperty("availableBandwidth")]
         public long? AvailableBandwidth { get; set; }
@@ -40,7 +39,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public long? MdeDecisionCode { get; set; }
 
         /// <summary>
-        /// Descriptive text for the above code
+        /// Descriptive text for the above code.
         /// </summary>
         [JsonProperty("mdeDecisionText")]
         public string? MdeDecisionText { get; set; }

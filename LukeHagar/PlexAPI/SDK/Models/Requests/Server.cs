@@ -12,12 +12,11 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Models.Requests;
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class Server
     {
-
         /// <summary>
-        /// Unique ID of the server of the connected user
+        /// Unique ID of the server of the connected user.
         /// </summary>
         [JsonProperty("id")]
         public long Id { get; set; } = default!;
@@ -41,7 +40,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public string Name { get; set; } = default!;
 
         /// <summary>
-        /// Unix epoch datetime in seconds
+        /// Unix epoch datetime in seconds.
         /// </summary>
         [JsonProperty("lastSeenAt")]
         public long LastSeenAt { get; set; } = default!;

@@ -15,9 +15,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
-    
+
     /// <summary>
-    /// String representation of subscriptionActive
+    /// String representation of subscriptionActive.
     /// </summary>
     [JsonConverter(typeof(OpenEnumConverter))]
     public class PostUsersSignInDataAuthenticationStatus : IEquatable<PostUsersSignInDataAuthenticationStatus>
@@ -74,5 +74,4 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 
         public override int GetHashCode() => Value.GetHashCode();
     }
-
 }

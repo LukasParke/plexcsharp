@@ -12,13 +12,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     /// <summary>
-    /// Indicates how subtitles should be included: * &apos;auto&apos; - Compute the appropriate subtitle setting automatically * &apos;burn&apos; - Burn the selected subtitle; auto if no selected subtitle * &apos;none&apos; - Ignore all subtitle streams * &apos;sidecar&apos; - The selected subtitle should be provided as a sidecar * &apos;embedded&apos; - The selected subtitle should be provided as an embedded stream * &apos;segmented&apos; - The selected subtitle should be provided as a segmented stream<br/>
-    /// 
-    /// <remarks>
-    /// 
-    /// </remarks>
+    /// Indicates how subtitles should be included: * 'auto' - Compute the appropriate subtitle setting automatically * 'burn' - Burn the selected subtitle; auto if no selected subtitle * 'none' - Ignore all subtitle streams * 'sidecar' - The selected subtitle should be provided as a sidecar * 'embedded' - The selected subtitle should be provided as an embedded stream * 'segmented' - The selected subtitle should be provided as a segmented stream.
     /// </summary>
     public enum StartTranscodeSessionQueryParamSubtitles
     {
@@ -70,5 +66,4 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
             throw new Exception($"Unknown value {value} for enum StartTranscodeSessionQueryParamSubtitles");
         }
     }
-
 }

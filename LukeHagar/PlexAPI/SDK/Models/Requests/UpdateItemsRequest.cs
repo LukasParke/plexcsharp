@@ -11,78 +11,77 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
     using LukeHagar.PlexAPI.SDK.Models.Components;
     using LukeHagar.PlexAPI.SDK.Utils;
-    
+
     public class UpdateItemsRequest
     {
-
         /// <summary>
-        /// Indicates the client accepts the indicated media types
+        /// Indicates the client accepts the indicated media types.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=accepts")]
         public Accepts? Accepts { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml;
 
         /// <summary>
-        /// An opaque identifier unique to the client
+        /// An opaque identifier unique to the client.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Client-Identifier")]
         public string? ClientIdentifier { get; set; }
 
         /// <summary>
-        /// The name of the client product
+        /// The name of the client product.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Product")]
         public string? Product { get; set; }
 
         /// <summary>
-        /// The version of the client application
+        /// The version of the client application.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Version")]
         public string? Version { get; set; }
 
         /// <summary>
-        /// The platform of the client
+        /// The platform of the client.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Platform")]
         public string? Platform { get; set; }
 
         /// <summary>
-        /// The version of the platform
+        /// The version of the platform.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Platform-Version")]
         public string? PlatformVersion { get; set; }
 
         /// <summary>
-        /// A relatively friendly name for the client device
+        /// A relatively friendly name for the client device.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Device")]
         public string? Device { get; set; }
 
         /// <summary>
-        /// A potentially less friendly identifier for the device model
+        /// A potentially less friendly identifier for the device model.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Model")]
         public string? Model { get; set; }
 
         /// <summary>
-        /// The device vendor
+        /// The device vendor.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Device-Vendor")]
         public string? DeviceVendor { get; set; }
 
         /// <summary>
-        /// A friendly name for the client
+        /// A friendly name for the client.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Device-Name")]
         public string? DeviceName { get; set; }
 
         /// <summary>
-        /// The marketplace on which the client application is distributed
+        /// The marketplace on which the client application is distributed.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Marketplace")]
         public string? Marketplace { get; set; }
 
         /// <summary>
-        /// The id of the section
+        /// The id of the section.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=sectionId")]
         public string SectionId { get; set; } = default!;
@@ -91,19 +90,19 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public string? Type { get; set; }
 
         /// <summary>
-        /// The filters to apply to determine which items should be modified
+        /// The filters to apply to determine which items should be modified.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=filters")]
         public string? Filters { get; set; }
 
         /// <summary>
-        /// Set the specified field to a new value
+        /// Set the specified field to a new value.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=field.value")]
         public string? FieldValue { get; set; }
 
         /// <summary>
-        /// Set the specified field to locked (or unlocked if set to 0)
+        /// Set the specified field to locked (or unlocked if set to 0).
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=field.locked")]
         public BoolInt? FieldLocked { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
@@ -115,31 +114,31 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public string? TitleValue { get; set; }
 
         /// <summary>
-        /// Reparents set of Tracks or Albums - used with album.title.* in the case of tracks
+        /// Reparents set of Tracks or Albums - used with album.title.* in the case of tracks.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=artist.title.value")]
         public string? ArtistTitleValue { get; set; }
 
         /// <summary>
-        /// Reparents set of Tracks or Albums - used with album.title.* in the case of tracks
+        /// Reparents set of Tracks or Albums - used with album.title.* in the case of tracks.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=artist.title.id")]
         public string? ArtistTitleId { get; set; }
 
         /// <summary>
-        /// Reparents set of Tracks - Must be used in conjunction with artist.title.value or id
+        /// Reparents set of Tracks - Must be used in conjunction with artist.title.value or id.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=album.title.value")]
         public string? AlbumTitleValue { get; set; }
 
         /// <summary>
-        /// Reparents set of Tracks - Must be used in conjunction with artist.title.value or id
+        /// Reparents set of Tracks - Must be used in conjunction with artist.title.value or id.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=album.title.id")]
         public string? AlbumTitleId { get; set; }
 
         /// <summary>
-        /// Creates tag and associates it with each item in the set. - [idx] links this and the next parameters together
+        /// Creates tag and associates it with each item in the set. - [idx] links this and the next parameters together.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=tagtype[idx].tag.tag")]
         public string? TagtypeIdxTagTag { get; set; }
@@ -151,13 +150,13 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public string? TagtypeIdxTaggingObject { get; set; }
 
         /// <summary>
-        /// Remove comma separated tags from the set of items
+        /// Remove comma separated tags from the set of items.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=tagtype[].tag.tag-")]
         public string? TagtypeTagTag { get; set; }
 
         /// <summary>
-        /// Remove associations of this type (e.g. genre) from the set of items
+        /// Remove associations of this type (e.g. genre) from the set of items.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=tagtype[].tag")]
         public string? TagtypeTag { get; set; }

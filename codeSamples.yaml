@@ -200,6 +200,7 @@ actions:
 
             MarkPlayedRequest req = new MarkPlayedRequest() {
                 Identifier = "<value>",
+                Key = "59398",
             };
 
             var res = await sdk.Timeline.MarkPlayedAsync(req);
@@ -3164,8 +3165,8 @@ actions:
                 Agent = "<value>",
                 Language = "<value>",
                 Locations = new List<string>() {
-                    "O:\fatboy\Media\Ripped\Music",
-                    "O:\fatboy\Media\My Music",
+                    "O:\\fatboy\\Media\\Ripped\\Music",
+                    "O:\\fatboy\\Media\\My Music",
                 },
                 Prefs = new QueryParamPrefs() {},
                 Relative = BoolInt.True,
@@ -3347,8 +3348,8 @@ actions:
                 SectionId = "<id>",
                 Agent = "<value>",
                 Locations = new List<string>() {
-                    "O:\fatboy\Media\Ripped\Music",
-                    "O:\fatboy\Media\My Music",
+                    "O:\\fatboy\\Media\\Ripped\\Music",
+                    "O:\\fatboy\\Media\\My Music",
                 },
                 Prefs = new EditSectionQueryParamPrefs() {},
             };
@@ -6515,7 +6516,9 @@ actions:
                 token: "<YOUR_API_KEY_HERE>"
             );
 
-            CreatePlaylistRequest req = new CreatePlaylistRequest() {};
+            CreatePlaylistRequest req = new CreatePlaylistRequest() {
+                Uri = "https://short-term-disconnection.name/",
+            };
 
             var res = await sdk.LibraryPlaylists.CreatePlaylistAsync(req);
 
@@ -6956,7 +6959,7 @@ actions:
 
             var sdk = new PlexAPI(
                 accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
-                clientIdentifier: "abc123",
+                clientIdentifier: "3381b62b-9ab7-4e37-827b-203e9809eb58",
                 token: "<YOUR_API_KEY_HERE>"
             );
 
@@ -6995,7 +6998,7 @@ actions:
             );
 
             GetSourceConnectionInformationRequest req = new GetSourceConnectionInformationRequest() {
-                Source = "<value>",
+                Source = "server://client-identifier",
                 Refresh = BoolInt.True,
             };
 
@@ -7408,7 +7411,7 @@ actions:
 
             var sdk = new PlexAPI(
                 accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
-                clientIdentifier: "abc123",
+                clientIdentifier: "3381b62b-9ab7-4e37-827b-203e9809eb58",
                 product: "Plex for Roku",
                 version: "2.4.1",
                 platform: "Roku",
@@ -7416,7 +7419,7 @@ actions:
                 device: "Roku 3",
                 model: "4200X",
                 deviceVendor: "Roku",
-                deviceName: "Living Room TV",
+                deviceName: "Chrome",
                 marketplace: "googlePlay",
                 token: "<YOUR_API_KEY_HERE>"
             );
@@ -7437,7 +7440,7 @@ actions:
 
             var sdk = new PlexAPI(
                 accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
-                clientIdentifier: "abc123",
+                clientIdentifier: "3381b62b-9ab7-4e37-827b-203e9809eb58",
                 product: "Plex for Roku",
                 version: "2.4.1",
                 platform: "Roku",

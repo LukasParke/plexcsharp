@@ -11,10 +11,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Errors
 {
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class GetUsersUsersErrors
     {
-
         [JsonProperty("code")]
         public int? Code { get; set; }
 

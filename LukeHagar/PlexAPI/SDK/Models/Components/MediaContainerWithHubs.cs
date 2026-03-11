@@ -12,13 +12,12 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using LukeHagar.PlexAPI.SDK.Models.Components;
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     /// <summary>
-    /// OK
+    /// OK.
     /// </summary>
     public class MediaContainerWithHubs
     {
-
         [JsonProperty("MediaContainer")]
         public MediaContainerWithHubsMediaContainer? MediaContainer { get; set; }
     }

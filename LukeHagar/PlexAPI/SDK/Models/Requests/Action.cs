@@ -12,9 +12,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     /// <summary>
-    /// The action to perform for this item on this optimizer queue
+    /// The action to perform for this item on this optimizer queue.
     /// </summary>
     public enum Action
     {
@@ -58,5 +58,4 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
             throw new Exception($"Unknown value {value} for enum Action");
         }
     }
-
 }

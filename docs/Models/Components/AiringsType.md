@@ -1,5 +1,13 @@
 # AiringsType
 
+## Example Usage
+
+```csharp
+using LukeHagar.PlexAPI.SDK.Models.Components;
+
+var value = AiringsType.NewAiringsOnly;
+```
+
 
 ## Values
 

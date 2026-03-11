@@ -8,6 +8,14 @@ The state of this queue
   - error: At least one item has encountered an error
 
 
+## Example Usage
+
+```csharp
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var value = GetDownloadQueueStatus.Deciding;
+```
+
 
 ## Values
 

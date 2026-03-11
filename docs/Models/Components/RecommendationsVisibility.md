@@ -7,6 +7,14 @@ The visibility of this hub in recommendations:
   - shared: Visible to shared users
 
 
+## Example Usage
+
+```csharp
+using LukeHagar.PlexAPI.SDK.Models.Components;
+
+var value = RecommendationsVisibility.All;
+```
+
 
 ## Values
 

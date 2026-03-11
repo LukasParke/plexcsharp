@@ -7,6 +7,14 @@ Whether this hub is visible on the home screen
   - shared: Visible to shared users
 
 
+## Example Usage
+
+```csharp
+using LukeHagar.PlexAPI.SDK.Models.Components;
+
+var value = HomeVisibility.All;
+```
+
 
 ## Values
 

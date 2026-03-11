@@ -10,14 +10,13 @@
 namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
     using LukeHagar.PlexAPI.SDK.Utils;
-    
+
     /// <summary>
-    /// Include Https entries in the results
+    /// Include Https entries in the results.
     /// </summary>
     public enum IncludeHttps
     {
         False = 0,
         True = 1,
     }
-
 }

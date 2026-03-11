@@ -23,81 +23,103 @@ namespace LukeHagar.PlexAPI.SDK
     using System.Threading.Tasks;
 
     /// <summary>
-    /// LiveTV contains the playback sessions of a channel from a DVR device<br/>
-    /// 
-    /// <remarks>
-    /// 
-    /// </remarks>
+    /// LiveTV contains the playback sessions of a channel from a DVR device.
     /// </summary>
     public interface ILiveTV
     {
+        /// <summary>
+        /// Get all sessions.
+        /// </summary>
+        /// <remarks>
+        /// Get all livetv sessions and metadata.
+        /// </remarks>
+        /// <returns>An awaitable task that returns a <see cref="GetSessionsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<GetSessionsResponse> GetSessionsAsync();
 
         /// <summary>
-        /// Get all sessions
-        /// 
-        /// <remarks>
-        /// Get all livetv sessions and metadata
-        /// </remarks>
+        /// Get a single session.
         /// </summary>
-        Task<GetSessionsResponse> GetSessionsAsync();
+        /// <remarks>
+        /// Get a single livetv session and metadata.
+        /// </remarks>
+        /// <param name="request">A <see cref="GetLiveTVSessionRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetLiveTVSessionResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<GetLiveTVSessionResponse> GetLiveTVSessionAsync(GetLiveTVSessionRequest request);
 
         /// <summary>
-        /// Get a single session
-        /// 
-        /// <remarks>
-        /// Get a single livetv session and metadata
-        /// </remarks>
+        /// Get a session playlist index.
         /// </summary>
-        Task<GetLiveTVSessionResponse> GetLiveTVSessionAsync(GetLiveTVSessionRequest request);
+        /// <remarks>
+        /// Get a playlist index for playing this session.
+        /// </remarks>
+        /// <param name="request">A <see cref="GetSessionPlaylistIndexRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetSessionPlaylistIndexResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<GetSessionPlaylistIndexResponse> GetSessionPlaylistIndexAsync(
+            GetSessionPlaylistIndexRequest request
+        );
 
         /// <summary>
-        /// Get a session playlist index
-        /// 
-        /// <remarks>
-        /// Get a playlist index for playing this session
-        /// </remarks>
+        /// Get a single session segment.
         /// </summary>
-        Task<GetSessionPlaylistIndexResponse> GetSessionPlaylistIndexAsync(GetSessionPlaylistIndexRequest request);
-
-        /// <summary>
-        /// Get a single session segment
-        /// 
         /// <remarks>
-        /// Get a single LiveTV session segment
+        /// Get a single LiveTV session segment.
         /// </remarks>
-        /// </summary>
-        Task<GetSessionSegmentResponse> GetSessionSegmentAsync(GetSessionSegmentRequest request);
+        /// <param name="request">A <see cref="GetSessionSegmentRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetSessionSegmentResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<GetSessionSegmentResponse> GetSessionSegmentAsync(GetSessionSegmentRequest request);
     }
 
     /// <summary>
-    /// LiveTV contains the playback sessions of a channel from a DVR device<br/>
-    /// 
-    /// <remarks>
-    /// 
-    /// </remarks>
+    /// LiveTV contains the playback sessions of a channel from a DVR device.
     /// </summary>
     public class LiveTV: ILiveTV
     {
+        /// <summary>
+        /// SDK Configuration.
+        /// <see cref="SDKConfig"/>
+        /// </summary>
         public SDKConfig SDKConfiguration { get; private set; }
-
-        private const string _language = Constants.Language;
-        private const string _sdkVersion = Constants.SdkVersion;
-        private const string _sdkGenVersion = Constants.SdkGenVersion;
-        private const string _openapiDocVersion = Constants.OpenApiDocVersion;
 
         public LiveTV(SDKConfig config)
         {
             SDKConfiguration = config;
         }
 
-        public async Task<GetSessionsResponse> GetSessionsAsync()
+        /// <summary>
+        /// Get all sessions.
+        /// </summary>
+        /// <remarks>
+        /// Get all livetv sessions and metadata.
+        /// </remarks>
+        /// <returns>An awaitable task that returns a <see cref="GetSessionsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<GetSessionsResponse> GetSessionsAsync()
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-
             var urlString = baseUrl + "/livetv/sessions";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -123,9 +145,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -159,7 +181,8 @@ namespace LukeHagar.PlexAPI.SDK
                     {
                         StatusCode = responseStatusCode,
                         ContentType = contentType,
-                        RawResponse = httpResponse
+                        RawResponse = httpResponse,
+                        Headers = Utilities.CollectHeaders(httpResponse.Headers)
                     };
                     response.MediaContainerWithMetadata = obj;
                     return response;
@@ -179,12 +202,22 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<GetLiveTVSessionResponse> GetLiveTVSessionAsync(GetLiveTVSessionRequest request)
+
+        /// <summary>
+        /// Get a single session.
+        /// </summary>
+        /// <remarks>
+        /// Get a single livetv session and metadata.
+        /// </remarks>
+        /// <param name="request">A <see cref="GetLiveTVSessionRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetLiveTVSessionResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<GetLiveTVSessionResponse> GetLiveTVSessionAsync(GetLiveTVSessionRequest request)
         {
-            if (request == null)
-            {
-                request = new GetLiveTVSessionRequest();
-            }
+            if (request == null) throw new ArgumentNullException(nameof(request));
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -196,13 +229,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/livetv/sessions/{sessionId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -228,9 +266,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -264,7 +302,8 @@ namespace LukeHagar.PlexAPI.SDK
                     {
                         StatusCode = responseStatusCode,
                         ContentType = contentType,
-                        RawResponse = httpResponse
+                        RawResponse = httpResponse,
+                        Headers = Utilities.CollectHeaders(httpResponse.Headers)
                     };
                     response.MediaContainerWithMetadata = obj;
                     return response;
@@ -284,12 +323,23 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<GetSessionPlaylistIndexResponse> GetSessionPlaylistIndexAsync(GetSessionPlaylistIndexRequest request)
+
+        /// <summary>
+        /// Get a session playlist index.
+        /// </summary>
+        /// <remarks>
+        /// Get a playlist index for playing this session.
+        /// </remarks>
+        /// <param name="request">A <see cref="GetSessionPlaylistIndexRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetSessionPlaylistIndexResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<GetSessionPlaylistIndexResponse> GetSessionPlaylistIndexAsync(
+            GetSessionPlaylistIndexRequest request
+        )
         {
-            if (request == null)
-            {
-                request = new GetSessionPlaylistIndexRequest();
-            }
+            if (request == null) throw new ArgumentNullException(nameof(request));
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -301,13 +351,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/livetv/sessions/{sessionId}/{consumerId}/index.m3u8", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "*/*");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -324,7 +379,7 @@ namespace LukeHagar.PlexAPI.SDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == 404 || _statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
+                if (_statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -333,9 +388,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -359,7 +414,7 @@ namespace LukeHagar.PlexAPI.SDK
                     RawResponse = httpResponse
                 };
             }
-            else if(responseStatusCode == 404 || responseStatusCode >= 400 && responseStatusCode < 500)
+            else if(responseStatusCode >= 400 && responseStatusCode < 500)
             {
                 throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
@@ -371,12 +426,21 @@ namespace LukeHagar.PlexAPI.SDK
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<GetSessionSegmentResponse> GetSessionSegmentAsync(GetSessionSegmentRequest request)
+
+        /// <summary>
+        /// Get a single session segment.
+        /// </summary>
+        /// <remarks>
+        /// Get a single LiveTV session segment.
+        /// </remarks>
+        /// <param name="request">A <see cref="GetSessionSegmentRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetSessionSegmentResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<GetSessionSegmentResponse> GetSessionSegmentAsync(GetSessionSegmentRequest request)
         {
-            if (request == null)
-            {
-                request = new GetSessionSegmentRequest();
-            }
+            if (request == null) throw new ArgumentNullException(nameof(request));
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -388,13 +452,18 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/livetv/sessions/{sessionId}/{consumerId}/{segmentId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "*/*");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -411,7 +480,7 @@ namespace LukeHagar.PlexAPI.SDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == 404 || _statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
+                if (_statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -420,9 +489,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -446,7 +515,7 @@ namespace LukeHagar.PlexAPI.SDK
                     RawResponse = httpResponse
                 };
             }
-            else if(responseStatusCode == 404 || responseStatusCode >= 400 && responseStatusCode < 500)
+            else if(responseStatusCode >= 400 && responseStatusCode < 500)
             {
                 throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
@@ -457,5 +526,6 @@ namespace LukeHagar.PlexAPI.SDK
 
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
+
     }
 }

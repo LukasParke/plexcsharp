@@ -14,30 +14,25 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     public class Lineup
     {
-
         [JsonProperty("title")]
         public string? Title { get; set; }
 
         /// <summary>
-        /// The type of this object (`lineup` in this case)
+        /// The type of this object (`lineup` in this case).
         /// </summary>
         [JsonProperty("type")]
         public string? Type { get; set; }
 
         /// <summary>
         /// - `-1`: N/A<br/>
-        /// 
-        /// <remarks>
         /// - `0`: Over the air<br/>
         /// - `1`: Cable<br/>
         /// - `2`: Satellite<br/>
         /// - `3`: IPTV<br/>
-        /// - `4`: Virtual<br/>
-        /// 
-        /// </remarks>
+        /// - `4`: Virtual.
         /// </summary>
         [JsonProperty("lineupType")]
         public Models.Requests.LineupType? LineupType { get; set; }
@@ -46,7 +41,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public string? Location { get; set; }
 
         /// <summary>
-        /// The uuid of this lineup
+        /// The uuid of this lineup.
         /// </summary>
         [JsonProperty("uuid")]
         public string? Uuid { get; set; }

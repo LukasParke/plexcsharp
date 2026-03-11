@@ -12,10 +12,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Models.Requests;
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class MediaSettings
     {
-
         [JsonProperty("advancedSubtitles")]
         public Models.Requests.AdvancedSubtitles? AdvancedSubtitles { get; set; }
 

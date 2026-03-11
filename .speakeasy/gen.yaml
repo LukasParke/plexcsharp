@@ -13,6 +13,8 @@ generation:
     requestResponseComponentNamesFeb2024: true
     securityFeb2025: false
     sharedErrorComponentsApr2025: false
+    sharedNestedComponentsJan2026: false
+    nameOverrideFeb2026: false
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
@@ -20,13 +22,14 @@ generation:
   schemas:
     allOfMergeStrategy: shallowMerge
   requestBodyFieldName: ""
+  versioningStrategy: automatic
   persistentEdits: {}
   tests:
     generateTests: true
     generateNewTests: false
     skipResponseBodyAssertions: false
 csharp:
-  version: 0.20.2
+  version: 0.20.3
   additionalDependencies: []
   author: LukeHagar
   baseErrorName: PlexAPIError
@@ -35,6 +38,7 @@ csharp:
   disableNamespacePascalCasingApr2024: true
   dotnetVersion: net8.0
   enableCancellationToken: false
+  enableFormatting: false
   enableSourceLink: true
   flattenGlobalSecurity: true
   flatteningOrder: ""
@@ -56,6 +60,7 @@ csharp:
   outputModelSuffix: output
   packageName: LukeHagar.PlexAPI.SDK
   packageTags: Plex Media Server SDK
+  respectTitlesForPrimitiveUnionMembers: false
   responseFormat: envelope
   sourceDirectory: ""
   useNodatime: true

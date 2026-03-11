@@ -16,10 +16,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
-    
+
     public class PastSubscription
     {
-
         [JsonProperty("id", NullValueHandling = NullValueHandling.Include)]
         public string? Id { get; set; }
 

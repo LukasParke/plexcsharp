@@ -11,12 +11,11 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class Directory
     {
-
         /// <summary>
-        /// The filter string to view metadata wit this tag
+        /// The filter string to view metadata wit this tag.
         /// </summary>
         [JsonProperty("filter")]
         public string? Filter { get; set; }
@@ -25,25 +24,25 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public long? Id { get; set; }
 
         /// <summary>
-        /// The name of the tag
+        /// The name of the tag.
         /// </summary>
         [JsonProperty("tag")]
         public string? Tag { get; set; }
 
         /// <summary>
-        /// The key of this tag.  This is a universal key across all PMS instances and plex.tv services
+        /// The key of this tag.  This is a universal key across all PMS instances and plex.tv services.
         /// </summary>
         [JsonProperty("tagKey")]
         public string? TagKey { get; set; }
 
         /// <summary>
-        /// The type of the tag
+        /// The type of the tag.
         /// </summary>
         [JsonProperty("tagType")]
         public long? TagType { get; set; }
 
         /// <summary>
-        /// The URL to a thumbnail for this tag
+        /// The URL to a thumbnail for this tag.
         /// </summary>
         [JsonProperty("thumb")]
         public string? Thumb { get; set; }

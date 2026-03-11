@@ -15,12 +15,22 @@ namespace LukeHagar.PlexAPI.SDK.Utils.Retries
     using System.Threading.Tasks;
     using Models.Errors;
 
+    /// <summary>
+    /// Handles retry logic for HTTP requests with configurable backoff strategies.
+    /// </summary>
     public class Retries
     {
         private Func<Task<HttpResponseMessage>> action;
         private RetryConfig retryConfig;
         private List<string> statusCodes;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Retries"/> class.
+        /// </summary>
+        /// <param name="action">The HTTP action to execute and potentially retry.</param>
+        /// <param name="retryConfig">The retry configuration specifying strategy and backoff parameters.</param>
+        /// <param name="statusCodes">The list of HTTP status codes that should trigger retries.</param>
+        /// <exception cref="ArgumentException">Thrown when the statusCodes list is empty.</exception>
         public Retries(Func<Task<HttpResponseMessage>> action, RetryConfig retryConfig, List<string> statusCodes)
         {
             this.action = action;
@@ -33,11 +43,17 @@ namespace LukeHagar.PlexAPI.SDK.Utils.Retries
             }
         }
 
+        /// <summary>
+        /// Exception indicating a non-retryable error that should be immediately propagated.
+        /// </summary>
         public sealed class PermanentException : Exception
         {
             public PermanentException(Exception innerException) : base("NonRetryable error.", innerException) { }
         }
 
+        /// <summary>
+        /// Exception indicating a retryable error that may succeed on subsequent attempts.
+        /// </summary>
         public sealed class RetryableException : Exception
         {
             public HttpResponseMessage? Response = null;
@@ -49,6 +65,11 @@ namespace LukeHagar.PlexAPI.SDK.Utils.Retries
             public RetryableException(Exception innerException) : base("An error occurred.", innerException) { }
         }
 
+        /// <summary>
+        /// Executes the configured HTTP action with retry logic based on the retry strategy.
+        /// </summary>
+        /// <returns>The HTTP response message from the successful request.</returns>
+        /// <exception cref="ArgumentException">Thrown when the retry strategy is invalid.</exception>
         public async Task<HttpResponseMessage> Run()
         {
             switch(retryConfig.Strategy) {
@@ -106,6 +127,27 @@ namespace LukeHagar.PlexAPI.SDK.Utils.Retries
             }
         }
 
+        private static long RetryAfterMs(HttpResponseMessage response)
+        {
+            if (response.Headers.TryGetValues("Retry-After", out var values))
+            {
+                var retryAfter = System.Linq.Enumerable.FirstOrDefault(values);
+                if (!string.IsNullOrEmpty(retryAfter))
+                {
+                    if (long.TryParse(retryAfter, out var seconds) && seconds >= 0)
+                    {
+                        return seconds * 1000;
+                    }
+                    if (DateTimeOffset.TryParse(retryAfter, out var retryDate))
+                    {
+                        var deltaMs = (long)(retryDate - DateTimeOffset.UtcNow).TotalMilliseconds;
+                        return deltaMs > 0 ? deltaMs : 0;
+                    }
+                }
+            }
+            return 0;
+        }
+
         private async Task<HttpResponseMessage> retryWithBackoff(bool retryConnectionErrors)
         {
             var backoff = retryConfig.Backoff;
@@ -138,10 +180,16 @@ namespace LukeHagar.PlexAPI.SDK.Utils.Retries
                         throw;
                     }
 
-                    var intervalMs = backoff.InitialIntervalMs * Math.Pow(backoff.BaseFactor, numAttempts);
-                    var jitterMs = backoff.JitterFactor * intervalMs;
-                    intervalMs = intervalMs - jitterMs + new Random().NextDouble() * (2 * jitterMs + 1);
-                    intervalMs = Math.Min(intervalMs, backoff.MaxIntervalMs);
+                    long intervalMs = ex.Response != null ? RetryAfterMs(ex.Response) : 0;
+
+                    if (intervalMs <= 0)
+                    {
+                        var computed = backoff.InitialIntervalMs * Math.Pow(backoff.BaseFactor, numAttempts);
+                        var jitterMs = backoff.JitterFactor * computed;
+                        computed = computed - jitterMs + new Random().NextDouble() * (2 * jitterMs + 1);
+                        computed = Math.Min(computed, backoff.MaxIntervalMs);
+                        intervalMs = (long)computed;
+                    }
 
                     await Task.Delay((int)intervalMs);
                     numAttempts += 1;

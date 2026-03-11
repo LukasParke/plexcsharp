@@ -11,16 +11,11 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
 {
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class MediaContainerWithNestedMetadataGuids
     {
-
         /// <summary>
-        /// The unique identifier for the Guid. Can be prefixed with imdb://, tmdb://, tvdb://<br/>
-        /// 
-        /// <remarks>
-        /// 
-        /// </remarks>
+        /// The unique identifier for the Guid. Can be prefixed with imdb://, tmdb://, tvdb://
         /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;

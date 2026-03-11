@@ -12,12 +12,11 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Models.Requests;
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class Country
     {
-
         /// <summary>
-        /// Three letter code
+        /// Three letter code.
         /// </summary>
         [JsonProperty("code")]
         public string? Code { get; set; }
@@ -27,12 +26,8 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 
         /// <summary>
         /// - `0`: The country is divided into regions, and following the key will lead to a list of regions.<br/>
-        /// 
-        /// <remarks>
         /// - `1`: The county is divided by postal codes, and an example code is returned in `example`.<br/>
-        /// - `2`: The country has a single postal code, returned in `example`.<br/>
-        /// 
-        /// </remarks>
+        /// - `2`: The country has a single postal code, returned in `example`.
         /// </summary>
         [JsonProperty("flavor")]
         public Flavor? Flavor { get; set; }
@@ -41,13 +36,13 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public string? Key { get; set; }
 
         /// <summary>
-        /// Three letter language code
+        /// Three letter language code.
         /// </summary>
         [JsonProperty("language")]
         public string? Language { get; set; }
 
         /// <summary>
-        /// The title of the language
+        /// The title of the language.
         /// </summary>
         [JsonProperty("languageTitle")]
         public string? LanguageTitle { get; set; }

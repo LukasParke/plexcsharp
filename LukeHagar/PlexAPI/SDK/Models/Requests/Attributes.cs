@@ -10,9 +10,9 @@
 namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
     using LukeHagar.PlexAPI.SDK.Utils;
-    
+
     /// <summary>
-    /// The attributes to assign to this marker
+    /// The attributes to assign to this marker.
     /// </summary>
     public class Attributes
     {

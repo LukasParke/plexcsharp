@@ -15,15 +15,14 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    
+
     /// <summary>
-    /// Returns the user account data with a valid auth token
+    /// Returns the user account data with a valid auth token.
     /// </summary>
     public class PostUsersSignInDataUserPlexAccount
     {
-
         /// <summary>
-        /// Unknown
+        /// Unknown.
         /// </summary>
         [JsonProperty("adsConsent")]
         public bool? AdsConsent { get; set; } = null;
@@ -35,133 +34,133 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public long? AdsConsentSetAt { get; set; } = null;
 
         /// <summary>
-        /// Unknown
+        /// Unknown.
         /// </summary>
         [JsonProperty("anonymous")]
         public bool? Anonymous { get; set; } = false;
 
         /// <summary>
-        /// The account token
+        /// The account token.
         /// </summary>
         [JsonProperty("authToken")]
         public string AuthToken { get; set; } = default!;
 
         /// <summary>
-        /// If the two-factor authentication backup codes have been created
+        /// If the two-factor authentication backup codes have been created.
         /// </summary>
         [JsonProperty("backupCodesCreated")]
         public bool? BackupCodesCreated { get; set; } = false;
 
         /// <summary>
-        /// If the account has been confirmed
+        /// If the account has been confirmed.
         /// </summary>
         [JsonProperty("confirmed")]
         public bool? Confirmed { get; set; } = false;
 
         /// <summary>
-        /// The account country
+        /// The account country.
         /// </summary>
         [JsonProperty("country")]
         public string? Country { get; set; }
 
         /// <summary>
-        /// The account email address
+        /// The account email address.
         /// </summary>
         [JsonProperty("email")]
         public string Email { get; set; } = default!;
 
         /// <summary>
-        /// If login with email only is enabled
+        /// If login with email only is enabled.
         /// </summary>
         [JsonProperty("emailOnlyAuth")]
         public bool? EmailOnlyAuth { get; set; } = false;
 
         /// <summary>
-        /// If experimental features are enabled
+        /// If experimental features are enabled.
         /// </summary>
         [JsonProperty("experimentalFeatures")]
         public bool? ExperimentalFeatures { get; set; } = false;
 
         /// <summary>
-        /// Your account full name
+        /// Your account full name.
         /// </summary>
         [JsonProperty("friendlyName")]
         public string FriendlyName { get; set; } = default!;
 
         /// <summary>
-        /// List of devices your allowed to use with this account
+        /// List of devices your allowed to use with this account.
         /// </summary>
         [JsonProperty("entitlements")]
         public List<string>? Entitlements { get; set; }
 
         /// <summary>
-        /// If the account is a Plex Home guest user
+        /// If the account is a Plex Home guest user.
         /// </summary>
         [JsonProperty("guest")]
         public bool? Guest { get; set; } = false;
 
         /// <summary>
-        /// If the account has a password
+        /// If the account has a password.
         /// </summary>
         [JsonProperty("hasPassword")]
         public bool? HasPassword { get; set; } = true;
 
         /// <summary>
-        /// If the account is a Plex Home user
+        /// If the account is a Plex Home user.
         /// </summary>
         [JsonProperty("home")]
         public bool? Home { get; set; } = false;
 
         /// <summary>
-        /// If the account is the Plex Home admin
+        /// If the account is the Plex Home admin.
         /// </summary>
         [JsonProperty("homeAdmin")]
         public bool? HomeAdmin { get; set; } = false;
 
         /// <summary>
-        /// The number of accounts in the Plex Home
+        /// The number of accounts in the Plex Home.
         /// </summary>
         [JsonProperty("homeSize")]
         public int? HomeSize { get; set; }
 
         /// <summary>
-        /// The Plex account ID
+        /// The Plex account ID.
         /// </summary>
         [JsonProperty("id")]
         public int Id { get; set; } = default!;
 
         /// <summary>
-        /// Unix epoch datetime in seconds
+        /// Unix epoch datetime in seconds.
         /// </summary>
         [JsonProperty("joinedAt")]
         public long JoinedAt { get; set; } = default!;
 
         /// <summary>
-        /// The account locale
+        /// The account locale.
         /// </summary>
         [JsonProperty("locale")]
         public string? Locale { get; set; } = null;
 
         /// <summary>
-        /// If you are subscribed to the Plex newsletter
+        /// If you are subscribed to the Plex newsletter.
         /// </summary>
         [JsonProperty("mailingListActive")]
         public bool? MailingListActive { get; set; } = false;
 
         /// <summary>
-        /// Your current mailing list status
+        /// Your current mailing list status.
         /// </summary>
         [JsonProperty("mailingListStatus")]
         public Models.Requests.MailingListStatus? MailingListStatus { get; set; }
 
         /// <summary>
-        /// The maximum number of accounts allowed in the Plex Home
+        /// The maximum number of accounts allowed in the Plex Home.
         /// </summary>
         [JsonProperty("maxHomeSize")]
         public int? MaxHomeSize { get; set; }
 
         /// <summary>
-        /// [Might be removed] The hashed Plex Home PIN 
+        /// [Might be removed] The hashed Plex Home PIN.
         /// </summary>
         [Obsolete("This field will be removed in a future release, please migrate away from it as soon as possible")]
         [JsonProperty("pin")]
@@ -171,31 +170,31 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public UserProfile? Profile { get; set; }
 
         /// <summary>
-        /// If the account has a Plex Home PIN enabled
+        /// If the account has a Plex Home PIN enabled.
         /// </summary>
         [JsonProperty("protected")]
         public bool? Protected { get; set; } = false;
 
         /// <summary>
-        /// Unix epoch datetime in seconds
+        /// Unix epoch datetime in seconds.
         /// </summary>
         [JsonProperty("rememberExpiresAt")]
         public long? RememberExpiresAt { get; set; }
 
         /// <summary>
-        /// If the account is a Plex Home managed user
+        /// If the account is a Plex Home managed user.
         /// </summary>
         [JsonProperty("restricted")]
         public bool? Restricted { get; set; } = false;
 
         /// <summary>
-        /// [Might be removed] List of account roles. Plexpass membership listed here
+        /// [Might be removed] List of account roles. Plexpass membership listed here.
         /// </summary>
         [JsonProperty("roles")]
         public List<string>? Roles { get; set; }
 
         /// <summary>
-        /// Unknown
+        /// Unknown.
         /// </summary>
         [JsonProperty("scrobbleTypes")]
         public string? ScrobbleTypes { get; set; }
@@ -204,13 +203,13 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public List<Models.Requests.Services>? Services { get; set; }
 
         /// <summary>
-        /// If the account&apos;s Plex Pass subscription is active
+        /// If the account's Plex Pass subscription is active.
         /// </summary>
         [JsonProperty("subscription")]
         public Models.Requests.Subscription? Subscription { get; set; }
 
         /// <summary>
-        /// Description of the Plex Pass subscription
+        /// Description of the Plex Pass subscription.
         /// </summary>
         [JsonProperty("subscriptionDescription")]
         public string? SubscriptionDescription { get; set; } = null;
@@ -219,31 +218,31 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public List<PostUsersSignInDataSubscription>? Subscriptions { get; set; }
 
         /// <summary>
-        /// URL of the account thumbnail
+        /// URL of the account thumbnail.
         /// </summary>
         [JsonProperty("thumb")]
         public string? Thumb { get; set; }
 
         /// <summary>
-        /// The title of the account (username or friendly name)
+        /// The title of the account (username or friendly name).
         /// </summary>
         [JsonProperty("title")]
         public string Title { get; set; } = default!;
 
         /// <summary>
-        /// If two-factor authentication is enabled
+        /// If two-factor authentication is enabled.
         /// </summary>
         [JsonProperty("twoFactorEnabled")]
         public bool? TwoFactorEnabled { get; set; } = false;
 
         /// <summary>
-        /// The account username
+        /// The account username.
         /// </summary>
         [JsonProperty("username")]
         public string Username { get; set; } = default!;
 
         /// <summary>
-        /// The account UUID
+        /// The account UUID.
         /// </summary>
         [JsonProperty("uuid")]
         public string Uuid { get; set; } = default!;

@@ -1,5 +1,13 @@
 # Accepts
 
+## Example Usage
+
+```csharp
+using LukeHagar.PlexAPI.SDK.Models.Components;
+
+var value = Accepts.ApplicationJson;
+```
+
 
 ## Values
 

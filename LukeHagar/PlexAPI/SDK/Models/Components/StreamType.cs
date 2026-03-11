@@ -10,16 +10,12 @@
 namespace LukeHagar.PlexAPI.SDK.Models.Components
 {
     using LukeHagar.PlexAPI.SDK.Utils;
-    
+
     /// <summary>
     /// Stream type:<br/>
-    /// 
-    /// <remarks>
     ///   - VIDEO = 1 (Video stream)<br/>
     ///   - AUDIO = 2 (Audio stream)<br/>
-    ///   - SUBTITLE = 3 (Subtitle stream)<br/>
-    /// 
-    /// </remarks>
+    ///   - SUBTITLE = 3 (Subtitle stream).
     /// </summary>
     public enum StreamType
     {
@@ -27,5 +23,4 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         Audio = 2,
         Subtitle = 3,
     }
-
 }

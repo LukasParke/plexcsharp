@@ -13,22 +13,17 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     public class LibrarySection
     {
-
         /// <summary>
-        /// The title of the library
+        /// The title of the library.
         /// </summary>
         [JsonProperty("title")]
         public string? Title { get; set; }
 
         /// <summary>
-        /// The type of media content in the Plex library. This can represent videos, music, or photos.<br/>
-        /// 
-        /// <remarks>
-        /// 
-        /// </remarks>
+        /// The type of media content in the Plex library. This can represent videos, music, or photos.
         /// </summary>
         [JsonProperty("type")]
         public MediaTypeString Type { get; set; } = default!;
@@ -58,7 +53,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public bool? Directory { get; set; }
 
         /// <summary>
-        /// Indicates whether this section has filtering capabilities
+        /// Indicates whether this section has filtering capabilities.
         /// </summary>
         [JsonProperty("filters")]
         public bool? Filters { get; set; }
@@ -82,7 +77,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public List<LibrarySectionLocation>? Location { get; set; }
 
         /// <summary>
-        /// Indicates whether this library section is currently scanning
+        /// Indicates whether this library section is currently scanning.
         /// </summary>
         [JsonProperty("refreshing")]
         public bool? Refreshing { get; set; }

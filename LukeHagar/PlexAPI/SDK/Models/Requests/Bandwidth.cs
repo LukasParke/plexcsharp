@@ -11,24 +11,23 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class Bandwidth
     {
-
         /// <summary>
-        /// The bandwidth at this time in kbps
+        /// The bandwidth at this time in kbps.
         /// </summary>
         [JsonProperty("bandwidth")]
         public long? BandwidthValue { get; set; }
 
         /// <summary>
-        /// The user-friendly resolution at this time
+        /// The user-friendly resolution at this time.
         /// </summary>
         [JsonProperty("resolution")]
         public string? Resolution { get; set; }
 
         /// <summary>
-        /// Media playback time where this bandwidth started
+        /// Media playback time where this bandwidth started.
         /// </summary>
         [JsonProperty("time")]
         public long? Time { get; set; }

@@ -12,17 +12,13 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     /// <summary>
     /// Whether this hub is visible on the home screen<br/>
-    /// 
-    /// <remarks>
     ///   - all: Visible to all users<br/>
     ///   - none: Visible to no users<br/>
     ///   - admin: Visible to only admin users<br/>
-    ///   - shared: Visible to shared users<br/>
-    /// 
-    /// </remarks>
+    ///   - shared: Visible to shared users.
     /// </summary>
     public enum HomeVisibility
     {
@@ -68,5 +64,4 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
             throw new Exception($"Unknown value {value} for enum HomeVisibility");
         }
     }
-
 }

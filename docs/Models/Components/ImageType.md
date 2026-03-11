@@ -2,6 +2,14 @@
 
 Describes both the purpose and intended presentation of the image.
 
+## Example Usage
+
+```csharp
+using LukeHagar.PlexAPI.SDK.Models.Components;
+
+var value = ImageType.Background;
+```
+
 
 ## Values
 

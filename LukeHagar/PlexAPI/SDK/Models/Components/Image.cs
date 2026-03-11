@@ -12,17 +12,12 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using LukeHagar.PlexAPI.SDK.Models.Components;
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     /// <summary>
-    /// Images such as movie posters and background artwork are represented by Image elements.<br/>
-    /// 
-    /// <remarks>
-    /// 
-    /// </remarks>
+    /// Images such as movie posters and background artwork are represented by Image elements.
     /// </summary>
     public class Image
     {
-
         /// <summary>
         /// Describes both the purpose and intended presentation of the image.
         /// </summary>

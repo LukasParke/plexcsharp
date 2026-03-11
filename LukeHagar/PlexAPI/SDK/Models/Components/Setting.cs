@@ -12,27 +12,26 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using LukeHagar.PlexAPI.SDK.Models.Components;
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     /// <summary>
-    /// A configuration setting or preference
+    /// A configuration setting or preference.
     /// </summary>
     public class Setting
     {
-
         /// <summary>
-        /// The type of the value of this setting
+        /// The type of the value of this setting.
         /// </summary>
         [JsonProperty("type")]
         public Models.Components.Type? Type { get; set; }
 
         /// <summary>
-        /// The default value of this setting
+        /// The default value of this setting.
         /// </summary>
         [JsonProperty("default", NullValueHandling = NullValueHandling.Include)]
         public Default? Default { get; set; }
 
         /// <summary>
-        /// Whether the setting is considered advanced and normally hidden from the user
+        /// Whether the setting is considered advanced and normally hidden from the user.
         /// </summary>
         [JsonProperty("advanced")]
         public bool? Advanced { get; set; }
@@ -44,37 +43,37 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public string? EnumValues { get; set; }
 
         /// <summary>
-        /// The group name of this setting to aid in display of a hierarchy
+        /// The group name of this setting to aid in display of a hierarchy.
         /// </summary>
         [JsonProperty("group")]
         public string? Group { get; set; }
 
         /// <summary>
-        /// Whether the setting is hidden or not
+        /// Whether the setting is hidden or not.
         /// </summary>
         [JsonProperty("hidden")]
         public bool? Hidden { get; set; }
 
         /// <summary>
-        /// The query parameter name for this setting
+        /// The query parameter name for this setting.
         /// </summary>
         [JsonProperty("id")]
         public string? Id { get; set; }
 
         /// <summary>
-        /// A user-friendly name for the setting
+        /// A user-friendly name for the setting.
         /// </summary>
         [JsonProperty("label")]
         public string? Label { get; set; }
 
         /// <summary>
-        /// A description of the setting
+        /// A description of the setting.
         /// </summary>
         [JsonProperty("summary")]
         public string? Summary { get; set; }
 
         /// <summary>
-        /// The current value of this setting
+        /// The current value of this setting.
         /// </summary>
         [JsonProperty("value", NullValueHandling = NullValueHandling.Include)]
         public Value? Value { get; set; }

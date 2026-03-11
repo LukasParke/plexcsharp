@@ -7,6 +7,14 @@ Use the specified chroma subsambling.
   - 3: 444
 Defaults to 3 (444)
 
+## Example Usage
+
+```csharp
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var value = ChromaSubsampling.Zero;
+```
+
 
 ## Values
 

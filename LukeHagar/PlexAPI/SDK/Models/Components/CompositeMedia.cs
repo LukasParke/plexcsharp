@@ -12,9 +12,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     /// <summary>
-    /// The default image type to use as the sources
+    /// The default image type to use as the sources.
     /// </summary>
     public enum CompositeMedia
     {
@@ -58,5 +58,4 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
             throw new Exception($"Unknown value {value} for enum CompositeMedia");
         }
     }
-
 }

@@ -1,5 +1,13 @@
 # TranscodeType
 
+## Example Usage
+
+```csharp
+using LukeHagar.PlexAPI.SDK.Models.Components;
+
+var value = TranscodeType.Video;
+```
+
 
 ## Values
 

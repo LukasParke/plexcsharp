@@ -12,13 +12,12 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Models.Requests;
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     /// <summary>
-    /// Successful response with media container data in JSON
+    /// Successful response with media container data in JSON.
     /// </summary>
     public class GetUsersResponseBody
     {
-
         /// <summary>
         /// Container holding user and server details.
         /// </summary>

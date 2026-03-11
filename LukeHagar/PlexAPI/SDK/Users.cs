@@ -24,15 +24,21 @@ namespace LukeHagar.PlexAPI.SDK
 
     public interface IUsers
     {
-
         /// <summary>
-        /// Get list of all connected users
-        /// 
-        /// <remarks>
-        /// Get list of all users that are friends and have library access with the provided Plex authentication token
-        /// </remarks>
+        /// Get list of all connected users.
         /// </summary>
-        Task<GetUsersResponse> GetUsersAsync(GetUsersRequest? request = null, string? serverUrl = null);
+        /// <remarks>
+        /// Get list of all users that are friends and have library access with the provided Plex authentication token.
+        /// </remarks>
+        /// <param name="request">A <see cref="GetUsersRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetUsersResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="GetUsersBadRequest">Bad Request - A parameter was not specified, or was specified incorrectly. Thrown when the API returns a 400 response.</exception>
+        /// <exception cref="GetUsersUnauthorized">Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Thrown when the API returns a 401 response.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<GetUsersResponse> GetUsersAsync(GetUsersRequest? request = null, string? serverUrl = null);
     }
 
     public class Users: IUsers
@@ -43,20 +49,38 @@ namespace LukeHagar.PlexAPI.SDK
         public static readonly string[] GetUsersServerList = {
             "https://plex.tv/api",
         };
-        public SDKConfig SDKConfiguration { get; private set; }
 
-        private const string _language = Constants.Language;
-        private const string _sdkVersion = Constants.SdkVersion;
-        private const string _sdkGenVersion = Constants.SdkGenVersion;
-        private const string _openapiDocVersion = Constants.OpenApiDocVersion;
+        /// <summary>
+        /// SDK Configuration.
+        /// <see cref="SDKConfig"/>
+        /// </summary>
+        public SDKConfig SDKConfiguration { get; private set; }
 
         public Users(SDKConfig config)
         {
             SDKConfiguration = config;
         }
 
-        public async Task<GetUsersResponse> GetUsersAsync(GetUsersRequest? request = null, string? serverUrl = null)
+        /// <summary>
+        /// Get list of all connected users.
+        /// </summary>
+        /// <remarks>
+        /// Get list of all users that are friends and have library access with the provided Plex authentication token.
+        /// </remarks>
+        /// <param name="request">A <see cref="GetUsersRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetUsersResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="GetUsersBadRequest">Bad Request - A parameter was not specified, or was specified incorrectly. Thrown when the API returns a 400 response.</exception>
+        /// <exception cref="GetUsersUnauthorized">Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Thrown when the API returns a 401 response.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<GetUsersResponse> GetUsersAsync(GetUsersRequest? request = null, string? serverUrl = null)
         {
+            if (request == null)
+            {
+                request = new GetUsersRequest();
+            }
             request.Accepts ??= SDKConfiguration.Accepts;
             request.ClientIdentifier ??= SDKConfiguration.ClientIdentifier;
             request.Product ??= SDKConfiguration.Product;
@@ -68,19 +92,23 @@ namespace LukeHagar.PlexAPI.SDK
             request.DeviceVendor ??= SDKConfiguration.DeviceVendor;
             request.DeviceName ??= SDKConfiguration.DeviceName;
             request.Marketplace ??= SDKConfiguration.Marketplace;
-            
+
             string baseUrl = Utilities.TemplateUrl(GetUsersServerList[0], new Dictionary<string, string>(){
             });
             if (serverUrl != null)
             {
                 baseUrl = serverUrl;
             }
-
             var urlString = baseUrl + "/users";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -97,7 +125,7 @@ namespace LukeHagar.PlexAPI.SDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == 400 || _statusCode == 401 || _statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
+                if (_statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -106,9 +134,9 @@ namespace LukeHagar.PlexAPI.SDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -203,5 +231,6 @@ namespace LukeHagar.PlexAPI.SDK
 
             throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
+
     }
 }

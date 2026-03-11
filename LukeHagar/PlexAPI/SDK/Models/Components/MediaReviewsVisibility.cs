@@ -10,9 +10,9 @@
 namespace LukeHagar.PlexAPI.SDK.Models.Components
 {
     using LukeHagar.PlexAPI.SDK.Utils;
-    
+
     /// <summary>
-    /// Whether or not the account has media reviews visibility enabled
+    /// Whether or not the account has media reviews visibility enabled.
     /// </summary>
     public enum MediaReviewsVisibility
     {
@@ -21,5 +21,4 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         PlexUsersOnly = 2,
         PlexUsersAndCritics = 3,
     }
-
 }

@@ -10,9 +10,9 @@
 namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
     using LukeHagar.PlexAPI.SDK.Utils;
-    
+
     /// <summary>
-    /// The transcode session object which is not yet documented otherwise it&apos;d be a $ref here.
+    /// The transcode session object which is not yet documented otherwise it'd be a $ref here.
     /// </summary>
     public class GetDownloadQueueItemsTranscode
     {

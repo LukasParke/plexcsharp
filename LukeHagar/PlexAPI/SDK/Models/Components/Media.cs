@@ -13,17 +13,12 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     /// <summary>
-    /// `Media` represents an one or more media files (parts) and is a child of a metadata item. There aren&apos;t necessarily any guaranteed attributes on media elements since the attributes will vary based on the type. The possible attributes are not documented here, but they typically have self-evident names. High-level media information that can be used for badging and flagging, such as `videoResolution` and codecs, is included on the media element.<br/>
-    /// 
-    /// <remarks>
-    /// 
-    /// </remarks>
+    /// `Media` represents an one or more media files (parts) and is a child of a metadata item. There aren't necessarily any guaranteed attributes on media elements since the attributes will vary based on the type. The possible attributes are not documented here, but they typically have self-evident names. High-level media information that can be used for badging and flagging, such as `videoResolution` and codecs, is included on the media element.
     /// </summary>
     public class Media
     {
-
         [JsonProperty("aspectRatio")]
         public float? AspectRatio { get; set; }
 
@@ -48,8 +43,12 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         [JsonProperty("has64bitOffsets")]
         public bool? Has64bitOffsets { get; set; }
 
+        /// <summary>
+        /// Voice activity detection availability flag returned by PMS.<br/>
+        /// PMS returns this as string values (`"0"` or `"1"`) instead of a JSON boolean.
+        /// </summary>
         [JsonProperty("hasVoiceActivity")]
-        public bool? HasVoiceActivity { get; set; }
+        public HasVoiceActivity? HasVoiceActivity { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.HasVoiceActivity.False;
 
         [JsonProperty("height")]
         public int? Height { get; set; }

@@ -487,8 +487,8 @@ AddSectionRequest req = new AddSectionRequest() {
     Agent = "<value>",
     Language = "<value>",
     Locations = new List<string>() {
-        "O:\fatboy\Media\Ripped\Music",
-        "O:\fatboy\Media\My Music",
+        "O:\\fatboy\\Media\\Ripped\\Music",
+        "O:\\fatboy\\Media\\My Music",
     },
     Prefs = new QueryParamPrefs() {},
     Relative = BoolInt.True,
@@ -2470,8 +2470,8 @@ EditSectionRequest req = new EditSectionRequest() {
     SectionId = "<id>",
     Agent = "<value>",
     Locations = new List<string>() {
-        "O:\fatboy\Media\Ripped\Music",
-        "O:\fatboy\Media\My Music",
+        "O:\\fatboy\\Media\\Ripped\\Music",
+        "O:\\fatboy\\Media\\My Music",
     },
     Prefs = new EditSectionQueryParamPrefs() {},
 };

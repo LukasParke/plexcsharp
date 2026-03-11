@@ -12,64 +12,55 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using LukeHagar.PlexAPI.SDK.Models.Components;
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class GetResponses200Hub
     {
-
         /// <summary>
         /// Whether this hub is visible on the home screen<br/>
-        /// 
-        /// <remarks>
         ///   - all: Visible to all users<br/>
         ///   - none: Visible to no users<br/>
         ///   - admin: Visible to only admin users<br/>
-        ///   - shared: Visible to shared users<br/>
-        /// 
-        /// </remarks>
+        ///   - shared: Visible to shared users.
         /// </summary>
         [JsonProperty("homeVisibility")]
         public Models.Components.HomeVisibility? HomeVisibility { get; set; }
 
         /// <summary>
-        /// The identifier for this hub
+        /// The identifier for this hub.
         /// </summary>
         [JsonProperty("identifier")]
         public string? Identifier { get; set; }
 
         /// <summary>
-        /// Whether this hub is visible to admin user home
+        /// Whether this hub is visible to admin user home.
         /// </summary>
         [JsonProperty("promotedToOwnHome")]
         public bool? PromotedToOwnHome { get; set; }
 
         /// <summary>
-        /// Whether this hub is promoted to all for recommendations
+        /// Whether this hub is promoted to all for recommendations.
         /// </summary>
         [JsonProperty("promotedToRecommended")]
         public bool? PromotedToRecommended { get; set; }
 
         /// <summary>
-        /// Whether this hub is visible to shared user&apos;s home
+        /// Whether this hub is visible to shared user's home.
         /// </summary>
         [JsonProperty("promotedToSharedHome")]
         public bool? PromotedToSharedHome { get; set; }
 
         /// <summary>
         /// The visibility of this hub in recommendations:<br/>
-        /// 
-        /// <remarks>
         ///   - all: Visible to all users<br/>
         ///   - none: Visible to no users<br/>
         ///   - admin: Visible to only admin users<br/>
-        ///   - shared: Visible to shared users<br/>
-        /// 
-        /// </remarks>
+        ///   - shared: Visible to shared users.
         /// </summary>
         [JsonProperty("recommendationsVisibility")]
         public Models.Components.RecommendationsVisibility? RecommendationsVisibility { get; set; }
 
         /// <summary>
-        /// The title of this hub
+        /// The title of this hub.
         /// </summary>
         [JsonProperty("title")]
         public string? Title { get; set; }

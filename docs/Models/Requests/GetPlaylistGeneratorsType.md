@@ -6,6 +6,14 @@ The type of playlist generator.
   - 42: A optimized version generator
 
 
+## Example Usage
+
+```csharp
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var value = GetPlaylistGeneratorsType.Minus1;
+```
+
 
 ## Values
 

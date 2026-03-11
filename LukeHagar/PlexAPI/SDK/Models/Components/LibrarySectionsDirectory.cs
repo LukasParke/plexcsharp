@@ -11,15 +11,14 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
 {
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class LibrarySectionsDirectory
     {
-
         [JsonProperty("count")]
         public long? Count { get; set; }
 
         /// <summary>
-        /// The key where this directory is found
+        /// The key where this directory is found.
         /// </summary>
         [JsonProperty("key")]
         public string? Key { get; set; }

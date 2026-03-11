@@ -1,5 +1,13 @@
 # GetPlaylistGeneratorScope
 
+## Example Usage
+
+```csharp
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var value = GetPlaylistGeneratorScope.All;
+```
+
 
 ## Values
 

@@ -10,9 +10,9 @@
 namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
     using LukeHagar.PlexAPI.SDK.Utils;
-    
+
     /// <summary>
-    /// Hints describing what we&apos;re looking for.  Note: The hint `ratingKey` is required for downloading from a PMS remote.
+    /// Hints describing what we're looking for.  Note: The hint `ratingKey` is required for downloading from a PMS remote.
     /// </summary>
     public class Hints
     {
