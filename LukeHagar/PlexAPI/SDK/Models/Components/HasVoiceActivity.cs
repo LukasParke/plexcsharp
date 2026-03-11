@@ -68,7 +68,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public bool? Boolean { get; set; }
 
         [SpeakeasyMetadata("form:explode=true")]
-        public Two? Two { get; set; }
+        public Models.Components.Two? Two { get; set; }
 
         public HasVoiceActivityType Type { get; set; }
         public static HasVoiceActivity CreateBoolean(bool boolean)
@@ -79,7 +79,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
             res.Boolean = boolean;
             return res;
         }
-        public static HasVoiceActivity CreateTwo(Two two)
+        public static HasVoiceActivity CreateTwo(Models.Components.Two two)
         {
             HasVoiceActivityType typ = HasVoiceActivityType.Two;
 
@@ -121,12 +121,12 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
                 {
                     return new HasVoiceActivity(HasVoiceActivityType.Two)
                     {
-                        Two = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<Two>(json)
+                        Two = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<Models.Components.Two>(json)
                     };
                 }
                 catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    fallbackCandidates.Add((typeof(Two), new HasVoiceActivity(HasVoiceActivityType.Two), "Two"));
+                    fallbackCandidates.Add((typeof(Models.Components.Two), new HasVoiceActivity(HasVoiceActivityType.Two), "Two"));
                 }
                 catch (ResponseBodyDeserializer.DeserializationException)
                 {

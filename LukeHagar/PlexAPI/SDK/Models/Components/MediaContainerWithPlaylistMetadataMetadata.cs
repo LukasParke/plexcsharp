@@ -345,14 +345,14 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         /// <summary>
         /// When found on a show item, indicates that the children (seasons) should be skipped in favor of the grandchildren (episodes). Useful for mini-series, etc.
         /// </summary>
-        [JsonProperty("skipChildren")]
-        public bool? SkipChildren { get; set; }
+        [JsonProperty("skipChildren", NullValueHandling = NullValueHandling.Include)]
+        public MediaContainerWithPlaylistMetadataSkipChildren? SkipChildren { get; set; }
 
         /// <summary>
         /// When present on an episode or track item, indicates parent should be skipped in favor of grandparent (show).
         /// </summary>
-        [JsonProperty("skipParent")]
-        public bool? SkipParent { get; set; }
+        [JsonProperty("skipParent", NullValueHandling = NullValueHandling.Include)]
+        public MediaContainerWithPlaylistMetadataSkipParent? SkipParent { get; set; }
 
         /// <summary>
         /// Typically only seen in metadata at a library's top level.
