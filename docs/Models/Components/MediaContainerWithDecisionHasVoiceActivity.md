@@ -1,21 +1,20 @@
 # MediaContainerWithDecisionHasVoiceActivity
 
 Voice activity detection availability flag returned by PMS.
-PMS returns this as string values (`"0"` or `"1"`) instead of a JSON boolean.
+PMS may return this as a boolean or as string values (`"0"` or `"1"`).
 
 
-## Example Usage
+
+## Supported Types
+
+### Boolean
 
 ```csharp
-using LukeHagar.PlexAPI.SDK.Models.Components;
-
-var value = MediaContainerWithDecisionHasVoiceActivity.Zero;
+MediaContainerWithDecisionHasVoiceActivity.CreateBoolean(/* values here */);
 ```
 
+### HasVoiceActivity2
 
-## Values
-
-| Name   | Value  |
-| ------ | ------ |
-| `Zero` | 0      |
-| `One`  | 1      |
+```csharp
+MediaContainerWithDecisionHasVoiceActivity.CreateHasVoiceActivity2(/* values here */);
+```

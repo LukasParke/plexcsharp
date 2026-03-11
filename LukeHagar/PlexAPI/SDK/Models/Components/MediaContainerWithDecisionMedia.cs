@@ -45,9 +45,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
 
         /// <summary>
         /// Voice activity detection availability flag returned by PMS.<br/>
-        /// PMS returns this as string values (`"0"` or `"1"`) instead of a JSON boolean.
+        /// PMS may return this as a boolean or as string values (`"0"` or `"1"`).
         /// </summary>
-        [JsonProperty("hasVoiceActivity")]
+        [JsonProperty("hasVoiceActivity", NullValueHandling = NullValueHandling.Include)]
         public MediaContainerWithDecisionHasVoiceActivity? HasVoiceActivity { get; set; }
 
         [JsonProperty("height")]

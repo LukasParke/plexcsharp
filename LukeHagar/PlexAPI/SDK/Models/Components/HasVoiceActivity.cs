@@ -9,52 +9,180 @@
 #nullable enable
 namespace LukeHagar.PlexAPI.SDK.Models.Components
 {
+    using LukeHagar.PlexAPI.SDK.Models.Components;
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
     using System;
+    using System.Collections.Generic;
+    using System.Numerics;
+    using System.Reflection;
+
+    public class HasVoiceActivityType
+    {
+        private HasVoiceActivityType(string value) { Value = value; }
+
+        public string Value { get; private set; }
+
+        public static HasVoiceActivityType Boolean { get { return new HasVoiceActivityType("boolean"); } }
+
+        public static HasVoiceActivityType Two { get { return new HasVoiceActivityType("2"); } }
+
+        public override string ToString() { return Value; }
+        public static implicit operator String(HasVoiceActivityType v) { return v.Value; }
+        public static HasVoiceActivityType FromString(string v) {
+            switch(v) {
+                case "boolean": return Boolean;
+                case "2": return Two;
+                default: throw new ArgumentException("Invalid value for HasVoiceActivityType");
+            }
+        }
+        public override bool Equals(object? obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+            return Value.Equals(((HasVoiceActivityType)obj).Value);
+        }
+
+        public override int GetHashCode()
+        {
+            return Value.GetHashCode();
+        }
+    }
 
     /// <summary>
     /// Voice activity detection availability flag returned by PMS.<br/>
-    /// PMS returns this as string values (`"0"` or `"1"`) instead of a JSON boolean.
+    /// PMS may return this as a boolean or as string values (`"0"` or `"1"`).
     /// </summary>
-    public enum HasVoiceActivity
+    [JsonConverter(typeof(HasVoiceActivity.HasVoiceActivityConverter))]
+    public class HasVoiceActivity
     {
-        [JsonProperty("0")]
-        Zero,
-        [JsonProperty("1")]
-        One,
-    }
-
-    public static class HasVoiceActivityExtension
-    {
-        public static string Value(this HasVoiceActivity value)
+        public HasVoiceActivity(HasVoiceActivityType type)
         {
-            return ((JsonPropertyAttribute)value.GetType().GetMember(value.ToString())[0].GetCustomAttributes(typeof(JsonPropertyAttribute), false)[0]).PropertyName ?? value.ToString();
+            Type = type;
         }
 
-        public static HasVoiceActivity ToEnum(this string value)
+        [SpeakeasyMetadata("form:explode=true")]
+        public bool? Boolean { get; set; }
+
+        [SpeakeasyMetadata("form:explode=true")]
+        public Two? Two { get; set; }
+
+        public HasVoiceActivityType Type { get; set; }
+        public static HasVoiceActivity CreateBoolean(bool boolean)
         {
-            foreach(var field in typeof(HasVoiceActivity).GetFields())
+            HasVoiceActivityType typ = HasVoiceActivityType.Boolean;
+
+            HasVoiceActivity res = new HasVoiceActivity(typ);
+            res.Boolean = boolean;
+            return res;
+        }
+        public static HasVoiceActivity CreateTwo(Two two)
+        {
+            HasVoiceActivityType typ = HasVoiceActivityType.Two;
+
+            HasVoiceActivity res = new HasVoiceActivity(typ);
+            res.Two = two;
+            return res;
+        }
+
+        public class HasVoiceActivityConverter : JsonConverter
+        {
+            public override bool CanConvert(System.Type objectType) => objectType == typeof(HasVoiceActivity);
+
+            public override bool CanRead => true;
+
+            public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
             {
-                var attributes = field.GetCustomAttributes(typeof(JsonPropertyAttribute), false);
-                if (attributes.Length == 0)
+                if (reader.TokenType == JsonToken.Null)
                 {
-                    continue;
+                    throw new InvalidOperationException("Received unexpected null JSON value");
                 }
 
-                var attribute = attributes[0] as JsonPropertyAttribute;
-                if (attribute != null && attribute.PropertyName == value)
-                {
-                    var enumVal = field.GetValue(null);
+                var json = JRaw.Create(reader).ToString();
+                var fallbackCandidates = new List<(System.Type, object, string)>();
 
-                    if (enumVal is HasVoiceActivity)
+                try
+                {
+                    var converted = Convert.ToBoolean(json);
+                    return new HasVoiceActivity(HasVoiceActivityType.Boolean)
                     {
-                        return (HasVoiceActivity)enumVal;
+                        Boolean = converted
+                    };
+                }
+                catch (System.FormatException)
+                {
+                    // try next option
+                }
+
+                try
+                {
+                    return new HasVoiceActivity(HasVoiceActivityType.Two)
+                    {
+                        Two = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<Two>(json)
+                    };
+                }
+                catch (ResponseBodyDeserializer.MissingMemberException)
+                {
+                    fallbackCandidates.Add((typeof(Two), new HasVoiceActivity(HasVoiceActivityType.Two), "Two"));
+                }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+
+                if (fallbackCandidates.Count > 0)
+                {
+                    fallbackCandidates.Sort((a, b) => ResponseBodyDeserializer.CompareFallbackCandidates(a.Item1, b.Item1, json));
+                    foreach(var (deserializationType, returnObject, propertyName) in fallbackCandidates)
+                    {
+                        try
+                        {
+                            return ResponseBodyDeserializer.DeserializeUndiscriminatedUnionFallback(deserializationType, returnObject, propertyName, json);
+                        }
+                        catch (ResponseBodyDeserializer.DeserializationException)
+                        {
+                            // try next fallback option
+                        }
+                        catch (Exception)
+                        {
+                            throw;
+                        }
                     }
+                }
+
+                throw new InvalidOperationException("Could not deserialize into any supported types.");
+            }
+
+            public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
+            {
+                if (value == null)
+                {
+                    throw new InvalidOperationException("Unexpected null JSON value.");
+                }
+
+                HasVoiceActivity res = (HasVoiceActivity)value;
+
+                if (res.Boolean != null)
+                {
+                    writer.WriteRawValue(Utilities.SerializeJSON(res.Boolean));
+                    return;
+                }
+
+                if (res.Two != null)
+                {
+                    writer.WriteRawValue(Utilities.SerializeJSON(res.Two));
+                    return;
                 }
             }
 
-            throw new Exception($"Unknown value {value} for enum HasVoiceActivity");
         }
+
     }
 }
