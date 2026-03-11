@@ -9,13 +9,13 @@ PMS returns this as string values (`"0"` or `"1"`) instead of a JSON boolean.
 ```csharp
 using LukeHagar.PlexAPI.SDK.Models.Components;
 
-var value = HasVoiceActivity.False;
+var value = HasVoiceActivity.Zero;
 ```
 
 
 ## Values
 
-| Name    | Value   |
-| ------- | ------- |
-| `False` | 0       |
-| `True`  | 1       |
+| Name   | Value  |
+| ------ | ------ |
+| `Zero` | 0      |
+| `One`  | 1      |

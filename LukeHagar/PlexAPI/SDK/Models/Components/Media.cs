@@ -48,7 +48,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         /// PMS returns this as string values (`"0"` or `"1"`) instead of a JSON boolean.
         /// </summary>
         [JsonProperty("hasVoiceActivity")]
-        public HasVoiceActivity? HasVoiceActivity { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.HasVoiceActivity.False;
+        public HasVoiceActivity? HasVoiceActivity { get; set; }
 
         [JsonProperty("height")]
         public int? Height { get; set; }
