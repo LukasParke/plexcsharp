@@ -31,7 +31,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Add items to a collection.
         /// </summary>
         /// <remarks>
-        /// Add items to a collection by uri.
+        /// Add items to a collection by uri<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="AddCollectionItemsRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="AddCollectionItemsResponse"/> response envelope when completed.</returns>
@@ -45,7 +46,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Delete an item from a collection.
         /// </summary>
         /// <remarks>
-        /// Delete an item from a collection.
+        /// Delete an item from a collection<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="DeleteCollectionItemRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="DeleteCollectionItemResponse"/> response envelope when completed.</returns>
@@ -59,7 +61,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Reorder an item in the collection.
         /// </summary>
         /// <remarks>
-        /// Reorder items in a collection with one item after another.
+        /// Reorder items in a collection with one item after another<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="MoveCollectionItemRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="MoveCollectionItemResponse"/> response envelope when completed.</returns>
@@ -90,7 +93,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Add items to a collection.
         /// </summary>
         /// <remarks>
-        /// Add items to a collection by uri.
+        /// Add items to a collection by uri<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="AddCollectionItemsRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="AddCollectionItemsResponse"/> response envelope when completed.</returns>
@@ -127,7 +131,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "addCollectionItems", null, SDKConfiguration.SecuritySource);
@@ -210,7 +214,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Delete an item from a collection.
         /// </summary>
         /// <remarks>
-        /// Delete an item from a collection.
+        /// Delete an item from a collection<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="DeleteCollectionItemRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="DeleteCollectionItemResponse"/> response envelope when completed.</returns>
@@ -247,7 +252,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "deleteCollectionItem", null, SDKConfiguration.SecuritySource);
@@ -330,7 +335,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Reorder an item in the collection.
         /// </summary>
         /// <remarks>
-        /// Reorder items in a collection with one item after another.
+        /// Reorder items in a collection with one item after another<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="MoveCollectionItemRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="MoveCollectionItemResponse"/> response envelope when completed.</returns>
@@ -367,7 +373,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "moveCollectionItem", null, SDKConfiguration.SecuritySource);

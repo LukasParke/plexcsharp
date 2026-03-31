@@ -140,7 +140,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Reset hubs to defaults.
         /// </summary>
         /// <remarks>
-        /// Reset hubs for this section to defaults and delete custom hubs.
+        /// Reset hubs for this section to defaults and delete custom hubs<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="ResetSectionDefaultsRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="ResetSectionDefaultsResponse"/> response envelope when completed.</returns>
@@ -153,7 +154,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Get hubs.
         /// </summary>
         /// <remarks>
-        /// Get the list of hubs including both built-in and custom.
+        /// Get the list of hubs including both built-in and custom<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="ListHubsRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="ListHubsResponse"/> response envelope when completed.</returns>
@@ -167,7 +169,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Create a custom hub.
         /// </summary>
         /// <remarks>
-        /// Create a custom hub based on a metadata item.
+        /// Create a custom hub based on a metadata item<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="CreateCustomHubRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="CreateCustomHubResponse"/> response envelope when completed.</returns>
@@ -180,7 +183,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Move Hub.
         /// </summary>
         /// <remarks>
-        /// Changed the ordering of a hub among others hubs.
+        /// Changed the ordering of a hub among others hubs<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="MoveHubRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="MoveHubResponse"/> response envelope when completed.</returns>
@@ -194,7 +198,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Delete a custom hub.
         /// </summary>
         /// <remarks>
-        /// Delete a custom hub from the server.
+        /// Delete a custom hub from the server<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="DeleteCustomHubRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="DeleteCustomHubResponse"/> response envelope when completed.</returns>
@@ -207,7 +212,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Change hub visibility.
         /// </summary>
         /// <remarks>
-        /// Changed the visibility of a hub for both the admin and shared users.
+        /// Changed the visibility of a hub for both the admin and shared users<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="UpdateHubVisibilityRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="UpdateHubVisibilityResponse"/> response envelope when completed.</returns>
@@ -1213,7 +1219,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Reset hubs to defaults.
         /// </summary>
         /// <remarks>
-        /// Reset hubs for this section to defaults and delete custom hubs.
+        /// Reset hubs for this section to defaults and delete custom hubs<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="ResetSectionDefaultsRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="ResetSectionDefaultsResponse"/> response envelope when completed.</returns>
@@ -1249,7 +1256,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "resetSectionDefaults", null, SDKConfiguration.SecuritySource);
@@ -1314,7 +1321,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Get hubs.
         /// </summary>
         /// <remarks>
-        /// Get the list of hubs including both built-in and custom.
+        /// Get the list of hubs including both built-in and custom<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="ListHubsRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="ListHubsResponse"/> response envelope when completed.</returns>
@@ -1351,7 +1359,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listHubs", null, SDKConfiguration.SecuritySource);
@@ -1435,7 +1443,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Create a custom hub.
         /// </summary>
         /// <remarks>
-        /// Create a custom hub based on a metadata item.
+        /// Create a custom hub based on a metadata item<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="CreateCustomHubRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="CreateCustomHubResponse"/> response envelope when completed.</returns>
@@ -1471,7 +1480,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "createCustomHub", null, SDKConfiguration.SecuritySource);
@@ -1536,7 +1545,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Move Hub.
         /// </summary>
         /// <remarks>
-        /// Changed the ordering of a hub among others hubs.
+        /// Changed the ordering of a hub among others hubs<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="MoveHubRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="MoveHubResponse"/> response envelope when completed.</returns>
@@ -1573,7 +1583,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "moveHub", null, SDKConfiguration.SecuritySource);
@@ -1657,7 +1667,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Delete a custom hub.
         /// </summary>
         /// <remarks>
-        /// Delete a custom hub from the server.
+        /// Delete a custom hub from the server<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="DeleteCustomHubRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="DeleteCustomHubResponse"/> response envelope when completed.</returns>
@@ -1693,7 +1704,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "deleteCustomHub", null, SDKConfiguration.SecuritySource);
@@ -1758,7 +1769,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Change hub visibility.
         /// </summary>
         /// <remarks>
-        /// Changed the visibility of a hub for both the admin and shared users.
+        /// Changed the visibility of a hub for both the admin and shared users<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="UpdateHubVisibilityRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="UpdateHubVisibilityResponse"/> response envelope when completed.</returns>
@@ -1794,7 +1806,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "updateHubVisibility", null, SDKConfiguration.SecuritySource);

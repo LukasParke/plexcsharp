@@ -44,7 +44,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Delete library caches.
         /// </summary>
         /// <remarks>
-        /// Delete the hub caches so they are recomputed on next request.
+        /// Delete the hub caches so they are recomputed on next request<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <returns>An awaitable task that returns a <see cref="DeleteCachesResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -55,7 +56,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Clean bundles.
         /// </summary>
         /// <remarks>
-        /// Clean out any now unused bundles. Bundles can become unused when media is deleted.
+        /// Clean out any now unused bundles. Bundles can become unused when media is deleted<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <returns>An awaitable task that returns a <see cref="CleanBundlesResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -97,7 +99,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Optimize the Database.
         /// </summary>
         /// <remarks>
-        /// Initiate optimize on the database.
+        /// Initiate optimize on the database.<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="OptimizeDatabaseRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="OptimizeDatabaseResponse"/> response envelope when completed.</returns>
@@ -137,7 +140,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Add a library section.
         /// </summary>
         /// <remarks>
-        /// Add a new library section to the server.
+        /// Add a new library section to the server<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="AddSectionRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="AddSectionResponse"/> response envelope when completed.</returns>
@@ -151,7 +155,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Stop refresh.
         /// </summary>
         /// <remarks>
-        /// Stop all refreshes across all sections.
+        /// Stop all refreshes across all sections<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <returns>An awaitable task that returns a <see cref="StopAllRefreshesResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -163,7 +168,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Get section prefs.
         /// </summary>
         /// <remarks>
-        /// Get a section's preferences for a metadata type.
+        /// Get a section's preferences for a metadata type<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="GetSectionsPrefsRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="GetSectionsPrefsResponse"/> response envelope when completed.</returns>
@@ -177,7 +183,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Refresh all sections.
         /// </summary>
         /// <remarks>
-        /// Tell PMS to refresh all section metadata.
+        /// Tell PMS to refresh all section metadata<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="RefreshSectionsMetadataRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="RefreshSectionsMetadataResponse"/> response envelope when completed.</returns>
@@ -204,7 +211,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Delete a metadata item.
         /// </summary>
         /// <remarks>
-        /// Delete a single metadata item from the library, deleting media as well.
+        /// Delete a single metadata item from the library, deleting media as well<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="DeleteMetadataItemRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="DeleteMetadataItemResponse"/> response envelope when completed.</returns>
@@ -217,7 +225,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Edit a metadata item.
         /// </summary>
         /// <remarks>
-        /// Edit metadata items setting fields.
+        /// Edit metadata items setting fields<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="EditMetadataItemRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="EditMetadataItemResponse"/> response envelope when completed.</returns>
@@ -230,7 +239,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Ad-detect an item.
         /// </summary>
         /// <remarks>
-        /// Start the detection of ads in a metadata item.
+        /// Start the detection of ads in a metadata item<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="DetectAdsRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="DetectAdsResponse"/> response envelope when completed.</returns>
@@ -257,7 +267,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Analyze an item.
         /// </summary>
         /// <remarks>
-        /// Start the analysis of a metadata item.
+        /// Start the analysis of a metadata item<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="AnalyzeMetadataRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="AnalyzeMetadataResponse"/> response envelope when completed.</returns>
@@ -270,7 +281,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Generate thumbs of chapters for an item.
         /// </summary>
         /// <remarks>
-        /// Start the chapter thumb generation for an item.
+        /// Start the chapter thumb generation for an item<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="GenerateThumbsRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="GenerateThumbsResponse"/> response envelope when completed.</returns>
@@ -283,7 +295,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Credit detect a metadata item.
         /// </summary>
         /// <remarks>
-        /// Start credit detection on a metadata item.
+        /// Start credit detection on a metadata item<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="DetectCreditsRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="DetectCreditsResponse"/> response envelope when completed.</returns>
@@ -337,7 +350,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Start BIF generation of an item.
         /// </summary>
         /// <remarks>
-        /// Start the indexing (BIF generation) of an item.
+        /// Start the indexing (BIF generation) of an item<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="StartBifGenerationRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="StartBifGenerationResponse"/> response envelope when completed.</returns>
@@ -350,7 +364,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Intro detect an item.
         /// </summary>
         /// <remarks>
-        /// Start the detection of intros in a metadata item.
+        /// Start the detection of intros in a metadata item<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="DetectIntrosRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="DetectIntrosResponse"/> response envelope when completed.</returns>
@@ -377,7 +392,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Match a metadata item.
         /// </summary>
         /// <remarks>
-        /// Match a metadata item to a guid.
+        /// Match a metadata item to a guid<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="MatchItemRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="MatchItemResponse"/> response envelope when completed.</returns>
@@ -390,7 +406,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Get metadata matches for an item.
         /// </summary>
         /// <remarks>
-        /// Get the list of metadata matches for a metadata item.
+        /// Get the list of metadata matches for a metadata item<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="ListMatchesRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="ListMatchesResponse"/> response envelope when completed.</returns>
@@ -404,7 +421,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Merge a metadata item.
         /// </summary>
         /// <remarks>
-        /// Merge a metadata item with other items.
+        /// Merge a metadata item with other items<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="MergeItemsRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="MergeItemsResponse"/> response envelope when completed.</returns>
@@ -431,7 +449,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Set metadata preferences.
         /// </summary>
         /// <remarks>
-        /// Set the preferences on a metadata item.
+        /// Set the preferences on a metadata item<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="SetItemPreferencesRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="SetItemPreferencesResponse"/> response envelope when completed.</returns>
@@ -444,7 +463,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Refresh a metadata item.
         /// </summary>
         /// <remarks>
-        /// Refresh a metadata item from the agent.
+        /// Refresh a metadata item from the agent<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="RefreshItemsMetadataRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="RefreshItemsMetadataResponse"/> response envelope when completed.</returns>
@@ -485,7 +505,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Split a metadata item.
         /// </summary>
         /// <remarks>
-        /// Split a metadata item into multiple items.
+        /// Split a metadata item into multiple items<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="SplitItemRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="SplitItemResponse"/> response envelope when completed.</returns>
@@ -498,7 +519,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Add subtitles.
         /// </summary>
         /// <remarks>
-        /// Add a subtitle to a metadata item.
+        /// Add a subtitle to a metadata item<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="AddSubtitlesRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="AddSubtitlesResponse"/> response envelope when completed.</returns>
@@ -525,7 +547,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Unmatch a metadata item.
         /// </summary>
         /// <remarks>
-        /// Unmatch a metadata item to info fetched from the agent.
+        /// Unmatch a metadata item to info fetched from the agent<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="UnmatchRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="UnmatchResponse"/> response envelope when completed.</returns>
@@ -538,7 +561,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Get metadata top users.
         /// </summary>
         /// <remarks>
-        /// Get the list of users which have played this item starting with the most.
+        /// Get the list of users which have played this item starting with the most<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="ListTopUsersRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="ListTopUsersResponse"/> response envelope when completed.</returns>
@@ -552,7 +576,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Detect voice activity.
         /// </summary>
         /// <remarks>
-        /// Start the detection of voice in a metadata item.
+        /// Start the detection of voice in a metadata item<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="DetectVoiceActivityRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="DetectVoiceActivityResponse"/> response envelope when completed.</returns>
@@ -619,7 +644,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Delete a library section.
         /// </summary>
         /// <remarks>
-        /// Delete a library section by id.
+        /// Delete a library section by id<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="DeleteLibrarySectionRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="DeleteLibrarySectionResponse"/> response envelope when completed.</returns>
@@ -646,7 +672,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Edit a library section.
         /// </summary>
         /// <remarks>
-        /// Edit a library section by id setting parameters.
+        /// Edit a library section by id setting parameters<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="EditSectionRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="EditSectionResponse"/> response envelope when completed.</returns>
@@ -716,7 +743,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Analyze a section.
         /// </summary>
         /// <remarks>
-        /// Start analysis of all items in a section.  If BIF generation is enabled, this will also be started on this section.
+        /// Start analysis of all items in a section.  If BIF generation is enabled, this will also be started on this section<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="StartAnalysisRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="StartAnalysisResponse"/> response envelope when completed.</returns>
@@ -773,7 +801,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Empty section trash.
         /// </summary>
         /// <remarks>
-        /// Empty trash in the section, permanently deleting media/metadata for missing media.
+        /// Empty trash in the section, permanently deleting media/metadata for missing media<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="EmptyTrashRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="EmptyTrashResponse"/> response envelope when completed.</returns>
@@ -786,7 +815,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Get section filters.
         /// </summary>
         /// <remarks>
-        /// Get common filters on a section.
+        /// Get common filters on a section<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="GetSectionFiltersRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="GetSectionFiltersResponse"/> response envelope when completed.</returns>
@@ -814,7 +844,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Delete section indexes.
         /// </summary>
         /// <remarks>
-        /// Delete all the indexes in a section.
+        /// Delete all the indexes in a section<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="DeleteIndexesRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="DeleteIndexesResponse"/> response envelope when completed.</returns>
@@ -827,7 +858,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Delete section intro markers.
         /// </summary>
         /// <remarks>
-        /// Delete all the intro markers in a section.
+        /// Delete all the intro markers in a section<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="DeleteIntrosRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="DeleteIntrosResponse"/> response envelope when completed.</returns>
@@ -854,7 +886,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Set section prefs.
         /// </summary>
         /// <remarks>
-        /// Set the prefs for a section by id.
+        /// Set the prefs for a section by id<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="SetSectionPreferencesRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="SetSectionPreferencesResponse"/> response envelope when completed.</returns>
@@ -867,7 +900,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Cancel section refresh.
         /// </summary>
         /// <remarks>
-        /// Cancel the refresh of a section.
+        /// Cancel the refresh of a section<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="CancelRefreshRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="CancelRefreshResponse"/> response envelope when completed.</returns>
@@ -880,7 +914,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Refresh section.
         /// </summary>
         /// <remarks>
-        /// Start a refresh of this section.
+        /// Start a refresh of this section<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="RefreshSectionRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="RefreshSectionResponse"/> response envelope when completed.</returns>
@@ -1004,7 +1039,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Delete a media item.
         /// </summary>
         /// <remarks>
-        /// Delete a single media from a metadata item in the library.
+        /// Delete a single media from a metadata item in the library<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="DeleteMediaItemRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="DeleteMediaItemResponse"/> response envelope when completed.</returns>
@@ -1031,7 +1067,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Delete a collection.
         /// </summary>
         /// <remarks>
-        /// Delete a library collection from the PMS.
+        /// Delete a library collection from the PMS<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="DeleteCollectionRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="DeleteCollectionResponse"/> response envelope when completed.</returns>
@@ -1044,7 +1081,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Get a section composite image.
         /// </summary>
         /// <remarks>
-        /// Get a composite image of images in this section.
+        /// Get a composite image of images in this section<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="GetSectionImageRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="GetSectionImageResponse"/> response envelope when completed.</returns>
@@ -1279,7 +1317,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Delete library caches.
         /// </summary>
         /// <remarks>
-        /// Delete the hub caches so they are recomputed on next request.
+        /// Delete the hub caches so they are recomputed on next request<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <returns>An awaitable task that returns a <see cref="DeleteCachesResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -1299,7 +1338,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "deleteCaches", null, SDKConfiguration.SecuritySource);
@@ -1364,7 +1403,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Clean bundles.
         /// </summary>
         /// <remarks>
-        /// Clean out any now unused bundles. Bundles can become unused when media is deleted.
+        /// Clean out any now unused bundles. Bundles can become unused when media is deleted<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <returns>An awaitable task that returns a <see cref="CleanBundlesResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -1384,7 +1424,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "cleanBundles", null, SDKConfiguration.SecuritySource);
@@ -1702,7 +1742,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Optimize the Database.
         /// </summary>
         /// <remarks>
-        /// Initiate optimize on the database.
+        /// Initiate optimize on the database.<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="OptimizeDatabaseRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="OptimizeDatabaseResponse"/> response envelope when completed.</returns>
@@ -1740,7 +1781,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "optimizeDatabase", null, SDKConfiguration.SecuritySource);
@@ -2035,7 +2076,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Add a library section.
         /// </summary>
         /// <remarks>
-        /// Add a new library section to the server.
+        /// Add a new library section to the server<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="AddSectionRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="AddSectionResponse"/> response envelope when completed.</returns>
@@ -2072,7 +2114,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "addSection", null, SDKConfiguration.SecuritySource);
@@ -2155,7 +2197,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Stop refresh.
         /// </summary>
         /// <remarks>
-        /// Stop all refreshes across all sections.
+        /// Stop all refreshes across all sections<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <returns>An awaitable task that returns a <see cref="StopAllRefreshesResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -2176,7 +2219,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "stopAllRefreshes", null, SDKConfiguration.SecuritySource);
@@ -2259,7 +2302,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Get section prefs.
         /// </summary>
         /// <remarks>
-        /// Get a section's preferences for a metadata type.
+        /// Get a section's preferences for a metadata type<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="GetSectionsPrefsRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="GetSectionsPrefsResponse"/> response envelope when completed.</returns>
@@ -2296,7 +2340,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getSectionsPrefs", null, SDKConfiguration.SecuritySource);
@@ -2379,7 +2423,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Refresh all sections.
         /// </summary>
         /// <remarks>
-        /// Tell PMS to refresh all section metadata.
+        /// Tell PMS to refresh all section metadata<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="RefreshSectionsMetadataRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="RefreshSectionsMetadataResponse"/> response envelope when completed.</returns>
@@ -2419,7 +2464,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "refreshSectionsMetadata", null, SDKConfiguration.SecuritySource);
@@ -2606,7 +2651,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Delete a metadata item.
         /// </summary>
         /// <remarks>
-        /// Delete a single metadata item from the library, deleting media as well.
+        /// Delete a single metadata item from the library, deleting media as well<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="DeleteMetadataItemRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="DeleteMetadataItemResponse"/> response envelope when completed.</returns>
@@ -2642,7 +2688,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "deleteMetadataItem", null, SDKConfiguration.SecuritySource);
@@ -2707,7 +2753,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Edit a metadata item.
         /// </summary>
         /// <remarks>
-        /// Edit metadata items setting fields.
+        /// Edit metadata items setting fields<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="EditMetadataItemRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="EditMetadataItemResponse"/> response envelope when completed.</returns>
@@ -2743,7 +2790,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "editMetadataItem", null, SDKConfiguration.SecuritySource);
@@ -2808,7 +2855,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Ad-detect an item.
         /// </summary>
         /// <remarks>
-        /// Start the detection of ads in a metadata item.
+        /// Start the detection of ads in a metadata item<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="DetectAdsRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="DetectAdsResponse"/> response envelope when completed.</returns>
@@ -2844,7 +2892,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "detectAds", null, SDKConfiguration.SecuritySource);
@@ -3030,7 +3078,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Analyze an item.
         /// </summary>
         /// <remarks>
-        /// Start the analysis of a metadata item.
+        /// Start the analysis of a metadata item<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="AnalyzeMetadataRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="AnalyzeMetadataResponse"/> response envelope when completed.</returns>
@@ -3066,7 +3115,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "analyzeMetadata", null, SDKConfiguration.SecuritySource);
@@ -3131,7 +3180,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Generate thumbs of chapters for an item.
         /// </summary>
         /// <remarks>
-        /// Start the chapter thumb generation for an item.
+        /// Start the chapter thumb generation for an item<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="GenerateThumbsRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="GenerateThumbsResponse"/> response envelope when completed.</returns>
@@ -3167,7 +3217,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "generateThumbs", null, SDKConfiguration.SecuritySource);
@@ -3232,7 +3282,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Credit detect a metadata item.
         /// </summary>
         /// <remarks>
-        /// Start credit detection on a metadata item.
+        /// Start credit detection on a metadata item<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="DetectCreditsRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="DetectCreditsResponse"/> response envelope when completed.</returns>
@@ -3268,7 +3319,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "detectCredits", null, SDKConfiguration.SecuritySource);
@@ -3675,7 +3726,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Start BIF generation of an item.
         /// </summary>
         /// <remarks>
-        /// Start the indexing (BIF generation) of an item.
+        /// Start the indexing (BIF generation) of an item<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="StartBifGenerationRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="StartBifGenerationResponse"/> response envelope when completed.</returns>
@@ -3711,7 +3763,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "startBifGeneration", null, SDKConfiguration.SecuritySource);
@@ -3776,7 +3828,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Intro detect an item.
         /// </summary>
         /// <remarks>
-        /// Start the detection of intros in a metadata item.
+        /// Start the detection of intros in a metadata item<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="DetectIntrosRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="DetectIntrosResponse"/> response envelope when completed.</returns>
@@ -3812,7 +3865,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "detectIntros", null, SDKConfiguration.SecuritySource);
@@ -3997,7 +4050,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Match a metadata item.
         /// </summary>
         /// <remarks>
-        /// Match a metadata item to a guid.
+        /// Match a metadata item to a guid<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="MatchItemRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="MatchItemResponse"/> response envelope when completed.</returns>
@@ -4033,7 +4087,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "matchItem", null, SDKConfiguration.SecuritySource);
@@ -4098,7 +4152,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Get metadata matches for an item.
         /// </summary>
         /// <remarks>
-        /// Get the list of metadata matches for a metadata item.
+        /// Get the list of metadata matches for a metadata item<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="ListMatchesRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="ListMatchesResponse"/> response envelope when completed.</returns>
@@ -4135,7 +4190,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listMatches", null, SDKConfiguration.SecuritySource);
@@ -4218,7 +4273,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Merge a metadata item.
         /// </summary>
         /// <remarks>
-        /// Merge a metadata item with other items.
+        /// Merge a metadata item with other items<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="MergeItemsRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="MergeItemsResponse"/> response envelope when completed.</returns>
@@ -4254,7 +4310,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "mergeItems", null, SDKConfiguration.SecuritySource);
@@ -4439,7 +4495,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Set metadata preferences.
         /// </summary>
         /// <remarks>
-        /// Set the preferences on a metadata item.
+        /// Set the preferences on a metadata item<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="SetItemPreferencesRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="SetItemPreferencesResponse"/> response envelope when completed.</returns>
@@ -4475,7 +4532,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "setItemPreferences", null, SDKConfiguration.SecuritySource);
@@ -4540,7 +4597,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Refresh a metadata item.
         /// </summary>
         /// <remarks>
-        /// Refresh a metadata item from the agent.
+        /// Refresh a metadata item from the agent<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="RefreshItemsMetadataRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="RefreshItemsMetadataResponse"/> response envelope when completed.</returns>
@@ -4576,7 +4634,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "refreshItemsMetadata", null, SDKConfiguration.SecuritySource);
@@ -4881,7 +4939,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Split a metadata item.
         /// </summary>
         /// <remarks>
-        /// Split a metadata item into multiple items.
+        /// Split a metadata item into multiple items<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="SplitItemRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="SplitItemResponse"/> response envelope when completed.</returns>
@@ -4917,7 +4976,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "splitItem", null, SDKConfiguration.SecuritySource);
@@ -4982,7 +5041,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Add subtitles.
         /// </summary>
         /// <remarks>
-        /// Add a subtitle to a metadata item.
+        /// Add a subtitle to a metadata item<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="AddSubtitlesRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="AddSubtitlesResponse"/> response envelope when completed.</returns>
@@ -5018,7 +5078,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "addSubtitles", null, SDKConfiguration.SecuritySource);
@@ -5203,7 +5263,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Unmatch a metadata item.
         /// </summary>
         /// <remarks>
-        /// Unmatch a metadata item to info fetched from the agent.
+        /// Unmatch a metadata item to info fetched from the agent<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="UnmatchRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="UnmatchResponse"/> response envelope when completed.</returns>
@@ -5239,7 +5300,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "unmatch", null, SDKConfiguration.SecuritySource);
@@ -5304,7 +5365,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Get metadata top users.
         /// </summary>
         /// <remarks>
-        /// Get the list of users which have played this item starting with the most.
+        /// Get the list of users which have played this item starting with the most<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="ListTopUsersRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="ListTopUsersResponse"/> response envelope when completed.</returns>
@@ -5341,7 +5403,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listTopUsers", null, SDKConfiguration.SecuritySource);
@@ -5424,7 +5486,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Detect voice activity.
         /// </summary>
         /// <remarks>
-        /// Start the detection of voice in a metadata item.
+        /// Start the detection of voice in a metadata item<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="DetectVoiceActivityRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="DetectVoiceActivityResponse"/> response envelope when completed.</returns>
@@ -5460,7 +5523,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "detectVoiceActivity", null, SDKConfiguration.SecuritySource);
@@ -5969,7 +6032,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Delete a library section.
         /// </summary>
         /// <remarks>
-        /// Delete a library section by id.
+        /// Delete a library section by id<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="DeleteLibrarySectionRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="DeleteLibrarySectionResponse"/> response envelope when completed.</returns>
@@ -6005,7 +6069,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "deleteLibrarySection", null, SDKConfiguration.SecuritySource);
@@ -6190,7 +6254,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Edit a library section.
         /// </summary>
         /// <remarks>
-        /// Edit a library section by id setting parameters.
+        /// Edit a library section by id setting parameters<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="EditSectionRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="EditSectionResponse"/> response envelope when completed.</returns>
@@ -6226,7 +6291,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "editSection", null, SDKConfiguration.SecuritySource);
@@ -6436,7 +6501,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Analyze a section.
         /// </summary>
         /// <remarks>
-        /// Start analysis of all items in a section.  If BIF generation is enabled, this will also be started on this section.
+        /// Start analysis of all items in a section.  If BIF generation is enabled, this will also be started on this section<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="StartAnalysisRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="StartAnalysisResponse"/> response envelope when completed.</returns>
@@ -6472,7 +6538,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "startAnalysis", null, SDKConfiguration.SecuritySource);
@@ -6902,7 +6968,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Empty section trash.
         /// </summary>
         /// <remarks>
-        /// Empty trash in the section, permanently deleting media/metadata for missing media.
+        /// Empty trash in the section, permanently deleting media/metadata for missing media<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="EmptyTrashRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="EmptyTrashResponse"/> response envelope when completed.</returns>
@@ -6938,7 +7005,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "emptyTrash", null, SDKConfiguration.SecuritySource);
@@ -7003,7 +7070,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Get section filters.
         /// </summary>
         /// <remarks>
-        /// Get common filters on a section.
+        /// Get common filters on a section<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="GetSectionFiltersRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="GetSectionFiltersResponse"/> response envelope when completed.</returns>
@@ -7040,7 +7108,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getSectionFilters", null, SDKConfiguration.SecuritySource);
@@ -7243,7 +7311,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Delete section indexes.
         /// </summary>
         /// <remarks>
-        /// Delete all the indexes in a section.
+        /// Delete all the indexes in a section<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="DeleteIndexesRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="DeleteIndexesResponse"/> response envelope when completed.</returns>
@@ -7279,7 +7348,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "deleteIndexes", null, SDKConfiguration.SecuritySource);
@@ -7344,7 +7413,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Delete section intro markers.
         /// </summary>
         /// <remarks>
-        /// Delete all the intro markers in a section.
+        /// Delete all the intro markers in a section<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="DeleteIntrosRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="DeleteIntrosResponse"/> response envelope when completed.</returns>
@@ -7380,7 +7450,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "deleteIntros", null, SDKConfiguration.SecuritySource);
@@ -7567,7 +7637,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Set section prefs.
         /// </summary>
         /// <remarks>
-        /// Set the prefs for a section by id.
+        /// Set the prefs for a section by id<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="SetSectionPreferencesRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="SetSectionPreferencesResponse"/> response envelope when completed.</returns>
@@ -7605,7 +7676,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "setSectionPreferences", null, SDKConfiguration.SecuritySource);
@@ -7670,7 +7741,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Cancel section refresh.
         /// </summary>
         /// <remarks>
-        /// Cancel the refresh of a section.
+        /// Cancel the refresh of a section<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="CancelRefreshRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="CancelRefreshResponse"/> response envelope when completed.</returns>
@@ -7706,7 +7778,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "cancelRefresh", null, SDKConfiguration.SecuritySource);
@@ -7771,7 +7843,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Refresh section.
         /// </summary>
         /// <remarks>
-        /// Start a refresh of this section.
+        /// Start a refresh of this section<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="RefreshSectionRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="RefreshSectionResponse"/> response envelope when completed.</returns>
@@ -7807,7 +7880,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "refreshSection", null, SDKConfiguration.SecuritySource);
@@ -8755,7 +8828,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Delete a media item.
         /// </summary>
         /// <remarks>
-        /// Delete a single media from a metadata item in the library.
+        /// Delete a single media from a metadata item in the library<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="DeleteMediaItemRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="DeleteMediaItemResponse"/> response envelope when completed.</returns>
@@ -8791,7 +8865,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "deleteMediaItem", null, SDKConfiguration.SecuritySource);
@@ -8965,7 +9039,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Delete a collection.
         /// </summary>
         /// <remarks>
-        /// Delete a library collection from the PMS.
+        /// Delete a library collection from the PMS<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="DeleteCollectionRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="DeleteCollectionResponse"/> response envelope when completed.</returns>
@@ -9001,7 +9076,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "deleteCollection", null, SDKConfiguration.SecuritySource);
@@ -9066,7 +9141,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Get a section composite image.
         /// </summary>
         /// <remarks>
-        /// Get a composite image of images in this section.
+        /// Get a composite image of images in this section<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="GetSectionImageRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="GetSectionImageResponse"/> response envelope when completed.</returns>
@@ -9102,7 +9178,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getSectionImage", null, SDKConfiguration.SecuritySource);

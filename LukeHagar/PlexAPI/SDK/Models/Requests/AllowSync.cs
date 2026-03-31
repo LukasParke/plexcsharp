@@ -9,14 +9,176 @@
 #nullable enable
 namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
+    using LukeHagar.PlexAPI.SDK.Models.Requests;
     using LukeHagar.PlexAPI.SDK.Utils;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
+    using System;
+    using System.Collections.Generic;
+    using System.Numerics;
+    using System.Reflection;
 
-    /// <summary>
-    /// Indicates if the user is allowed to sync media.
-    /// </summary>
-    public enum AllowSync
+    public class AllowSyncType
     {
-        Disable = 0,
-        Enable = 1,
+        private AllowSyncType(string value) { Value = value; }
+
+        public string Value { get; private set; }
+
+        public static AllowSyncType Boolean { get { return new AllowSyncType("boolean"); } }
+
+        public static AllowSyncType Two { get { return new AllowSyncType("2"); } }
+
+        public override string ToString() { return Value; }
+        public static implicit operator String(AllowSyncType v) { return v.Value; }
+        public static AllowSyncType FromString(string v) {
+            switch(v) {
+                case "boolean": return Boolean;
+                case "2": return Two;
+                default: throw new ArgumentException("Invalid value for AllowSyncType");
+            }
+        }
+        public override bool Equals(object? obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+            return Value.Equals(((AllowSyncType)obj).Value);
+        }
+
+        public override int GetHashCode()
+        {
+            return Value.GetHashCode();
+        }
+    }
+
+    [JsonConverter(typeof(AllowSync.AllowSyncConverter))]
+    public class AllowSync
+    {
+        public AllowSync(AllowSyncType type)
+        {
+            Type = type;
+        }
+
+        [SpeakeasyMetadata("form:explode=true")]
+        public bool? Boolean { get; set; }
+
+        [SpeakeasyMetadata("form:explode=true")]
+        public Models.Requests.Two? Two { get; set; }
+
+        public AllowSyncType Type { get; set; }
+        public static AllowSync CreateBoolean(bool boolean)
+        {
+            AllowSyncType typ = AllowSyncType.Boolean;
+
+            AllowSync res = new AllowSync(typ);
+            res.Boolean = boolean;
+            return res;
+        }
+        public static AllowSync CreateTwo(Models.Requests.Two two)
+        {
+            AllowSyncType typ = AllowSyncType.Two;
+
+            AllowSync res = new AllowSync(typ);
+            res.Two = two;
+            return res;
+        }
+
+        public class AllowSyncConverter : JsonConverter
+        {
+            public override bool CanConvert(System.Type objectType) => objectType == typeof(AllowSync);
+
+            public override bool CanRead => true;
+
+            public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
+            {
+                if (reader.TokenType == JsonToken.Null)
+                {
+                    throw new InvalidOperationException("Received unexpected null JSON value");
+                }
+
+                var json = JRaw.Create(reader).ToString();
+                var fallbackCandidates = new List<(System.Type, object, string)>();
+
+                try
+                {
+                    var converted = Convert.ToBoolean(json);
+                    return new AllowSync(AllowSyncType.Boolean)
+                    {
+                        Boolean = converted
+                    };
+                }
+                catch (System.FormatException)
+                {
+                    // try next option
+                }
+
+                try
+                {
+                    return new AllowSync(AllowSyncType.Two)
+                    {
+                        Two = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<Models.Requests.Two>(json)
+                    };
+                }
+                catch (ResponseBodyDeserializer.MissingMemberException)
+                {
+                    fallbackCandidates.Add((typeof(Models.Requests.Two), new AllowSync(AllowSyncType.Two), "Two"));
+                }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+
+                if (fallbackCandidates.Count > 0)
+                {
+                    fallbackCandidates.Sort((a, b) => ResponseBodyDeserializer.CompareFallbackCandidates(a.Item1, b.Item1, json));
+                    foreach(var (deserializationType, returnObject, propertyName) in fallbackCandidates)
+                    {
+                        try
+                        {
+                            return ResponseBodyDeserializer.DeserializeUndiscriminatedUnionFallback(deserializationType, returnObject, propertyName, json);
+                        }
+                        catch (ResponseBodyDeserializer.DeserializationException)
+                        {
+                            // try next fallback option
+                        }
+                        catch (Exception)
+                        {
+                            throw;
+                        }
+                    }
+                }
+
+                throw new InvalidOperationException("Could not deserialize into any supported types.");
+            }
+
+            public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
+            {
+                if (value == null)
+                {
+                    throw new InvalidOperationException("Unexpected null JSON value.");
+                }
+
+                AllowSync res = (AllowSync)value;
+
+                if (res.Boolean != null)
+                {
+                    writer.WriteRawValue(Utilities.SerializeJSON(res.Boolean));
+                    return;
+                }
+
+                if (res.Two != null)
+                {
+                    writer.WriteRawValue(Utilities.SerializeJSON(res.Two));
+                    return;
+                }
+            }
+
+        }
+
     }
 }

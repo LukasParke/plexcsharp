@@ -31,8 +31,8 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         [JsonProperty("agent")]
         public string? Agent { get; set; }
 
-        [JsonProperty("allowSync")]
-        public bool? AllowSync { get; set; }
+        [JsonProperty("allowSync", NullValueHandling = NullValueHandling.Include)]
+        public LibrarySectionAllowSync? AllowSync { get; set; }
 
         [JsonProperty("art")]
         public string? Art { get; set; }

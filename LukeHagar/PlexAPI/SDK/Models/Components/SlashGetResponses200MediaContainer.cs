@@ -25,8 +25,8 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         [JsonProperty("content")]
         public string? Content { get; set; }
 
-        [JsonProperty("allowSync")]
-        public bool? AllowSync { get; set; }
+        [JsonProperty("allowSync", NullValueHandling = NullValueHandling.Include)]
+        public SlashGetResponses200AllowSync? AllowSync { get; set; }
 
         [JsonProperty("art")]
         public string? Art { get; set; }

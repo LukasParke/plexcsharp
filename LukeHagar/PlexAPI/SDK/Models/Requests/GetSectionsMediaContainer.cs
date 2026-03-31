@@ -39,8 +39,8 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         [JsonProperty("totalSize")]
         public long? TotalSize { get; set; }
 
-        [JsonProperty("allowSync")]
-        public bool? AllowSync { get; set; }
+        [JsonProperty("allowSync", NullValueHandling = NullValueHandling.Include)]
+        public Models.Components.AllowSync? AllowSync { get; set; }
 
         [JsonProperty("Directory")]
         public List<LibrarySection>? Directory { get; set; }

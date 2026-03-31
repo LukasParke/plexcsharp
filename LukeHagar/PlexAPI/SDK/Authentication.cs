@@ -28,7 +28,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Get Token Details.
         /// </summary>
         /// <remarks>
-        /// Get the User data from the provided X-Plex-Token.
+        /// Get the User data from the provided X-Plex-Token<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="GetTokenDetailsRequest"/> parameter.</param>
         /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
@@ -94,7 +95,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Get Token Details.
         /// </summary>
         /// <remarks>
-        /// Get the User data from the provided X-Plex-Token.
+        /// Get the User data from the provided X-Plex-Token<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="GetTokenDetailsRequest"/> parameter.</param>
         /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
@@ -144,7 +146,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getTokenDetails", null, SDKConfiguration.SecuritySource);

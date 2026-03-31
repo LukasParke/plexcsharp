@@ -150,7 +150,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Re-order a subscription.
         /// </summary>
         /// <remarks>
-        /// Re-order a subscription to change its priority.
+        /// Re-order a subscription to change its priority<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="ReorderSubscriptionRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="ReorderSubscriptionResponse"/> response envelope when completed.</returns>
@@ -1188,7 +1189,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Re-order a subscription.
         /// </summary>
         /// <remarks>
-        /// Re-order a subscription to change its priority.
+        /// Re-order a subscription to change its priority<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="ReorderSubscriptionRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="ReorderSubscriptionResponse"/> response envelope when completed.</returns>
@@ -1225,7 +1227,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "reorderSubscription", null, SDKConfiguration.SecuritySource);

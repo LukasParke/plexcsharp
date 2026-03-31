@@ -47,7 +47,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Cancel a running activity.
         /// </summary>
         /// <remarks>
-        /// Cancel a running activity.  Admins can cancel all activities but other users can only cancel their own.
+        /// Cancel a running activity.  Admins can cancel all activities but other users can only cancel their own<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="CancelActivityRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="CancelActivityResponse"/> response envelope when completed.</returns>
@@ -185,7 +186,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Cancel a running activity.
         /// </summary>
         /// <remarks>
-        /// Cancel a running activity.  Admins can cancel all activities but other users can only cancel their own.
+        /// Cancel a running activity.  Admins can cancel all activities but other users can only cancel their own<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="CancelActivityRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="CancelActivityResponse"/> response envelope when completed.</returns>
@@ -221,7 +223,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "cancelActivity", null, SDKConfiguration.SecuritySource);

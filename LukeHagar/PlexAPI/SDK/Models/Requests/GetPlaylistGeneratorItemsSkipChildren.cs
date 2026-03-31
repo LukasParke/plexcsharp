@@ -26,14 +26,14 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 
         public static GetPlaylistGeneratorItemsSkipChildrenType Boolean { get { return new GetPlaylistGeneratorItemsSkipChildrenType("boolean"); } }
 
-        public static GetPlaylistGeneratorItemsSkipChildrenType SkipChildren2 { get { return new GetPlaylistGeneratorItemsSkipChildrenType("skipChildren_2"); } }
+        public static GetPlaylistGeneratorItemsSkipChildrenType GetPlaylistGeneratorItemsSkipChildren2 { get { return new GetPlaylistGeneratorItemsSkipChildrenType("getPlaylistGeneratorItems_skipChildren_2"); } }
 
         public override string ToString() { return Value; }
         public static implicit operator String(GetPlaylistGeneratorItemsSkipChildrenType v) { return v.Value; }
         public static GetPlaylistGeneratorItemsSkipChildrenType FromString(string v) {
             switch(v) {
                 case "boolean": return Boolean;
-                case "skipChildren_2": return SkipChildren2;
+                case "getPlaylistGeneratorItems_skipChildren_2": return GetPlaylistGeneratorItemsSkipChildren2;
                 default: throw new ArgumentException("Invalid value for GetPlaylistGeneratorItemsSkipChildrenType");
             }
         }
@@ -67,7 +67,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public bool? Boolean { get; set; }
 
         [SpeakeasyMetadata("form:explode=true")]
-        public Models.Requests.SkipChildren2? SkipChildren2 { get; set; }
+        public GetPlaylistGeneratorItemsSkipChildren2? GetPlaylistGeneratorItemsSkipChildren2 { get; set; }
 
         public GetPlaylistGeneratorItemsSkipChildrenType Type { get; set; }
         public static GetPlaylistGeneratorItemsSkipChildren CreateBoolean(bool boolean)
@@ -78,12 +78,12 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
             res.Boolean = boolean;
             return res;
         }
-        public static GetPlaylistGeneratorItemsSkipChildren CreateSkipChildren2(Models.Requests.SkipChildren2 skipChildren2)
+        public static GetPlaylistGeneratorItemsSkipChildren CreateGetPlaylistGeneratorItemsSkipChildren2(GetPlaylistGeneratorItemsSkipChildren2 getPlaylistGeneratorItemsSkipChildren2)
         {
-            GetPlaylistGeneratorItemsSkipChildrenType typ = GetPlaylistGeneratorItemsSkipChildrenType.SkipChildren2;
+            GetPlaylistGeneratorItemsSkipChildrenType typ = GetPlaylistGeneratorItemsSkipChildrenType.GetPlaylistGeneratorItemsSkipChildren2;
 
             GetPlaylistGeneratorItemsSkipChildren res = new GetPlaylistGeneratorItemsSkipChildren(typ);
-            res.SkipChildren2 = skipChildren2;
+            res.GetPlaylistGeneratorItemsSkipChildren2 = getPlaylistGeneratorItemsSkipChildren2;
             return res;
         }
 
@@ -118,14 +118,14 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 
                 try
                 {
-                    return new GetPlaylistGeneratorItemsSkipChildren(GetPlaylistGeneratorItemsSkipChildrenType.SkipChildren2)
+                    return new GetPlaylistGeneratorItemsSkipChildren(GetPlaylistGeneratorItemsSkipChildrenType.GetPlaylistGeneratorItemsSkipChildren2)
                     {
-                        SkipChildren2 = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<Models.Requests.SkipChildren2>(json)
+                        GetPlaylistGeneratorItemsSkipChildren2 = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<GetPlaylistGeneratorItemsSkipChildren2>(json)
                     };
                 }
                 catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    fallbackCandidates.Add((typeof(Models.Requests.SkipChildren2), new GetPlaylistGeneratorItemsSkipChildren(GetPlaylistGeneratorItemsSkipChildrenType.SkipChildren2), "SkipChildren2"));
+                    fallbackCandidates.Add((typeof(GetPlaylistGeneratorItemsSkipChildren2), new GetPlaylistGeneratorItemsSkipChildren(GetPlaylistGeneratorItemsSkipChildrenType.GetPlaylistGeneratorItemsSkipChildren2), "GetPlaylistGeneratorItemsSkipChildren2"));
                 }
                 catch (ResponseBodyDeserializer.DeserializationException)
                 {
@@ -174,9 +174,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
                     return;
                 }
 
-                if (res.SkipChildren2 != null)
+                if (res.GetPlaylistGeneratorItemsSkipChildren2 != null)
                 {
-                    writer.WriteRawValue(Utilities.SerializeJSON(res.SkipChildren2));
+                    writer.WriteRawValue(Utilities.SerializeJSON(res.GetPlaylistGeneratorItemsSkipChildren2));
                     return;
                 }
             }

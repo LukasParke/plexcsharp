@@ -32,7 +32,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Applying updates.
         /// </summary>
         /// <remarks>
-        /// Apply any downloaded updates.  Note that the two parameters `tonight` and `skip` are effectively mutually exclusive. The `tonight` parameter takes precedence and `skip` will be ignored if `tonight` is also passed.
+        /// Apply any downloaded updates.  Note that the two parameters `tonight` and `skip` are effectively mutually exclusive. The `tonight` parameter takes precedence and `skip` will be ignored if `tonight` is also passed.<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="ApplyUpdatesRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="ApplyUpdatesResponse"/> response envelope when completed.</returns>
@@ -44,7 +45,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Checking for updates.
         /// </summary>
         /// <remarks>
-        /// Perform an update check and potentially download.
+        /// Perform an update check and potentially download<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="CheckUpdatesRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="CheckUpdatesResponse"/> response envelope when completed.</returns>
@@ -56,7 +58,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Querying status of updates.
         /// </summary>
         /// <remarks>
-        /// Get the status of updating the server.
+        /// Get the status of updating the server<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <returns>An awaitable task that returns a <see cref="GetUpdatesStatusResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -86,7 +89,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Applying updates.
         /// </summary>
         /// <remarks>
-        /// Apply any downloaded updates.  Note that the two parameters `tonight` and `skip` are effectively mutually exclusive. The `tonight` parameter takes precedence and `skip` will be ignored if `tonight` is also passed.
+        /// Apply any downloaded updates.  Note that the two parameters `tonight` and `skip` are effectively mutually exclusive. The `tonight` parameter takes precedence and `skip` will be ignored if `tonight` is also passed.<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="ApplyUpdatesRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="ApplyUpdatesResponse"/> response envelope when completed.</returns>
@@ -124,7 +128,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "applyUpdates", null, SDKConfiguration.SecuritySource);
@@ -189,7 +193,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Checking for updates.
         /// </summary>
         /// <remarks>
-        /// Perform an update check and potentially download.
+        /// Perform an update check and potentially download<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="CheckUpdatesRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="CheckUpdatesResponse"/> response envelope when completed.</returns>
@@ -227,7 +232,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "checkUpdates", null, SDKConfiguration.SecuritySource);
@@ -292,7 +297,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Querying status of updates.
         /// </summary>
         /// <remarks>
-        /// Get the status of updating the server.
+        /// Get the status of updating the server<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <returns>An awaitable task that returns a <see cref="GetUpdatesStatusResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -313,7 +319,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getUpdatesStatus", null, SDKConfiguration.SecuritySource);

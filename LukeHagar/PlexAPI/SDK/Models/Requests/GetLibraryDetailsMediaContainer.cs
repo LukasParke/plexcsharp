@@ -10,6 +10,7 @@
 namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
     using LukeHagar.PlexAPI.SDK.Models.Components;
+    using LukeHagar.PlexAPI.SDK.Models.Requests;
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
@@ -25,8 +26,8 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         [JsonProperty("content")]
         public string? Content { get; set; }
 
-        [JsonProperty("allowSync")]
-        public bool? AllowSync { get; set; }
+        [JsonProperty("allowSync", NullValueHandling = NullValueHandling.Include)]
+        public Models.Requests.AllowSync? AllowSync { get; set; }
 
         [JsonProperty("art")]
         public string? Art { get; set; }

@@ -11,8 +11,8 @@ When found on a show item, indicates that the children (seasons) should be skipp
 GetPlaylistGeneratorItemsSkipChildren.CreateBoolean(/* values here */);
 ```
 
-### SkipChildren2
+### GetPlaylistGeneratorItemsSkipChildren2
 
 ```csharp
-GetPlaylistGeneratorItemsSkipChildren.CreateSkipChildren2(/* values here */);
+GetPlaylistGeneratorItemsSkipChildren.CreateGetPlaylistGeneratorItemsSkipChildren2(/* values here */);
 ```

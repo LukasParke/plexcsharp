@@ -11,8 +11,8 @@ When found on a show item, indicates that the children (seasons) should be skipp
 SkipChildren.CreateBoolean(/* values here */);
 ```
 
-### Two
+### SkipChildren2
 
 ```csharp
-SkipChildren.CreateTwo(/* values here */);
+SkipChildren.CreateSkipChildren2(/* values here */);
 ```

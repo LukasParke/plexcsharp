@@ -11,6 +11,7 @@ namespace LukeHagar.PlexAPI.SDK.Utils
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Net.Http;
     using System.Reflection;
     using System.Text;
@@ -22,9 +23,9 @@ namespace LukeHagar.PlexAPI.SDK.Utils
         private Dictionary<string, string> headerParams { get; } = new Dictionary<string, string>();
         private Dictionary<string, string> queryParams { get; } = new Dictionary<string, string>();
 
-        public SecurityMetadata(Func<object> securitySource)
+        public SecurityMetadata(Func<object> securitySource, string[]? allowedFields = null)
         {
-            ParseSecuritySource(securitySource);
+            ParseSecuritySource(securitySource, allowedFields);
         }
 
         public HttpRequestMessage Apply(HttpRequestMessage request)
@@ -49,7 +50,7 @@ namespace LukeHagar.PlexAPI.SDK.Utils
             return request;
         }
 
-        private void ParseSecuritySource(Func<object> securitySource)
+        private void ParseSecuritySource(Func<object> securitySource, string[]? allowedFields)
         {
             if (securitySource == null)
             {
@@ -62,7 +63,16 @@ namespace LukeHagar.PlexAPI.SDK.Utils
                 return;
             }
 
-            foreach (var prop in security.GetType().GetProperties())
+            var allProps = security.GetType().GetProperties();
+            PropertyInfo[] props = allowedFields != null
+                ? allowedFields
+                    .Select(name => allProps.FirstOrDefault(p => p.Name == name))
+                    .Where(p => p != null)
+                    .Cast<PropertyInfo>()
+                    .ToArray()
+                : allProps;
+
+            foreach (var prop in props)
             {
                 var value = prop.GetValue(security, null);
                 if (value == null)
@@ -79,6 +89,7 @@ namespace LukeHagar.PlexAPI.SDK.Utils
                 if (secMetadata.Option)
                 {
                     ParseOption(value);
+                    return;
                 }
                 else if (secMetadata.Scheme)
                 {
@@ -90,6 +101,11 @@ namespace LukeHagar.PlexAPI.SDK.Utils
                     else
                     {
                         ParseScheme(secMetadata, value);
+                    }
+
+                    if (!secMetadata.Composite)
+                    {
+                        return;
                     }
                 }
             }
@@ -112,25 +128,15 @@ namespace LukeHagar.PlexAPI.SDK.Utils
                 }
 
                 var secMetadata = prop.GetCustomAttribute<SpeakeasyMetadata>()?.GetSecurityMetadata();
-                if (secMetadata != null && secMetadata.Scheme && secMetadata.Type == "http" && secMetadata.SubType == "basic" && !Utilities.IsClass(value))
-                {
-                    ParseBasicAuthScheme(option);
-                    return;
-                }
-            }
-
-            foreach (var prop in option.GetType().GetProperties())
-            {
-                var value = prop.GetValue(option, null);
-                if (value == null)
-                {
-                    continue;
-                }
-
-                var secMetadata = prop.GetCustomAttribute<SpeakeasyMetadata>()?.GetSecurityMetadata();
                 if (secMetadata == null || !secMetadata.Scheme)
                 {
                     continue;
+                }
+
+                if (secMetadata.Type == "http" && secMetadata.SubType == "basic" && !Utilities.IsClass(value))
+                {
+                    ParseBasicAuthScheme(option);
+                    return;
                 }
 
                 ParseScheme(secMetadata, value);

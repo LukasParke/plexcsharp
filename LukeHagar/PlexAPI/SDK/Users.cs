@@ -28,7 +28,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Get list of all connected users.
         /// </summary>
         /// <remarks>
-        /// Get list of all users that are friends and have library access with the provided Plex authentication token.
+        /// Get list of all users that are friends and have library access with the provided Plex authentication token<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="GetUsersRequest"/> parameter.</param>
         /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
@@ -65,7 +66,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Get list of all connected users.
         /// </summary>
         /// <remarks>
-        /// Get list of all users that are friends and have library access with the provided Plex authentication token.
+        /// Get list of all users that are friends and have library access with the provided Plex authentication token<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="GetUsersRequest"/> parameter.</param>
         /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
@@ -112,7 +114,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "get-users", null, SDKConfiguration.SecuritySource);

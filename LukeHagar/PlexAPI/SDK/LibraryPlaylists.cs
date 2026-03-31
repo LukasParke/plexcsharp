@@ -44,7 +44,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Upload.
         /// </summary>
         /// <remarks>
-        /// Imports m3u playlists by passing a path on the server to scan for m3u-formatted playlist files, or a path to a single playlist file.
+        /// Imports m3u playlists by passing a path on the server to scan for m3u-formatted playlist files, or a path to a single playlist file.<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="UploadPlaylistRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="UploadPlaylistResponse"/> response envelope when completed.</returns>
@@ -334,7 +335,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Upload.
         /// </summary>
         /// <remarks>
-        /// Imports m3u playlists by passing a path on the server to scan for m3u-formatted playlist files, or a path to a single playlist file.
+        /// Imports m3u playlists by passing a path on the server to scan for m3u-formatted playlist files, or a path to a single playlist file.<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="UploadPlaylistRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="UploadPlaylistResponse"/> response envelope when completed.</returns>
@@ -372,7 +374,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "uploadPlaylist", null, SDKConfiguration.SecuritySource);

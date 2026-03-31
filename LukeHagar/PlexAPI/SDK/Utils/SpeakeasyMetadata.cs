@@ -65,6 +65,7 @@ namespace LukeHagar.PlexAPI.SDK.Utils
             public string? SubType { get; set; } = null;
             public bool Option { get; set; } = false;
             public bool Scheme { get; set; } = false;
+            public bool Composite { get; set; } = false;
             public string Name { get; set; } = "";
         }
 

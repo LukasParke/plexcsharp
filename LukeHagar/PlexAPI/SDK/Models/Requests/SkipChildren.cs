@@ -26,14 +26,14 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 
         public static SkipChildrenType Boolean { get { return new SkipChildrenType("boolean"); } }
 
-        public static SkipChildrenType Two { get { return new SkipChildrenType("2"); } }
+        public static SkipChildrenType SkipChildren2 { get { return new SkipChildrenType("skipChildren_2"); } }
 
         public override string ToString() { return Value; }
         public static implicit operator String(SkipChildrenType v) { return v.Value; }
         public static SkipChildrenType FromString(string v) {
             switch(v) {
                 case "boolean": return Boolean;
-                case "2": return Two;
+                case "skipChildren_2": return SkipChildren2;
                 default: throw new ArgumentException("Invalid value for SkipChildrenType");
             }
         }
@@ -67,7 +67,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public bool? Boolean { get; set; }
 
         [SpeakeasyMetadata("form:explode=true")]
-        public Models.Requests.Two? Two { get; set; }
+        public Models.Requests.SkipChildren2? SkipChildren2 { get; set; }
 
         public SkipChildrenType Type { get; set; }
         public static SkipChildren CreateBoolean(bool boolean)
@@ -78,12 +78,12 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
             res.Boolean = boolean;
             return res;
         }
-        public static SkipChildren CreateTwo(Models.Requests.Two two)
+        public static SkipChildren CreateSkipChildren2(Models.Requests.SkipChildren2 skipChildren2)
         {
-            SkipChildrenType typ = SkipChildrenType.Two;
+            SkipChildrenType typ = SkipChildrenType.SkipChildren2;
 
             SkipChildren res = new SkipChildren(typ);
-            res.Two = two;
+            res.SkipChildren2 = skipChildren2;
             return res;
         }
 
@@ -118,14 +118,14 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 
                 try
                 {
-                    return new SkipChildren(SkipChildrenType.Two)
+                    return new SkipChildren(SkipChildrenType.SkipChildren2)
                     {
-                        Two = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<Models.Requests.Two>(json)
+                        SkipChildren2 = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<Models.Requests.SkipChildren2>(json)
                     };
                 }
                 catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    fallbackCandidates.Add((typeof(Models.Requests.Two), new SkipChildren(SkipChildrenType.Two), "Two"));
+                    fallbackCandidates.Add((typeof(Models.Requests.SkipChildren2), new SkipChildren(SkipChildrenType.SkipChildren2), "SkipChildren2"));
                 }
                 catch (ResponseBodyDeserializer.DeserializationException)
                 {
@@ -174,9 +174,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
                     return;
                 }
 
-                if (res.Two != null)
+                if (res.SkipChildren2 != null)
                 {
-                    writer.WriteRawValue(Utilities.SerializeJSON(res.Two));
+                    writer.WriteRawValue(Utilities.SerializeJSON(res.SkipChildren2));
                     return;
                 }
             }

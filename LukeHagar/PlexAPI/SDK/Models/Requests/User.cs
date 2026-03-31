@@ -62,7 +62,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public AllowTuners? AllowTuners { get; set; } = LukeHagar.PlexAPI.SDK.Models.Requests.AllowTuners.Disable;
 
         [JsonProperty("allowSync")]
-        public AllowSync? AllowSync { get; set; } = LukeHagar.PlexAPI.SDK.Models.Requests.AllowSync.Disable;
+        public GetUsersAllowSync? AllowSync { get; set; } = LukeHagar.PlexAPI.SDK.Models.Requests.GetUsersAllowSync.Disable;
 
         [JsonProperty("allowCameraUpload")]
         public AllowCameraUpload? AllowCameraUpload { get; set; } = LukeHagar.PlexAPI.SDK.Models.Requests.AllowCameraUpload.Disable;

@@ -31,7 +31,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// List Sessions.
         /// </summary>
         /// <remarks>
-        /// List all current playbacks on this server.
+        /// List all current playbacks on this server<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <returns>An awaitable task that returns a <see cref="ListSessionsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -43,7 +44,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Get background tasks.
         /// </summary>
         /// <remarks>
-        /// Get the list of all background tasks.
+        /// Get the list of all background tasks<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <returns>An awaitable task that returns a <see cref="GetBackgroundTasksResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -69,7 +71,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Terminate a session.
         /// </summary>
         /// <remarks>
-        /// Terminate a playback session kicking off the user.
+        /// Terminate a playback session kicking off the user<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="TerminateSessionRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="TerminateSessionResponse"/> response envelope when completed.</returns>
@@ -82,7 +85,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Delete Single History Item.
         /// </summary>
         /// <remarks>
-        /// Delete a single history item by id.
+        /// Delete a single history item by id<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="DeleteHistoryRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="DeleteHistoryResponse"/> response envelope when completed.</returns>
@@ -96,7 +100,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Get Single History Item.
         /// </summary>
         /// <remarks>
-        /// Get a single history item by id.
+        /// Get a single history item by id<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="GetHistoryItemRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="GetHistoryItemResponse"/> response envelope when completed.</returns>
@@ -127,7 +132,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// List Sessions.
         /// </summary>
         /// <remarks>
-        /// List all current playbacks on this server.
+        /// List all current playbacks on this server<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <returns>An awaitable task that returns a <see cref="ListSessionsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -148,7 +154,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listSessions", null, SDKConfiguration.SecuritySource);
@@ -232,7 +238,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Get background tasks.
         /// </summary>
         /// <remarks>
-        /// Get the list of all background tasks.
+        /// Get the list of all background tasks<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <returns>An awaitable task that returns a <see cref="GetBackgroundTasksResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -253,7 +260,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getBackgroundTasks", null, SDKConfiguration.SecuritySource);
@@ -462,7 +469,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Terminate a session.
         /// </summary>
         /// <remarks>
-        /// Terminate a playback session kicking off the user.
+        /// Terminate a playback session kicking off the user<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="TerminateSessionRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="TerminateSessionResponse"/> response envelope when completed.</returns>
@@ -498,7 +506,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "terminateSession", null, SDKConfiguration.SecuritySource);
@@ -563,7 +571,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Delete Single History Item.
         /// </summary>
         /// <remarks>
-        /// Delete a single history item by id.
+        /// Delete a single history item by id<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="DeleteHistoryRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="DeleteHistoryResponse"/> response envelope when completed.</returns>
@@ -600,7 +609,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "deleteHistory", null, SDKConfiguration.SecuritySource);
@@ -684,7 +693,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Get Single History Item.
         /// </summary>
         /// <remarks>
-        /// Get a single history item by id.
+        /// Get a single history item by id<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="GetHistoryItemRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="GetHistoryItemResponse"/> response envelope when completed.</returns>
@@ -721,7 +731,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getHistoryItem", null, SDKConfiguration.SecuritySource);

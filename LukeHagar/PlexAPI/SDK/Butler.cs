@@ -31,7 +31,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Stop all Butler tasks.
         /// </summary>
         /// <remarks>
-        /// This endpoint will stop all currently running tasks and remove any scheduled tasks from the queue.
+        /// This endpoint will stop all currently running tasks and remove any scheduled tasks from the queue.<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <returns>An awaitable task that returns a <see cref="StopTasksResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -42,7 +43,9 @@ namespace LukeHagar.PlexAPI.SDK
         /// Get all Butler tasks.
         /// </summary>
         /// <remarks>
-        /// Get the list of butler tasks and their scheduling.
+        /// Get the list of butler tasks and their scheduling<br/>
+        /// <br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <returns>An awaitable task that returns a <see cref="GetTasksResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -59,7 +62,9 @@ namespace LukeHagar.PlexAPI.SDK
         ///   1. Any tasks not scheduled to run on the current day will be skipped.<br/>
         ///   2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately.<br/>
         ///   3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window.<br/>
-        ///   4. If we are outside the configured window, the task will start immediately.
+        ///   4. If we are outside the configured window, the task will start immediately.<br/>
+        /// <br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <returns>An awaitable task that returns a <see cref="StartTasksResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -70,7 +75,9 @@ namespace LukeHagar.PlexAPI.SDK
         /// Stop a single Butler task.
         /// </summary>
         /// <remarks>
-        /// This endpoint will stop a currently running task by name, or remove it from the list of scheduled tasks if it exists.
+        /// This endpoint will stop a currently running task by name, or remove it from the list of scheduled tasks if it exists<br/>
+        /// <br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="StopTaskRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="StopTaskResponse"/> response envelope when completed.</returns>
@@ -83,7 +90,9 @@ namespace LukeHagar.PlexAPI.SDK
         /// Start a single Butler task.
         /// </summary>
         /// <remarks>
-        /// This endpoint will attempt to start a specific Butler task by name.
+        /// This endpoint will attempt to start a specific Butler task by name.<br/>
+        /// <br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="StartTaskRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="StartTaskResponse"/> response envelope when completed.</returns>
@@ -113,7 +122,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Stop all Butler tasks.
         /// </summary>
         /// <remarks>
-        /// This endpoint will stop all currently running tasks and remove any scheduled tasks from the queue.
+        /// This endpoint will stop all currently running tasks and remove any scheduled tasks from the queue.<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <returns>An awaitable task that returns a <see cref="StopTasksResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -133,7 +143,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "stopTasks", null, SDKConfiguration.SecuritySource);
@@ -198,7 +208,9 @@ namespace LukeHagar.PlexAPI.SDK
         /// Get all Butler tasks.
         /// </summary>
         /// <remarks>
-        /// Get the list of butler tasks and their scheduling.
+        /// Get the list of butler tasks and their scheduling<br/>
+        /// <br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <returns>An awaitable task that returns a <see cref="GetTasksResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -219,7 +231,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getTasks", null, SDKConfiguration.SecuritySource);
@@ -307,7 +319,9 @@ namespace LukeHagar.PlexAPI.SDK
         ///   1. Any tasks not scheduled to run on the current day will be skipped.<br/>
         ///   2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately.<br/>
         ///   3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window.<br/>
-        ///   4. If we are outside the configured window, the task will start immediately.
+        ///   4. If we are outside the configured window, the task will start immediately.<br/>
+        /// <br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <returns>An awaitable task that returns a <see cref="StartTasksResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -327,7 +341,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "startTasks", null, SDKConfiguration.SecuritySource);
@@ -392,7 +406,9 @@ namespace LukeHagar.PlexAPI.SDK
         /// Stop a single Butler task.
         /// </summary>
         /// <remarks>
-        /// This endpoint will stop a currently running task by name, or remove it from the list of scheduled tasks if it exists.
+        /// This endpoint will stop a currently running task by name, or remove it from the list of scheduled tasks if it exists<br/>
+        /// <br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="StopTaskRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="StopTaskResponse"/> response envelope when completed.</returns>
@@ -428,7 +444,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "stopTask", null, SDKConfiguration.SecuritySource);
@@ -493,7 +509,9 @@ namespace LukeHagar.PlexAPI.SDK
         /// Start a single Butler task.
         /// </summary>
         /// <remarks>
-        /// This endpoint will attempt to start a specific Butler task by name.
+        /// This endpoint will attempt to start a specific Butler task by name.<br/>
+        /// <br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="StartTaskRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="StartTaskResponse"/> response envelope when completed.</returns>
@@ -529,7 +547,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "startTask", null, SDKConfiguration.SecuritySource);

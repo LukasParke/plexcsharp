@@ -43,7 +43,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Create a DVR.
         /// </summary>
         /// <remarks>
-        /// Creation of a DVR, after creation of a devcie and a lineup is selected.
+        /// Creation of a DVR, after creation of a devcie and a lineup is selected<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="CreateDVRRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="CreateDVRResponse"/> response envelope when completed.</returns>
@@ -56,7 +57,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Delete a single DVR.
         /// </summary>
         /// <remarks>
-        /// Delete a single DVR by its id (key).
+        /// Delete a single DVR by its id (key)<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="DeleteDVRRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="DeleteDVRResponse"/> response envelope when completed.</returns>
@@ -83,7 +85,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Delete a DVR Lineup.
         /// </summary>
         /// <remarks>
-        /// Deletes a DVR device's lineup.
+        /// Deletes a DVR device's lineup.<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="DeleteLineupRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="DeleteLineupResponse"/> response envelope when completed.</returns>
@@ -97,7 +100,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Add a DVR Lineup.
         /// </summary>
         /// <remarks>
-        /// Add a lineup to a DVR device's set of lineups.
+        /// Add a lineup to a DVR device's set of lineups.<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="AddLineupRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="AddLineupResponse"/> response envelope when completed.</returns>
@@ -111,7 +115,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Set DVR preferences.
         /// </summary>
         /// <remarks>
-        /// Set DVR preferences by name avd value.
+        /// Set DVR preferences by name avd value<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="SetDVRPreferencesRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="SetDVRPreferencesResponse"/> response envelope when completed.</returns>
@@ -125,7 +130,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Tell a DVR to stop reloading program guide.
         /// </summary>
         /// <remarks>
-        /// Tell a DVR to stop reloading program guide.
+        /// Tell a DVR to stop reloading program guide<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="StopDVRReloadRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="StopDVRReloadResponse"/> response envelope when completed.</returns>
@@ -138,7 +144,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Tell a DVR to reload program guide.
         /// </summary>
         /// <remarks>
-        /// Tell a DVR to reload program guide.
+        /// Tell a DVR to reload program guide<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="ReloadGuideRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="ReloadGuideResponse"/> response envelope when completed.</returns>
@@ -165,7 +172,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Remove a device from an existing DVR.
         /// </summary>
         /// <remarks>
-        /// Remove a device from an existing DVR.
+        /// Remove a device from an existing DVR<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="RemoveDeviceFromDVRRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="RemoveDeviceFromDVRResponse"/> response envelope when completed.</returns>
@@ -179,7 +187,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Add a device to an existing DVR.
         /// </summary>
         /// <remarks>
-        /// Add a device to an existing DVR.
+        /// Add a device to an existing DVR<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="AddDeviceToDVRRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="AddDeviceToDVRResponse"/> response envelope when completed.</returns>
@@ -315,7 +324,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Create a DVR.
         /// </summary>
         /// <remarks>
-        /// Creation of a DVR, after creation of a devcie and a lineup is selected.
+        /// Creation of a DVR, after creation of a devcie and a lineup is selected<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="CreateDVRRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="CreateDVRResponse"/> response envelope when completed.</returns>
@@ -354,7 +364,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "createDVR", null, SDKConfiguration.SecuritySource);
@@ -438,7 +448,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Delete a single DVR.
         /// </summary>
         /// <remarks>
-        /// Delete a single DVR by its id (key).
+        /// Delete a single DVR by its id (key)<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="DeleteDVRRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="DeleteDVRResponse"/> response envelope when completed.</returns>
@@ -474,7 +485,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "deleteDVR", null, SDKConfiguration.SecuritySource);
@@ -660,7 +671,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Delete a DVR Lineup.
         /// </summary>
         /// <remarks>
-        /// Deletes a DVR device's lineup.
+        /// Deletes a DVR device's lineup.<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="DeleteLineupRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="DeleteLineupResponse"/> response envelope when completed.</returns>
@@ -697,7 +709,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "deleteLineup", null, SDKConfiguration.SecuritySource);
@@ -781,7 +793,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Add a DVR Lineup.
         /// </summary>
         /// <remarks>
-        /// Add a lineup to a DVR device's set of lineups.
+        /// Add a lineup to a DVR device's set of lineups.<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="AddLineupRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="AddLineupResponse"/> response envelope when completed.</returns>
@@ -818,7 +831,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "addLineup", null, SDKConfiguration.SecuritySource);
@@ -902,7 +915,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Set DVR preferences.
         /// </summary>
         /// <remarks>
-        /// Set DVR preferences by name avd value.
+        /// Set DVR preferences by name avd value<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="SetDVRPreferencesRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="SetDVRPreferencesResponse"/> response envelope when completed.</returns>
@@ -939,7 +953,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "setDVRPreferences", null, SDKConfiguration.SecuritySource);
@@ -1023,7 +1037,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Tell a DVR to stop reloading program guide.
         /// </summary>
         /// <remarks>
-        /// Tell a DVR to stop reloading program guide.
+        /// Tell a DVR to stop reloading program guide<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="StopDVRReloadRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="StopDVRReloadResponse"/> response envelope when completed.</returns>
@@ -1059,7 +1074,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "stopDVRReload", null, SDKConfiguration.SecuritySource);
@@ -1124,7 +1139,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Tell a DVR to reload program guide.
         /// </summary>
         /// <remarks>
-        /// Tell a DVR to reload program guide.
+        /// Tell a DVR to reload program guide<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="ReloadGuideRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="ReloadGuideResponse"/> response envelope when completed.</returns>
@@ -1160,7 +1176,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "reloadGuide", null, SDKConfiguration.SecuritySource);
@@ -1347,7 +1363,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Remove a device from an existing DVR.
         /// </summary>
         /// <remarks>
-        /// Remove a device from an existing DVR.
+        /// Remove a device from an existing DVR<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="RemoveDeviceFromDVRRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="RemoveDeviceFromDVRResponse"/> response envelope when completed.</returns>
@@ -1384,7 +1401,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "removeDeviceFromDVR", null, SDKConfiguration.SecuritySource);
@@ -1468,7 +1485,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Add a device to an existing DVR.
         /// </summary>
         /// <remarks>
-        /// Add a device to an existing DVR.
+        /// Add a device to an existing DVR<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="AddDeviceToDVRRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="AddDeviceToDVRResponse"/> response envelope when completed.</returns>
@@ -1505,7 +1523,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "addDeviceToDVR", null, SDKConfiguration.SecuritySource);

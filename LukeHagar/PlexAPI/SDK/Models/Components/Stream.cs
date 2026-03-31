@@ -100,8 +100,8 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         /// <summary>
         /// Indicates if the stream can auto-sync.
         /// </summary>
-        [JsonProperty("canAutoSync")]
-        public bool? CanAutoSync { get; set; }
+        [JsonProperty("canAutoSync", NullValueHandling = NullValueHandling.Include)]
+        public CanAutoSync? CanAutoSync { get; set; }
 
         /// <summary>
         /// Chroma sample location.

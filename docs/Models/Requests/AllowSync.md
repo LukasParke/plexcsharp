@@ -1,19 +1,16 @@
 # AllowSync
 
-Indicates if the user is allowed to sync media.
 
-## Example Usage
+## Supported Types
+
+### Boolean
 
 ```csharp
-using LukeHagar.PlexAPI.SDK.Models.Requests;
-
-var value = AllowSync.Disable;
+AllowSync.CreateBoolean(/* values here */);
 ```
 
+### Two
 
-## Values
-
-| Name      | Value     |
-| --------- | --------- |
-| `Disable` | 0         |
-| `Enable`  | 1         |
+```csharp
+AllowSync.CreateTwo(/* values here */);
+```

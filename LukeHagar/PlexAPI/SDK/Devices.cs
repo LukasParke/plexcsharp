@@ -77,7 +77,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Get all devices.
         /// </summary>
         /// <remarks>
-        /// Get the list of all devices present.
+        /// Get the list of all devices present<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <returns>An awaitable task that returns a <see cref="ListDevicesResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -89,7 +90,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Add a device.
         /// </summary>
         /// <remarks>
-        /// This endpoint adds a device to an existing grabber. The device is identified, and added to the correct grabber.
+        /// This endpoint adds a device to an existing grabber. The device is identified, and added to the correct grabber.<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="AddDeviceRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="AddDeviceResponse"/> response envelope when completed.</returns>
@@ -102,7 +104,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Tell grabbers to discover devices.
         /// </summary>
         /// <remarks>
-        /// Tell grabbers to discover devices.
+        /// Tell grabbers to discover devices<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <returns>An awaitable task that returns a <see cref="DiscoverDevicesResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -114,7 +117,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Remove a device.
         /// </summary>
         /// <remarks>
-        /// Remove a devices by its id along with its channel mappings.
+        /// Remove a devices by its id along with its channel mappings<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="RemoveDeviceRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="RemoveDeviceResponse"/> response envelope when completed.</returns>
@@ -128,7 +132,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Get device details.
         /// </summary>
         /// <remarks>
-        /// Get a device's details by its id.
+        /// Get a device's details by its id<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="GetDeviceDetailsRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="GetDeviceDetailsResponse"/> response envelope when completed.</returns>
@@ -142,7 +147,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Enable or disable a device.
         /// </summary>
         /// <remarks>
-        /// Enable or disable a device by its id.
+        /// Enable or disable a device by its id<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="ModifyDeviceRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="ModifyDeviceResponse"/> response envelope when completed.</returns>
@@ -170,7 +176,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Get a device's channels.
         /// </summary>
         /// <remarks>
-        /// Get a device's channels by its id.
+        /// Get a device's channels by its id<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="GetDevicesChannelsRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="GetDevicesChannelsResponse"/> response envelope when completed.</returns>
@@ -184,7 +191,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Set device preferences.
         /// </summary>
         /// <remarks>
-        /// Set device preferences by its id.
+        /// Set device preferences by its id<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="SetDevicePreferencesRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="SetDevicePreferencesResponse"/> response envelope when completed.</returns>
@@ -225,7 +233,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Get device thumb.
         /// </summary>
         /// <remarks>
-        /// Get a device's thumb for display to the user.
+        /// Get a device's thumb for display to the user<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="GetThumbRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="GetThumbResponse"/> response envelope when completed.</returns>
@@ -413,7 +422,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Get all devices.
         /// </summary>
         /// <remarks>
-        /// Get the list of all devices present.
+        /// Get the list of all devices present<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <returns>An awaitable task that returns a <see cref="ListDevicesResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -434,7 +444,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listDevices", null, SDKConfiguration.SecuritySource);
@@ -518,7 +528,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Add a device.
         /// </summary>
         /// <remarks>
-        /// This endpoint adds a device to an existing grabber. The device is identified, and added to the correct grabber.
+        /// This endpoint adds a device to an existing grabber. The device is identified, and added to the correct grabber.<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="AddDeviceRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="AddDeviceResponse"/> response envelope when completed.</returns>
@@ -557,7 +568,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "addDevice", null, SDKConfiguration.SecuritySource);
@@ -640,7 +651,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Tell grabbers to discover devices.
         /// </summary>
         /// <remarks>
-        /// Tell grabbers to discover devices.
+        /// Tell grabbers to discover devices<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <returns>An awaitable task that returns a <see cref="DiscoverDevicesResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -661,7 +673,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "discoverDevices", null, SDKConfiguration.SecuritySource);
@@ -744,7 +756,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Remove a device.
         /// </summary>
         /// <remarks>
-        /// Remove a devices by its id along with its channel mappings.
+        /// Remove a devices by its id along with its channel mappings<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="RemoveDeviceRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="RemoveDeviceResponse"/> response envelope when completed.</returns>
@@ -781,7 +794,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "removeDevice", null, SDKConfiguration.SecuritySource);
@@ -865,7 +878,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Get device details.
         /// </summary>
         /// <remarks>
-        /// Get a device's details by its id.
+        /// Get a device's details by its id<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="GetDeviceDetailsRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="GetDeviceDetailsResponse"/> response envelope when completed.</returns>
@@ -902,7 +916,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getDeviceDetails", null, SDKConfiguration.SecuritySource);
@@ -985,7 +999,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Enable or disable a device.
         /// </summary>
         /// <remarks>
-        /// Enable or disable a device by its id.
+        /// Enable or disable a device by its id<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="ModifyDeviceRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="ModifyDeviceResponse"/> response envelope when completed.</returns>
@@ -1022,7 +1037,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "modifyDevice", null, SDKConfiguration.SecuritySource);
@@ -1226,7 +1241,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Get a device's channels.
         /// </summary>
         /// <remarks>
-        /// Get a device's channels by its id.
+        /// Get a device's channels by its id<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="GetDevicesChannelsRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="GetDevicesChannelsResponse"/> response envelope when completed.</returns>
@@ -1263,7 +1279,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getDevicesChannels", null, SDKConfiguration.SecuritySource);
@@ -1347,7 +1363,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Set device preferences.
         /// </summary>
         /// <remarks>
-        /// Set device preferences by its id.
+        /// Set device preferences by its id<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="SetDevicePreferencesRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="SetDevicePreferencesResponse"/> response envelope when completed.</returns>
@@ -1383,7 +1400,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "setDevicePreferences", null, SDKConfiguration.SecuritySource);
@@ -1689,7 +1706,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Get device thumb.
         /// </summary>
         /// <remarks>
-        /// Get a device's thumb for display to the user.
+        /// Get a device's thumb for display to the user<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="GetThumbRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="GetThumbResponse"/> response envelope when completed.</returns>
@@ -1725,7 +1743,7 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getThumb", null, SDKConfiguration.SecuritySource);
