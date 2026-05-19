@@ -57,7 +57,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public long Id { get; set; } = default!;
 
         [JsonProperty("optimizedForStreaming")]
-        public bool? OptimizedForStreaming { get; set; }
+        public OptimizedForStreaming? OptimizedForStreaming { get; set; }
 
         [JsonProperty("Part")]
         public List<Part>? Part { get; set; }

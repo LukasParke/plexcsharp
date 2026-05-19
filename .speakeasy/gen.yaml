@@ -29,7 +29,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 csharp:
-  version: 0.20.7
+  version: 0.20.8
   additionalDependencies: []
   author: LukeHagar
   baseErrorName: PlexAPIError
