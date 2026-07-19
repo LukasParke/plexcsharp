@@ -82,18 +82,6 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public string? Marketplace { get; set; }
 
         /// <summary>
-        /// The queue id.
-        /// </summary>
-        [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=queueId")]
-        public long QueueId { get; set; } = default!;
-
-        /// <summary>
-        /// Keys to add.
-        /// </summary>
-        [SpeakeasyMetadata("queryParam:style=form,explode=false,name=keys")]
-        public List<string> Keys { get; set; } = default!;
-
-        /// <summary>
         /// Indicates how incompatible advanced subtitles (such as ass/ssa) should be included: * 'burn' - Burn incompatible advanced text subtitles into the video stream * 'text' - Transcode incompatible advanced text subtitles to a compatible text format, even if some markup is lost.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=advancedSubtitles")]
@@ -248,5 +236,17 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=videoResolution")]
         public string? VideoResolution { get; set; }
+
+        /// <summary>
+        /// The queue id.
+        /// </summary>
+        [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=queueId")]
+        public long QueueId { get; set; } = default!;
+
+        /// <summary>
+        /// Keys to add.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=false,name=keys")]
+        public List<string> Keys { get; set; } = default!;
     }
 }

@@ -97,7 +97,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// The current state of the media.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=state")]
-        public State? State { get; set; }
+        public Models.Requests.State? State { get; set; }
 
         /// <summary>
         /// If playing media from a play queue, the play queue's ID.
@@ -164,6 +164,30 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=bufferedSize")]
         public long? BufferedSize { get; set; }
+
+        /// <summary>
+        /// Groups timeline reports (e.g. /playQueues/123).
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=containerKey")]
+        public string? ContainerKey { get; set; }
+
+        /// <summary>
+        /// Global unique identifier for the item.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=guid")]
+        public string? Guid { get; set; }
+
+        /// <summary>
+        /// Identifies the play queue itself (distinct from playQueueItemID).
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=playQueueID")]
+        public long? PlayQueueID { get; set; }
+
+        /// <summary>
+        /// Alternative to key/ratingKey (legacy).
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=url")]
+        public string? Url { get; set; }
 
         /// <summary>
         /// Unique per client playback session.  Used if a client can playback multiple items at a time (such as a browser with multiple tabs).

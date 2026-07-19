@@ -80,12 +80,21 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Marketplace")]
         public string? Marketplace { get; set; }
 
+        /// <summary>
+        /// Comma-separated list of IDs.
+        /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=ids")]
         public string Ids { get; set; } = default!;
 
+        /// <summary>
+        /// Force the operation even if conditions are not met.
+        /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=force")]
         public BoolInt? Force { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
 
+        /// <summary>
+        /// Whether to perform the operation manually.
+        /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=manual")]
         public BoolInt? Manual { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
     }

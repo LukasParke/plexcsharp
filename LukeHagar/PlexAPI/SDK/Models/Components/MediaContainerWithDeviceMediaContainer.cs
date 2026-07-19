@@ -40,6 +40,6 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public long? TotalSize { get; set; }
 
         [JsonProperty("Device")]
-        public List<MediaContainerWithDeviceDevice>? Device { get; set; }
+        public List<Models.Components.Device>? Device { get; set; }
     }
 }

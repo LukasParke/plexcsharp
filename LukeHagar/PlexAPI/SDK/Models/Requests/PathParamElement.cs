@@ -13,6 +13,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// The type of artwork element (e.g., art, poster, thumb).
+    /// </summary>
     public enum PathParamElement
     {
         [JsonProperty("thumb")]

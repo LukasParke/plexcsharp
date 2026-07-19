@@ -47,12 +47,13 @@ namespace LukeHagar.PlexAPI.SDK
         /// This request is intended to be very fast, and called as the user types.
         /// </remarks>
         /// <param name="request">A <see cref="SearchHubsRequest"/> parameter.</param>
+        /// <param name="retryConfig">The retry configuration to use for this operation.</param>
         /// <returns>An awaitable task that returns a <see cref="SearchHubsResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
-        public  Task<SearchHubsResponse> SearchHubsAsync(SearchHubsRequest request);
+        public  Task<SearchHubsResponse> SearchHubsAsync(SearchHubsRequest request, RetryConfig? retryConfig = null);
 
         /// <summary>
         /// Voice Search Hub.
@@ -65,12 +66,16 @@ namespace LukeHagar.PlexAPI.SDK
         /// Results, as well as their containing per-type hubs, contain a `distance` attribute which can be used to judge result quality.
         /// </remarks>
         /// <param name="request">A <see cref="VoiceSearchHubsRequest"/> parameter.</param>
+        /// <param name="retryConfig">The retry configuration to use for this operation.</param>
         /// <returns>An awaitable task that returns a <see cref="VoiceSearchHubsResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
-        public  Task<VoiceSearchHubsResponse> VoiceSearchHubsAsync(VoiceSearchHubsRequest request);
+        public  Task<VoiceSearchHubsResponse> VoiceSearchHubsAsync(
+            VoiceSearchHubsRequest request,
+            RetryConfig? retryConfig = null
+        );
     }
 
     /// <summary>
@@ -109,12 +114,16 @@ namespace LukeHagar.PlexAPI.SDK
         /// This request is intended to be very fast, and called as the user types.
         /// </remarks>
         /// <param name="request">A <see cref="SearchHubsRequest"/> parameter.</param>
+        /// <param name="retryConfig">The retry configuration to use for this operation.</param>
         /// <returns>An awaitable task that returns a <see cref="SearchHubsResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
-        public async  Task<SearchHubsResponse> SearchHubsAsync(SearchHubsRequest request)
+        public async  Task<SearchHubsResponse> SearchHubsAsync(
+            SearchHubsRequest request,
+            RetryConfig? retryConfig = null
+        )
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
             request.Accepts ??= SDKConfiguration.Accepts;
@@ -149,11 +158,44 @@ namespace LukeHagar.PlexAPI.SDK
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "searchHubs", null, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+            if (retryConfig == null)
+            {
+                if (this.SDKConfiguration.RetryConfig != null)
+                {
+                    retryConfig = this.SDKConfiguration.RetryConfig;
+                }
+                else
+                {
+                    var backoff = new BackoffStrategy(
+                        initialIntervalMs: 1000L,
+                        maxIntervalMs: 30000L,
+                        maxElapsedTimeMs: 300000L,
+                        exponent: 2
+                    );
+                    retryConfig = new RetryConfig(
+                        strategy: RetryConfig.RetryStrategy.BACKOFF,
+                        backoff: backoff,
+                        retryConnectionErrors: true
+                    );
+                }
+            }
+
+            List<string> statusCodes = new List<string>
+            {
+                "429",
+            };
+
+            Func<Task<HttpResponseMessage>> retrySend = async () =>
+            {
+                var _httpRequest = await SDKConfiguration.Client.CloneAsync(httpRequest);
+                return await SDKConfiguration.Client.SendAsync(_httpRequest);
+            };
+            var retries = new LukeHagar.PlexAPI.SDK.Utils.Retries.Retries(retrySend, retryConfig, statusCodes);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                httpResponse = await retries.Run();
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
@@ -187,14 +229,14 @@ namespace LukeHagar.PlexAPI.SDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    SearchHubsResponseBody obj;
+                    MediaContainerWithHubs obj;
                     try
                     {
-                        obj = ResponseBodyDeserializer.DeserializeNotNull<SearchHubsResponseBody>(httpResponseBody, NullValueHandling.Ignore);
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<MediaContainerWithHubs>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into SearchHubsResponseBody.", httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into MediaContainerWithHubs.", httpResponse, httpResponseBody, ex);
                     }
 
                     var response = new SearchHubsResponse()
@@ -204,7 +246,7 @@ namespace LukeHagar.PlexAPI.SDK
                         RawResponse = httpResponse,
                         Headers = Utilities.CollectHeaders(httpResponse.Headers)
                     };
-                    response.Object = obj;
+                    response.MediaContainerWithHubs = obj;
                     return response;
                 }
 
@@ -234,12 +276,16 @@ namespace LukeHagar.PlexAPI.SDK
         /// Results, as well as their containing per-type hubs, contain a `distance` attribute which can be used to judge result quality.
         /// </remarks>
         /// <param name="request">A <see cref="VoiceSearchHubsRequest"/> parameter.</param>
+        /// <param name="retryConfig">The retry configuration to use for this operation.</param>
         /// <returns>An awaitable task that returns a <see cref="VoiceSearchHubsResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
-        public async  Task<VoiceSearchHubsResponse> VoiceSearchHubsAsync(VoiceSearchHubsRequest request)
+        public async  Task<VoiceSearchHubsResponse> VoiceSearchHubsAsync(
+            VoiceSearchHubsRequest request,
+            RetryConfig? retryConfig = null
+        )
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
             request.Accepts ??= SDKConfiguration.Accepts;
@@ -274,11 +320,44 @@ namespace LukeHagar.PlexAPI.SDK
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "voiceSearchHubs", null, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+            if (retryConfig == null)
+            {
+                if (this.SDKConfiguration.RetryConfig != null)
+                {
+                    retryConfig = this.SDKConfiguration.RetryConfig;
+                }
+                else
+                {
+                    var backoff = new BackoffStrategy(
+                        initialIntervalMs: 1000L,
+                        maxIntervalMs: 30000L,
+                        maxElapsedTimeMs: 300000L,
+                        exponent: 2
+                    );
+                    retryConfig = new RetryConfig(
+                        strategy: RetryConfig.RetryStrategy.BACKOFF,
+                        backoff: backoff,
+                        retryConnectionErrors: true
+                    );
+                }
+            }
+
+            List<string> statusCodes = new List<string>
+            {
+                "429",
+            };
+
+            Func<Task<HttpResponseMessage>> retrySend = async () =>
+            {
+                var _httpRequest = await SDKConfiguration.Client.CloneAsync(httpRequest);
+                return await SDKConfiguration.Client.SendAsync(_httpRequest);
+            };
+            var retries = new LukeHagar.PlexAPI.SDK.Utils.Retries.Retries(retrySend, retryConfig, statusCodes);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                httpResponse = await retries.Run();
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
@@ -312,14 +391,14 @@ namespace LukeHagar.PlexAPI.SDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    VoiceSearchHubsResponseBody obj;
+                    MediaContainerWithHubs obj;
                     try
                     {
-                        obj = ResponseBodyDeserializer.DeserializeNotNull<VoiceSearchHubsResponseBody>(httpResponseBody, NullValueHandling.Ignore);
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<MediaContainerWithHubs>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into VoiceSearchHubsResponseBody.", httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into MediaContainerWithHubs.", httpResponse, httpResponseBody, ex);
                     }
 
                     var response = new VoiceSearchHubsResponse()
@@ -329,7 +408,7 @@ namespace LukeHagar.PlexAPI.SDK
                         RawResponse = httpResponse,
                         Headers = Utilities.CollectHeaders(httpResponse.Headers)
                     };
-                    response.Object = obj;
+                    response.MediaContainerWithHubs = obj;
                     return response;
                 }
 

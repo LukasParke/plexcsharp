@@ -14,13 +14,13 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 
     public class GetFoldersDirectory
     {
+        [JsonProperty("title")]
+        public string? Title { get; set; }
+
         [JsonProperty("fastKey")]
         public string? FastKey { get; set; }
 
         [JsonProperty("key")]
         public string? Key { get; set; }
-
-        [JsonProperty("title")]
-        public string? Title { get; set; }
     }
 }

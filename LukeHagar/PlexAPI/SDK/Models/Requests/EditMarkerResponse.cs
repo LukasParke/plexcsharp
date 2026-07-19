@@ -32,7 +32,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public HttpResponseMessage RawResponse { get; set; } = default!;
 
         /// <summary>
-        /// OK.
+        /// Successfully updated edit a marker.
         /// </summary>
         public PostResponses200? PostResponses200 { get; set; }
     }

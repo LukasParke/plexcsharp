@@ -37,6 +37,7 @@ Example SSDP output
   - UDN: (string) A UUID for the device. This should be unique across models of a device at minimum.
   - URLBase: (string) The base HTTP URL for the device from which all of the other endpoints are hosted.
 
+Note: This tag covers media grabber and network tuner devices only. For client device discovery, use `/clients` or `/resources`.
 
 ### Available Operations
 
@@ -104,6 +105,7 @@ var res = await sdk.Devices.GetAvailableGrabbersAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## ListDevices
@@ -132,6 +134,7 @@ var res = await sdk.Devices.ListDevicesAsync();
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## AddDevice
@@ -192,7 +195,7 @@ Tell grabbers to discover devices
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="discoverDevices" method="post" path="/media/grabbers/devices/discover" -->
+<!-- UsageSnippet language="csharp" operationID="discoverDevices" method="get" path="/media/grabbers/devices/discover" -->
 ```csharp
 using LukeHagar.PlexAPI.SDK;
 using LukeHagar.PlexAPI.SDK.Models.Components;
@@ -204,6 +207,13 @@ var res = await sdk.Devices.DiscoverDevicesAsync();
 // handle response
 ```
 
+### Parameters
+
+| Parameter                                                     | Type                                                          | Required                                                      | Description                                                   |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `Protocol`                                                    | [Models.Requests.Protocol](../../Models/Requests/Protocol.md) | :heavy_minus_sign:                                            | Protocol to filter discovery.                                 |
+| `GrabberIdentifier`                                           | *string*                                                      | :heavy_minus_sign:                                            | Targeted grabber identifier.                                  |
+
 ### Response
 
 **[DiscoverDevicesResponse](../../Models/Requests/DiscoverDevicesResponse.md)**
@@ -212,6 +222,7 @@ var res = await sdk.Devices.DiscoverDevicesAsync();
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## RemoveDevice
@@ -440,6 +451,7 @@ var res = await sdk.Devices.SetChannelmapAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetDevicesChannels
@@ -544,6 +556,7 @@ var res = await sdk.Devices.SetDevicePreferencesAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## StopScan
@@ -596,6 +609,7 @@ var res = await sdk.Devices.StopScanAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## Scan
@@ -649,6 +663,7 @@ var res = await sdk.Devices.ScanAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetThumb

@@ -9,6 +9,7 @@
 #nullable enable
 namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
+    using LukeHagar.PlexAPI.SDK.Models.Components;
     using LukeHagar.PlexAPI.SDK.Models.Requests;
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
@@ -20,6 +21,6 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public AddDeviceToDVRDVRsMediaContainer? MediaContainer { get; set; }
 
         [JsonProperty("DVR")]
-        public List<AddDeviceToDVRDVR>? Dvr { get; set; }
+        public List<Dvr>? Dvr { get; set; }
     }
 }

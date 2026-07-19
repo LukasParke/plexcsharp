@@ -20,10 +20,40 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     public class MediaContainerWithDecisionStream
     {
         /// <summary>
+        /// Optional title for the stream (e.g., language variant).
+        /// </summary>
+        [JsonProperty("title")]
+        public string? Title { get; set; }
+
+        /// <summary>
+        /// Format of the stream (e.g., srt).
+        /// </summary>
+        [JsonProperty("format")]
+        public string? Format { get; set; }
+
+        /// <summary>
         /// Indicates if this stream is default.
         /// </summary>
         [JsonProperty("default")]
         public bool? Default { get; set; }
+
+        /// <summary>
+        /// ReplayGain album gain in dB.
+        /// </summary>
+        [JsonProperty("albumGain")]
+        public double? AlbumGain { get; set; }
+
+        /// <summary>
+        /// ReplayGain album peak amplitude.
+        /// </summary>
+        [JsonProperty("albumPeak")]
+        public double? AlbumPeak { get; set; }
+
+        /// <summary>
+        /// ReplayGain album dynamic range in dB.
+        /// </summary>
+        [JsonProperty("albumRange")]
+        public double? AlbumRange { get; set; }
 
         /// <summary>
         /// Audio channel layout.
@@ -32,16 +62,97 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public string? AudioChannelLayout { get; set; }
 
         /// <summary>
+        /// Bit depth of the video stream.
+        /// </summary>
+        [JsonProperty("bitDepth")]
+        public int? BitDepth { get; set; }
+
+        /// <summary>
+        /// Bitrate of the stream.
+        /// </summary>
+        [JsonProperty("bitrate")]
+        public int? Bitrate { get; set; }
+
+        /// <summary>
+        /// Audio bitrate mode (cbr or vbr).
+        /// </summary>
+        [JsonProperty("bitrateMode")]
+        public MediaContainerWithDecisionBitrateMode? BitrateMode { get; set; }
+
+        /// <summary>
+        /// Indicates if the stream can auto-sync.
+        /// </summary>
+        [JsonProperty("canAutoSync", NullValueHandling = NullValueHandling.Include)]
+        public MediaContainerWithDecisionCanAutoSync? CanAutoSync { get; set; }
+
+        /// <summary>
         /// Number of audio channels (for audio streams).
         /// </summary>
         [JsonProperty("channels")]
         public int? Channels { get; set; }
 
         /// <summary>
-        /// Bit depth of the video stream.
+        /// Chroma sample location.
         /// </summary>
-        [JsonProperty("bitDepth")]
-        public int? BitDepth { get; set; }
+        [JsonProperty("chromaLocation")]
+        public string? ChromaLocation { get; set; }
+
+        /// <summary>
+        /// Chroma subsampling format.
+        /// </summary>
+        [JsonProperty("chromaSubsampling")]
+        public string? ChromaSubsampling { get; set; }
+
+        [JsonProperty("closedCaptions")]
+        public bool? ClosedCaptions { get; set; }
+
+        /// <summary>
+        /// Codec used by the stream.
+        /// </summary>
+        [JsonProperty("codec")]
+        public string Codec { get; set; } = default!;
+
+        /// <summary>
+        /// Coded video height.
+        /// </summary>
+        [JsonProperty("codedHeight")]
+        public int? CodedHeight { get; set; }
+
+        /// <summary>
+        /// Coded video width.
+        /// </summary>
+        [JsonProperty("codedWidth")]
+        public int? CodedWidth { get; set; }
+
+        /// <summary>
+        /// Color primaries used.
+        /// </summary>
+        [JsonProperty("colorPrimaries")]
+        public string? ColorPrimaries { get; set; }
+
+        /// <summary>
+        /// Color range (e.g., tv).
+        /// </summary>
+        [JsonProperty("colorRange")]
+        public string? ColorRange { get; set; }
+
+        /// <summary>
+        /// Color space.
+        /// </summary>
+        [JsonProperty("colorSpace")]
+        public string? ColorSpace { get; set; }
+
+        /// <summary>
+        /// Color transfer characteristics.
+        /// </summary>
+        [JsonProperty("colorTrc")]
+        public string? ColorTrc { get; set; }
+
+        /// <summary>
+        /// Display title for the stream.
+        /// </summary>
+        [JsonProperty("displayTitle")]
+        public string DisplayTitle { get; set; } = default!;
 
         /// <summary>
         /// Dolby Vision BL compatibility ID.
@@ -92,79 +203,19 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public string? DOVIVersion { get; set; }
 
         /// <summary>
-        /// Bitrate of the stream.
+        /// Indicates if the stream is a dub.
         /// </summary>
-        [JsonProperty("bitrate")]
-        public int? Bitrate { get; set; }
+        [JsonProperty("dub")]
+        public bool? Dub { get; set; }
+
+        [JsonProperty("embeddedInVideo")]
+        public string? EmbeddedInVideo { get; set; }
 
         /// <summary>
-        /// Indicates if the stream can auto-sync.
+        /// Loudness ramp end type.
         /// </summary>
-        [JsonProperty("canAutoSync", NullValueHandling = NullValueHandling.Include)]
-        public MediaContainerWithDecisionCanAutoSync? CanAutoSync { get; set; }
-
-        /// <summary>
-        /// Chroma sample location.
-        /// </summary>
-        [JsonProperty("chromaLocation")]
-        public string? ChromaLocation { get; set; }
-
-        /// <summary>
-        /// Chroma subsampling format.
-        /// </summary>
-        [JsonProperty("chromaSubsampling")]
-        public string? ChromaSubsampling { get; set; }
-
-        /// <summary>
-        /// Coded video height.
-        /// </summary>
-        [JsonProperty("codedHeight")]
-        public int? CodedHeight { get; set; }
-
-        /// <summary>
-        /// Coded video width.
-        /// </summary>
-        [JsonProperty("codedWidth")]
-        public int? CodedWidth { get; set; }
-
-        [JsonProperty("closedCaptions")]
-        public bool? ClosedCaptions { get; set; }
-
-        /// <summary>
-        /// Codec used by the stream.
-        /// </summary>
-        [JsonProperty("codec")]
-        public string Codec { get; set; } = default!;
-
-        /// <summary>
-        /// Color primaries used.
-        /// </summary>
-        [JsonProperty("colorPrimaries")]
-        public string? ColorPrimaries { get; set; }
-
-        /// <summary>
-        /// Color range (e.g., tv).
-        /// </summary>
-        [JsonProperty("colorRange")]
-        public string? ColorRange { get; set; }
-
-        /// <summary>
-        /// Color space.
-        /// </summary>
-        [JsonProperty("colorSpace")]
-        public string? ColorSpace { get; set; }
-
-        /// <summary>
-        /// Color transfer characteristics.
-        /// </summary>
-        [JsonProperty("colorTrc")]
-        public string? ColorTrc { get; set; }
-
-        /// <summary>
-        /// Display title for the stream.
-        /// </summary>
-        [JsonProperty("displayTitle")]
-        public string DisplayTitle { get; set; } = default!;
+        [JsonProperty("endRamp")]
+        public string? EndRamp { get; set; }
 
         /// <summary>
         /// Extended display title for the stream.
@@ -172,14 +223,35 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         [JsonProperty("extendedDisplayTitle")]
         public string? ExtendedDisplayTitle { get; set; }
 
+        [JsonProperty("forced")]
+        public bool? Forced { get; set; }
+
         /// <summary>
         /// Frame rate of the stream.
         /// </summary>
         [JsonProperty("frameRate")]
         public float? FrameRate { get; set; }
 
+        /// <summary>
+        /// Track replay gain in dB.
+        /// </summary>
+        [JsonProperty("gain")]
+        public double? Gain { get; set; }
+
         [JsonProperty("hasScalingMatrix")]
         public bool? HasScalingMatrix { get; set; }
+
+        /// <summary>
+        /// Indicates whether header compression is enabled.
+        /// </summary>
+        [JsonProperty("headerCompression")]
+        public bool? HeaderCompression { get; set; }
+
+        /// <summary>
+        /// Indicates if the stream is for the hearing impaired.
+        /// </summary>
+        [JsonProperty("hearingImpaired")]
+        public bool? HearingImpaired { get; set; }
 
         /// <summary>
         /// Height of the video stream.
@@ -224,22 +296,28 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public string? LanguageTag { get; set; }
 
         /// <summary>
-        /// Format of the stream (e.g., srt).
-        /// </summary>
-        [JsonProperty("format")]
-        public string? Format { get; set; }
-
-        /// <summary>
-        /// Indicates whether header compression is enabled.
-        /// </summary>
-        [JsonProperty("headerCompression")]
-        public bool? HeaderCompression { get; set; }
-
-        /// <summary>
         /// Video level.
         /// </summary>
         [JsonProperty("level")]
         public int? Level { get; set; }
+
+        /// <summary>
+        /// Integrated loudness in LUFS.
+        /// </summary>
+        [JsonProperty("loudness")]
+        public double? Loudness { get; set; }
+
+        /// <summary>
+        /// Loudness range in LU.
+        /// </summary>
+        [JsonProperty("lra")]
+        public double? Lra { get; set; }
+
+        /// <summary>
+        /// Minimum lines in the lyric file.
+        /// </summary>
+        [JsonProperty("minLines")]
+        public long? MinLines { get; set; }
 
         /// <summary>
         /// Indicates if this is the original stream.
@@ -248,10 +326,34 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public bool? Original { get; set; }
 
         /// <summary>
+        /// Track peak amplitude.
+        /// </summary>
+        [JsonProperty("peak")]
+        public double? Peak { get; set; }
+
+        /// <summary>
+        /// Whether the subtitle is an exact match.
+        /// </summary>
+        [JsonProperty("perfectMatch")]
+        public bool? PerfectMatch { get; set; }
+
+        /// <summary>
         /// Video profile.
         /// </summary>
         [JsonProperty("profile")]
         public string? Profile { get; set; }
+
+        /// <summary>
+        /// Lyric or subtitle provider name.
+        /// </summary>
+        [JsonProperty("provider")]
+        public string? Provider { get; set; }
+
+        /// <summary>
+        /// Subtitle provider display name.
+        /// </summary>
+        [JsonProperty("providerTitle")]
+        public string? ProviderTitle { get; set; }
 
         /// <summary>
         /// Number of reference frames.
@@ -268,8 +370,11 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         [JsonProperty("scanType")]
         public string? ScanType { get; set; }
 
-        [JsonProperty("embeddedInVideo")]
-        public string? EmbeddedInVideo { get; set; }
+        /// <summary>
+        /// Subtitle match confidence score (0-100).
+        /// </summary>
+        [JsonProperty("score")]
+        public double? Score { get; set; }
 
         /// <summary>
         /// Indicates if this stream is selected (applicable for audio streams).
@@ -277,32 +382,47 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         [JsonProperty("selected")]
         public bool? Selected { get; set; }
 
-        [JsonProperty("forced")]
-        public bool? Forced { get; set; }
+        /// <summary>
+        /// Source identifier for the subtitle.
+        /// </summary>
+        [JsonProperty("sourceKey")]
+        public string? SourceKey { get; set; }
 
         /// <summary>
-        /// Indicates if the stream is for the hearing impaired.
+        /// Loudness ramp start type.
         /// </summary>
-        [JsonProperty("hearingImpaired")]
-        public bool? HearingImpaired { get; set; }
-
-        /// <summary>
-        /// Indicates if the stream is a dub.
-        /// </summary>
-        [JsonProperty("dub")]
-        public bool? Dub { get; set; }
-
-        /// <summary>
-        /// Optional title for the stream (e.g., language variant).
-        /// </summary>
-        [JsonProperty("title")]
-        public string? Title { get; set; }
+        [JsonProperty("startRamp")]
+        public string? StartRamp { get; set; }
 
         [JsonProperty("streamIdentifier")]
         public int? StreamIdentifier { get; set; }
 
         [JsonProperty("streamType")]
         public MediaContainerWithDecisionStreamType StreamType { get; set; } = default!;
+
+        /// <summary>
+        /// Whether lyrics are timestamped.
+        /// </summary>
+        [JsonProperty("timed")]
+        public bool? Timed { get; set; }
+
+        /// <summary>
+        /// Whether the subtitle is temporary or downloaded.
+        /// </summary>
+        [JsonProperty("transient")]
+        public bool? Transient { get; set; }
+
+        /// <summary>
+        /// ID of the user who added the subtitle.
+        /// </summary>
+        [JsonProperty("userID")]
+        public long? UserID { get; set; }
+
+        /// <summary>
+        /// Whether this audio track is an audio description track.
+        /// </summary>
+        [JsonProperty("visualImpaired")]
+        public bool? VisualImpaired { get; set; }
 
         /// <summary>
         /// Width of the video stream.

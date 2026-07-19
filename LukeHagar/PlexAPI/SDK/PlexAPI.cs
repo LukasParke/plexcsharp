@@ -19,6 +19,34 @@ namespace LukeHagar.PlexAPI.SDK
     using System.Collections.Generic;
     using System.Net.Http;
     using System.Threading.Tasks;
+    /// <summary>
+    /// Plex Media Server: OpenAPI specification for the Plex Media Server (PMS) API and the plex.tv cloud API.<br/>
+    /// <br/>
+    /// ## Base URLs<br/>
+    /// <br/>
+    /// - **PMS (local server)**: `http(s)://{host}:{port}` — Most endpoints in this spec target the local PMS.<br/>
+    /// - **plex.tv v2**: `https://plex.tv/api/v2` — Authentication, account, and social endpoints.<br/>
+    /// - **plex.tv v1 (legacy)**: `https://plex.tv/api` — Legacy XML endpoints (friends, home users, claims).<br/>
+    /// - **Cloud providers**: `https://discover.provider.plex.tv`, `https://metadata.provider.plex.tv`, etc.<br/>
+    /// <br/>
+    /// Endpoints that target plex.tv or cloud providers declare an override `servers` array.<br/>
+    /// <br/>
+    /// ## Authentication<br/>
+    /// <br/>
+    /// - **X-Plex-Token**: Pass via the `X-Plex-Token` header on every request. It may also be passed as a query parameter (`?X-Plex-Token=...`) on all endpoints.<br/>
+    /// - **X-Plex-Client-Identifier**: Mandatory for OAuth PIN flow (`/pins`) and JWT device registration. Must be a unique, persistent identifier for the client application.<br/>
+    /// - **OAuth PIN Flow**: `POST /pins` → user visits `https://plex.tv/link` → `GET /pins/{pinId}` → obtain `authToken`.<br/>
+    /// <br/>
+    /// ## Response Formats<br/>
+    /// <br/>
+    /// - **PMS endpoints**: Return XML by default. Send `Accept: application/json` to receive JSON.<br/>
+    /// - **plex.tv v2**: Returns JSON by default.<br/>
+    /// - **Legacy v1 endpoints** (`/pins.xml`, `/api/resources`, `/api/users/`): Return XML only.<br/>
+    /// <br/>
+    /// ## Rate Limiting<br/>
+    /// <br/>
+    /// plex.tv auth endpoints (PIN creation, sign-in) enforce rate limits. Clients should implement exponential backoff and reuse tokens rather than re-authenticating on every request.
+    /// </summary>
     public interface IPlexAPI
     {
         /// <summary>
@@ -39,6 +67,11 @@ namespace LukeHagar.PlexAPI.SDK
         public IPreferences Preferences { get; }
 
         /// <summary>
+        /// Plex Playback operations.
+        /// </summary>
+        public IPlayback Playback { get; }
+
+        /// <summary>
         /// Operations for rating media items (thumbs up/down, star ratings, etc.).
         /// </summary>
         public IRate Rate { get; }
@@ -47,6 +80,12 @@ namespace LukeHagar.PlexAPI.SDK
         /// The actions feature within a media provider.
         /// </summary>
         public ITimeline Timeline { get; }
+
+        /// <summary>
+        /// Media providers are the starting points for the entire Plex Media Server media library API.  It defines the paths for the groups of endpoints.  The `/media/providers` should be the only hard-coded path in clients when accessing the media library.  Non-media library endpoints are outside the scope of the media provider.  See the description in See <a href="#section/API-Info/Media-Providers">the section in API Info</a> for more information on how to use media providers.<br/>
+        /// Note: Dynamic proxy paths such as `/{provider}/search`, `/{provider}/metadata`, and other provider-relative routes are resolved through the media provider API.
+        /// </summary>
+        public IProvider Provider { get; }
 
         /// <summary>
         /// Activities provide a way to monitor and control asynchronous operations on the server. In order to receive real-time updates for activities, a client would normally subscribe via either EventSource or Websocket endpoints.<br/>
@@ -58,12 +97,23 @@ namespace LukeHagar.PlexAPI.SDK
         public IActivities Activities { get; }
 
         /// <summary>
+        /// Plex Users operations.
+        /// </summary>
+        public IUsers Users { get; }
+
+        /// <summary>
+        /// Plex Authentication operations.
+        /// </summary>
+        public IAuthentication Authentication { get; }
+
+        /// <summary>
         /// The butler is responsible for running periodic tasks.  Some tasks run daily, others every few days, and some weekly.  These includes database maintenance, metadata updating, thumbnail generation, media analysis, and other tasks.
         /// </summary>
         public IButler Butler { get; }
 
         /// <summary>
-        /// API Operations against the Download Queue.
+        /// API Operations against the Download Queue.<br/>
+        /// Note: The Download Queue is distinct from the Play Queue. The Download Queue manages offline/downloaded content, while the Play Queue manages active playback sessions.
         /// </summary>
         public IDownloadQueue DownloadQueue { get; }
 
@@ -141,14 +191,11 @@ namespace LukeHagar.PlexAPI.SDK
         /// ```<br/>
         /// <br/>
         ///   - UDN: (string) A UUID for the device. This should be unique across models of a device at minimum.<br/>
-        ///   - URLBase: (string) The base HTTP URL for the device from which all of the other endpoints are hosted.
+        ///   - URLBase: (string) The base HTTP URL for the device from which all of the other endpoints are hosted.<br/>
+        /// <br/>
+        /// Note: This tag covers media grabber and network tuner devices only. For client device discovery, use `/clients` or `/resources`.
         /// </summary>
         public IDevices Devices { get; }
-
-        /// <summary>
-        /// Media providers are the starting points for the entire Plex Media Server media library API.  It defines the paths for the groups of endpoints.  The `/media/providers` should be the only hard-coded path in clients when accessing the media library.  Non-media library endpoints are outside the scope of the media provider.  See the description in See <a href="#section/API-Info/Media-Providers">the section in API Info</a> for more information on how to use media providers.
-        /// </summary>
-        public IProvider Provider { get; }
 
         /// <summary>
         /// Subscriptions determine which media will be recorded and the criteria for selecting an airing when multiple are available.
@@ -159,6 +206,11 @@ namespace LukeHagar.PlexAPI.SDK
         /// API Operations against the Transcoder.
         /// </summary>
         public ITranscoder Transcoder { get; }
+
+        /// <summary>
+        /// Plex Playlists operations.
+        /// </summary>
+        public IPlaylists Playlists { get; }
 
         /// <summary>
         /// Media playlists that can be created and played back.
@@ -181,6 +233,11 @@ namespace LukeHagar.PlexAPI.SDK
         public IPlayQueue PlayQueue { get; }
 
         /// <summary>
+        /// Plex Plex operations.
+        /// </summary>
+        public IPlex Plex { get; }
+
+        /// <summary>
         /// Service provided to compute UltraBlur colors and images.
         /// </summary>
         public IUltraBlur UltraBlur { get; }
@@ -196,12 +253,6 @@ namespace LukeHagar.PlexAPI.SDK
         /// </summary>
         public IUpdater Updater { get; }
 
-        public IAuthentication Authentication { get; }
-
-        public IUsers Users { get; }
-
-        public IPlex Plex { get; }
-
         /// <summary>
         /// The actual content of the media provider.
         /// </summary>
@@ -213,6 +264,34 @@ namespace LukeHagar.PlexAPI.SDK
         public ILibraryCollections LibraryCollections { get; }
     }
 
+    /// <summary>
+    /// Plex Media Server: OpenAPI specification for the Plex Media Server (PMS) API and the plex.tv cloud API.<br/>
+    /// <br/>
+    /// ## Base URLs<br/>
+    /// <br/>
+    /// - **PMS (local server)**: `http(s)://{host}:{port}` — Most endpoints in this spec target the local PMS.<br/>
+    /// - **plex.tv v2**: `https://plex.tv/api/v2` — Authentication, account, and social endpoints.<br/>
+    /// - **plex.tv v1 (legacy)**: `https://plex.tv/api` — Legacy XML endpoints (friends, home users, claims).<br/>
+    /// - **Cloud providers**: `https://discover.provider.plex.tv`, `https://metadata.provider.plex.tv`, etc.<br/>
+    /// <br/>
+    /// Endpoints that target plex.tv or cloud providers declare an override `servers` array.<br/>
+    /// <br/>
+    /// ## Authentication<br/>
+    /// <br/>
+    /// - **X-Plex-Token**: Pass via the `X-Plex-Token` header on every request. It may also be passed as a query parameter (`?X-Plex-Token=...`) on all endpoints.<br/>
+    /// - **X-Plex-Client-Identifier**: Mandatory for OAuth PIN flow (`/pins`) and JWT device registration. Must be a unique, persistent identifier for the client application.<br/>
+    /// - **OAuth PIN Flow**: `POST /pins` → user visits `https://plex.tv/link` → `GET /pins/{pinId}` → obtain `authToken`.<br/>
+    /// <br/>
+    /// ## Response Formats<br/>
+    /// <br/>
+    /// - **PMS endpoints**: Return XML by default. Send `Accept: application/json` to receive JSON.<br/>
+    /// - **plex.tv v2**: Returns JSON by default.<br/>
+    /// - **Legacy v1 endpoints** (`/pins.xml`, `/api/resources`, `/api/users/`): Return XML only.<br/>
+    /// <br/>
+    /// ## Rate Limiting<br/>
+    /// <br/>
+    /// plex.tv auth endpoints (PIN creation, sign-in) enforce rate limits. Clients should implement exponential backoff and reuse tokens rather than re-authenticating on every request.
+    /// </summary>
     public class PlexAPI: IPlexAPI
     {
         /// <summary>
@@ -232,6 +311,10 @@ namespace LukeHagar.PlexAPI.SDK
         /// </summary>
         public IPreferences Preferences { get; private set; }
         /// <summary>
+        /// The Playback sub-SDK.
+        /// </summary>
+        public IPlayback Playback { get; private set; }
+        /// <summary>
         /// The Rate sub-SDK.
         /// </summary>
         public IRate Rate { get; private set; }
@@ -240,9 +323,21 @@ namespace LukeHagar.PlexAPI.SDK
         /// </summary>
         public ITimeline Timeline { get; private set; }
         /// <summary>
+        /// The Provider sub-SDK.
+        /// </summary>
+        public IProvider Provider { get; private set; }
+        /// <summary>
         /// The Activities sub-SDK.
         /// </summary>
         public IActivities Activities { get; private set; }
+        /// <summary>
+        /// The Users sub-SDK.
+        /// </summary>
+        public IUsers Users { get; private set; }
+        /// <summary>
+        /// The Authentication sub-SDK.
+        /// </summary>
+        public IAuthentication Authentication { get; private set; }
         /// <summary>
         /// The Butler sub-SDK.
         /// </summary>
@@ -288,10 +383,6 @@ namespace LukeHagar.PlexAPI.SDK
         /// </summary>
         public IDevices Devices { get; private set; }
         /// <summary>
-        /// The Provider sub-SDK.
-        /// </summary>
-        public IProvider Provider { get; private set; }
-        /// <summary>
         /// The Subscriptions sub-SDK.
         /// </summary>
         public ISubscriptions Subscriptions { get; private set; }
@@ -299,6 +390,10 @@ namespace LukeHagar.PlexAPI.SDK
         /// The Transcoder sub-SDK.
         /// </summary>
         public ITranscoder Transcoder { get; private set; }
+        /// <summary>
+        /// The Playlists sub-SDK.
+        /// </summary>
+        public IPlaylists Playlists { get; private set; }
         /// <summary>
         /// The Playlist sub-SDK.
         /// </summary>
@@ -312,6 +407,10 @@ namespace LukeHagar.PlexAPI.SDK
         /// </summary>
         public IPlayQueue PlayQueue { get; private set; }
         /// <summary>
+        /// The Plex sub-SDK.
+        /// </summary>
+        public IPlex Plex { get; private set; }
+        /// <summary>
         /// The UltraBlur sub-SDK.
         /// </summary>
         public IUltraBlur UltraBlur { get; private set; }
@@ -323,18 +422,6 @@ namespace LukeHagar.PlexAPI.SDK
         /// The Updater sub-SDK.
         /// </summary>
         public IUpdater Updater { get; private set; }
-        /// <summary>
-        /// The Authentication sub-SDK.
-        /// </summary>
-        public IAuthentication Authentication { get; private set; }
-        /// <summary>
-        /// The Users sub-SDK.
-        /// </summary>
-        public IUsers Users { get; private set; }
-        /// <summary>
-        /// The Plex sub-SDK.
-        /// </summary>
-        public IPlex Plex { get; private set; }
         /// <summary>
         /// The Content sub-SDK.
         /// </summary>
@@ -359,11 +446,19 @@ namespace LukeHagar.PlexAPI.SDK
 
             Preferences = new Preferences(SDKConfiguration);
 
+            Playback = new Playback(SDKConfiguration);
+
             Rate = new Rate(SDKConfiguration);
 
             Timeline = new Timeline(SDKConfiguration);
 
+            Provider = new Provider(SDKConfiguration);
+
             Activities = new Activities(SDKConfiguration);
+
+            Users = new Users(SDKConfiguration);
+
+            Authentication = new Authentication(SDKConfiguration);
 
             Butler = new Butler(SDKConfiguration);
 
@@ -387,11 +482,11 @@ namespace LukeHagar.PlexAPI.SDK
 
             Devices = new Devices(SDKConfiguration);
 
-            Provider = new Provider(SDKConfiguration);
-
             Subscriptions = new Subscriptions(SDKConfiguration);
 
             Transcoder = new Transcoder(SDKConfiguration);
+
+            Playlists = new Playlists(SDKConfiguration);
 
             Playlist = new Playlist(SDKConfiguration);
 
@@ -399,17 +494,13 @@ namespace LukeHagar.PlexAPI.SDK
 
             PlayQueue = new PlayQueue(SDKConfiguration);
 
+            Plex = new Plex(SDKConfiguration);
+
             UltraBlur = new UltraBlur(SDKConfiguration);
 
             Status = new Status(SDKConfiguration);
 
             Updater = new Updater(SDKConfiguration);
-
-            Authentication = new Authentication(SDKConfiguration);
-
-            Users = new Users(SDKConfiguration);
-
-            Plex = new Plex(SDKConfiguration);
 
             Content = new Content(SDKConfiguration);
 
@@ -436,8 +527,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// <param name="identifier">Server variable for identifier. This will replace the {identifier} placeholder in server URLs.</param>
         /// <param name="ipDescription">Server variable for IP-description. This will replace the {IP-description} placeholder in server URLs.</param>
         /// <param name="port">Server variable for port. This will replace the {port} placeholder in server URLs.</param>
-        /// <param name="protocol">Server variable for protocol. This will replace the {protocol} placeholder in server URLs.</param>
         /// <param name="host">Server variable for host. This will replace the {host} placeholder in server URLs.</param>
+        /// <param name="protocol">Server variable for protocol. This will replace the {protocol} placeholder in server URLs.</param>
         /// <param name="fullServerUrl">Server variable for full_server_url. This will replace the {full_server_url} placeholder in server URLs.</param>
         /// <param name="serverUrl">A custom server URL to use instead of the predefined server list. If provided with urlParams, the URL will be templated with the provided parameters.</param>
         /// <param name="urlParams">A dictionary of parameters to use for templating the serverUrl. Only used when serverUrl is provided.</param>
@@ -462,8 +553,8 @@ namespace LukeHagar.PlexAPI.SDK
             string? identifier = null,
             string? ipDescription = null,
             string? port = null,
-            string? protocol = null,
             string? host = null,
+            string? protocol = null,
             string? fullServerUrl = null,
             string? serverUrl = null,
             Dictionary<string, string>? urlParams = null,
@@ -531,14 +622,14 @@ namespace LukeHagar.PlexAPI.SDK
                 SDKConfiguration.SetServerVariable("port", port);
             }
 
-            if (protocol != null)
-            {
-                SDKConfiguration.SetServerVariable("protocol", protocol);
-            }
-
             if (host != null)
             {
                 SDKConfiguration.SetServerVariable("host", host);
+            }
+
+            if (protocol != null)
+            {
+                SDKConfiguration.SetServerVariable("protocol", protocol);
             }
 
             if (fullServerUrl != null)
@@ -554,11 +645,19 @@ namespace LukeHagar.PlexAPI.SDK
 
             Preferences = new Preferences(SDKConfiguration);
 
+            Playback = new Playback(SDKConfiguration);
+
             Rate = new Rate(SDKConfiguration);
 
             Timeline = new Timeline(SDKConfiguration);
 
+            Provider = new Provider(SDKConfiguration);
+
             Activities = new Activities(SDKConfiguration);
+
+            Users = new Users(SDKConfiguration);
+
+            Authentication = new Authentication(SDKConfiguration);
 
             Butler = new Butler(SDKConfiguration);
 
@@ -582,11 +681,11 @@ namespace LukeHagar.PlexAPI.SDK
 
             Devices = new Devices(SDKConfiguration);
 
-            Provider = new Provider(SDKConfiguration);
-
             Subscriptions = new Subscriptions(SDKConfiguration);
 
             Transcoder = new Transcoder(SDKConfiguration);
+
+            Playlists = new Playlists(SDKConfiguration);
 
             Playlist = new Playlist(SDKConfiguration);
 
@@ -594,17 +693,13 @@ namespace LukeHagar.PlexAPI.SDK
 
             PlayQueue = new PlayQueue(SDKConfiguration);
 
+            Plex = new Plex(SDKConfiguration);
+
             UltraBlur = new UltraBlur(SDKConfiguration);
 
             Status = new Status(SDKConfiguration);
 
             Updater = new Updater(SDKConfiguration);
-
-            Authentication = new Authentication(SDKConfiguration);
-
-            Users = new Users(SDKConfiguration);
-
-            Plex = new Plex(SDKConfiguration);
 
             Content = new Content(SDKConfiguration);
 
@@ -674,20 +769,20 @@ namespace LukeHagar.PlexAPI.SDK
             }
 
             /// <summary>
-            /// Sets the protocol server variable for the templated server URL.
-            /// </summary>
-            public SDKBuilder WithProtocol(string protocol)
-            {
-                _sdkConfig.SetServerVariable("protocol", protocol);
-                return this;
-            }
-
-            /// <summary>
             /// Sets the host server variable for the templated server URL.
             /// </summary>
             public SDKBuilder WithHost(string host)
             {
                 _sdkConfig.SetServerVariable("host", host);
+                return this;
+            }
+
+            /// <summary>
+            /// Sets the protocol server variable for the templated server URL.
+            /// </summary>
+            public SDKBuilder WithProtocol(string protocol)
+            {
+                _sdkConfig.SetServerVariable("protocol", protocol);
                 return this;
             }
 

@@ -85,5 +85,17 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=guid")]
         public string? Guid { get; set; }
+
+        /// <summary>
+        /// Subscription type.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=type")]
+        public string? MediaType { get; set; }
+
+        /// <summary>
+        /// Target library section ID.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=targetLibrarySectionID")]
+        public long? TargetLibrarySectionID { get; set; }
     }
 }

@@ -81,18 +81,6 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public string? Marketplace { get; set; }
 
         /// <summary>
-        /// Section identifier.
-        /// </summary>
-        [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=sectionId")]
-        public long SectionId { get; set; } = default!;
-
-        /// <summary>
-        /// The update time of the image.  Used for busting cache.
-        /// </summary>
-        [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=updatedAt")]
-        public long UpdatedAt { get; set; } = default!;
-
-        /// <summary>
         /// A querystring-based filtering language used to select subsets of media. Can be provided as an object with typed properties for type safety, or as a string for complex queries with operators and boolean logic.<br/>
         /// <br/>
         /// The query supports:<br/>
@@ -115,5 +103,17 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=composite")]
         public Composite? Composite { get; set; }
+
+        /// <summary>
+        /// Section identifier.
+        /// </summary>
+        [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=sectionId")]
+        public long SectionId { get; set; } = default!;
+
+        /// <summary>
+        /// The update time of the image.  Used for busting cache.
+        /// </summary>
+        [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=updatedAt")]
+        public long UpdatedAt { get; set; } = default!;
     }
 }

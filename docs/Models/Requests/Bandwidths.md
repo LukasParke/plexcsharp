@@ -5,6 +5,6 @@ A list of media times and bandwidths when trascoding is using with auto adjustme
 
 ## Fields
 
-| Field                                                 | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `Bandwidth`                                           | List<[Bandwidth](../../Models/Requests/Bandwidth.md)> | :heavy_minus_sign:                                    | N/A                                                   |
+| Field                                                   | Type                                                    | Required                                                | Description                                             |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| `Bandwidth`                                             | List<[Bandwidth](../../Models/Components/Bandwidth.md)> | :heavy_minus_sign:                                      | N/A                                                     |

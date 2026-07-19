@@ -15,6 +15,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 
     public class Server
     {
+        [JsonProperty("allLibraries")]
+        public AllLibraries? AllLibraries { get; set; } = LukeHagar.PlexAPI.SDK.Models.Requests.AllLibraries.Disable;
+
         /// <summary>
         /// Unique ID of the server of the connected user.
         /// </summary>
@@ -22,10 +25,10 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public long Id { get; set; } = default!;
 
         /// <summary>
-        /// ID of the actual Plex server.
+        /// Unix epoch datetime in seconds.
         /// </summary>
-        [JsonProperty("serverId")]
-        public long ServerId { get; set; } = default!;
+        [JsonProperty("lastSeenAt")]
+        public long LastSeenAt { get; set; } = default!;
 
         /// <summary>
         /// Machine identifier of the Plex server.
@@ -40,24 +43,21 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public string Name { get; set; } = default!;
 
         /// <summary>
-        /// Unix epoch datetime in seconds.
-        /// </summary>
-        [JsonProperty("lastSeenAt")]
-        public long LastSeenAt { get; set; } = default!;
-
-        /// <summary>
         /// Number of libraries in the server this user has access to.
         /// </summary>
         [JsonProperty("numLibraries")]
         public long NumLibraries { get; set; } = default!;
-
-        [JsonProperty("allLibraries")]
-        public AllLibraries? AllLibraries { get; set; } = LukeHagar.PlexAPI.SDK.Models.Requests.AllLibraries.Disable;
 
         [JsonProperty("owned")]
         public Owned? Owned { get; set; } = LukeHagar.PlexAPI.SDK.Models.Requests.Owned.Disable;
 
         [JsonProperty("pending")]
         public Pending? Pending { get; set; } = LukeHagar.PlexAPI.SDK.Models.Requests.Pending.Disable;
+
+        /// <summary>
+        /// ID of the actual Plex server.
+        /// </summary>
+        [JsonProperty("serverId")]
+        public long ServerId { get; set; } = default!;
     }
 }

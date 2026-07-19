@@ -17,6 +17,12 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 
     public class GetLibraryDetailsMediaContainer
     {
+        [JsonProperty("allowSync", NullValueHandling = NullValueHandling.Include)]
+        public Models.Requests.AllowSync? AllowSync { get; set; }
+
+        [JsonProperty("art")]
+        public string? Art { get; set; }
+
         /// <summary>
         /// The flavors of directory found here:<br/>
         ///   - Primary: (e.g. all, On Deck) These are still used in some clients to provide "shortcuts" to subsets of media. However, with the exception of On Deck, all of them can be created by media queries, and the desire is to allow these to be customized by users.<br/>
@@ -25,12 +31,6 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// </summary>
         [JsonProperty("content")]
         public string? Content { get; set; }
-
-        [JsonProperty("allowSync", NullValueHandling = NullValueHandling.Include)]
-        public Models.Requests.AllowSync? AllowSync { get; set; }
-
-        [JsonProperty("art")]
-        public string? Art { get; set; }
 
         [JsonProperty("Directory")]
         public List<Models.Components.Metadata>? Directory { get; set; }

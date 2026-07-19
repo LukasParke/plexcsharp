@@ -23,6 +23,18 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         [JsonProperty("channelVcn")]
         public string? ChannelVcn { get; set; }
 
+        /// <summary>
+        /// Whether the channel requires DRM.
+        /// </summary>
+        [JsonProperty("drm")]
+        public bool? Drm { get; set; }
+
+        /// <summary>
+        /// Whether the channel is marked as a favorite.
+        /// </summary>
+        [JsonProperty("favorite")]
+        public bool? Favorite { get; set; }
+
         [JsonProperty("hd")]
         public bool? Hd { get; set; }
 
@@ -34,6 +46,18 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
 
         [JsonProperty("language")]
         public string? Language { get; set; }
+
+        /// <summary>
+        /// Signal quality percentage (0-100).
+        /// </summary>
+        [JsonProperty("signalQuality")]
+        public long? SignalQuality { get; set; }
+
+        /// <summary>
+        /// Signal strength percentage (0-100).
+        /// </summary>
+        [JsonProperty("signalStrength")]
+        public long? SignalStrength { get; set; }
 
         [JsonProperty("thumb")]
         public string? Thumb { get; set; }

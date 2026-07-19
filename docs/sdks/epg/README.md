@@ -4,15 +4,16 @@
 
 The EPG (Electronic Program Guide) is responsible for obtaining metadata for what is airing on each channel and when
 
-
 ### Available Operations
 
 * [ComputeChannelMap](#computechannelmap) - Compute the best channel map
 * [GetChannels](#getchannels) - Get channels for a lineup
 * [GetCountries](#getcountries) - Get all countries
+* [GetEPGGuide](#getepgguide) - Get EPG Guide
 * [GetAllLanguages](#getalllanguages) - Get all languages
 * [GetLineup](#getlineup) - Compute the best lineup
-* [GetLineupChannels](#getlineupchannels) - Get the channels for mulitple lineups
+* [GetLineupChannels](#getlineupchannels) - Get the channels for multiple lineups
+* [SearchEPG](#searchepg) - Search EPG
 * [GetCountriesLineups](#getcountrieslineups) - Get lineups for a country via postal code
 * [GetCountryRegions](#getcountryregions) - Get regions for a country
 * [ListLineups](#listlineups) - Get lineups for a region
@@ -148,6 +149,36 @@ var res = await sdk.Epg.GetCountriesAsync();
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetEPGGuide
+
+Fetch the global electronic program guide.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getEPGGuide" method="get" path="/livetv/epg/guide" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+
+var sdk = new PlexAPI(token: "<YOUR_API_KEY_HERE>");
+
+var res = await sdk.Epg.GetEPGGuideAsync();
+
+// handle response
+```
+
+### Response
+
+**[GetEPGGuideResponse](../../Models/Requests/GetEPGGuideResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetAllLanguages
@@ -176,6 +207,7 @@ var res = await sdk.Epg.GetAllLanguagesAsync();
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetLineup
@@ -285,6 +317,57 @@ var res = await sdk.Epg.GetLineupChannelsAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## SearchEPG
+
+Search the electronic program guide for upcoming airings.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="searchEPG" method="get" path="/livetv/epg/search" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+SearchEPGRequest req = new SearchEPGRequest() {};
+
+var res = await sdk.Epg.SearchEPGAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                     | Type                                                          | Required                                                      | Description                                                   |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `request`                                                     | [SearchEPGRequest](../../Models/Requests/SearchEPGRequest.md) | :heavy_check_mark:                                            | The request object to use for the request.                    |
+
+### Response
+
+**[SearchEPGResponse](../../Models/Requests/SearchEPGResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetCountriesLineups

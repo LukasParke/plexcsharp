@@ -9,7 +9,7 @@
 #nullable enable
 namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
-    using LukeHagar.PlexAPI.SDK.Models.Requests;
+    using LukeHagar.PlexAPI.SDK.Models.Components;
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
@@ -40,7 +40,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public long? TotalSize { get; set; }
 
         [JsonProperty("Level")]
-        public List<GetStreamLevelsLevel>? Level { get; set; }
+        public List<Models.Components.Level>? Level { get; set; }
 
         /// <summary>
         /// The total number of samples (as a string).

@@ -90,7 +90,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         ///   - 4: Verbose.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=level")]
-        public Level? Level { get; set; }
+        public Models.Requests.Level? Level { get; set; }
 
         /// <summary>
         /// The text of the message to write to the log.

@@ -69,9 +69,9 @@ namespace LukeHagar.PlexAPI.SDK
                 },
                 new Dictionary<string, string>()
                 {
-                    {"protocol", "http"},
                     {"host", "localhost"},
                     {"port", "32400"},
+                    {"protocol", "http"},
                 },
                 new Dictionary<string, string>()
                 {
@@ -89,7 +89,7 @@ namespace LukeHagar.PlexAPI.SDK
             DeviceVendor = null;
             DeviceName = null;
             Marketplace = null;
-            UserAgent = "speakeasy-sdk/csharp 0.20.8 2.884.4 1.1.1 LukeHagar.PlexAPI.SDK";
+            UserAgent = "speakeasy-sdk/csharp 0.21.0 2.918.3 1.1.1 LukeHagar.PlexAPI.SDK";
             SecuritySource = null;
             Hooks = new SDKHooks();
             RetryConfig = null;

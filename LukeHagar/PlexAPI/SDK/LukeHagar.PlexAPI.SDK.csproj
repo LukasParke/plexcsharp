@@ -3,13 +3,39 @@
   <PropertyGroup>
     <IsPackable>true</IsPackable>
     <PackageId>LukeHagar.PlexAPI.SDK</PackageId>
-    <Version>0.20.8</Version>
+    <Version>0.21.0</Version>
     <TargetFramework>net8.0</TargetFramework>
     <Authors>LukeHagar</Authors>
     <Copyright>Copyright (c) LukeHagar 2026</Copyright>
     <RepositoryUrl>https://github.com/LukasParke/plexcsharp.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>Plex Media Server SDK</PackageTags>
+    <Description>Plex Media Server: OpenAPI specification for the Plex Media Server (PMS) API and the plex.tv cloud API.<br/>
+<br/>
+## Base URLs<br/>
+<br/>
+- **PMS (local server)**: `http(s)://{host}:{port}` — Most endpoints in this spec target the local PMS.<br/>
+- **plex.tv v2**: `https://plex.tv/api/v2` — Authentication, account, and social endpoints.<br/>
+- **plex.tv v1 (legacy)**: `https://plex.tv/api` — Legacy XML endpoints (friends, home users, claims).<br/>
+- **Cloud providers**: `https://discover.provider.plex.tv`, `https://metadata.provider.plex.tv`, etc.<br/>
+<br/>
+Endpoints that target plex.tv or cloud providers declare an override `servers` array.<br/>
+<br/>
+## Authentication<br/>
+<br/>
+- **X-Plex-Token**: Pass via the `X-Plex-Token` header on every request. It may also be passed as a query parameter (`?X-Plex-Token=...`) on all endpoints.<br/>
+- **X-Plex-Client-Identifier**: Mandatory for OAuth PIN flow (`/pins`) and JWT device registration. Must be a unique, persistent identifier for the client application.<br/>
+- **OAuth PIN Flow**: `POST /pins` → user visits `https://plex.tv/link` → `GET /pins/{pinId}` → obtain `authToken`.<br/>
+<br/>
+## Response Formats<br/>
+<br/>
+- **PMS endpoints**: Return XML by default. Send `Accept: application/json` to receive JSON.<br/>
+- **plex.tv v2**: Returns JSON by default.<br/>
+- **Legacy v1 endpoints** (`/pins.xml`, `/api/resources`, `/api/users/`): Return XML only.<br/>
+<br/>
+## Rate Limiting<br/>
+<br/>
+plex.tv auth endpoints (PIN creation, sign-in) enforce rate limits. Clients should implement exponential backoff and reuse tokens rather than re-authenticating on every request.</Description>
   </PropertyGroup>
 
   <PropertyGroup>

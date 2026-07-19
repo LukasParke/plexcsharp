@@ -35,6 +35,12 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public string? Container { get; set; }
 
         /// <summary>
+        /// Deep analysis version for this part.
+        /// </summary>
+        [JsonProperty("deepAnalysisVersion")]
+        public long? DeepAnalysisVersion { get; set; }
+
+        /// <summary>
         /// The duration of the media item, in milliseconds.
         /// </summary>
         [JsonProperty("duration")]
@@ -71,6 +77,24 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public bool? OptimizedForStreaming { get; set; }
 
         /// <summary>
+        /// RTP packet length for streaming.
+        /// </summary>
+        [JsonProperty("packetLength")]
+        public long? PacketLength { get; set; }
+
+        /// <summary>
+        /// Streaming protocol (e.g. dash, hls, direct).
+        /// </summary>
+        [JsonProperty("protocol")]
+        public string? Protocol { get; set; }
+
+        /// <summary>
+        /// Comma-separated list of bandwidth requirements.
+        /// </summary>
+        [JsonProperty("requiredBandwidths")]
+        public string? RequiredBandwidths { get; set; }
+
+        /// <summary>
         /// The size of the media, in bytes.
         /// </summary>
         [JsonProperty("size")]
@@ -78,6 +102,18 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
 
         [JsonProperty("Stream")]
         public List<Stream>? Stream { get; set; }
+
+        /// <summary>
+        /// Mobile sync item association ID.
+        /// </summary>
+        [JsonProperty("syncItemId")]
+        public long? SyncItemId { get; set; }
+
+        /// <summary>
+        /// Sync state (e.g. pending, downloaded, processing).
+        /// </summary>
+        [JsonProperty("syncState")]
+        public string? SyncState { get; set; }
 
         [JsonProperty("videoProfile")]
         public string? VideoProfile { get; set; }

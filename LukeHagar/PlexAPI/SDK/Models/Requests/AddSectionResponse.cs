@@ -32,7 +32,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public HttpResponseMessage RawResponse { get; set; } = default!;
 
         /// <summary>
-        /// OK.
+        /// Successfully created/executed add a library section.
         /// </summary>
         public SlashGetResponses200? SlashGetResponses200 { get; set; }
     }

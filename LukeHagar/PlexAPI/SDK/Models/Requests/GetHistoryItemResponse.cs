@@ -33,7 +33,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public HttpResponseMessage RawResponse { get; set; } = default!;
 
         /// <summary>
-        /// OK.
+        /// Successfully retrieved get single history item.
         /// </summary>
         public HistoryAllGetResponses200? HistoryAllGetResponses200 { get; set; }
 

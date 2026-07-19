@@ -81,7 +81,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public string? Marketplace { get; set; }
 
         /// <summary>
-        /// Section identifier.
+        /// The unique identifier of the library section.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=sectionId")]
         public long SectionId { get; set; } = default!;

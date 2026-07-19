@@ -25,6 +25,18 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public string? Type { get; set; }
 
         /// <summary>
+        /// Lineup identifier.
+        /// </summary>
+        [JsonProperty("identifier")]
+        public string? Identifier { get; set; }
+
+        /// <summary>
+        /// API key for this lineup.
+        /// </summary>
+        [JsonProperty("key")]
+        public string? Key { get; set; }
+
+        /// <summary>
         /// - `-1`: N/A<br/>
         /// - `0`: Over the air<br/>
         /// - `1`: Cable<br/>

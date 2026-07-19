@@ -15,6 +15,15 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 
     public class PlayQueueGenerator
     {
+        /// <summary>
+        /// The type of playlist generator.<br/>
+        /// <br/>
+        ///   - -1: A smart playlist generator<br/>
+        ///   - 42: A optimized version generator.
+        /// </summary>
+        [JsonProperty("type")]
+        public GetPlaylistGeneratorsType? Type { get; set; }
+
         [JsonProperty("changedAt")]
         public long? ChangedAt { get; set; }
 
@@ -26,15 +35,6 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 
         [JsonProperty("playlistID")]
         public long? PlaylistID { get; set; }
-
-        /// <summary>
-        /// The type of playlist generator.<br/>
-        /// <br/>
-        ///   - -1: A smart playlist generator<br/>
-        ///   - 42: A optimized version generator.
-        /// </summary>
-        [JsonProperty("type")]
-        public GetPlaylistGeneratorsType? Type { get; set; }
 
         [JsonProperty("updatedAt")]
         public long? UpdatedAt { get; set; }

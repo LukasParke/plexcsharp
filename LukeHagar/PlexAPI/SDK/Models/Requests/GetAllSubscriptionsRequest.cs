@@ -91,5 +91,17 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeStorage")]
         public BoolInt? IncludeStorage { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
+
+        /// <summary>
+        /// Pagination start offset.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=X-Plex-Container-Start")]
+        public long? XPlexContainerStart { get; set; }
+
+        /// <summary>
+        /// Pagination page size.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=X-Plex-Container-Size")]
+        public long? XPlexContainerSize { get; set; }
     }
 }

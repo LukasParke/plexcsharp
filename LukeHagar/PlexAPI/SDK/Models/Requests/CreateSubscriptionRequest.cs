@@ -97,7 +97,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// The type of the thing we're subscribing too (e.g. show, season).
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=type")]
-        public long? Type { get; set; }
+        public long? MediaType { get; set; }
 
         /// <summary>
         /// Hints describing what we're looking for.  Note: The hint `ratingKey` is required for downloading from a PMS remote.

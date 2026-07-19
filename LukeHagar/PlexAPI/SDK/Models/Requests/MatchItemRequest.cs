@@ -80,15 +80,27 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Marketplace")]
         public string? Marketplace { get; set; }
 
+        /// <summary>
+        /// Comma-separated list of IDs.
+        /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=ids")]
         public string Ids { get; set; } = default!;
 
+        /// <summary>
+        /// The guid.
+        /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=guid")]
         public string? Guid { get; set; }
 
+        /// <summary>
+        /// The name.
+        /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// The year to filter by.
+        /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=year")]
         public long? Year { get; set; }
     }

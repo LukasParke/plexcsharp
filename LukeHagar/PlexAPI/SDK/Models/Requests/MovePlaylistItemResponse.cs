@@ -32,7 +32,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public HttpResponseMessage RawResponse { get; set; } = default!;
 
         /// <summary>
-        /// OK.
+        /// Successfully updated moving items in a playlist.
         /// </summary>
         public MediaContainerWithPlaylistMetadata? MediaContainerWithPlaylistMetadata { get; set; }
     }

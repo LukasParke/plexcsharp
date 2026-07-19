@@ -98,12 +98,27 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=type")]
         public MediaType? Type { get; set; }
 
+        /// <summary>
+        /// The title to filter by or assign.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=title")]
+        public string? Title { get; set; }
+
+        /// <summary>
+        /// Include full metadata in the response.
+        /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeFullMetadata")]
         public BoolInt? IncludeFullMetadata { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
 
+        /// <summary>
+        /// Include ancestor metadata in the response.
+        /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeAncestorMetadata")]
         public BoolInt? IncludeAncestorMetadata { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
 
+        /// <summary>
+        /// Include alternate metadata sources in the response.
+        /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeAlternateMetadataSources")]
         public BoolInt? IncludeAlternateMetadataSources { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
 
@@ -112,12 +127,6 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=guid")]
         public string? Guid { get; set; }
-
-        /// <summary>
-        /// The title to filter by or assign.
-        /// </summary>
-        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=title")]
-        public string? Title { get; set; }
 
         /// <summary>
         /// Used for movies shows, and albums.  Optional.

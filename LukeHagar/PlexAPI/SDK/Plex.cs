@@ -22,32 +22,39 @@ namespace LukeHagar.PlexAPI.SDK
     using System.Net.Http.Headers;
     using System.Threading.Tasks;
 
+    /// <summary>
+    /// Plex Plex operations.
+    /// </summary>
     public interface IPlex
     {
         /// <summary>
         /// Get Server Resources.
         /// </summary>
         /// <remarks>
-        /// Get Plex server access tokens and server connections<br/>
-        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
+        /// Get Plex server access tokens and server connections.
         /// </remarks>
         /// <param name="request">A <see cref="GetServerResourcesRequest"/> parameter.</param>
         /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
+        /// <param name="retryConfig">The retry configuration to use for this operation.</param>
         /// <returns>An awaitable task that returns a <see cref="GetServerResourcesResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="GetServerResourcesUnauthorized">Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Thrown when the API returns a 401 response.</exception>
+        /// <exception cref="Unauthorized">Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Thrown when the API returns a 401 response.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
         public  Task<GetServerResourcesResponse> GetServerResourcesAsync(
             GetServerResourcesRequest? request = null,
-            string? serverUrl = null
+            string? serverUrl = null,
+            RetryConfig? retryConfig = null
         );
     }
 
+    /// <summary>
+    /// Plex Plex operations.
+    /// </summary>
     public class Plex: IPlex
     {
         /// <summary>
-        /// List of server URLs available for the get-server-resources operation.
+        /// List of server URLs available for the getServerResources operation.
         /// </summary>
         public static readonly string[] GetServerResourcesServerList = {
             "https://plex.tv/api/v2",
@@ -68,19 +75,20 @@ namespace LukeHagar.PlexAPI.SDK
         /// Get Server Resources.
         /// </summary>
         /// <remarks>
-        /// Get Plex server access tokens and server connections<br/>
-        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
+        /// Get Plex server access tokens and server connections.
         /// </remarks>
         /// <param name="request">A <see cref="GetServerResourcesRequest"/> parameter.</param>
         /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
+        /// <param name="retryConfig">The retry configuration to use for this operation.</param>
         /// <returns>An awaitable task that returns a <see cref="GetServerResourcesResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="GetServerResourcesUnauthorized">Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Thrown when the API returns a 401 response.</exception>
+        /// <exception cref="Unauthorized">Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Thrown when the API returns a 401 response.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
         public async  Task<GetServerResourcesResponse> GetServerResourcesAsync(
             GetServerResourcesRequest? request = null,
-            string? serverUrl = null
+            string? serverUrl = null,
+            RetryConfig? retryConfig = null
         )
         {
             if (request == null)
@@ -109,17 +117,50 @@ namespace LukeHagar.PlexAPI.SDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "get-server-resources", null, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getServerResources", null, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+            if (retryConfig == null)
+            {
+                if (this.SDKConfiguration.RetryConfig != null)
+                {
+                    retryConfig = this.SDKConfiguration.RetryConfig;
+                }
+                else
+                {
+                    var backoff = new BackoffStrategy(
+                        initialIntervalMs: 1000L,
+                        maxIntervalMs: 30000L,
+                        maxElapsedTimeMs: 300000L,
+                        exponent: 2
+                    );
+                    retryConfig = new RetryConfig(
+                        strategy: RetryConfig.RetryStrategy.BACKOFF,
+                        backoff: backoff,
+                        retryConnectionErrors: true
+                    );
+                }
+            }
+
+            List<string> statusCodes = new List<string>
+            {
+                "429",
+            };
+
+            Func<Task<HttpResponseMessage>> retrySend = async () =>
+            {
+                var _httpRequest = await SDKConfiguration.Client.CloneAsync(httpRequest);
+                return await SDKConfiguration.Client.SendAsync(_httpRequest);
+            };
+            var retries = new LukeHagar.PlexAPI.SDK.Utils.Retries.Retries(retrySend, retryConfig, statusCodes);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                httpResponse = await retries.Run();
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
@@ -180,18 +221,17 @@ namespace LukeHagar.PlexAPI.SDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    GetServerResourcesUnauthorizedPayload payload;
+                    UnauthorizedPayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<GetServerResourcesUnauthorizedPayload>(httpResponseBody, NullValueHandling.Include);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<UnauthorizedPayload>(httpResponseBody, NullValueHandling.Include);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into GetServerResourcesUnauthorizedPayload.", httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into UnauthorizedPayload.", httpResponse, httpResponseBody, ex);
                     }
 
-                    payload.RawResponse = httpResponse;
-                    throw new GetServerResourcesUnauthorized(payload, httpResponse, httpResponseBody);
+                    throw new Unauthorized(payload, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpResponse, await httpResponse.Content.ReadAsStringAsync());

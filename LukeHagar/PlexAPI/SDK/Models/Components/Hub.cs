@@ -70,6 +70,24 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         [JsonProperty("random")]
         public bool? Random { get; set; }
 
+        /// <summary>
+        /// Reason for hub inclusion (e.g. "because you watched").
+        /// </summary>
+        [JsonProperty("reason")]
+        public string? Reason { get; set; }
+
+        /// <summary>
+        /// ID of the item that triggered the reason.
+        /// </summary>
+        [JsonProperty("reasonID")]
+        public long? ReasonID { get; set; }
+
+        /// <summary>
+        /// Human-readable reason title.
+        /// </summary>
+        [JsonProperty("reasonTitle")]
+        public string? ReasonTitle { get; set; }
+
         [JsonProperty("size")]
         public long? Size { get; set; }
 

@@ -16,14 +16,50 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
 
     public class Device
     {
+        /// <summary>
+        /// Display title for the device.
+        /// </summary>
+        [JsonProperty("title")]
+        public string? Title { get; set; }
+
         [JsonProperty("ChannelMapping")]
         public List<Models.Components.ChannelMapping>? ChannelMapping { get; set; }
+
+        /// <summary>
+        /// Distinct hardware identifier for the device.
+        /// </summary>
+        [JsonProperty("deviceIdentifier")]
+        public string? DeviceIdentifier { get; set; }
+
+        /// <summary>
+        /// Whether the device is enabled.
+        /// </summary>
+        [JsonProperty("enabled")]
+        public bool? Enabled { get; set; }
+
+        /// <summary>
+        /// Unique device ID.
+        /// </summary>
+        [JsonProperty("id")]
+        public long? Id { get; set; }
 
         [JsonProperty("key")]
         public string? Key { get; set; }
 
         [JsonProperty("lastSeenAt")]
         public long? LastSeenAt { get; set; }
+
+        /// <summary>
+        /// EPG lineup association.
+        /// </summary>
+        [JsonProperty("lineup")]
+        public string? Lineup { get; set; }
+
+        /// <summary>
+        /// Type of EPG lineup.
+        /// </summary>
+        [JsonProperty("lineupType")]
+        public string? LineupType { get; set; }
 
         [JsonProperty("make")]
         public string? Make { get; set; }
@@ -33,6 +69,12 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
 
         [JsonProperty("modelNumber")]
         public string? ModelNumber { get; set; }
+
+        /// <summary>
+        /// Human-readable device name.
+        /// </summary>
+        [JsonProperty("name")]
+        public string? Name { get; set; }
 
         [JsonProperty("protocol")]
         public string? Protocol { get; set; }
@@ -45,6 +87,18 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
 
         [JsonProperty("status")]
         public string? Status { get; set; }
+
+        /// <summary>
+        /// URL to the device thumbnail image.
+        /// </summary>
+        [JsonProperty("thumb")]
+        public string? Thumb { get; set; }
+
+        /// <summary>
+        /// Version of the device thumbnail.
+        /// </summary>
+        [JsonProperty("thumbVersion")]
+        public long? ThumbVersion { get; set; }
 
         [JsonProperty("tuners")]
         public string? Tuners { get; set; }

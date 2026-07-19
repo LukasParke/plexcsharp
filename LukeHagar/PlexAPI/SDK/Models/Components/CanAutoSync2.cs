@@ -9,48 +9,180 @@
 #nullable enable
 namespace LukeHagar.PlexAPI.SDK.Models.Components
 {
+    using LukeHagar.PlexAPI.SDK.Models.Components;
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
     using System;
+    using System.Collections.Generic;
+    using System.Numerics;
+    using System.Reflection;
 
-    public enum CanAutoSync2
+    public class CanAutoSync2Type
     {
-        [JsonProperty("0")]
-        Zero,
-        [JsonProperty("1")]
-        One,
+        private CanAutoSync2Type(string value) { Value = value; }
+
+        public string Value { get; private set; }
+
+        public static CanAutoSync2Type One { get { return new CanAutoSync2Type("1"); } }
+
+        public static CanAutoSync2Type Boolean { get { return new CanAutoSync2Type("boolean"); } }
+
+        public override string ToString() { return Value; }
+        public static implicit operator String(CanAutoSync2Type v) { return v.Value; }
+        public static CanAutoSync2Type FromString(string v) {
+            switch(v) {
+                case "1": return One;
+                case "boolean": return Boolean;
+                default: throw new ArgumentException("Invalid value for CanAutoSync2Type");
+            }
+        }
+        public override bool Equals(object? obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+            return Value.Equals(((CanAutoSync2Type)obj).Value);
+        }
+
+        public override int GetHashCode()
+        {
+            return Value.GetHashCode();
+        }
     }
 
-    public static class CanAutoSync2Extension
+    [JsonConverter(typeof(CanAutoSync2.CanAutoSync2Converter))]
+    public class CanAutoSync2
     {
-        public static string Value(this CanAutoSync2 value)
+        public CanAutoSync2(CanAutoSync2Type type)
         {
-            return ((JsonPropertyAttribute)value.GetType().GetMember(value.ToString())[0].GetCustomAttributes(typeof(JsonPropertyAttribute), false)[0]).PropertyName ?? value.ToString();
+            Type = type;
         }
 
-        public static CanAutoSync2 ToEnum(this string value)
+        [SpeakeasyMetadata("form:explode=true")]
+        public One? One { get; set; }
+
+        [SpeakeasyMetadata("form:explode=true")]
+        public bool? Boolean { get; set; }
+
+        public CanAutoSync2Type Type { get; set; }
+        public static CanAutoSync2 CreateOne(One one)
         {
-            foreach(var field in typeof(CanAutoSync2).GetFields())
+            CanAutoSync2Type typ = CanAutoSync2Type.One;
+
+            CanAutoSync2 res = new CanAutoSync2(typ);
+            res.One = one;
+            return res;
+        }
+        public static CanAutoSync2 CreateBoolean(bool boolean)
+        {
+            CanAutoSync2Type typ = CanAutoSync2Type.Boolean;
+
+            CanAutoSync2 res = new CanAutoSync2(typ);
+            res.Boolean = boolean;
+            return res;
+        }
+
+        public class CanAutoSync2Converter : JsonConverter
+        {
+            public override bool CanConvert(System.Type objectType) => objectType == typeof(CanAutoSync2);
+
+            public override bool CanRead => true;
+
+            public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
             {
-                var attributes = field.GetCustomAttributes(typeof(JsonPropertyAttribute), false);
-                if (attributes.Length == 0)
+                if (reader.TokenType == JsonToken.Null)
                 {
-                    continue;
+                    throw new InvalidOperationException("Received unexpected null JSON value");
                 }
 
-                var attribute = attributes[0] as JsonPropertyAttribute;
-                if (attribute != null && attribute.PropertyName == value)
-                {
-                    var enumVal = field.GetValue(null);
+                var json = JRaw.Create(reader).ToString();
+                var fallbackCandidates = new List<(System.Type, object, string)>();
 
-                    if (enumVal is CanAutoSync2)
+                try
+                {
+                    return new CanAutoSync2(CanAutoSync2Type.One)
                     {
-                        return (CanAutoSync2)enumVal;
+                        One = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<One>(json)
+                    };
+                }
+                catch (ResponseBodyDeserializer.MissingMemberException)
+                {
+                    fallbackCandidates.Add((typeof(One), new CanAutoSync2(CanAutoSync2Type.One), "One"));
+                }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+
+                try
+                {
+                    var converted = Convert.ToBoolean(json);
+                    return new CanAutoSync2(CanAutoSync2Type.Boolean)
+                    {
+                        Boolean = converted
+                    };
+                }
+                catch (System.FormatException)
+                {
+                    // try next option
+                }
+
+                if (fallbackCandidates.Count > 0)
+                {
+                    fallbackCandidates.Sort((a, b) => ResponseBodyDeserializer.CompareFallbackCandidates(a.Item1, b.Item1, json));
+                    foreach(var (deserializationType, returnObject, propertyName) in fallbackCandidates)
+                    {
+                        try
+                        {
+                            return ResponseBodyDeserializer.DeserializeUndiscriminatedUnionFallback(deserializationType, returnObject, propertyName, json);
+                        }
+                        catch (ResponseBodyDeserializer.DeserializationException)
+                        {
+                            // try next fallback option
+                        }
+                        catch (Exception)
+                        {
+                            throw;
+                        }
                     }
                 }
+
+                throw new InvalidOperationException("Could not deserialize into any supported types.");
             }
 
-            throw new Exception($"Unknown value {value} for enum CanAutoSync2");
+            public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
+            {
+                if (value == null)
+                {
+                    throw new InvalidOperationException("Unexpected null JSON value.");
+                }
+
+                CanAutoSync2 res = (CanAutoSync2)value;
+
+                if (res.One != null)
+                {
+                    writer.WriteRawValue(Utilities.SerializeJSON(res.One));
+                    return;
+                }
+
+                if (res.Boolean != null)
+                {
+                    writer.WriteRawValue(Utilities.SerializeJSON(res.Boolean));
+                    return;
+                }
+
+                throw new InvalidOperationException(
+                    "Could not serialize union to JSON: no variant value was set. " +
+                    "Construct this union using one of the Create* factory methods.");
+            }
+
         }
+
     }
 }

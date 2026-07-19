@@ -12,6 +12,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using LukeHagar.PlexAPI.SDK.Models.Requests;
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
+    using System.Collections.Generic;
 
     /// <summary>
     /// `MediaContainer` is the root element of most Plex API responses. It serves as a generic container for various types of content (Metadata, Hubs, Directories, etc.) and includes pagination information (offset, size, totalSize) when applicable.<br/>
@@ -68,8 +69,11 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         [JsonProperty("countryCode")]
         public string? CountryCode { get; set; }
 
+        /// <summary>
+        /// Comma-separated list of enabled diagnostics modules.
+        /// </summary>
         [JsonProperty("diagnostics")]
-        public string? Diagnostics { get; set; }
+        public List<string>? Diagnostics { get; set; }
 
         [JsonProperty("eventStream")]
         public bool? EventStream { get; set; }
@@ -113,14 +117,17 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         [JsonProperty("myPlexUsername")]
         public string? MyPlexUsername { get; set; }
 
+        /// <summary>
+        /// Whether offline transcoding is enabled.
+        /// </summary>
         [JsonProperty("offlineTranscode")]
-        public object? OfflineTranscode { get; set; }
+        public int? OfflineTranscode { get; set; }
 
         /// <summary>
-        /// A comma-separated list of features which are enabled for the server owner.
+        /// List of enabled owner features.
         /// </summary>
         [JsonProperty("ownerFeatures")]
-        public string? OwnerFeatures { get; set; }
+        public List<string>? OwnerFeatures { get; set; }
 
         [JsonProperty("platform")]
         public string? Platform { get; set; }
@@ -165,19 +172,22 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public bool? TranscoderVideo { get; set; }
 
         /// <summary>
-        /// The suggested video quality bitrates to present to the user.
+        /// List of supported transcoder video bitrates.
         /// </summary>
         [JsonProperty("transcoderVideoBitrates")]
-        public object? TranscoderVideoBitrates { get; set; }
-
-        [JsonProperty("transcoderVideoQualities")]
-        public string? TranscoderVideoQualities { get; set; }
+        public List<string>? TranscoderVideoBitrates { get; set; }
 
         /// <summary>
-        /// The suggested video resolutions to the above quality bitrates.
+        /// List of supported transcoder video qualities.
+        /// </summary>
+        [JsonProperty("transcoderVideoQualities")]
+        public List<string>? TranscoderVideoQualities { get; set; }
+
+        /// <summary>
+        /// List of supported transcoder video resolutions.
         /// </summary>
         [JsonProperty("transcoderVideoResolutions")]
-        public object? TranscoderVideoResolutions { get; set; }
+        public List<string>? TranscoderVideoResolutions { get; set; }
 
         [JsonProperty("updatedAt")]
         public long? UpdatedAt { get; set; }
@@ -196,6 +206,12 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// </summary>
         [JsonProperty("Bandwidths")]
         public Bandwidths? Bandwidths { get; set; }
+
+        /// <summary>
+        /// The play queue ID when playback originates from a queue.
+        /// </summary>
+        [JsonProperty("playQueueID")]
+        public long? PlayQueueID { get; set; }
 
         /// <summary>
         /// A code describing why the session was terminated by the server.

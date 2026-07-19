@@ -5,7 +5,6 @@
 This describes the API for searching and applying updates to the Plex Media Server.
 Updates to the status can be observed via the Event API.
 
-
 ### Available Operations
 
 * [ApplyUpdates](#applyupdates) - Applying updates
@@ -115,6 +114,7 @@ var res = await sdk.Updater.CheckUpdatesAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetUpdatesStatus
@@ -143,4 +143,5 @@ var res = await sdk.Updater.GetUpdatesStatusAsync();
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |

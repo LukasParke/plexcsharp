@@ -21,8 +21,8 @@ var sdk = new PlexAPI(
 
 StartTranscodeSessionRequest req = new StartTranscodeSessionRequest() {
     TranscodeType = TranscodeType.Music,
-    Extension = Extension.Mpd,
     AdvancedSubtitles = LukeHagar.PlexAPI.SDK.Models.Components.AdvancedSubtitles.Burn,
+    Extension = Extension.Mpd,
     AudioBoost = 50,
     AudioChannelCount = 5,
     AutoAdjustQuality = BoolInt.True,
@@ -44,9 +44,11 @@ StartTranscodeSessionRequest req = new StartTranscodeSessionRequest() {
     Protocol = StartTranscodeSessionQueryParamProtocol.Dash,
     SecondsPerSegment = 5,
     SubtitleSize = 50,
+    Subtitles = StartTranscodeSessionQueryParamSubtitles.Burn,
+    VideoResolution = "1080x1080",
+    Copyts = BoolInt.True,
     VideoBitrate = 12000,
     VideoQuality = 50,
-    VideoResolution = "1080x1080",
     XPlexClientProfileExtra = "add-limitation(scope=videoCodec&scopeName=*&type=upperBound&name=video.frameRate&value=60&replace=true)+append-transcode-target-codec(type=videoProfile&context=streaming&videoCodec=h264%2Chevc&audioCodec=aac&protocol=dash)",
     XPlexClientProfileName = "generic",
 };

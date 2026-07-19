@@ -6,11 +6,11 @@ The server can notify clients in real-time of a wide range of events, from libra
 
 Two protocols for receiving the events are available: EventSource (also known as SSE), and WebSocket.
 
-
 ### Available Operations
 
 * [GetNotifications](#getnotifications) - Connect to Eventsource
 * [ConnectWebSocket](#connectwebsocket) - Connect to WebSocket
+* [GetWebsocketNotifications](#getwebsocketnotifications) - Get WebSocket Notifications
 
 ## GetNotifications
 
@@ -60,6 +60,7 @@ var res = await sdk.Events.GetNotificationsAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## ConnectWebSocket
@@ -110,4 +111,56 @@ var res = await sdk.Events.ConnectWebSocketAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetWebsocketNotifications
+
+WebSocket endpoint for real-time notifications (plural alias). Connect with X-Plex-Token header. Delivers NotificationContainer messages.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getWebsocketNotifications" method="get" path="/:/websockets/notifications" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetWebsocketNotificationsRequest req = new GetWebsocketNotificationsRequest() {};
+
+var res = await sdk.Events.GetWebsocketNotificationsAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `request`                                                                                     | [GetWebsocketNotificationsRequest](../../Models/Requests/GetWebsocketNotificationsRequest.md) | :heavy_check_mark:                                                                            | The request object to use for the request.                                                    |
+
+### Response
+
+**[GetWebsocketNotificationsResponse](../../Models/Requests/GetWebsocketNotificationsResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |

@@ -118,6 +118,24 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public MediaQuery? MediaQuery { get; set; }
 
         /// <summary>
+        /// The id of the section.
+        /// </summary>
+        [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=sectionId")]
+        public long SectionId { get; set; } = default!;
+
+        /// <summary>
+        /// Filter by metadata type (1=movie, 2=show, 3=season, 4=episode, 8=artist, 9=album, 10=track).
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=type")]
+        public long? MediaType { get; set; }
+
+        /// <summary>
+        /// Sort key and direction (e.g. addedAt:desc, titleSort).
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")]
+        public string? Sort { get; set; }
+
+        /// <summary>
         /// Adds the Meta object to the response.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeMeta")]
@@ -130,9 +148,219 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public BoolInt? IncludeGuids { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
 
         /// <summary>
-        /// The id of the section.
+        /// Include collection items in results.
         /// </summary>
-        [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=sectionId")]
-        public string SectionId { get; set; } = default!;
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeCollections")]
+        public BoolInt? IncludeCollections { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
+
+        /// <summary>
+        /// Include external or online media.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeExternalMedia")]
+        public BoolInt? IncludeExternalMedia { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
+
+        /// <summary>
+        /// Include advanced settings.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeAdvanced")]
+        public BoolInt? IncludeAdvanced { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
+
+        /// <summary>
+        /// Verify file existence.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=checkFiles")]
+        public BoolInt? CheckFiles { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
+
+        /// <summary>
+        /// Include related items.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeRelated")]
+        public BoolInt? IncludeRelated { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
+
+        /// <summary>
+        /// Include trailers, behind-the-scenes, etc.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeExtras")]
+        public BoolInt? IncludeExtras { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
+
+        /// <summary>
+        /// Include popular episodes.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includePopularLeaves")]
+        public BoolInt? IncludePopularLeaves { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
+
+        /// <summary>
+        /// Include concert items.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeConcerts")]
+        public BoolInt? IncludeConcerts { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
+
+        /// <summary>
+        /// Include On Deck status.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeOnDeck")]
+        public BoolInt? IncludeOnDeck { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
+
+        /// <summary>
+        /// Include chapter markers.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeChapters")]
+        public BoolInt? IncludeChapters { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
+
+        /// <summary>
+        /// Include user preferences.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includePreferences")]
+        public BoolInt? IncludePreferences { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
+
+        /// <summary>
+        /// Include bandwidth info.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeBandwidths")]
+        public BoolInt? IncludeBandwidths { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
+
+        /// <summary>
+        /// Include loudness ramp data.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeLoudnessRamps")]
+        public BoolInt? IncludeLoudnessRamps { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
+
+        /// <summary>
+        /// Include radio station data.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeStations")]
+        public BoolInt? IncludeStations { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
+
+        /// <summary>
+        /// Include external GUIDs.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeExternalIds")]
+        public BoolInt? IncludeExternalIds { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
+
+        /// <summary>
+        /// Include user reviews.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeReviews")]
+        public BoolInt? IncludeReviews { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
+
+        /// <summary>
+        /// Include full credits.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeCredits")]
+        public BoolInt? IncludeCredits { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
+
+        /// <summary>
+        /// Force inclusion of artwork fields.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeArt")]
+        public BoolInt? IncludeArt { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
+
+        /// <summary>
+        /// Force inclusion of thumbnail fields.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeThumb")]
+        public BoolInt? IncludeThumb { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
+
+        /// <summary>
+        /// Force inclusion of banner fields.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeBanner")]
+        public BoolInt? IncludeBanner { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
+
+        /// <summary>
+        /// Force inclusion of theme fields.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeTheme")]
+        public BoolInt? IncludeTheme { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
+
+        /// <summary>
+        /// Whitelist of fields to return.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeFields")]
+        public string? IncludeFields { get; set; }
+
+        /// <summary>
+        /// Blacklist of fields to omit.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=excludeFields")]
+        public string? ExcludeFields { get; set; }
+
+        /// <summary>
+        /// Async metadata augmentation.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=asyncAugmentMetadata")]
+        public BoolInt? AsyncAugmentMetadata { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
+
+        /// <summary>
+        /// Async local media agent refresh.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=asyncRefreshLocalMediaAgent")]
+        public BoolInt? AsyncRefreshLocalMediaAgent { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
+
+        /// <summary>
+        /// Bypass cache.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=nocache")]
+        public BoolInt? Nocache { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
+
+        /// <summary>
+        /// Skip synchronous refresh.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=skipRefresh")]
+        public BoolInt? SkipRefresh { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
+
+        /// <summary>
+        /// Comma-separated list of elements to exclude from the response.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=excludeElements")]
+        public string? ExcludeElements { get; set; }
+
+        /// <summary>
+        /// General filtering expression.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=filters")]
+        public string? Filters { get; set; }
+
+        /// <summary>
+        /// Filter to unwatched only (1 = true).
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=unwatched")]
+        public BoolInt? Unwatched { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
+
+        /// <summary>
+        /// Filter by genre.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=genre")]
+        public string? Genre { get; set; }
+
+        /// <summary>
+        /// Filter by studio.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=studio")]
+        public string? Studio { get; set; }
+
+        /// <summary>
+        /// Filter by content rating.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=contentRating")]
+        public string? ContentRating { get; set; }
+
+        /// <summary>
+        /// Filter by resolution.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=resolution")]
+        public string? Resolution { get; set; }
+
+        /// <summary>
+        /// Filter by year.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=year")]
+        public long? Year { get; set; }
+
+        /// <summary>
+        /// Filter by first character of title.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=firstCharacter")]
+        public string? FirstCharacter { get; set; }
     }
 }

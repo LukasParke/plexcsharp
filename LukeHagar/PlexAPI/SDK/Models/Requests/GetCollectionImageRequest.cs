@@ -80,6 +80,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Marketplace")]
         public string? Marketplace { get; set; }
 
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=composite")]
+        public Composite? Composite { get; set; }
+
         /// <summary>
         /// The collection id.
         /// </summary>
@@ -91,8 +94,5 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=updatedAt")]
         public long UpdatedAt { get; set; } = default!;
-
-        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=composite")]
-        public Composite? Composite { get; set; }
     }
 }

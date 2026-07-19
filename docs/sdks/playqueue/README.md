@@ -50,7 +50,7 @@ var sdk = new PlexAPI(
 );
 
 CreatePlayQueueRequest req = new CreatePlayQueueRequest() {
-    Type = LukeHagar.PlexAPI.SDK.Models.Requests.Type.Audio,
+    MediaType = LukeHagar.PlexAPI.SDK.Models.Requests.Type.Audio,
     Shuffle = BoolInt.True,
     Repeat = BoolInt.True,
     Continuous = BoolInt.True,
@@ -237,6 +237,7 @@ var res = await sdk.PlayQueue.ClearPlayQueueAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## ResetPlayQueue

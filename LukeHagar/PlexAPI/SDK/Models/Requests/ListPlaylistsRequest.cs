@@ -82,15 +82,21 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public string? Marketplace { get; set; }
 
         /// <summary>
+        /// Whether this is a smart collection/playlist.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=smart")]
+        public bool? Smart { get; set; }
+
+        /// <summary>
         /// Limit to a type of playlist.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=playlistType")]
         public Models.Requests.PlaylistType? PlaylistType { get; set; }
 
         /// <summary>
-        /// Whether this is a smart collection/playlist.
+        /// Filter by playlist type. Use 42 for optimized/conversion items.
         /// </summary>
-        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=smart")]
-        public bool? Smart { get; set; }
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=type")]
+        public long? MediaType { get; set; }
     }
 }

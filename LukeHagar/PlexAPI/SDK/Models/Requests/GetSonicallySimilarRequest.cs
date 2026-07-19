@@ -91,7 +91,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// The metadata type to fetch (should be 10 for audio track).
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=type")]
-        public long? Type { get; set; }
+        public long? MediaType { get; set; }
 
         /// <summary>
         /// The music analysis to center the search.  Typically obtained from the `musicAnalysis` of a track.

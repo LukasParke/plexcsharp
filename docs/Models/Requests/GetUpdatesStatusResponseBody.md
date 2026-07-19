@@ -1,6 +1,6 @@
 # GetUpdatesStatusResponseBody
 
-OK
+Status of the PMS updater.
 
 
 ## Fields
@@ -8,3 +8,7 @@ OK
 | Field                                                                                     | Type                                                                                      | Required                                                                                  | Description                                                                               |
 | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | `MediaContainer`                                                                          | [GetUpdatesStatusMediaContainer](../../Models/Requests/GetUpdatesStatusMediaContainer.md) | :heavy_minus_sign:                                                                        | N/A                                                                                       |
+| `CheckedAt`                                                                               | *long*                                                                                    | :heavy_minus_sign:                                                                        | Timestamp of the last update check.                                                       |
+| `DownloadURL`                                                                             | *string*                                                                                  | :heavy_minus_sign:                                                                        | The URL where the update is available.                                                    |
+| `Release`                                                                                 | List<[Release](../../Models/Components/Release.md)>                                       | :heavy_minus_sign:                                                                        | N/A                                                                                       |
+| `Status`                                                                                  | *long*                                                                                    | :heavy_minus_sign:                                                                        | The current error code (0 means no error).                                                |

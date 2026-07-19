@@ -131,6 +131,7 @@ var res = await sdk.Content.GetMetadataItemAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetAlbums
@@ -183,11 +184,13 @@ var res = await sdk.Content.GetAlbumsAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## ListContent
 
-Get the items in a section, potentially filtering them
+Get the items in a section, potentially filtering them.
+When `includeCollections=1` is passed, the response may also contain `Collection` items.
 
 ### Example Usage
 
@@ -215,12 +218,38 @@ var sdk = new PlexAPI(
 ListContentRequest req = new ListContentRequest() {
     MediaQuery = new MediaQuery() {
         Type = MediaType.Episode,
-        SourceType = 2,
         Sort = "duration:desc,index",
+        SourceType = 2,
     },
+    SectionId = 813218,
     IncludeMeta = BoolInt.True,
     IncludeGuids = BoolInt.True,
-    SectionId = "<id>",
+    IncludeCollections = BoolInt.True,
+    IncludeExternalMedia = BoolInt.True,
+    IncludeAdvanced = BoolInt.True,
+    CheckFiles = BoolInt.True,
+    IncludeRelated = BoolInt.True,
+    IncludeExtras = BoolInt.True,
+    IncludePopularLeaves = BoolInt.True,
+    IncludeConcerts = BoolInt.True,
+    IncludeOnDeck = BoolInt.True,
+    IncludeChapters = BoolInt.True,
+    IncludePreferences = BoolInt.True,
+    IncludeBandwidths = BoolInt.True,
+    IncludeLoudnessRamps = BoolInt.True,
+    IncludeStations = BoolInt.True,
+    IncludeExternalIds = BoolInt.True,
+    IncludeReviews = BoolInt.True,
+    IncludeCredits = BoolInt.True,
+    IncludeArt = BoolInt.True,
+    IncludeThumb = BoolInt.True,
+    IncludeBanner = BoolInt.True,
+    IncludeTheme = BoolInt.True,
+    AsyncAugmentMetadata = BoolInt.True,
+    AsyncRefreshLocalMediaAgent = BoolInt.True,
+    Nocache = BoolInt.True,
+    SkipRefresh = BoolInt.True,
+    Unwatched = BoolInt.True,
 };
 
 var res = await sdk.Content.ListContentAsync(req);
@@ -242,6 +271,7 @@ var res = await sdk.Content.ListContentAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetAllLeaves
@@ -294,6 +324,7 @@ var res = await sdk.Content.GetAllLeavesAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetArts
@@ -346,6 +377,7 @@ var res = await sdk.Content.GetArtsAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetCategories
@@ -398,6 +430,7 @@ var res = await sdk.Content.GetCategoriesAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetCluster
@@ -450,6 +483,7 @@ var res = await sdk.Content.GetClusterAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetSonicPath
@@ -504,6 +538,7 @@ var res = await sdk.Content.GetSonicPathAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetFolders
@@ -556,6 +591,7 @@ var res = await sdk.Content.GetFoldersAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## ListMoments
@@ -608,6 +644,7 @@ var res = await sdk.Content.ListMomentsAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetSonicallySimilar
@@ -662,6 +699,7 @@ var res = await sdk.Content.GetSonicallySimilarAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetCollectionImage

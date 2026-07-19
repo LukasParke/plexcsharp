@@ -81,6 +81,12 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public string? Marketplace { get; set; }
 
         /// <summary>
+        /// Limit results to count items.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=count")]
+        public long? Count { get; set; }
+
+        /// <summary>
         /// Section identifier.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=sectionId")]
@@ -97,12 +103,6 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=endID")]
         public long EndID { get; set; } = default!;
-
-        /// <summary>
-        /// Limit results to count items.
-        /// </summary>
-        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=count")]
-        public long? Count { get; set; }
 
         /// <summary>
         /// The maximum distance allowed along the path; defaults to 0.25.

@@ -14,7 +14,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using Newtonsoft.Json;
 
     /// <summary>
-    /// A media grab opration represents a scheduled or active recording of media.
+    /// A media grab operation represents a scheduled or active recording of media.
     /// </summary>
     public class MediaGrabOperation
     {
@@ -56,6 +56,6 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public string? Provider { get; set; }
 
         [JsonProperty("status")]
-        public Models.Components.Status? Status { get; set; }
+        public MediaGrabOperationStatus? Status { get; set; }
     }
 }

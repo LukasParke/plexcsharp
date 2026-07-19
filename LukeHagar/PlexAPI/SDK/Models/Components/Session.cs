@@ -12,12 +12,19 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using LukeHagar.PlexAPI.SDK.Models.Components;
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Information about the playback session.
     /// </summary>
     public class Session
     {
+        /// <summary>
+        /// Title of the media being played.
+        /// </summary>
+        [JsonProperty("title")]
+        public string? Title { get; set; }
+
         /// <summary>
         /// The bandwidth used by this client's playback in kbps.
         /// </summary>
@@ -35,5 +42,26 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         /// </summary>
         [JsonProperty("location")]
         public SessionLocation? Location { get; set; }
+
+        /// <summary>
+        /// Unique session key for this playback session.
+        /// </summary>
+        [JsonProperty("sessionKey")]
+        public string? SessionKey { get; set; }
+
+        /// <summary>
+        /// ID of the user owning this session.
+        /// </summary>
+        [JsonProperty("userID")]
+        public long? UserID { get; set; }
+
+        /// <summary>
+        /// UUID of the playback session.
+        /// </summary>
+        [JsonProperty("uuid")]
+        public string? Uuid { get; set; }
+
+        [JsonProperty("additionalProperties")]
+        public Dictionary<string, object>? AdditionalProperties { get; set; }
     }
 }

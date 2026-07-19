@@ -39,6 +39,12 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         [JsonProperty("totalSize")]
         public long? TotalSize { get; set; }
 
+        [JsonProperty("title")]
+        public string? Title { get; set; }
+
+        [JsonProperty("type")]
+        public CreateMarkerType? Type { get; set; }
+
         [JsonProperty("color")]
         public string? Color { get; set; }
 
@@ -50,12 +56,6 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 
         [JsonProperty("startTimeOffset")]
         public long? StartTimeOffset { get; set; }
-
-        [JsonProperty("title")]
-        public string? Title { get; set; }
-
-        [JsonProperty("type")]
-        public CreateMarkerType? Type { get; set; }
 
         [JsonProperty("additionalProperties")]
         public Dictionary<string, object>? AdditionalProperties { get; set; }

@@ -13,24 +13,26 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// The state of this queue<br/>
+    ///   - deciding: At least one item is still being decided<br/>
+    ///   - waiting: At least one item is waiting for transcode and none are currently transcoding<br/>
+    ///   - processing: At least one item is being transcoded<br/>
+    ///   - done: All items are available (or potentially expired)<br/>
+    ///   - error: At least one item has encountered an error.
+    /// </summary>
     public enum Status
     {
-        [JsonProperty("inactive")]
-        Inactive,
-        [JsonProperty("scheduled")]
-        Scheduled,
-        [JsonProperty("inprogress")]
-        Inprogress,
-        [JsonProperty("complete")]
-        Complete,
-        [JsonProperty("cancelled")]
-        Cancelled,
+        [JsonProperty("deciding")]
+        Deciding,
+        [JsonProperty("waiting")]
+        Waiting,
+        [JsonProperty("processing")]
+        Processing,
+        [JsonProperty("done")]
+        Done,
         [JsonProperty("error")]
         Error,
-        [JsonProperty("postprocessing")]
-        Postprocessing,
-        [JsonProperty("paused")]
-        Paused,
     }
 
     public static class StatusExtension

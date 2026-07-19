@@ -4,7 +4,6 @@
 
 Subscriptions determine which media will be recorded and the criteria for selecting an airing when multiple are available
 
-
 ### Available Operations
 
 * [GetAllSubscriptions](#getallsubscriptions) - Get all subscriptions
@@ -101,7 +100,7 @@ var sdk = new PlexAPI(
 CreateSubscriptionRequest req = new CreateSubscriptionRequest() {
     TargetLibrarySectionID = 1,
     TargetSectionLocationID = 3,
-    Type = 2,
+    MediaType = 2,
     Hints = new Hints() {},
     Prefs = new CreateSubscriptionQueryParamPrefs() {},
     Params = new Params() {},

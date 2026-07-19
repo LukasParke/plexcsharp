@@ -22,20 +22,29 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         [JsonProperty("autoSelectAudio")]
         public bool? AutoSelectAudio { get; set; } = true;
 
+        [JsonProperty("autoSelectSubtitle")]
+        public AutoSelectSubtitle? AutoSelectSubtitle { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.AutoSelectSubtitle.ManuallySelected;
+
+        [JsonProperty("defaultAudioAccessibility")]
+        public DefaultAudioAccessibility? DefaultAudioAccessibility { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.DefaultAudioAccessibility.PreferNonAccessibility;
+
         /// <summary>
         /// The preferred audio language for the account.
         /// </summary>
         [JsonProperty("defaultAudioLanguage", NullValueHandling = NullValueHandling.Include)]
         public string? DefaultAudioLanguage { get; set; }
 
-        [JsonProperty("defaultAudioAccessibility")]
-        public DefaultAudioAccessibility? DefaultAudioAccessibility { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.DefaultAudioAccessibility.PreferNonAccessibility;
-
         /// <summary>
         /// The preferred audio languages for the account.
         /// </summary>
         [JsonProperty("defaultAudioLanguages")]
         public List<string>? DefaultAudioLanguages { get; set; } = null;
+
+        [JsonProperty("defaultSubtitleAccessibility")]
+        public DefaultSubtitleAccessibility? DefaultSubtitleAccessibility { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.DefaultSubtitleAccessibility.PreferNonSdh;
+
+        [JsonProperty("defaultSubtitleForced")]
+        public DefaultSubtitleForced? DefaultSubtitleForced { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.DefaultSubtitleForced.PreferNonForced;
 
         /// <summary>
         /// The preferred subtitle language for the account.
@@ -49,25 +58,16 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         [JsonProperty("defaultSubtitleLanguages")]
         public List<string>? DefaultSubtitleLanguages { get; set; } = null;
 
-        [JsonProperty("autoSelectSubtitle")]
-        public AutoSelectSubtitle? AutoSelectSubtitle { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.AutoSelectSubtitle.ManuallySelected;
-
-        [JsonProperty("defaultSubtitleAccessibility")]
-        public DefaultSubtitleAccessibility? DefaultSubtitleAccessibility { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.DefaultSubtitleAccessibility.PreferNonSdh;
-
-        [JsonProperty("defaultSubtitleForced")]
-        public DefaultSubtitleForced? DefaultSubtitleForced { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.DefaultSubtitleForced.PreferNonForced;
-
-        [JsonProperty("watchedIndicator")]
-        public WatchedIndicator? WatchedIndicator { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.WatchedIndicator.None;
-
-        [JsonProperty("mediaReviewsVisibility")]
-        public MediaReviewsVisibility? MediaReviewsVisibility { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.MediaReviewsVisibility.NoOne;
-
         /// <summary>
         /// The languages for media reviews visibility.
         /// </summary>
         [JsonProperty("mediaReviewsLanguages")]
         public List<string>? MediaReviewsLanguages { get; set; } = null;
+
+        [JsonProperty("mediaReviewsVisibility")]
+        public MediaReviewsVisibility? MediaReviewsVisibility { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.MediaReviewsVisibility.NoOne;
+
+        [JsonProperty("watchedIndicator")]
+        public WatchedIndicator? WatchedIndicator { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.WatchedIndicator.None;
     }
 }

@@ -80,24 +80,45 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Marketplace")]
         public string? Marketplace { get; set; }
 
+        /// <summary>
+        /// Comma-separated list of IDs.
+        /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=ids")]
         public string Ids { get; set; } = default!;
 
+        /// <summary>
+        /// The title to filter by.
+        /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=title")]
         public string? Title { get; set; }
 
+        /// <summary>
+        /// The parentTitle.
+        /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=parentTitle")]
         public string? ParentTitle { get; set; }
 
+        /// <summary>
+        /// The identifier of the metadata agent to use.
+        /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=agent")]
         public string? Agent { get; set; }
 
+        /// <summary>
+        /// The language code to use.
+        /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=language")]
         public string? Language { get; set; }
 
+        /// <summary>
+        /// The year to filter by.
+        /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=year")]
         public long? Year { get; set; }
 
+        /// <summary>
+        /// Whether to perform the operation manually.
+        /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=manual")]
         public BoolInt? Manual { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
     }

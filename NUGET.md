@@ -28,8 +28,8 @@ var sdk = new PlexAPI(
 
 StartTranscodeSessionRequest req = new StartTranscodeSessionRequest() {
     TranscodeType = TranscodeType.Music,
-    Extension = Extension.Mpd,
     AdvancedSubtitles = LukeHagar.PlexAPI.SDK.Models.Components.AdvancedSubtitles.Burn,
+    Extension = Extension.Mpd,
     AudioBoost = 50,
     AudioChannelCount = 5,
     AutoAdjustQuality = BoolInt.True,
@@ -51,9 +51,11 @@ StartTranscodeSessionRequest req = new StartTranscodeSessionRequest() {
     Protocol = StartTranscodeSessionQueryParamProtocol.Dash,
     SecondsPerSegment = 5,
     SubtitleSize = 50,
+    Subtitles = StartTranscodeSessionQueryParamSubtitles.Burn,
+    VideoResolution = "1080x1080",
+    Copyts = BoolInt.True,
     VideoBitrate = 12000,
     VideoQuality = 50,
-    VideoResolution = "1080x1080",
     XPlexClientProfileExtra = "add-limitation(scope=videoCodec&scopeName=*&type=upperBound&name=video.frameRate&value=60&replace=true)+append-transcode-target-codec(type=videoProfile&context=streaming&videoCodec=h264%2Chevc&audioCodec=aac&protocol=dash)",
     XPlexClientProfileName = "generic",
 };
@@ -102,7 +104,124 @@ var res = await sdk.General.GetServerInfoAsync(req);
 
 // handle response
 ```
+
+### Per-Operation Security Schemes
+
+Some operations in this SDK require the security scheme to be specified at the request level. For example:
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay"
+);
+
+CreateOAuthPinRequest req = new CreateOAuthPinRequest() {};
+
+var res = await sdk.Authentication.CreateOAuthPinAsync(
+    security: new CreateOAuthPinSecurity() {
+        ClientIdentifier = "<YOUR_API_KEY_HERE>",
+    },
+    request: req
+);
+
+// handle response
+```
 <!-- End Authentication [security] -->
+
+<!-- Start Retries [retries] -->
+## Retries
+
+Some of the endpoints in this SDK support retries. If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API. However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
+
+To change the default retry strategy for a single API call, simply pass a `RetryConfig` to the call:
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetServerInfoRequest req = new GetServerInfoRequest() {};
+
+var res = await sdk.General.GetServerInfoAsync(
+    retryConfig: new RetryConfig(
+        strategy: RetryConfig.RetryStrategy.BACKOFF,
+        backoff: new BackoffStrategy(
+            initialIntervalMs: 1L,
+            maxIntervalMs: 50L,
+            maxElapsedTimeMs: 100L,
+            exponent: 1.1
+        ),
+        retryConnectionErrors: false
+    ),
+    request: req
+);
+
+// handle response
+```
+
+If you'd like to override the default retry strategy for all operations that support retries, you can use the `RetryConfig` optional parameter when intitializing the SDK:
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    retryConfig: new RetryConfig(
+        strategy: RetryConfig.RetryStrategy.BACKOFF,
+        backoff: new BackoffStrategy(
+            initialIntervalMs: 1L,
+            maxIntervalMs: 50L,
+            maxElapsedTimeMs: 100L,
+            exponent: 1.1
+        ),
+        retryConnectionErrors: false
+    ),
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetServerInfoRequest req = new GetServerInfoRequest() {};
+
+var res = await sdk.General.GetServerInfoAsync(req);
+
+// handle response
+```
+<!-- End Retries [retries] -->
 
 <!-- Start Error Handling [errors] -->
 ## Error Handling
@@ -146,9 +265,9 @@ var sdk = new PlexAPI(
 
 try
 {
-    GetTokenDetailsRequest req = new GetTokenDetailsRequest() {};
+    GetServerInfoRequest req = new GetServerInfoRequest() {};
 
-    var res = await sdk.Authentication.GetTokenDetailsAsync(req);
+    var res = await sdk.General.GetServerInfoAsync(req);
 
     // handle response
 }
@@ -164,12 +283,11 @@ catch (PlexAPIError ex)  // all SDK exceptions inherit from PlexAPIError
     string? contentType = ex.ContentType;
     var responseBody = ex.Body;
 
-    if (ex is GetTokenDetailsBadRequest) // different exceptions may be thrown depending on the method
+    if (ex is Error) // different exceptions may be thrown depending on the method
     {
         // Check error data fields
-        GetTokenDetailsBadRequestPayload payload = ex.Payload;
+        ErrorPayload payload = ex.Payload;
         List<Errors> Errors = payload.Errors;
-        HttpResponseMessage RawResponse = payload.RawResponse;
     }
 
     // An underlying cause may be provided
@@ -189,18 +307,14 @@ catch (System.Net.Http.HttpRequestException ex)
 **Primary exception:**
 * [`PlexAPIError`](./LukeHagar/PlexAPI/SDK/Models/Errors/PlexAPIError.cs): The base class for HTTP error responses.
 
-**Less common exceptions (9)**
+**Less common exceptions (5)**
 
 * [`System.Net.Http.HttpRequestException`](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httprequestexception): Network connectivity error. For more details about the underlying cause, inspect the `ex.InnerException`.
 
 * Inheriting from [`PlexAPIError`](./LukeHagar/PlexAPI/SDK/Models/Errors/PlexAPIError.cs):
-  * [`GetTokenDetailsBadRequest`](./LukeHagar/PlexAPI/SDK/Models/Errors/GetTokenDetailsBadRequest.cs): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 240 methods.*
-  * [`PostUsersSignInDataBadRequest`](./LukeHagar/PlexAPI/SDK/Models/Errors/PostUsersSignInDataBadRequest.cs): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 240 methods.*
-  * [`GetUsersBadRequest`](./LukeHagar/PlexAPI/SDK/Models/Errors/GetUsersBadRequest.cs): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 240 methods.*
-  * [`GetTokenDetailsUnauthorized`](./LukeHagar/PlexAPI/SDK/Models/Errors/GetTokenDetailsUnauthorized.cs): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 240 methods.*
-  * [`PostUsersSignInDataUnauthorized`](./LukeHagar/PlexAPI/SDK/Models/Errors/PostUsersSignInDataUnauthorized.cs): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 240 methods.*
-  * [`GetUsersUnauthorized`](./LukeHagar/PlexAPI/SDK/Models/Errors/GetUsersUnauthorized.cs): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 240 methods.*
-  * [`GetServerResourcesUnauthorized`](./LukeHagar/PlexAPI/SDK/Models/Errors/GetServerResourcesUnauthorized.cs): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 240 methods.*
+  * [`Error`](./LukeHagar/PlexAPI/SDK/Models/Errors/Error.cs): Unauthorized. Status code `401`. Applicable to 276 of 403 methods.*
+  * [`Unauthorized`](./LukeHagar/PlexAPI/SDK/Models/Errors/Unauthorized.cs): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 4 of 403 methods.*
+  * [`BadRequest`](./LukeHagar/PlexAPI/SDK/Models/Errors/BadRequest.cs): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 3 of 403 methods.*
   * [`ResponseValidationError`](./LukeHagar/PlexAPI/SDK/Models/Errors/ResponseValidationError.cs): Thrown when the response data could not be deserialized into the expected type.
 
 \* Refer to the [relevant documentation](#available-resources-and-operations) to determine whether an exception applies to a specific operation.
@@ -216,19 +330,19 @@ You can override the default server globally by passing a server index to the `s
 | #   | Server                                                     | Variables                                    | Description |
 | --- | ---------------------------------------------------------- | -------------------------------------------- | ----------- |
 | 0   | `https://{IP-description}.{identifier}.plex.direct:{port}` | `identifier`<br/>`IP-description`<br/>`port` |             |
-| 1   | `{protocol}://{host}:{port}`                               | `protocol`<br/>`host`<br/>`port`             |             |
+| 1   | `{protocol}://{host}:{port}`                               | `host`<br/>`port`<br/>`protocol`             |             |
 | 2   | `https://{full_server_url}`                                | `full_server_url`                            |             |
 
 If the selected server has variables, you may override its default values through the additional parameters made available in the SDK constructor:
 
-| Variable          | Parameter               | Default                              | Description                                                                                                                                                                                                                                                                                                                                                                          |
-| ----------------- | ----------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `identifier`      | `identifier: string`    | `"0123456789abcdef0123456789abcdef"` | The unique identifier of this particular PMS                                                                                                                                                                                                                                                                                                                                         |
-| `IP-description`  | `ipDescription: string` | `"1-2-3-4"`                          | A `-` separated string of the IPv4 or IPv6 address components                                                                                                                                                                                                                                                                                                                        |
-| `port`            | `port: string`          | `"32400"`                            | The Port number configured on the PMS. Typically (`32400`). <br/>If using a reverse proxy, this would be the port number configured on the proxy.<br/>                                                                                                                                                                                                                               |
-| `protocol`        | `protocol: string`      | `"http"`                             | The network protocol to use. Typically (`http` or `https`)                                                                                                                                                                                                                                                                                                                           |
-| `host`            | `host: string`          | `"localhost"`                        | The Host of the PMS.<br/>If using on a local network, this is the internal IP address of the server hosting the PMS.<br/>If using on an external network, this is the external IP address for your network, and requires port forwarding.<br/>If using a reverse proxy, this would be the external DNS domain for your network, and requires the proxy handle port forwarding. <br/> |
-| `full_server_url` | `fullServerUrl: string` | `"http://localhost:32400"`           | The full manual URL to access the PMS                                                                                                                                                                                                                                                                                                                                                |
+| Variable          | Parameter               | Default                              | Description                                                                                                                                                                                                                                                                                                                                                                    |
+| ----------------- | ----------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `identifier`      | `identifier: string`    | `"0123456789abcdef0123456789abcdef"` | The unique identifier of this particular PMS                                                                                                                                                                                                                                                                                                                                   |
+| `IP-description`  | `ipDescription: string` | `"1-2-3-4"`                          | A `-` separated string of the IPv4 or IPv6 address components                                                                                                                                                                                                                                                                                                                  |
+| `port`            | `port: string`          | `"32400"`                            | The Port number configured on the PMS. Typically (`32400`). <br/>If using a reverse proxy, this would be the port number configured on the proxy.                                                                                                                                                                                                                              |
+| `host`            | `host: string`          | `"localhost"`                        | The Host of the PMS.<br/>If using on a local network, this is the internal IP address of the server hosting the PMS.<br/>If using on an external network, this is the external IP address for your network, and requires port forwarding.<br/>If using a reverse proxy, this would be the external DNS domain for your network, and requires the proxy handle port forwarding. |
+| `protocol`        | `protocol: string`      | `"http"`                             | The network protocol to use. Typically (`http` or `https`)                                                                                                                                                                                                                                                                                                                     |
+| `full_server_url` | `fullServerUrl: string` | `"http://localhost:32400"`           | The full manual URL to access the PMS                                                                                                                                                                                                                                                                                                                                          |
 
 #### Example
 
@@ -300,29 +414,10 @@ The server URL can also be overridden on a per-operation basis, provided a serve
 ```csharp
 using LukeHagar.PlexAPI.SDK;
 using LukeHagar.PlexAPI.SDK.Models.Components;
-using LukeHagar.PlexAPI.SDK.Models.Requests;
 
-var sdk = new PlexAPI(
-    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
-    clientIdentifier: "abc123",
-    product: "Plex for Roku",
-    version: "2.4.1",
-    platform: "Roku",
-    platformVersion: "4.3 build 1057",
-    device: "Roku 3",
-    model: "4200X",
-    deviceVendor: "Roku",
-    deviceName: "Living Room TV",
-    marketplace: "googlePlay",
-    token: "<YOUR_API_KEY_HERE>"
-);
+var sdk = new PlexAPI(token: "<YOUR_API_KEY_HERE>");
 
-GetTokenDetailsRequest req = new GetTokenDetailsRequest() {};
-
-var res = await sdk.Authentication.GetTokenDetailsAsync(
-    request: req,
-    serverUrl: "https://plex.tv/api/v2"
-);
+var res = await sdk.General.GetUserWebhooksAsync(serverUrl: "https://plex.tv/api/v2");
 
 // handle response
 ```

@@ -62,6 +62,18 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         [JsonProperty("Part")]
         public List<Part>? Part { get; set; }
 
+        /// <summary>
+        /// Whether this media version is selected for playback.
+        /// </summary>
+        [JsonProperty("selected")]
+        public bool? Selected { get; set; }
+
+        /// <summary>
+        /// Unique identifier for this media instance.
+        /// </summary>
+        [JsonProperty("uuid")]
+        public string? Uuid { get; set; }
+
         [JsonProperty("videoCodec")]
         public string? VideoCodec { get; set; }
 

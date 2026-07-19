@@ -19,19 +19,19 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 
     public class Services
     {
-        [JsonProperty("identifier")]
-        public string Identifier { get; set; } = default!;
-
         [JsonProperty("endpoint")]
         public string Endpoint { get; set; } = default!;
 
-        [JsonProperty("token", NullValueHandling = NullValueHandling.Include)]
-        public string? Token { get; set; }
+        [JsonProperty("identifier")]
+        public string Identifier { get; set; } = default!;
 
         [JsonProperty("secret", NullValueHandling = NullValueHandling.Include)]
         public string? Secret { get; set; }
 
         [JsonProperty("status")]
         public Models.Requests.Status Status { get; set; } = default!;
+
+        [JsonProperty("token", NullValueHandling = NullValueHandling.Include)]
+        public string? Token { get; set; }
     }
 }

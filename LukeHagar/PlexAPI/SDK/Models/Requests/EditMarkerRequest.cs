@@ -81,6 +81,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Marketplace")]
         public string? Marketplace { get; set; }
 
+        /// <summary>
+        /// Comma-separated list of IDs.
+        /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=ids")]
         public string Ids { get; set; } = default!;
 
@@ -94,7 +97,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// The type of marker to edit/create.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=type")]
-        public long Type { get; set; } = default!;
+        public long MediaType { get; set; } = default!;
 
         /// <summary>
         /// The start time of the marker.

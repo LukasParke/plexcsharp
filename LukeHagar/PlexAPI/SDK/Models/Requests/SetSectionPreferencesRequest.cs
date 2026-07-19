@@ -87,6 +87,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=sectionId")]
         public long SectionId { get; set; } = default!;
 
+        /// <summary>
+        /// The preference key to retrieve or set.
+        /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=prefs")]
         public SetSectionPreferencesQueryParamPrefs Prefs { get; set; } = default!;
     }

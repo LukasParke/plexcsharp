@@ -7,7 +7,7 @@ Endpoints for manipulating playlists.
 ### Available Operations
 
 * [CreatePlaylist](#createplaylist) - Create a Playlist
-* [UploadPlaylist](#uploadplaylist) - Upload
+* [UploadPlaylist](#uploadplaylist) - Upload media art
 * [DeletePlaylist](#deleteplaylist) - Delete a Playlist
 * [UpdatePlaylist](#updateplaylist) - Editing a Playlist
 * [GetPlaylistGenerators](#getplaylistgenerators) - Get a playlist's generators

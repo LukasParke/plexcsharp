@@ -29,5 +29,15 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// Raw HTTP response; suitable for custom response parsing.
         /// </summary>
         public HttpResponseMessage RawResponse { get; set; } = default!;
+
+        /// <summary>
+        /// The thumbnail for the device.
+        /// </summary>
+        public byte[]? BinaryResponse { get; set; }
+
+        /// <summary>
+        /// The thumb URL on the device.
+        /// </summary>
+        public string? Res { get; set; }
     }
 }

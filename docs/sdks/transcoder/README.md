@@ -6,11 +6,66 @@ API Operations against the Transcoder
 
 ### Available Operations
 
+* [TranscodeMusic](#transcodemusic) - Transcode Music
 * [TranscodeImage](#transcodeimage) - Transcode an image
+* [GetTranscodeSessions](#gettranscodesessions) - Get Transcode Sessions
 * [MakeDecision](#makedecision) - Make a decision on media playback
 * [TriggerFallback](#triggerfallback) - Manually trigger a transcoder fallback
 * [TranscodeSubtitles](#transcodesubtitles) - Transcode subtitles
 * [StartTranscodeSession](#starttranscodesession) - Start A Transcoding Session
+* [GetDASHSegment](#getdashsegment) - Get DASH Segment
+* [GetHLSSegment](#gethlssegment) - Get HLS Segment
+
+## TranscodeMusic
+
+Audio transcode endpoint for music playback.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="transcodeMusic" method="get" path="/music/:/transcode" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+TranscodeMusicRequest req = new TranscodeMusicRequest() {};
+
+var res = await sdk.Transcoder.TranscodeMusicAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `request`                                                               | [TranscodeMusicRequest](../../Models/Requests/TranscodeMusicRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
+
+### Response
+
+**[TranscodeMusicResponse](../../Models/Requests/TranscodeMusicResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## TranscodeImage
 
@@ -69,6 +124,35 @@ var res = await sdk.Transcoder.TranscodeImageAsync(req);
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
+## GetTranscodeSessions
+
+Get active transcode sessions.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getTranscodeSessions" method="get" path="/transcode/sessions" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+
+var sdk = new PlexAPI(token: "<YOUR_API_KEY_HERE>");
+
+var res = await sdk.Transcoder.GetTranscodeSessionsAsync();
+
+// handle response
+```
+
+### Response
+
+**[GetTranscodeSessionsResponse](../../Models/Requests/GetTranscodeSessionsResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
 ## MakeDecision
 
 Make a decision on media playback based on client profile, and requested settings such as bandwidth and resolution.
@@ -117,12 +201,14 @@ MakeDecisionRequest req = new MakeDecisionRequest() {
     Path = "/library/metadata/151671",
     PeakBitrate = 12000,
     PhotoResolution = "1080x1080",
-    Protocol = LukeHagar.PlexAPI.SDK.Models.Requests.Protocol.Dash,
+    Protocol = QueryParamProtocol.Dash,
     SecondsPerSegment = 5,
     SubtitleSize = 50,
+    Subtitles = LukeHagar.PlexAPI.SDK.Models.Requests.Subtitles.Burn,
+    VideoResolution = "1080x1080",
+    Copyts = BoolInt.True,
     VideoBitrate = 12000,
     VideoQuality = 50,
-    VideoResolution = "1080x1080",
     XPlexClientProfileExtra = "add-limitation(scope=videoCodec&scopeName=*&type=upperBound&name=video.frameRate&value=60&replace=true)+append-transcode-target-codec(type=videoProfile&context=streaming&videoCodec=h264%2Chevc&audioCodec=aac&protocol=dash)",
     XPlexClientProfileName = "generic",
 };
@@ -146,6 +232,7 @@ var res = await sdk.Transcoder.MakeDecisionAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## TriggerFallback
@@ -248,12 +335,14 @@ TranscodeSubtitlesRequest req = new TranscodeSubtitlesRequest() {
     Path = "/library/metadata/151671",
     PeakBitrate = 12000,
     PhotoResolution = "1080x1080",
-    Protocol = QueryParamProtocol.Dash,
+    Protocol = TranscodeSubtitlesQueryParamProtocol.Dash,
     SecondsPerSegment = 5,
     SubtitleSize = 50,
+    Subtitles = QueryParamSubtitles.Burn,
+    VideoResolution = "1080x1080",
+    Copyts = BoolInt.True,
     VideoBitrate = 12000,
     VideoQuality = 50,
-    VideoResolution = "1080x1080",
     XPlexClientProfileExtra = "add-limitation(scope=videoCodec&scopeName=*&type=upperBound&name=video.frameRate&value=60&replace=true)+append-transcode-target-codec(type=videoProfile&context=streaming&videoCodec=h264%2Chevc&audioCodec=aac&protocol=dash)",
     XPlexClientProfileName = "generic",
 };
@@ -308,8 +397,8 @@ var sdk = new PlexAPI(
 
 StartTranscodeSessionRequest req = new StartTranscodeSessionRequest() {
     TranscodeType = TranscodeType.Music,
-    Extension = Extension.Mpd,
     AdvancedSubtitles = LukeHagar.PlexAPI.SDK.Models.Components.AdvancedSubtitles.Burn,
+    Extension = Extension.Mpd,
     AudioBoost = 50,
     AudioChannelCount = 5,
     AutoAdjustQuality = BoolInt.True,
@@ -331,9 +420,11 @@ StartTranscodeSessionRequest req = new StartTranscodeSessionRequest() {
     Protocol = StartTranscodeSessionQueryParamProtocol.Dash,
     SecondsPerSegment = 5,
     SubtitleSize = 50,
+    Subtitles = StartTranscodeSessionQueryParamSubtitles.Burn,
+    VideoResolution = "1080x1080",
+    Copyts = BoolInt.True,
     VideoBitrate = 12000,
     VideoQuality = 50,
-    VideoResolution = "1080x1080",
     XPlexClientProfileExtra = "add-limitation(scope=videoCodec&scopeName=*&type=upperBound&name=video.frameRate&value=60&replace=true)+append-transcode-target-codec(type=videoProfile&context=streaming&videoCodec=h264%2Chevc&audioCodec=aac&protocol=dash)",
     XPlexClientProfileName = "generic",
 };
@@ -357,4 +448,114 @@ var res = await sdk.Transcoder.StartTranscodeSessionAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetDASHSegment
+
+DASH segment delivery for adaptive streaming.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getDASHSegment" method="get" path="/{transcodeType}/:/transcode/universal/session/{sessionId}/{segmentId}.m4s" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetDASHSegmentRequest req = new GetDASHSegmentRequest() {
+    TranscodeType = "<value>",
+    SessionId = "<id>",
+    SegmentId = "<id>",
+};
+
+var res = await sdk.Transcoder.GetDASHSegmentAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `request`                                                               | [GetDASHSegmentRequest](../../Models/Requests/GetDASHSegmentRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
+
+### Response
+
+**[GetDASHSegmentResponse](../../Models/Requests/GetDASHSegmentResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetHLSSegment
+
+HLS TS segment delivery for adaptive streaming.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getHLSSegment" method="get" path="/{transcodeType}/:/transcode/universal/session/{sessionId}/{segmentId}.ts" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetHLSSegmentRequest req = new GetHLSSegmentRequest() {
+    TranscodeType = "<value>",
+    SessionId = "<id>",
+    SegmentId = "<id>",
+};
+
+var res = await sdk.Transcoder.GetHLSSegmentAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `request`                                                             | [GetHLSSegmentRequest](../../Models/Requests/GetHLSSegmentRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+
+### Response
+
+**[GetHLSSegmentResponse](../../Models/Requests/GetHLSSegmentResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |

@@ -92,7 +92,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// The type of library section.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=type")]
-        public long Type { get; set; } = default!;
+        public long MediaType { get; set; } = default!;
 
         /// <summary>
         /// The scanner this section should use.

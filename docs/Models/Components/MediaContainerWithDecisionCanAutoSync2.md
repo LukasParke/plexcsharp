@@ -1,17 +1,16 @@
 # MediaContainerWithDecisionCanAutoSync2
 
-## Example Usage
+
+## Supported Types
+
+### Two1
 
 ```csharp
-using LukeHagar.PlexAPI.SDK.Models.Components;
-
-var value = MediaContainerWithDecisionCanAutoSync2.Zero;
+MediaContainerWithDecisionCanAutoSync2.CreateTwo1(/* values here */);
 ```
 
+### Boolean
 
-## Values
-
-| Name   | Value  |
-| ------ | ------ |
-| `Zero` | 0      |
-| `One`  | 1      |
+```csharp
+MediaContainerWithDecisionCanAutoSync2.CreateBoolean(/* values here */);
+```

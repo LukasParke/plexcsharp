@@ -81,9 +81,15 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Marketplace")]
         public string? Marketplace { get; set; }
 
+        /// <summary>
+        /// The unique identifier of the subscription.
+        /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=subscriptionId")]
         public long SubscriptionId { get; set; } = default!;
 
+        /// <summary>
+        /// The preference key to retrieve or set.
+        /// </summary>
         [SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=prefs")]
         public EditSubscriptionPreferencesQueryParamPrefs? Prefs { get; set; }
     }

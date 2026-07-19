@@ -81,6 +81,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Marketplace")]
         public string? Marketplace { get; set; }
 
+        /// <summary>
+        /// The preference key to retrieve or set.
+        /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=prefs")]
         public Prefs Prefs { get; set; } = default!;
     }

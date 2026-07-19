@@ -6,19 +6,34 @@ Library endpoints which are outside of the Media Provider API.  Typically this i
 
 ### Available Operations
 
+* [GetRootLibrary](#getrootlibrary) - Get Root Library
 * [GetLibraryItems](#getlibraryitems) - Get all items in library
 * [DeleteCaches](#deletecaches) - Delete library caches
 * [CleanBundles](#cleanbundles) - Clean bundles
 * [IngestTransientItem](#ingesttransientitem) - Ingest a transient item
 * [GetLibraryMatches](#getlibrarymatches) - Get library matches
+* [OptimizeLibrary](#optimizelibrary) - Get Optimize Library
+* [OptimizeLibraryPost](#optimizelibrarypost) - Optimize Library
 * [OptimizeDatabase](#optimizedatabase) - Optimize the Database
 * [GetRandomArtwork](#getrandomartwork) - Get random artwork
+* [GetRecentlyAddedGlobal](#getrecentlyaddedglobal) - Get Global Recently Added
+* [GetLibrarySectionsFallback](#getlibrarysectionsfallback) - Get Library Sections (Fallback)
 * [GetSections](#getsections) - Get library sections (main Media Provider Only)
 * [AddSection](#addsection) - Add a library section
 * [StopAllRefreshes](#stopallrefreshes) - Stop refresh
 * [GetSectionsPrefs](#getsectionsprefs) - Get section prefs
 * [RefreshSectionsMetadata](#refreshsectionsmetadata) - Refresh all sections
 * [GetTags](#gettags) - Get all library tags of a type
+* [UploadArt](#uploadart) - Upload media art Art
+* [GetMetadataChildren](#getmetadatachildren) - Get Metadata Children
+* [ComputeSonicPath](#computesonicpath) - Compute Sonic Path
+* [GetMetadataGrandchildren](#getmetadatagrandchildren) - Get Metadata Grandchildren
+* [GetMetadataGrandparent](#getmetadatagrandparent) - Get Metadata Grandparent
+* [GetNearestMetadata](#getnearestmetadata) - Get Nearest Metadata
+* [GetMetadataOnDeck](#getmetadataondeck) - Get Metadata On Deck
+* [GetMetadataParent](#getmetadataparent) - Get Metadata Parent
+* [UploadPoster](#uploadposter) - Upload media art Poster
+* [GetMetadataReviews](#getmetadatareviews) - Get Metadata Reviews
 * [DeleteMetadataItem](#deletemetadataitem) - Delete a metadata item
 * [EditMetadataItem](#editmetadataitem) - Edit a metadata item
 * [DetectAds](#detectads) - Ad-detect an item
@@ -35,13 +50,12 @@ Library endpoints which are outside of the Media Provider API.  Typically this i
 * [MatchItem](#matchitem) - Match a metadata item
 * [ListMatches](#listmatches) - Get metadata matches for an item
 * [MergeItems](#mergeitems) - Merge a metadata item
-* [ListSonicallySimilar](#listsonicallysimilar) - Get nearest tracks to metadata item
 * [SetItemPreferences](#setitempreferences) - Set metadata preferences
 * [RefreshItemsMetadata](#refreshitemsmetadata) - Refresh a metadata item
 * [GetRelatedItems](#getrelateditems) - Get related items
 * [ListSimilar](#listsimilar) - Get similar items
 * [SplitItem](#splititem) - Split a metadata item
-* [AddSubtitles](#addsubtitles) - Add subtitles
+* [GetSubtitles](#getsubtitles) - Get subtitles
 * [GetItemTree](#getitemtree) - Get metadata items as a tree
 * [Unmatch](#unmatch) - Unmatch a metadata item
 * [ListTopUsers](#listtopusers) - Get metadata top users
@@ -53,21 +67,54 @@ Library endpoints which are outside of the Media Provider API.  Typically this i
 * [DeleteLibrarySection](#deletelibrarysection) - Delete a library section
 * [GetLibraryDetails](#getlibrarydetails) - Get a library section by id
 * [EditSection](#editsection) - Edit a library section
+* [GetSectionAgents](#getsectionagents) - Get Section Agents
 * [UpdateItems](#updateitems) - Set the fields of the filtered items
 * [StartAnalysis](#startanalysis) - Analyze a section
+* [GetSectionArtists](#getsectionartists) - Get Section Artists
 * [Autocomplete](#autocomplete) - Get autocompletions for search
+* [GetByContentRating](#getbycontentrating) - Get By Content Rating
+* [GetByDecade](#getbydecade) - Get By Decade
+* [GetByFolder](#getbyfolder) - Get By Folder
+* [GetByResolution](#getbyresolution) - Get By Resolution
+* [GetByYear](#getbyyear) - Get By Year
+* [GetSectionClips](#getsectionclips) - Get Section Clips
 * [GetCollections](#getcollections) - Get collections in a section
 * [GetCommon](#getcommon) - Get common fields for items
-* [EmptyTrash](#emptytrash) - Empty section trash
+* [GetSectionEdit](#getsectionedit) - Edit Section
+* [EditLibrarySection](#editlibrarysection) - Edit Section
+* [EmptyTrash](#emptytrash) - Get Empty Trash
+* [EmptyTrashPost](#emptytrashpost) - Empty Trash
+* [EmptyTrashPut](#emptytrashput) - Empty section trash
+* [GetSectionEpisodes](#getsectionepisodes) - Get Section Episodes
 * [GetSectionFilters](#getsectionfilters) - Get section filters
 * [GetFirstCharacters](#getfirstcharacters) - Get list of first characters
+* [GetLibrarySectionHubs](#getlibrarysectionhubs) - Get Section Hubs
 * [DeleteIndexes](#deleteindexes) - Delete section indexes
 * [DeleteIntros](#deleteintros) - Delete section intro markers
+* [GetSectionLabels](#getsectionlabels) - Get Section Labels
+* [MatchSectionItems](#matchsectionitems) - Match Section Items
+* [MoveSection](#movesection) - Move Section
+* [GetSectionMovies](#getsectionmovies) - Get Section Movies
+* [GetNewestForSection](#getnewestforsection) - Get Newest for Section
+* [GetOnDeckForSection](#getondeckforsection) - Get On Deck for Section
+* [OptimizeSection](#optimizesection) - Get Optimize Section
+* [OptimizeSectionPost](#optimizesectionpost) - Optimize Section
+* [GetSectionPhotos](#getsectionphotos) - Get Section Photos
+* [GetSectionPlaylists](#getsectionplaylists) - Get Section Playlists
 * [GetSectionPreferences](#getsectionpreferences) - Get section prefs
 * [SetSectionPreferences](#setsectionpreferences) - Set section prefs
+* [GetRecentlyAddedForSection](#getrecentlyaddedforsection) - Get Recently Added for Section
 * [CancelRefresh](#cancelrefresh) - Cancel section refresh
-* [RefreshSection](#refreshsection) - Refresh section
+* [RefreshSection](#refreshsection) - Get Refresh Section
+* [RefreshSectionPost](#refreshsectionpost) - Refresh Section
+* [SearchSection](#searchsection) - Search Section
+* [GetSectionSettings](#getsectionsettings) - Get Section Settings
+* [GetSectionShows](#getsectionshows) - Get Section Shows
 * [GetAvailableSorts](#getavailablesorts) - Get a section sorts
+* [GetSectionTags](#getsectiontags) - Get Section Tags
+* [GetSectionTimeline](#getsectiontimeline) - Get Section Timeline
+* [UnmatchSectionItems](#unmatchsectionitems) - Unmatch Section Items
+* [GetUnwatchedForSection](#getunwatchedforsection) - Get Unwatched for Section
 * [GetStreamLevels](#getstreamlevels) - Get loudness about a stream in json
 * [GetStreamLoudness](#getstreamloudness) - Get loudness about a stream
 * [GetChapterImage](#getchapterimage) - Get a chapter image
@@ -85,6 +132,35 @@ Library endpoints which are outside of the Media Provider API.  Typically this i
 * [GetItemArtwork](#getitemartwork) - Get an item's artwork, theme, etc
 * [GetMediaPart](#getmediapart) - Get a media part
 * [GetImageFromBif](#getimagefrombif) - Get an image from part BIF
+
+## GetRootLibrary
+
+Get the root library object.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getRootLibrary" method="get" path="/library" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+
+var sdk = new PlexAPI(token: "<YOUR_API_KEY_HERE>");
+
+var res = await sdk.Library.GetRootLibraryAsync();
+
+// handle response
+```
+
+### Response
+
+**[GetRootLibraryResponse](../../Models/Requests/GetRootLibraryResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetLibraryItems
 
@@ -116,8 +192,8 @@ var sdk = new PlexAPI(
 GetLibraryItemsRequest req = new GetLibraryItemsRequest() {
     MediaQuery = new MediaQuery() {
         Type = MediaType.Episode,
-        SourceType = 2,
         Sort = "duration:desc,index",
+        SourceType = 2,
     },
 };
 
@@ -140,6 +216,7 @@ var res = await sdk.Library.GetLibraryItemsAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## DeleteCaches
@@ -168,6 +245,7 @@ var res = await sdk.Library.DeleteCachesAsync();
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## CleanBundles
@@ -196,6 +274,7 @@ var res = await sdk.Library.CleanBundlesAsync();
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## IngestTransientItem
@@ -252,6 +331,7 @@ var res = await sdk.Library.IngestTransientItemAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetLibraryMatches
@@ -311,6 +391,109 @@ var res = await sdk.Library.GetLibraryMatchesAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## OptimizeLibrary
+
+Optimize the database globally across all library sections.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="optimizeLibrary" method="get" path="/library/optimize" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+OptimizeLibraryRequest req = new OptimizeLibraryRequest() {};
+
+var res = await sdk.Library.OptimizeLibraryAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `request`                                                                 | [OptimizeLibraryRequest](../../Models/Requests/OptimizeLibraryRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
+
+### Response
+
+**[OptimizeLibraryResponse](../../Models/Requests/OptimizeLibraryResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## OptimizeLibraryPost
+
+Optimize the database globally across all library sections.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="optimizeLibraryPost" method="post" path="/library/optimize" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+OptimizeLibraryPostRequest req = new OptimizeLibraryPostRequest() {};
+
+var res = await sdk.Library.OptimizeLibraryPostAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `request`                                                                         | [OptimizeLibraryPostRequest](../../Models/Requests/OptimizeLibraryPostRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
+
+### Response
+
+**[OptimizeLibraryPostResponse](../../Models/Requests/OptimizeLibraryPostResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## OptimizeDatabase
@@ -363,6 +546,7 @@ var res = await sdk.Library.OptimizeDatabaseAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetRandomArtwork
@@ -370,7 +554,6 @@ var res = await sdk.Library.OptimizeDatabaseAsync(req);
 Get random artwork across sections.  This is commonly used for a screensaver.
 
 This retrieves 100 random artwork paths in the specified sections and returns them.  Restrictions are put in place to not return artwork for items the user is not allowed to access.  Artwork will be for Movies, Shows, and Artists only.
-
 
 ### Example Usage
 
@@ -422,6 +605,87 @@ var res = await sdk.Library.GetRandomArtworkAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetRecentlyAddedGlobal
+
+Get recently added items across all library sections.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getRecentlyAddedGlobal" method="get" path="/library/recentlyAdded" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetRecentlyAddedGlobalRequest req = new GetRecentlyAddedGlobalRequest() {};
+
+var res = await sdk.Library.GetRecentlyAddedGlobalAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                               | Type                                                                                    | Required                                                                                | Description                                                                             |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `request`                                                                               | [GetRecentlyAddedGlobalRequest](../../Models/Requests/GetRecentlyAddedGlobalRequest.md) | :heavy_check_mark:                                                                      | The request object to use for the request.                                              |
+
+### Response
+
+**[GetRecentlyAddedGlobalResponse](../../Models/Requests/GetRecentlyAddedGlobalResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetLibrarySectionsFallback
+
+Fallback for non-owners to list library sections.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getLibrarySectionsFallback" method="get" path="/library/sections/" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+
+var sdk = new PlexAPI(token: "<YOUR_API_KEY_HERE>");
+
+var res = await sdk.Library.GetLibrarySectionsFallbackAsync();
+
+// handle response
+```
+
+### Response
+
+**[GetLibrarySectionsFallbackResponse](../../Models/Requests/GetLibrarySectionsFallbackResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetSections
@@ -451,6 +715,7 @@ var res = await sdk.Library.GetSectionsAsync();
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## AddSection
@@ -483,7 +748,7 @@ var sdk = new PlexAPI(
 
 AddSectionRequest req = new AddSectionRequest() {
     Name = "<value>",
-    Type = 39544,
+    MediaType = 39544,
     Agent = "<value>",
     Language = "<value>",
     Locations = new List<string>() {
@@ -542,6 +807,7 @@ var res = await sdk.Library.StopAllRefreshesAsync();
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetSectionsPrefs
@@ -572,7 +838,7 @@ var sdk = new PlexAPI(
 );
 
 GetSectionsPrefsRequest req = new GetSectionsPrefsRequest() {
-    Type = 460221,
+    MediaType = 460221,
 };
 
 var res = await sdk.Library.GetSectionsPrefsAsync(req);
@@ -696,6 +962,611 @@ var res = await sdk.Library.GetTagsAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## UploadArt
+
+Upload custom background art for a metadata item.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="uploadArt" method="post" path="/library/metadata/{id}/arts" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+UploadArtRequest req = new UploadArtRequest() {
+    Id = 996758,
+    RequestBody = new UploadArtRequestBody() {
+        File = new LukeHagar.PlexAPI.SDK.Models.Requests.File() {
+            FileName = "example.file",
+            Content = System.IO.File.ReadAllBytes("example.file"),
+        },
+    },
+};
+
+var res = await sdk.Library.UploadArtAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                     | Type                                                          | Required                                                      | Description                                                   |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `request`                                                     | [UploadArtRequest](../../Models/Requests/UploadArtRequest.md) | :heavy_check_mark:                                            | The request object to use for the request.                    |
+
+### Response
+
+**[UploadArtResponse](../../Models/Requests/UploadArtResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetMetadataChildren
+
+Get children of a show, season, artist, or album.
+
+### Example Usage: include-stream
+
+<!-- UsageSnippet language="csharp" operationID="getMetadataChildren" method="get" path="/library/metadata/{id}/children" example="include-stream" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetMetadataChildrenRequest req = new GetMetadataChildrenRequest() {
+    Id = 240367,
+};
+
+var res = await sdk.Library.GetMetadataChildrenAsync(req);
+
+// handle response
+```
+### Example Usage: include-stream-otheritem
+
+<!-- UsageSnippet language="csharp" operationID="getMetadataChildren" method="get" path="/library/metadata/{id}/children" example="include-stream-otheritem" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetMetadataChildrenRequest req = new GetMetadataChildrenRequest() {
+    Id = 240367,
+};
+
+var res = await sdk.Library.GetMetadataChildrenAsync(req);
+
+// handle response
+```
+### Example Usage: include-stream-otheritem-anotheritem
+
+<!-- UsageSnippet language="csharp" operationID="getMetadataChildren" method="get" path="/library/metadata/{id}/children" example="include-stream-otheritem-anotheritem" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetMetadataChildrenRequest req = new GetMetadataChildrenRequest() {
+    Id = 240367,
+};
+
+var res = await sdk.Library.GetMetadataChildrenAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `request`                                                                         | [GetMetadataChildrenRequest](../../Models/Requests/GetMetadataChildrenRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
+
+### Response
+
+**[GetMetadataChildrenResponse](../../Models/Requests/GetMetadataChildrenResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## ComputeSonicPath
+
+Compute a sonic adventure path from a starting track.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="computeSonicPath" method="get" path="/library/metadata/{id}/computePath" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+ComputeSonicPathRequest req = new ComputeSonicPathRequest() {
+    Id = 622554,
+};
+
+var res = await sdk.Library.ComputeSonicPathAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `request`                                                                   | [ComputeSonicPathRequest](../../Models/Requests/ComputeSonicPathRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
+
+### Response
+
+**[ComputeSonicPathResponse](../../Models/Requests/ComputeSonicPathResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetMetadataGrandchildren
+
+Get grandchildren (e.g. episodes under a show).
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getMetadataGrandchildren" method="get" path="/library/metadata/{id}/grandchildren" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetMetadataGrandchildrenRequest req = new GetMetadataGrandchildrenRequest() {
+    Id = 679910,
+};
+
+var res = await sdk.Library.GetMetadataGrandchildrenAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `request`                                                                                   | [GetMetadataGrandchildrenRequest](../../Models/Requests/GetMetadataGrandchildrenRequest.md) | :heavy_check_mark:                                                                          | The request object to use for the request.                                                  |
+
+### Response
+
+**[GetMetadataGrandchildrenResponse](../../Models/Requests/GetMetadataGrandchildrenResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetMetadataGrandparent
+
+Get grandparent metadata shortcut.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getMetadataGrandparent" method="get" path="/library/metadata/{id}/grandparent" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetMetadataGrandparentRequest req = new GetMetadataGrandparentRequest() {
+    Id = 191152,
+};
+
+var res = await sdk.Library.GetMetadataGrandparentAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                               | Type                                                                                    | Required                                                                                | Description                                                                             |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `request`                                                                               | [GetMetadataGrandparentRequest](../../Models/Requests/GetMetadataGrandparentRequest.md) | :heavy_check_mark:                                                                      | The request object to use for the request.                                              |
+
+### Response
+
+**[GetMetadataGrandparentResponse](../../Models/Requests/GetMetadataGrandparentResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetNearestMetadata
+
+Get sonically similar items for a music track.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getNearestMetadata" method="get" path="/library/metadata/{id}/nearest" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetNearestMetadataRequest req = new GetNearestMetadataRequest() {
+    Id = 62697,
+};
+
+var res = await sdk.Library.GetNearestMetadataAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `request`                                                                       | [GetNearestMetadataRequest](../../Models/Requests/GetNearestMetadataRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
+
+### Response
+
+**[GetNearestMetadataResponse](../../Models/Requests/GetNearestMetadataResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetMetadataOnDeck
+
+Get On Deck status for a show or season.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getMetadataOnDeck" method="get" path="/library/metadata/{id}/onDeck" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetMetadataOnDeckRequest req = new GetMetadataOnDeckRequest() {
+    Id = 883975,
+};
+
+var res = await sdk.Library.GetMetadataOnDeckAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `request`                                                                     | [GetMetadataOnDeckRequest](../../Models/Requests/GetMetadataOnDeckRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+
+### Response
+
+**[GetMetadataOnDeckResponse](../../Models/Requests/GetMetadataOnDeckResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetMetadataParent
+
+Get parent metadata shortcut.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getMetadataParent" method="get" path="/library/metadata/{id}/parent" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetMetadataParentRequest req = new GetMetadataParentRequest() {
+    Id = 352555,
+};
+
+var res = await sdk.Library.GetMetadataParentAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `request`                                                                     | [GetMetadataParentRequest](../../Models/Requests/GetMetadataParentRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+
+### Response
+
+**[GetMetadataParentResponse](../../Models/Requests/GetMetadataParentResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## UploadPoster
+
+Upload a custom poster image for a metadata item.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="uploadPoster" method="post" path="/library/metadata/{id}/posters" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+UploadPosterRequest req = new UploadPosterRequest() {
+    Id = 316927,
+    RequestBody = new UploadPosterRequestBody() {
+        File = new UploadPosterFile() {
+            FileName = "example.file",
+            Content = System.IO.File.ReadAllBytes("example.file"),
+        },
+    },
+};
+
+var res = await sdk.Library.UploadPosterAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [UploadPosterRequest](../../Models/Requests/UploadPosterRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+
+### Response
+
+**[UploadPosterResponse](../../Models/Requests/UploadPosterResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetMetadataReviews
+
+Get user reviews for a metadata item.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getMetadataReviews" method="get" path="/library/metadata/{id}/reviews" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetMetadataReviewsRequest req = new GetMetadataReviewsRequest() {
+    Id = 146091,
+};
+
+var res = await sdk.Library.GetMetadataReviewsAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `request`                                                                       | [GetMetadataReviewsRequest](../../Models/Requests/GetMetadataReviewsRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
+
+### Response
+
+**[GetMetadataReviewsResponse](../../Models/Requests/GetMetadataReviewsResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## DeleteMetadataItem
@@ -857,6 +1728,7 @@ var res = await sdk.Library.DetectAdsAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetAllItemLeaves
@@ -909,6 +1781,7 @@ var res = await sdk.Library.GetAllItemLeavesAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## AnalyzeMetadata
@@ -961,6 +1834,7 @@ var res = await sdk.Library.AnalyzeMetadataAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GenerateThumbs
@@ -1014,6 +1888,7 @@ var res = await sdk.Library.GenerateThumbsAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## DetectCredits
@@ -1068,6 +1943,7 @@ var res = await sdk.Library.DetectCreditsAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetExtras
@@ -1120,6 +1996,7 @@ var res = await sdk.Library.GetExtrasAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## AddExtras
@@ -1225,6 +2102,7 @@ var res = await sdk.Library.GetFileAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## StartBifGeneration
@@ -1278,6 +2156,7 @@ var res = await sdk.Library.StartBifGenerationAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## DetectIntros
@@ -1331,6 +2210,7 @@ var res = await sdk.Library.DetectIntrosAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## CreateMarker
@@ -1362,7 +2242,7 @@ var sdk = new PlexAPI(
 
 CreateMarkerRequest req = new CreateMarkerRequest() {
     Ids = "<value>",
-    Type = 248391,
+    MediaType = 248391,
     StartTimeOffset = 535191,
     Attributes = new Attributes() {},
 };
@@ -1438,6 +2318,7 @@ var res = await sdk.Library.MatchItemAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## ListMatches
@@ -1491,6 +2372,7 @@ var res = await sdk.Library.ListMatchesAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## MergeItems
@@ -1543,58 +2425,7 @@ var res = await sdk.Library.MergeItemsAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
-| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
-
-## ListSonicallySimilar
-
-Get the nearest tracks, sonically, to the provided track
-
-### Example Usage
-
-<!-- UsageSnippet language="csharp" operationID="listSonicallySimilar" method="get" path="/library/metadata/{ids}/nearest" -->
-```csharp
-using LukeHagar.PlexAPI.SDK;
-using LukeHagar.PlexAPI.SDK.Models.Components;
-using LukeHagar.PlexAPI.SDK.Models.Requests;
-
-var sdk = new PlexAPI(
-    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
-    clientIdentifier: "abc123",
-    product: "Plex for Roku",
-    version: "2.4.1",
-    platform: "Roku",
-    platformVersion: "4.3 build 1057",
-    device: "Roku 3",
-    model: "4200X",
-    deviceVendor: "Roku",
-    deviceName: "Living Room TV",
-    marketplace: "googlePlay",
-    token: "<YOUR_API_KEY_HERE>"
-);
-
-ListSonicallySimilarRequest req = new ListSonicallySimilarRequest() {
-    Ids = "<value>",
-};
-
-var res = await sdk.Library.ListSonicallySimilarAsync(req);
-
-// handle response
-```
-
-### Parameters
-
-| Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
-| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| `request`                                                                           | [ListSonicallySimilarRequest](../../Models/Requests/ListSonicallySimilarRequest.md) | :heavy_check_mark:                                                                  | The request object to use for the request.                                          |
-
-### Response
-
-**[ListSonicallySimilarResponse](../../Models/Requests/ListSonicallySimilarResponse.md)**
-
-### Errors
-
-| Error Type                                       | Status Code                                      | Content Type                                     |
-| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## SetItemPreferences
@@ -1647,6 +2478,7 @@ var res = await sdk.Library.SetItemPreferencesAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## RefreshItemsMetadata
@@ -1679,6 +2511,7 @@ var sdk = new PlexAPI(
 RefreshItemsMetadataRequest req = new RefreshItemsMetadataRequest() {
     Ids = "<value>",
     MarkUpdated = BoolInt.True,
+    SkipRefresh = BoolInt.True,
 };
 
 var res = await sdk.Library.RefreshItemsMetadataAsync(req);
@@ -1700,6 +2533,7 @@ var res = await sdk.Library.RefreshItemsMetadataAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetRelatedItems
@@ -1752,6 +2586,7 @@ var res = await sdk.Library.GetRelatedItemsAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## ListSimilar
@@ -1804,6 +2639,7 @@ var res = await sdk.Library.ListSimilarAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## SplitItem
@@ -1856,15 +2692,16 @@ var res = await sdk.Library.SplitItemAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
-## AddSubtitles
+## GetSubtitles
 
 Add a subtitle to a metadata item
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="addSubtitles" method="get" path="/library/metadata/{ids}/subtitles" -->
+<!-- UsageSnippet language="csharp" operationID="getSubtitles" method="get" path="/library/metadata/{ids}/subtitles" -->
 ```csharp
 using LukeHagar.PlexAPI.SDK;
 using LukeHagar.PlexAPI.SDK.Models.Components;
@@ -1885,13 +2722,13 @@ var sdk = new PlexAPI(
     token: "<YOUR_API_KEY_HERE>"
 );
 
-AddSubtitlesRequest req = new AddSubtitlesRequest() {
+GetSubtitlesRequest req = new GetSubtitlesRequest() {
     Ids = "<value>",
     Forced = BoolInt.True,
     HearingImpaired = BoolInt.True,
 };
 
-var res = await sdk.Library.AddSubtitlesAsync(req);
+var res = await sdk.Library.GetSubtitlesAsync(req);
 
 // handle response
 ```
@@ -1900,16 +2737,17 @@ var res = await sdk.Library.AddSubtitlesAsync(req);
 
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `request`                                                           | [AddSubtitlesRequest](../../Models/Requests/AddSubtitlesRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `request`                                                           | [GetSubtitlesRequest](../../Models/Requests/GetSubtitlesRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
 
 ### Response
 
-**[AddSubtitlesResponse](../../Models/Requests/AddSubtitlesResponse.md)**
+**[GetSubtitlesResponse](../../Models/Requests/GetSubtitlesResponse.md)**
 
 ### Errors
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetItemTree
@@ -1962,6 +2800,7 @@ var res = await sdk.Library.GetItemTreeAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## Unmatch
@@ -2014,6 +2853,7 @@ var res = await sdk.Library.UnmatchAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## ListTopUsers
@@ -2066,6 +2906,7 @@ var res = await sdk.Library.ListTopUsersAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## DetectVoiceActivity
@@ -2120,6 +2961,7 @@ var res = await sdk.Library.DetectVoiceActivityAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetAugmentationStatus
@@ -2383,6 +3225,7 @@ var res = await sdk.Library.DeleteLibrarySectionAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetLibraryDetails
@@ -2436,6 +3279,7 @@ var res = await sdk.Library.GetLibraryDetailsAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## EditSection
@@ -2495,6 +3339,59 @@ var res = await sdk.Library.EditSectionAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetSectionAgents
+
+Get available metadata agents for a library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getSectionAgents" method="get" path="/library/sections/{sectionId}/agents" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetSectionAgentsRequest req = new GetSectionAgentsRequest() {
+    SectionId = 757906,
+};
+
+var res = await sdk.Library.GetSectionAgentsAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `request`                                                                   | [GetSectionAgentsRequest](../../Models/Requests/GetSectionAgentsRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
+
+### Response
+
+**[GetSectionAgentsResponse](../../Models/Requests/GetSectionAgentsResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## UpdateItems
@@ -2644,6 +3541,60 @@ var res = await sdk.Library.StartAnalysisAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetSectionArtists
+
+Get artists for a music library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getSectionArtists" method="get" path="/library/sections/{sectionId}/artists" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetSectionArtistsRequest req = new GetSectionArtistsRequest() {
+    SectionId = 716398,
+};
+
+var res = await sdk.Library.GetSectionArtistsAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `request`                                                                     | [GetSectionArtistsRequest](../../Models/Requests/GetSectionArtistsRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+
+### Response
+
+**[GetSectionArtistsResponse](../../Models/Requests/GetSectionArtistsResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## Autocomplete
@@ -2675,12 +3626,12 @@ var sdk = new PlexAPI(
 );
 
 AutocompleteRequest req = new AutocompleteRequest() {
-    SectionId = 942007,
     MediaQuery = new MediaQuery() {
         Type = MediaType.Episode,
-        SourceType = 2,
         Sort = "duration:desc,index",
+        SourceType = 2,
     },
+    SectionId = 942007,
 };
 
 var res = await sdk.Library.AutocompleteAsync(req);
@@ -2702,6 +3653,324 @@ var res = await sdk.Library.AutocompleteAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetByContentRating
+
+Browse items in a library section grouped by content rating.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getByContentRating" method="get" path="/library/sections/{sectionId}/byContentRating" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetByContentRatingRequest req = new GetByContentRatingRequest() {
+    SectionId = 586837,
+};
+
+var res = await sdk.Library.GetByContentRatingAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `request`                                                                       | [GetByContentRatingRequest](../../Models/Requests/GetByContentRatingRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
+
+### Response
+
+**[GetByContentRatingResponse](../../Models/Requests/GetByContentRatingResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetByDecade
+
+Browse items in a library section grouped by decade.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getByDecade" method="get" path="/library/sections/{sectionId}/byDecade" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetByDecadeRequest req = new GetByDecadeRequest() {
+    SectionId = 212187,
+};
+
+var res = await sdk.Library.GetByDecadeAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `request`                                                         | [GetByDecadeRequest](../../Models/Requests/GetByDecadeRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
+
+### Response
+
+**[GetByDecadeResponse](../../Models/Requests/GetByDecadeResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetByFolder
+
+Browse items in a library section by underlying filesystem folder.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getByFolder" method="get" path="/library/sections/{sectionId}/byFolder" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetByFolderRequest req = new GetByFolderRequest() {
+    SectionId = 352088,
+};
+
+var res = await sdk.Library.GetByFolderAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `request`                                                         | [GetByFolderRequest](../../Models/Requests/GetByFolderRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
+
+### Response
+
+**[GetByFolderResponse](../../Models/Requests/GetByFolderResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetByResolution
+
+Browse items in a library section grouped by resolution.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getByResolution" method="get" path="/library/sections/{sectionId}/byResolution" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetByResolutionRequest req = new GetByResolutionRequest() {
+    SectionId = 139174,
+};
+
+var res = await sdk.Library.GetByResolutionAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `request`                                                                 | [GetByResolutionRequest](../../Models/Requests/GetByResolutionRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
+
+### Response
+
+**[GetByResolutionResponse](../../Models/Requests/GetByResolutionResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetByYear
+
+Browse items in a library section grouped by year.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getByYear" method="get" path="/library/sections/{sectionId}/byYear" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetByYearRequest req = new GetByYearRequest() {
+    SectionId = 14634,
+};
+
+var res = await sdk.Library.GetByYearAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                     | Type                                                          | Required                                                      | Description                                                   |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `request`                                                     | [GetByYearRequest](../../Models/Requests/GetByYearRequest.md) | :heavy_check_mark:                                            | The request object to use for the request.                    |
+
+### Response
+
+**[GetByYearResponse](../../Models/Requests/GetByYearResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetSectionClips
+
+Get clips for a library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getSectionClips" method="get" path="/library/sections/{sectionId}/clips" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetSectionClipsRequest req = new GetSectionClipsRequest() {
+    SectionId = 407860,
+};
+
+var res = await sdk.Library.GetSectionClipsAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `request`                                                                 | [GetSectionClipsRequest](../../Models/Requests/GetSectionClipsRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
+
+### Response
+
+**[GetSectionClipsResponse](../../Models/Requests/GetSectionClipsResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetCollections
@@ -2732,12 +4001,12 @@ var sdk = new PlexAPI(
 );
 
 GetCollectionsRequest req = new GetCollectionsRequest() {
-    SectionId = 348838,
     MediaQuery = new MediaQuery() {
         Type = MediaType.Episode,
-        SourceType = 2,
         Sort = "duration:desc,index",
+        SourceType = 2,
     },
+    SectionId = 348838,
 };
 
 var res = await sdk.Library.GetCollectionsAsync(req);
@@ -2759,6 +4028,7 @@ var res = await sdk.Library.GetCollectionsAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetCommon
@@ -2790,12 +4060,12 @@ var sdk = new PlexAPI(
 );
 
 GetCommonRequest req = new GetCommonRequest() {
-    SectionId = 298154,
     MediaQuery = new MediaQuery() {
         Type = MediaType.Episode,
-        SourceType = 2,
         Sort = "duration:desc,index",
+        SourceType = 2,
     },
+    SectionId = 298154,
 };
 
 var res = await sdk.Library.GetCommonAsync(req);
@@ -2819,13 +4089,119 @@ var res = await sdk.Library.GetCommonAsync(req);
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
-## EmptyTrash
+## GetSectionEdit
 
-Empty trash in the section, permanently deleting media/metadata for missing media
+Get library section metadata.
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="emptyTrash" method="put" path="/library/sections/{sectionId}/emptyTrash" -->
+<!-- UsageSnippet language="csharp" operationID="getSectionEdit" method="get" path="/library/sections/{sectionId}/edit" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetSectionEditRequest req = new GetSectionEditRequest() {
+    SectionId = 223075,
+};
+
+var res = await sdk.Library.GetSectionEditAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `request`                                                               | [GetSectionEditRequest](../../Models/Requests/GetSectionEditRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
+
+### Response
+
+**[GetSectionEditResponse](../../Models/Requests/GetSectionEditResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## EditLibrarySection
+
+Update library section metadata.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="editLibrarySection" method="put" path="/library/sections/{sectionId}/edit" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+EditLibrarySectionRequest req = new EditLibrarySectionRequest() {
+    SectionId = 834094,
+};
+
+var res = await sdk.Library.EditLibrarySectionAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `request`                                                                       | [EditLibrarySectionRequest](../../Models/Requests/EditLibrarySectionRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
+
+### Response
+
+**[EditLibrarySectionResponse](../../Models/Requests/EditLibrarySectionResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## EmptyTrash
+
+Permanently remove items from the trash for a library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="emptyTrash" method="get" path="/library/sections/{sectionId}/emptyTrash" -->
 ```csharp
 using LukeHagar.PlexAPI.SDK;
 using LukeHagar.PlexAPI.SDK.Models.Components;
@@ -2869,6 +4245,166 @@ var res = await sdk.Library.EmptyTrashAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## EmptyTrashPost
+
+Permanently remove items from the trash for a library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="emptyTrashPost" method="post" path="/library/sections/{sectionId}/emptyTrash" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+EmptyTrashPostRequest req = new EmptyTrashPostRequest() {
+    SectionId = 537157,
+};
+
+var res = await sdk.Library.EmptyTrashPostAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `request`                                                               | [EmptyTrashPostRequest](../../Models/Requests/EmptyTrashPostRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
+
+### Response
+
+**[EmptyTrashPostResponse](../../Models/Requests/EmptyTrashPostResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## EmptyTrashPut
+
+Empty trash in the section, permanently deleting media/metadata for missing media
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="emptyTrashPut" method="put" path="/library/sections/{sectionId}/emptyTrash" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+EmptyTrashPutRequest req = new EmptyTrashPutRequest() {
+    SectionId = 642296,
+};
+
+var res = await sdk.Library.EmptyTrashPutAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `request`                                                             | [EmptyTrashPutRequest](../../Models/Requests/EmptyTrashPutRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+
+### Response
+
+**[EmptyTrashPutResponse](../../Models/Requests/EmptyTrashPutResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetSectionEpisodes
+
+Get episodes for a TV library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getSectionEpisodes" method="get" path="/library/sections/{sectionId}/episodes" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetSectionEpisodesRequest req = new GetSectionEpisodesRequest() {
+    SectionId = 229495,
+};
+
+var res = await sdk.Library.GetSectionEpisodesAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `request`                                                                       | [GetSectionEpisodesRequest](../../Models/Requests/GetSectionEpisodesRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
+
+### Response
+
+**[GetSectionEpisodesResponse](../../Models/Requests/GetSectionEpisodesResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetSectionFilters
@@ -2921,6 +4457,7 @@ var res = await sdk.Library.GetSectionFiltersAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetFirstCharacters
@@ -2951,12 +4488,12 @@ var sdk = new PlexAPI(
 );
 
 GetFirstCharactersRequest req = new GetFirstCharactersRequest() {
-    SectionId = 3947,
     MediaQuery = new MediaQuery() {
         Type = MediaType.Episode,
-        SourceType = 2,
         Sort = "duration:desc,index",
+        SourceType = 2,
     },
+    SectionId = 3947,
 };
 
 var res = await sdk.Library.GetFirstCharactersAsync(req);
@@ -2978,6 +4515,60 @@ var res = await sdk.Library.GetFirstCharactersAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetLibrarySectionHubs
+
+Get hubs for a library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getLibrarySectionHubs" method="get" path="/library/sections/{sectionId}/hubs" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetLibrarySectionHubsRequest req = new GetLibrarySectionHubsRequest() {
+    SectionId = 426468,
+};
+
+var res = await sdk.Library.GetLibrarySectionHubsAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `request`                                                                             | [GetLibrarySectionHubsRequest](../../Models/Requests/GetLibrarySectionHubsRequest.md) | :heavy_check_mark:                                                                    | The request object to use for the request.                                            |
+
+### Response
+
+**[GetLibrarySectionHubsResponse](../../Models/Requests/GetLibrarySectionHubsResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## DeleteIndexes
@@ -3030,6 +4621,7 @@ var res = await sdk.Library.DeleteIndexesAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## DeleteIntros
@@ -3082,6 +4674,537 @@ var res = await sdk.Library.DeleteIntrosAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetSectionLabels
+
+Get labels for a library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getSectionLabels" method="get" path="/library/sections/{sectionId}/label" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetSectionLabelsRequest req = new GetSectionLabelsRequest() {
+    SectionId = 705342,
+};
+
+var res = await sdk.Library.GetSectionLabelsAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `request`                                                                   | [GetSectionLabelsRequest](../../Models/Requests/GetSectionLabelsRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
+
+### Response
+
+**[GetSectionLabelsResponse](../../Models/Requests/GetSectionLabelsResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## MatchSectionItems
+
+Match items in a library section against metadata providers.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="matchSectionItems" method="get" path="/library/sections/{sectionId}/match" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+MatchSectionItemsRequest req = new MatchSectionItemsRequest() {
+    SectionId = 31032,
+};
+
+var res = await sdk.Library.MatchSectionItemsAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `request`                                                                     | [MatchSectionItemsRequest](../../Models/Requests/MatchSectionItemsRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+
+### Response
+
+**[MatchSectionItemsResponse](../../Models/Requests/MatchSectionItemsResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## MoveSection
+
+Move library section paths.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="moveSection" method="put" path="/library/sections/{sectionId}/move" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+MoveSectionRequest req = new MoveSectionRequest() {
+    SectionId = 483061,
+};
+
+var res = await sdk.Library.MoveSectionAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `request`                                                         | [MoveSectionRequest](../../Models/Requests/MoveSectionRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
+
+### Response
+
+**[MoveSectionResponse](../../Models/Requests/MoveSectionResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetSectionMovies
+
+Get movies for a movie library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getSectionMovies" method="get" path="/library/sections/{sectionId}/movies" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetSectionMoviesRequest req = new GetSectionMoviesRequest() {
+    SectionId = 530892,
+};
+
+var res = await sdk.Library.GetSectionMoviesAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `request`                                                                   | [GetSectionMoviesRequest](../../Models/Requests/GetSectionMoviesRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
+
+### Response
+
+**[GetSectionMoviesResponse](../../Models/Requests/GetSectionMoviesResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetNewestForSection
+
+Get the newest additions for a specific library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getNewestForSection" method="get" path="/library/sections/{sectionId}/newest" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetNewestForSectionRequest req = new GetNewestForSectionRequest() {
+    SectionId = 73900,
+};
+
+var res = await sdk.Library.GetNewestForSectionAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `request`                                                                         | [GetNewestForSectionRequest](../../Models/Requests/GetNewestForSectionRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
+
+### Response
+
+**[GetNewestForSectionResponse](../../Models/Requests/GetNewestForSectionResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetOnDeckForSection
+
+Get the On Deck items for a specific library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getOnDeckForSection" method="get" path="/library/sections/{sectionId}/onDeck" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetOnDeckForSectionRequest req = new GetOnDeckForSectionRequest() {
+    SectionId = 331089,
+};
+
+var res = await sdk.Library.GetOnDeckForSectionAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `request`                                                                         | [GetOnDeckForSectionRequest](../../Models/Requests/GetOnDeckForSectionRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
+
+### Response
+
+**[GetOnDeckForSectionResponse](../../Models/Requests/GetOnDeckForSectionResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## OptimizeSection
+
+Optimize the database for a specific library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="optimizeSection" method="get" path="/library/sections/{sectionId}/optimize" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+OptimizeSectionRequest req = new OptimizeSectionRequest() {
+    SectionId = 721290,
+};
+
+var res = await sdk.Library.OptimizeSectionAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `request`                                                                 | [OptimizeSectionRequest](../../Models/Requests/OptimizeSectionRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
+
+### Response
+
+**[OptimizeSectionResponse](../../Models/Requests/OptimizeSectionResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## OptimizeSectionPost
+
+Optimize the database for a specific library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="optimizeSectionPost" method="post" path="/library/sections/{sectionId}/optimize" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+OptimizeSectionPostRequest req = new OptimizeSectionPostRequest() {
+    SectionId = 876391,
+};
+
+var res = await sdk.Library.OptimizeSectionPostAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `request`                                                                         | [OptimizeSectionPostRequest](../../Models/Requests/OptimizeSectionPostRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
+
+### Response
+
+**[OptimizeSectionPostResponse](../../Models/Requests/OptimizeSectionPostResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetSectionPhotos
+
+Get photos for a photo library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getSectionPhotos" method="get" path="/library/sections/{sectionId}/photos" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetSectionPhotosRequest req = new GetSectionPhotosRequest() {
+    SectionId = 622466,
+};
+
+var res = await sdk.Library.GetSectionPhotosAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `request`                                                                   | [GetSectionPhotosRequest](../../Models/Requests/GetSectionPhotosRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
+
+### Response
+
+**[GetSectionPhotosResponse](../../Models/Requests/GetSectionPhotosResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetSectionPlaylists
+
+Get playlists belonging to a library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getSectionPlaylists" method="get" path="/library/sections/{sectionId}/playlists" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetSectionPlaylistsRequest req = new GetSectionPlaylistsRequest() {
+    SectionId = 826184,
+};
+
+var res = await sdk.Library.GetSectionPlaylistsAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `request`                                                                         | [GetSectionPlaylistsRequest](../../Models/Requests/GetSectionPlaylistsRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
+
+### Response
+
+**[GetSectionPlaylistsResponse](../../Models/Requests/GetSectionPlaylistsResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetSectionPreferences
@@ -3134,6 +5257,7 @@ var res = await sdk.Library.GetSectionPreferencesAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## SetSectionPreferences
@@ -3187,6 +5311,60 @@ var res = await sdk.Library.SetSectionPreferencesAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetRecentlyAddedForSection
+
+Get recently added items for a specific library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getRecentlyAddedForSection" method="get" path="/library/sections/{sectionId}/recentlyAdded" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetRecentlyAddedForSectionRequest req = new GetRecentlyAddedForSectionRequest() {
+    SectionId = 46283,
+};
+
+var res = await sdk.Library.GetRecentlyAddedForSectionAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `request`                                                                                       | [GetRecentlyAddedForSectionRequest](../../Models/Requests/GetRecentlyAddedForSectionRequest.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
+
+### Response
+
+**[GetRecentlyAddedForSectionResponse](../../Models/Requests/GetRecentlyAddedForSectionResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## CancelRefresh
@@ -3239,15 +5417,16 @@ var res = await sdk.Library.CancelRefreshAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## RefreshSection
 
-Start a refresh of this section
+Trigger a metadata refresh for a library section.
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="refreshSection" method="post" path="/library/sections/{sectionId}/refresh" -->
+<!-- UsageSnippet language="csharp" operationID="refreshSection" method="get" path="/library/sections/{sectionId}/refresh" -->
 ```csharp
 using LukeHagar.PlexAPI.SDK;
 using LukeHagar.PlexAPI.SDK.Models.Components;
@@ -3270,7 +5449,6 @@ var sdk = new PlexAPI(
 
 RefreshSectionRequest req = new RefreshSectionRequest() {
     SectionId = 450300,
-    Force = BoolInt.True,
 };
 
 var res = await sdk.Library.RefreshSectionAsync(req);
@@ -3292,6 +5470,220 @@ var res = await sdk.Library.RefreshSectionAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## RefreshSectionPost
+
+Trigger a metadata refresh for a library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="refreshSectionPost" method="post" path="/library/sections/{sectionId}/refresh" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+RefreshSectionPostRequest req = new RefreshSectionPostRequest() {
+    SectionId = 848668,
+    Force = BoolInt.True,
+};
+
+var res = await sdk.Library.RefreshSectionPostAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `request`                                                                       | [RefreshSectionPostRequest](../../Models/Requests/RefreshSectionPostRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
+
+### Response
+
+**[RefreshSectionPostResponse](../../Models/Requests/RefreshSectionPostResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## SearchSection
+
+Search within a specific library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="searchSection" method="get" path="/library/sections/{sectionId}/search" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+SearchSectionRequest req = new SearchSectionRequest() {
+    SectionId = 925380,
+};
+
+var res = await sdk.Library.SearchSectionAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `request`                                                             | [SearchSectionRequest](../../Models/Requests/SearchSectionRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+
+### Response
+
+**[SearchSectionResponse](../../Models/Requests/SearchSectionResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetSectionSettings
+
+Get section-specific settings.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getSectionSettings" method="get" path="/library/sections/{sectionId}/settings" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetSectionSettingsRequest req = new GetSectionSettingsRequest() {
+    SectionId = 100390,
+};
+
+var res = await sdk.Library.GetSectionSettingsAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `request`                                                                       | [GetSectionSettingsRequest](../../Models/Requests/GetSectionSettingsRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
+
+### Response
+
+**[GetSectionSettingsResponse](../../Models/Requests/GetSectionSettingsResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetSectionShows
+
+Get shows for a TV library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getSectionShows" method="get" path="/library/sections/{sectionId}/shows" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetSectionShowsRequest req = new GetSectionShowsRequest() {
+    SectionId = 9583,
+};
+
+var res = await sdk.Library.GetSectionShowsAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `request`                                                                 | [GetSectionShowsRequest](../../Models/Requests/GetSectionShowsRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
+
+### Response
+
+**[GetSectionShowsResponse](../../Models/Requests/GetSectionShowsResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetAvailableSorts
@@ -3344,6 +5736,219 @@ var res = await sdk.Library.GetAvailableSortsAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetSectionTags
+
+Get tags in a library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getSectionTags" method="get" path="/library/sections/{sectionId}/tags" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetSectionTagsRequest req = new GetSectionTagsRequest() {
+    SectionId = 787543,
+};
+
+var res = await sdk.Library.GetSectionTagsAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `request`                                                               | [GetSectionTagsRequest](../../Models/Requests/GetSectionTagsRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
+
+### Response
+
+**[GetSectionTagsResponse](../../Models/Requests/GetSectionTagsResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetSectionTimeline
+
+Get section timeline data.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getSectionTimeline" method="get" path="/library/sections/{sectionId}/timeline" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetSectionTimelineRequest req = new GetSectionTimelineRequest() {
+    SectionId = 670370,
+};
+
+var res = await sdk.Library.GetSectionTimelineAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `request`                                                                       | [GetSectionTimelineRequest](../../Models/Requests/GetSectionTimelineRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
+
+### Response
+
+**[GetSectionTimelineResponse](../../Models/Requests/GetSectionTimelineResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## UnmatchSectionItems
+
+Unmatch items in a library section from metadata providers.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="unmatchSectionItems" method="get" path="/library/sections/{sectionId}/unmatch" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+UnmatchSectionItemsRequest req = new UnmatchSectionItemsRequest() {
+    SectionId = 209342,
+};
+
+var res = await sdk.Library.UnmatchSectionItemsAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `request`                                                                         | [UnmatchSectionItemsRequest](../../Models/Requests/UnmatchSectionItemsRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
+
+### Response
+
+**[UnmatchSectionItemsResponse](../../Models/Requests/UnmatchSectionItemsResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetUnwatchedForSection
+
+Get unwatched items for a specific library section.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getUnwatchedForSection" method="get" path="/library/sections/{sectionId}/unwatched" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetUnwatchedForSectionRequest req = new GetUnwatchedForSectionRequest() {
+    SectionId = 483590,
+};
+
+var res = await sdk.Library.GetUnwatchedForSectionAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                               | Type                                                                                    | Required                                                                                | Description                                                                             |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `request`                                                                               | [GetUnwatchedForSectionRequest](../../Models/Requests/GetUnwatchedForSectionRequest.md) | :heavy_check_mark:                                                                      | The request object to use for the request.                                              |
+
+### Response
+
+**[GetUnwatchedForSectionResponse](../../Models/Requests/GetUnwatchedForSectionResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetStreamLevels
@@ -3555,6 +6160,7 @@ var res = await sdk.Library.SetItemArtworkAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## UpdateItemArtwork
@@ -3609,6 +6215,7 @@ var res = await sdk.Library.UpdateItemArtworkAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## DeleteMarker
@@ -3694,7 +6301,7 @@ var sdk = new PlexAPI(
 EditMarkerRequest req = new EditMarkerRequest() {
     Ids = "<value>",
     Marker = "<value>",
-    Type = 884347,
+    MediaType = 884347,
     StartTimeOffset = 517251,
     Attributes = new QueryParamAttributes() {},
 };
@@ -3908,13 +6515,13 @@ var sdk = new PlexAPI(
 );
 
 GetSectionImageRequest req = new GetSectionImageRequest() {
-    SectionId = 925611,
-    UpdatedAt = 117413,
     MediaQuery = new MediaQuery() {
         Type = MediaType.Episode,
-        SourceType = 2,
         Sort = "duration:desc,index",
+        SourceType = 2,
     },
+    SectionId = 925611,
+    UpdatedAt = 117413,
 };
 
 var res = await sdk.Library.GetSectionImageAsync(req);
@@ -3936,6 +6543,7 @@ var res = await sdk.Library.GetSectionImageAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## DeleteStream
@@ -4150,6 +6758,7 @@ var res = await sdk.Library.GetItemArtworkAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetMediaPart
@@ -4157,7 +6766,6 @@ var res = await sdk.Library.GetItemArtworkAsync(req);
 Get a media part for streaming or download.
   - streaming: This is the default scenario.  Bandwidth usage on this endpoint will be guaranteed (on the server's end) to be at least the bandwidth reservation given in the decision.  If no decision exists, an ad-hoc decision will be created if sufficient bandwidth exists.  Clients should not rely on ad-hoc decisions being made as this may be removed in the future.
   - download: Indicated if the query parameter indicates this is a download.  Bandwidth will be prioritized behind playbacks and will get a fair share of what remains.
-
 
 ### Example Usage
 

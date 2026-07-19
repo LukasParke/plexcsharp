@@ -15,6 +15,15 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 
     public class Item
     {
+        [JsonProperty("title")]
+        public string? Title { get; set; }
+
+        /// <summary>
+        /// The type of this generator.
+        /// </summary>
+        [JsonProperty("type")]
+        public GetPlaylistGeneratorType? Type { get; set; }
+
         /// <summary>
         /// The composite thumbnail image path.
         /// </summary>
@@ -22,7 +31,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public string? Composite { get; set; }
 
         [JsonProperty("Device")]
-        public GetPlaylistGeneratorDevice? Device { get; set; }
+        public Models.Requests.Device? Device { get; set; }
 
         [JsonProperty("id")]
         public long? Id { get; set; }
@@ -47,14 +56,5 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// </summary>
         [JsonProperty("targetTagID")]
         public long? TargetTagID { get; set; }
-
-        [JsonProperty("title")]
-        public string? Title { get; set; }
-
-        /// <summary>
-        /// The type of this generator.
-        /// </summary>
-        [JsonProperty("type")]
-        public GetPlaylistGeneratorType? Type { get; set; }
     }
 }

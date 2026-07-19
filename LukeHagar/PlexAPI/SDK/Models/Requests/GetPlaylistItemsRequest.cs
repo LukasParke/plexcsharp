@@ -91,6 +91,6 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// The metadata types of the item to return.  Values past the first are only used in fetching items from the background processing playlist.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=false,name=type")]
-        public List<long>? Type { get; set; }
+        public List<long>? MediaType { get; set; }
     }
 }

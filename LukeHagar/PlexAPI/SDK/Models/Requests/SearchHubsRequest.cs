@@ -97,5 +97,11 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=limit")]
         public long? Limit { get; set; }
+
+        /// <summary>
+        /// Include collection results in search hubs.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeCollections")]
+        public bool? IncludeCollections { get; set; }
     }
 }

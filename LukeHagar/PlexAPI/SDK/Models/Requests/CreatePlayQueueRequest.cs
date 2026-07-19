@@ -97,7 +97,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// The type of play queue to create.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=type")]
-        public Models.Requests.Type Type { get; set; } = default!;
+        public Models.Requests.Type MediaType { get; set; } = default!;
 
         /// <summary>
         /// The key of the first item to play, defaults to the first in the play queue.

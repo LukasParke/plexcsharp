@@ -9,16 +9,39 @@
 #nullable enable
 namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
+    using LukeHagar.PlexAPI.SDK.Models.Components;
     using LukeHagar.PlexAPI.SDK.Models.Requests;
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
+    using System.Collections.Generic;
 
     /// <summary>
-    /// OK.
+    /// Status of the PMS updater.
     /// </summary>
     public class GetUpdatesStatusResponseBody
     {
         [JsonProperty("MediaContainer")]
         public GetUpdatesStatusMediaContainer? MediaContainer { get; set; }
+
+        /// <summary>
+        /// Timestamp of the last update check.
+        /// </summary>
+        [JsonProperty("checkedAt")]
+        public long? CheckedAt { get; set; }
+
+        /// <summary>
+        /// The URL where the update is available.
+        /// </summary>
+        [JsonProperty("downloadURL")]
+        public string? DownloadURL { get; set; }
+
+        [JsonProperty("Release")]
+        public List<Release>? Release { get; set; }
+
+        /// <summary>
+        /// The current error code (0 means no error).
+        /// </summary>
+        [JsonProperty("status")]
+        public long? Status { get; set; }
     }
 }

@@ -32,8 +32,8 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public HttpResponseMessage RawResponse { get; set; } = default!;
 
         /// <summary>
-        /// OK.
+        /// The created collection.
         /// </summary>
-        public MediaContainerWithMetadata? MediaContainerWithMetadata { get; set; }
+        public Collection? Collection { get; set; }
     }
 }

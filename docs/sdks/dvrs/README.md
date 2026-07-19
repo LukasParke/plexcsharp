@@ -4,13 +4,16 @@
 
 The DVR provides means to watch and record live TV.  This section of endpoints describes how to setup the DVR itself
 
-
 ### Available Operations
 
 * [ListDVRs](#listdvrs) - Get DVRs
 * [CreateDVR](#createdvr) - Create a DVR
 * [DeleteDVR](#deletedvr) - Delete a single DVR
 * [GetDVR](#getdvr) - Get a single DVR
+* [PatchDVRSettings](#patchdvrsettings) - Update DVR Settings
+* [UpdateDVRSettings](#updatedvrsettings) - Update DVR Settings
+* [GetDVRChannels](#getdvrchannels) - Get DVR Channels
+* [GetDVRGuide](#getdvrguide) - Get DVR Guide
 * [DeleteLineup](#deletelineup) - Delete a DVR Lineup
 * [AddLineup](#addlineup) - Add a DVR Lineup
 * [SetDVRPreferences](#setdvrpreferences) - Set DVR preferences
@@ -38,6 +41,13 @@ var res = await sdk.DVRs.ListDVRsAsync();
 // handle response
 ```
 
+### Parameters
+
+| Parameter           | Type                | Required            | Description         |
+| ------------------- | ------------------- | ------------------- | ------------------- |
+| `Uuid`              | *string*            | :heavy_minus_sign:  | Filter by DVR UUID. |
+| `Lineup`            | *string*            | :heavy_minus_sign:  | Filter by lineup.   |
+
 ### Response
 
 **[ListDVRsResponse](../../Models/Requests/ListDVRsResponse.md)**
@@ -46,11 +56,12 @@ var res = await sdk.DVRs.ListDVRsAsync();
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## CreateDVR
 
-Creation of a DVR, after creation of a devcie and a lineup is selected
+Creation of a DVR, after creation of a device and a lineup is selected
 
 ### Example Usage
 
@@ -155,6 +166,7 @@ var res = await sdk.DVRs.CreateDVRAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## DeleteDVR
@@ -207,6 +219,7 @@ var res = await sdk.DVRs.DeleteDVRAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetDVR
@@ -259,6 +272,219 @@ var res = await sdk.DVRs.GetDVRAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## PatchDVRSettings
+
+Update DVR settings.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="patchDVRSettings" method="patch" path="/livetv/dvrs/{dvrId}" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+PatchDVRSettingsRequest req = new PatchDVRSettingsRequest() {
+    DvrId = 537061,
+};
+
+var res = await sdk.DVRs.PatchDVRSettingsAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `request`                                                                   | [PatchDVRSettingsRequest](../../Models/Requests/PatchDVRSettingsRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
+
+### Response
+
+**[PatchDVRSettingsResponse](../../Models/Requests/PatchDVRSettingsResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## UpdateDVRSettings
+
+Update DVR settings.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="updateDVRSettings" method="put" path="/livetv/dvrs/{dvrId}" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+UpdateDVRSettingsRequest req = new UpdateDVRSettingsRequest() {
+    DvrId = 614847,
+};
+
+var res = await sdk.DVRs.UpdateDVRSettingsAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `request`                                                                     | [UpdateDVRSettingsRequest](../../Models/Requests/UpdateDVRSettingsRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+
+### Response
+
+**[UpdateDVRSettingsResponse](../../Models/Requests/UpdateDVRSettingsResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetDVRChannels
+
+List channels directly associated with a DVR.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getDVRChannels" method="get" path="/livetv/dvrs/{dvrId}/channels" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetDVRChannelsRequest req = new GetDVRChannelsRequest() {
+    DvrId = 901521,
+};
+
+var res = await sdk.DVRs.GetDVRChannelsAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `request`                                                               | [GetDVRChannelsRequest](../../Models/Requests/GetDVRChannelsRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
+
+### Response
+
+**[GetDVRChannelsResponse](../../Models/Requests/GetDVRChannelsResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetDVRGuide
+
+Fetch program guide/schedule for a DVR.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getDVRGuide" method="get" path="/livetv/dvrs/{dvrId}/guide" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetDVRGuideRequest req = new GetDVRGuideRequest() {
+    DvrId = 19054,
+};
+
+var res = await sdk.DVRs.GetDVRGuideAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `request`                                                         | [GetDVRGuideRequest](../../Models/Requests/GetDVRGuideRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
+
+### Response
+
+**[GetDVRGuideResponse](../../Models/Requests/GetDVRGuideResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## DeleteLineup
@@ -312,6 +538,7 @@ var res = await sdk.DVRs.DeleteLineupAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## AddLineup
@@ -365,11 +592,12 @@ var res = await sdk.DVRs.AddLineupAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## SetDVRPreferences
 
-Set DVR preferences by name avd value
+Set DVR preferences by name and value
 
 ### Example Usage
 
@@ -417,6 +645,7 @@ var res = await sdk.DVRs.SetDVRPreferencesAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## StopDVRReload
@@ -469,6 +698,7 @@ var res = await sdk.DVRs.StopDVRReloadAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## ReloadGuide
@@ -521,6 +751,7 @@ var res = await sdk.DVRs.ReloadGuideAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## TuneChannel
@@ -627,6 +858,7 @@ var res = await sdk.DVRs.RemoveDeviceFromDVRAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## AddDeviceToDVR
@@ -680,4 +912,5 @@ var res = await sdk.DVRs.AddDeviceToDVRAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |

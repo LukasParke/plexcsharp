@@ -9,7 +9,7 @@
 #nullable enable
 namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
-    using LukeHagar.PlexAPI.SDK.Models.Requests;
+    using LukeHagar.PlexAPI.SDK.Models.Components;
     using LukeHagar.PlexAPI.SDK.Utils;
     using System;
     using System.Net.Http;
@@ -34,6 +34,6 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// <summary>
         /// The filters on the section.
         /// </summary>
-        public GetSectionFiltersResponseBody? Object { get; set; }
+        public MediaContainerWithDirectory? MediaContainerWithDirectory { get; set; }
     }
 }

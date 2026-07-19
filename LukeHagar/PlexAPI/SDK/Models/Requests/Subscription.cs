@@ -23,28 +23,16 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     public class Subscription
     {
         /// <summary>
-        /// List of features allowed on your Plex Pass subscription.
-        /// </summary>
-        [JsonProperty("features")]
-        public List<string>? Features { get; set; }
-
-        /// <summary>
         /// If the account's Plex Pass subscription is active.
         /// </summary>
         [JsonProperty("active")]
         public bool? Active { get; set; }
 
         /// <summary>
-        /// Date the account subscribed to Plex Pass.
+        /// List of features allowed on your Plex Pass subscription.
         /// </summary>
-        [JsonProperty("subscribedAt")]
-        public string? SubscribedAt { get; set; } = null;
-
-        /// <summary>
-        /// String representation of subscriptionActive.
-        /// </summary>
-        [JsonProperty("status")]
-        public PostUsersSignInDataStatus? Status { get; set; }
+        [JsonProperty("features")]
+        public List<string>? Features { get; set; }
 
         /// <summary>
         /// Payment service used for your Plex Pass subscription.
@@ -57,5 +45,17 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// </summary>
         [JsonProperty("plan")]
         public string? Plan { get; set; } = null;
+
+        /// <summary>
+        /// String representation of subscriptionActive.
+        /// </summary>
+        [JsonProperty("status")]
+        public PostUsersSignInDataStatus? Status { get; set; }
+
+        /// <summary>
+        /// Date the account subscribed to Plex Pass.
+        /// </summary>
+        [JsonProperty("subscribedAt")]
+        public string? SubscribedAt { get; set; } = null;
     }
 }

@@ -14,11 +14,29 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using Newtonsoft.Json;
 
     /// <summary>
-    /// OK.
+    /// A feature supported by a media provider.
     /// </summary>
     public class ListProvidersResponseBody
     {
         [JsonProperty("MediaContainer")]
         public ListProvidersMediaContainer? MediaContainer { get; set; }
+
+        /// <summary>
+        /// Human-readable feature title.
+        /// </summary>
+        [JsonProperty("title")]
+        public string? Title { get; set; }
+
+        /// <summary>
+        /// Feature type.
+        /// </summary>
+        [JsonProperty("type")]
+        public string? Type { get; set; }
+
+        /// <summary>
+        /// Feature key identifier.
+        /// </summary>
+        [JsonProperty("key")]
+        public Key? Key { get; set; }
     }
 }

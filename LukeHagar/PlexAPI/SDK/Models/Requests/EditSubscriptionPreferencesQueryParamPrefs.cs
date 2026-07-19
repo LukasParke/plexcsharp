@@ -11,6 +11,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
     using LukeHagar.PlexAPI.SDK.Utils;
 
+    /// <summary>
+    /// The preference key to retrieve or set.
+    /// </summary>
     public class EditSubscriptionPreferencesQueryParamPrefs
     {
     }

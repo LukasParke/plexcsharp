@@ -17,52 +17,10 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     public class User
     {
         /// <summary>
-        /// User's unique ID.
-        /// </summary>
-        [JsonProperty("id")]
-        public long Id { get; set; } = default!;
-
-        /// <summary>
         /// User's display name.
         /// </summary>
         [JsonProperty("title")]
         public string Title { get; set; } = default!;
-
-        /// <summary>
-        /// User's username.
-        /// </summary>
-        [JsonProperty("username")]
-        public string Username { get; set; } = default!;
-
-        /// <summary>
-        /// User's email address.
-        /// </summary>
-        [JsonProperty("email")]
-        public string Email { get; set; } = default!;
-
-        /// <summary>
-        /// ID of the user's recommendation playlist.
-        /// </summary>
-        [JsonProperty("recommendationsPlaylistId")]
-        public string? RecommendationsPlaylistId { get; set; } = null;
-
-        /// <summary>
-        /// URL to the user's avatar image.
-        /// </summary>
-        [JsonProperty("thumb")]
-        public string Thumb { get; set; } = default!;
-
-        [JsonProperty("protected")]
-        public Protected? Protected { get; set; } = LukeHagar.PlexAPI.SDK.Models.Requests.Protected.Disable;
-
-        [JsonProperty("home")]
-        public Home? Home { get; set; } = LukeHagar.PlexAPI.SDK.Models.Requests.Home.Disable;
-
-        [JsonProperty("allowTuners")]
-        public AllowTuners? AllowTuners { get; set; } = LukeHagar.PlexAPI.SDK.Models.Requests.AllowTuners.Disable;
-
-        [JsonProperty("allowSync")]
-        public GetUsersAllowSync? AllowSync { get; set; } = LukeHagar.PlexAPI.SDK.Models.Requests.GetUsersAllowSync.Disable;
 
         [JsonProperty("allowCameraUpload")]
         public AllowCameraUpload? AllowCameraUpload { get; set; } = LukeHagar.PlexAPI.SDK.Models.Requests.AllowCameraUpload.Disable;
@@ -72,6 +30,18 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 
         [JsonProperty("allowSubtitleAdmin")]
         public AllowSubtitleAdmin? AllowSubtitleAdmin { get; set; } = LukeHagar.PlexAPI.SDK.Models.Requests.AllowSubtitleAdmin.Disable;
+
+        [JsonProperty("allowSync")]
+        public GetUsersAllowSync? AllowSync { get; set; } = LukeHagar.PlexAPI.SDK.Models.Requests.GetUsersAllowSync.Disable;
+
+        [JsonProperty("allowTuners")]
+        public AllowTuners? AllowTuners { get; set; } = LukeHagar.PlexAPI.SDK.Models.Requests.AllowTuners.Disable;
+
+        /// <summary>
+        /// User's email address.
+        /// </summary>
+        [JsonProperty("email")]
+        public string Email { get; set; } = default!;
 
         /// <summary>
         /// Filters applied for all content.
@@ -103,6 +73,24 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         [JsonProperty("filterTelevision")]
         public string? FilterTelevision { get; set; }
 
+        [JsonProperty("home")]
+        public Home? Home { get; set; } = LukeHagar.PlexAPI.SDK.Models.Requests.Home.Disable;
+
+        /// <summary>
+        /// User's unique ID.
+        /// </summary>
+        [JsonProperty("id")]
+        public long Id { get; set; } = default!;
+
+        [JsonProperty("protected")]
+        public Protected? Protected { get; set; } = LukeHagar.PlexAPI.SDK.Models.Requests.Protected.Disable;
+
+        /// <summary>
+        /// ID of the user's recommendation playlist.
+        /// </summary>
+        [JsonProperty("recommendationsPlaylistId")]
+        public string? RecommendationsPlaylistId { get; set; } = null;
+
         [JsonProperty("restricted")]
         public Restricted? Restricted { get; set; } = LukeHagar.PlexAPI.SDK.Models.Requests.Restricted.Disable;
 
@@ -110,6 +98,18 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// List of servers owned by the user.
         /// </summary>
         [JsonProperty("Server")]
-        public List<Server> Server { get; set; } = default!;
+        public List<Models.Requests.Server> Server { get; set; } = default!;
+
+        /// <summary>
+        /// URL to the user's avatar image.
+        /// </summary>
+        [JsonProperty("thumb")]
+        public string Thumb { get; set; } = default!;
+
+        /// <summary>
+        /// User's username.
+        /// </summary>
+        [JsonProperty("username")]
+        public string Username { get; set; } = default!;
     }
 }

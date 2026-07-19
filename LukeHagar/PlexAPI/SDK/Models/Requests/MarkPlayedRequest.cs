@@ -93,9 +93,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public string? Key { get; set; }
 
         /// <summary>
-        /// The URI of the item to mark as played.  See intro for description of the URIs.
+        /// URI of the item to scrobble. Format is `library://&lt;section-uuid&gt;/item/&lt;url-encoded-key&gt;` or `plex://movie/&lt;guid&gt;` or `plex://episode/&lt;guid&gt;`.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=uri")]
-        public string? Uri { get; set; }
+        public string Uri { get; set; } = default!;
     }
 }

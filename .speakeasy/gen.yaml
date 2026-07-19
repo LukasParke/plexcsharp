@@ -29,7 +29,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 csharp:
-  version: 0.20.8
+  version: 0.21.0
   additionalDependencies: []
   author: LukeHagar
   baseErrorName: PlexAPIError
@@ -60,7 +60,10 @@ csharp:
   outputModelSuffix: output
   packageName: LukeHagar.PlexAPI.SDK
   packageTags: Plex Media Server SDK
+  presenceAwareJsonSerialization: false
   respectTitlesForPrimitiveUnionMembers: false
   responseFormat: envelope
   sourceDirectory: ""
+  targetFramework: dotnetVersion
+  unionStrategy: left-to-right
   useNodatime: true

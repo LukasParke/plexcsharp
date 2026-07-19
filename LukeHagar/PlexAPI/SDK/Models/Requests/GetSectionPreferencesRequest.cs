@@ -86,6 +86,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=sectionId")]
         public long SectionId { get; set; } = default!;
 
+        /// <summary>
+        /// The identifier of the metadata agent to use.
+        /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=agent")]
         public string? Agent { get; set; }
     }

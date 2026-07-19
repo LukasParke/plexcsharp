@@ -40,6 +40,6 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public long? TotalSize { get; set; }
 
         [JsonProperty("Hub")]
-        public List<GetResponses200Hub>? Hub { get; set; }
+        public List<ManagedHub>? Hub { get; set; }
     }
 }

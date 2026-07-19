@@ -2,7 +2,8 @@
 
 ## Overview
 
-API Operations against the Download Queue
+API Operations against the Download Queue.
+Note: The Download Queue is distinct from the Play Queue. The Download Queue manages offline/downloaded content, while the Play Queue manages active playback sessions.
 
 ### Available Operations
 
@@ -21,7 +22,6 @@ API Operations against the Download Queue
 Available: 0.2.0
 
 Creates a download queue for this client if one doesn't exist, or returns the existing queue for this client and user.
-
 
 ### Example Usage
 
@@ -45,6 +45,7 @@ var res = await sdk.DownloadQueue.CreateDownloadQueueAsync();
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetDownloadQueue
@@ -52,7 +53,6 @@ var res = await sdk.DownloadQueue.CreateDownloadQueueAsync();
 Available: 0.2.0
 
 Get a download queue by its id
-
 
 ### Example Usage
 
@@ -100,6 +100,7 @@ var res = await sdk.DownloadQueue.GetDownloadQueueAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## AddDownloadQueueItems
@@ -107,7 +108,6 @@ var res = await sdk.DownloadQueue.GetDownloadQueueAsync(req);
 Available: 0.2.0
 
 Add items to the download queue
-
 
 ### Example Usage
 
@@ -134,11 +134,6 @@ var sdk = new PlexAPI(
 );
 
 AddDownloadQueueItemsRequest req = new AddDownloadQueueItemsRequest() {
-    QueueId = 984925,
-    Keys = new List<string>() {
-        "/library/metadata/3",
-        "/library/metadata/6",
-    },
     AdvancedSubtitles = LukeHagar.PlexAPI.SDK.Models.Components.AdvancedSubtitles.Burn,
     AudioBoost = 50,
     AudioChannelCount = 5,
@@ -161,9 +156,15 @@ AddDownloadQueueItemsRequest req = new AddDownloadQueueItemsRequest() {
     Protocol = LukeHagar.PlexAPI.SDK.Models.Components.Protocol.Dash,
     SecondsPerSegment = 5,
     SubtitleSize = 50,
+    Subtitles = LukeHagar.PlexAPI.SDK.Models.Components.Subtitles.Burn,
     VideoBitrate = 12000,
     VideoQuality = 50,
     VideoResolution = "1080x1080",
+    QueueId = 984925,
+    Keys = new List<string>() {
+        "/library/metadata/3",
+        "/library/metadata/6",
+    },
 };
 
 var res = await sdk.DownloadQueue.AddDownloadQueueItemsAsync(req);
@@ -185,6 +186,7 @@ var res = await sdk.DownloadQueue.AddDownloadQueueItemsAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## ListDownloadQueueItems
@@ -192,7 +194,6 @@ var res = await sdk.DownloadQueue.AddDownloadQueueItemsAsync(req);
 Available: 0.2.0
 
 Get items from a download queue
-
 
 ### Example Usage
 
@@ -240,6 +241,7 @@ var res = await sdk.DownloadQueue.ListDownloadQueueItemsAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetItemDecision
@@ -247,7 +249,6 @@ var res = await sdk.DownloadQueue.ListDownloadQueueItemsAsync(req);
 Available: 0.2.0
 
 Grab the decision for a download queue item
-
 
 ### Example Usage
 
@@ -303,7 +304,6 @@ var res = await sdk.DownloadQueue.GetItemDecisionAsync(req);
 Available: 0.2.0
 
 Grab the media for a download queue item
-
 
 ### Example Usage
 
@@ -410,6 +410,7 @@ var res = await sdk.DownloadQueue.RemoveDownloadQueueItemsAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetDownloadQueueItems
@@ -417,7 +418,6 @@ var res = await sdk.DownloadQueue.RemoveDownloadQueueItemsAsync(req);
 Available: 0.2.0
 
 Get items from a download queue
-
 
 ### Example Usage
 
@@ -471,6 +471,7 @@ var res = await sdk.DownloadQueue.GetDownloadQueueItemsAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## RestartProcessingDownloadQueueItems
@@ -478,7 +479,6 @@ var res = await sdk.DownloadQueue.GetDownloadQueueItemsAsync(req);
 Available: 0.2.0
 
 Reprocess download queue items with previous decision parameters
-
 
 ### Example Usage
 
@@ -532,4 +532,5 @@ var res = await sdk.DownloadQueue.RestartProcessingDownloadQueueItemsAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |

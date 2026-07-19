@@ -62,6 +62,15 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         [JsonProperty("Part")]
         public List<MediaContainerWithDecisionPart>? Part { get; set; }
 
+        [JsonProperty("selected")]
+        public bool? Selected { get; set; }
+
+        /// <summary>
+        /// Unique identifier for this media instance.
+        /// </summary>
+        [JsonProperty("uuid")]
+        public string? Uuid { get; set; }
+
         [JsonProperty("videoCodec")]
         public string? VideoCodec { get; set; }
 
@@ -82,9 +91,6 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
 
         [JsonProperty("resourceSession")]
         public string? ResourceSession { get; set; }
-
-        [JsonProperty("selected")]
-        public bool? Selected { get; set; }
 
         [JsonProperty("additionalProperties")]
         public Dictionary<string, object>? AdditionalProperties { get; set; }

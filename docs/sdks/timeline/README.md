@@ -9,6 +9,7 @@ The actions feature within a media provider
 * [MarkPlayed](#markplayed) - Mark an item as played
 * [Report](#report) - Report media timeline
 * [Unscrobble](#unscrobble) - Mark an item as unplayed
+* [GetConversionQueue](#getconversionqueue) - Get Conversion Queue
 
 ## MarkPlayed
 
@@ -41,6 +42,7 @@ var sdk = new PlexAPI(
 MarkPlayedRequest req = new MarkPlayedRequest() {
     Identifier = "<value>",
     Key = "59398",
+    Uri = "https://mad-dredger.name",
 };
 
 var res = await sdk.Timeline.MarkPlayedAsync(req);
@@ -68,7 +70,6 @@ var res = await sdk.Timeline.MarkPlayedAsync(req);
 
 This endpoint is hit during media playback for an item. It must be hit whenever the play state changes, or in the absence of a play state change, in a regular fashion (generally this means every 10 seconds on a LAN/WAN, and every 20 seconds over cellular).
 
-
 ### Example Usage
 
 <!-- UsageSnippet language="csharp" operationID="report" method="post" path="/:/timeline" -->
@@ -95,7 +96,7 @@ var sdk = new PlexAPI(
 ReportRequest req = new ReportRequest() {
     Key = "/foo",
     RatingKey = "xyz",
-    State = State.Playing,
+    State = LukeHagar.PlexAPI.SDK.Models.Requests.State.Playing,
     PlayQueueItemID = "123",
     Time = 0,
     Duration = 10000,
@@ -160,6 +161,7 @@ var sdk = new PlexAPI(
 
 UnscrobbleRequest req = new UnscrobbleRequest() {
     Identifier = "<value>",
+    Uri = "https://qualified-order.org",
 };
 
 var res = await sdk.Timeline.UnscrobbleAsync(req);
@@ -181,4 +183,55 @@ var res = await sdk.Timeline.UnscrobbleAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetConversionQueue
+
+Get the conversion/optimization queue.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getConversionQueue" method="get" path="/playQueues/1" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetConversionQueueRequest req = new GetConversionQueueRequest() {};
+
+var res = await sdk.Timeline.GetConversionQueueAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `request`                                                                       | [GetConversionQueueRequest](../../Models/Requests/GetConversionQueueRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
+
+### Response
+
+**[GetConversionQueueResponse](../../Models/Requests/GetConversionQueueResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |

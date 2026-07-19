@@ -85,17 +85,5 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=sectionId")]
         public long SectionId { get; set; } = default!;
-
-        /// <summary>
-        /// Whether the update of metadata and items should be performed even if modification dates indicate the items have not change.
-        /// </summary>
-        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=force")]
-        public BoolInt? Force { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
-
-        /// <summary>
-        /// Restrict refresh to the specified path.
-        /// </summary>
-        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=path")]
-        public string? Path { get; set; }
     }
 }

@@ -31,6 +31,8 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// </summary>
         public HttpResponseMessage RawResponse { get; set; } = default!;
 
+        public byte[]? Body { get; set; }
+
         public Dictionary<string, List<string>> Headers { get; set; } = new Dictionary<string, List<string>>();
     }
 }

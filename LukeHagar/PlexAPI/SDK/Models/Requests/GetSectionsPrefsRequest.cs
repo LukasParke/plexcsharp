@@ -84,7 +84,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// The metadata type.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=type")]
-        public long Type { get; set; } = default!;
+        public long MediaType { get; set; } = default!;
 
         /// <summary>
         /// The metadata agent in use.

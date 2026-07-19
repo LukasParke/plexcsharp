@@ -8,7 +8,6 @@ Activities are associated with HTTP replies via a special `X-Plex-Activity` head
 
 Activities are optional cancellable. If cancellable, they may be cancelled via the `DELETE` endpoint.
 
-
 ### Available Operations
 
 * [ListActivities](#listactivities) - Get all activities
@@ -40,6 +39,7 @@ var res = await sdk.Activities.ListActivitiesAsync();
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## CancelActivity

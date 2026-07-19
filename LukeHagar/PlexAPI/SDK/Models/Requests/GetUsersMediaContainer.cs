@@ -35,16 +35,16 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public string MachineIdentifier { get; set; } = default!;
 
         /// <summary>
-        /// Total number of users.
-        /// </summary>
-        [JsonProperty("totalSize")]
-        public long TotalSize { get; set; } = default!;
-
-        /// <summary>
         /// Number of users in the current response.
         /// </summary>
         [JsonProperty("size")]
         public long Size { get; set; } = default!;
+
+        /// <summary>
+        /// Total number of users.
+        /// </summary>
+        [JsonProperty("totalSize")]
+        public long TotalSize { get; set; } = default!;
 
         /// <summary>
         /// List of users with access to the Plex server.

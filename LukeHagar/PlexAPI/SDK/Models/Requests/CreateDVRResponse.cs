@@ -33,7 +33,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public HttpResponseMessage RawResponse { get; set; } = default!;
 
         /// <summary>
-        /// OK.
+        /// Successfully created/executed create a dvr.
         /// </summary>
         public DvrRequestHandlerSlashGetResponses200? DvrRequestHandlerSlashGetResponses200 { get; set; }
 

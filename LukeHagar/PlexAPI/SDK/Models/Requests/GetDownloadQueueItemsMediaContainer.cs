@@ -9,7 +9,7 @@
 #nullable enable
 namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
-    using LukeHagar.PlexAPI.SDK.Models.Requests;
+    using LukeHagar.PlexAPI.SDK.Models.Components;
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
@@ -40,6 +40,6 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public long? TotalSize { get; set; }
 
         [JsonProperty("DownloadQueueItem")]
-        public List<GetDownloadQueueItemsDownloadQueueItem>? DownloadQueueItem { get; set; }
+        public List<DownloadQueueItem>? DownloadQueueItem { get; set; }
     }
 }

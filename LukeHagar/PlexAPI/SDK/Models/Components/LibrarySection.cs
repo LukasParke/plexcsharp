@@ -43,9 +43,15 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         [JsonProperty("content")]
         public bool? Content { get; set; }
 
+        /// <summary>
+        /// Unix epoch datetime in seconds.
+        /// </summary>
         [JsonProperty("contentChangedAt")]
         public long? ContentChangedAt { get; set; }
 
+        /// <summary>
+        /// Unix epoch datetime in seconds.
+        /// </summary>
         [JsonProperty("createdAt")]
         public long? CreatedAt { get; set; }
 
@@ -67,12 +73,6 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         [JsonProperty("language")]
         public string Language { get; set; } = default!;
 
-        /// <summary>
-        /// The universally unique identifier for the library.
-        /// </summary>
-        [JsonProperty("uuid")]
-        public string Uuid { get; set; } = default!;
-
         [JsonProperty("Location")]
         public List<LibrarySectionLocation>? Location { get; set; }
 
@@ -82,6 +82,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         [JsonProperty("refreshing")]
         public bool? Refreshing { get; set; }
 
+        /// <summary>
+        /// Unix epoch datetime in seconds.
+        /// </summary>
         [JsonProperty("scannedAt")]
         public long? ScannedAt { get; set; }
 
@@ -91,7 +94,16 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         [JsonProperty("thumb")]
         public string? Thumb { get; set; }
 
+        /// <summary>
+        /// Unix epoch datetime in seconds.
+        /// </summary>
         [JsonProperty("updatedAt")]
         public long? UpdatedAt { get; set; }
+
+        /// <summary>
+        /// The universally unique identifier for the library.
+        /// </summary>
+        [JsonProperty("uuid")]
+        public string Uuid { get; set; } = default!;
     }
 }

@@ -81,12 +81,6 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public string? Marketplace { get; set; }
 
         /// <summary>
-        /// The query term.
-        /// </summary>
-        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=query")]
-        public string Query { get; set; } = default!;
-
-        /// <summary>
         /// The type of media to retrieve or filter by.<br/>
         /// <br/>
         /// 1 = movie<br/>
@@ -105,9 +99,21 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public MediaType? Type { get; set; }
 
         /// <summary>
+        /// The query term.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=query")]
+        public string Query { get; set; } = default!;
+
+        /// <summary>
         /// The number of items to return per hub.  3 if not specified.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=limit")]
         public long? Limit { get; set; }
+
+        /// <summary>
+        /// Include collection results in search hubs.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeCollections")]
+        public bool? IncludeCollections { get; set; }
     }
 }

@@ -38,18 +38,6 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public MediaType? Type { get; set; }
 
         /// <summary>
-        /// Change the default level to which fields refer (used with type for hierarchical queries).
-        /// </summary>
-        [SpeakeasyMetadata("queryParam:name=sourceType")]
-        public long? SourceType { get; set; }
-
-        /// <summary>
-        /// Field(s) to sort by, with optional modifiers. Use comma to separate multiple fields, and :desc or :nullsLast for modifiers (e.g., "duration:desc,index").
-        /// </summary>
-        [SpeakeasyMetadata("queryParam:name=sort")]
-        public string? Sort { get; set; }
-
-        /// <summary>
         /// Field to group results by (similar to SQL GROUP BY).
         /// </summary>
         [SpeakeasyMetadata("queryParam:name=group")]
@@ -60,5 +48,17 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         /// </summary>
         [SpeakeasyMetadata("queryParam:name=limit")]
         public long? Limit { get; set; }
+
+        /// <summary>
+        /// Field(s) to sort by, with optional modifiers. Use comma to separate multiple fields, and :desc or :nullsLast for modifiers (e.g., "duration:desc,index").
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:name=sort")]
+        public string? Sort { get; set; }
+
+        /// <summary>
+        /// Change the default level to which fields refer (used with type for hierarchical queries).
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:name=sourceType")]
+        public long? SourceType { get; set; }
     }
 }

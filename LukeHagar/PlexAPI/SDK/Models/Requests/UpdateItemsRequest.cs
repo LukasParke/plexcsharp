@@ -86,8 +86,11 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=sectionId")]
         public string SectionId { get; set; } = default!;
 
+        /// <summary>
+        /// The media type to filter by.
+        /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=type")]
-        public string? Type { get; set; }
+        public string? MediaType { get; set; }
 
         /// <summary>
         /// The filters to apply to determine which items should be modified.

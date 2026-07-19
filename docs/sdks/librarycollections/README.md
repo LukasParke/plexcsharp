@@ -7,7 +7,7 @@ Endpoints for manipulating collections.  In addition to these endpoints, `/libra
 ### Available Operations
 
 * [AddCollectionItems](#addcollectionitems) - Add items to a collection
-* [DeleteCollectionItem](#deletecollectionitem) - Delete an item from a collection
+* [UpdateCollectionItem](#updatecollectionitem) - Update an item in a collection
 * [MoveCollectionItem](#movecollectionitem) - Reorder an item in the collection
 
 ## AddCollectionItems
@@ -63,13 +63,13 @@ var res = await sdk.LibraryCollections.AddCollectionItemsAsync(req);
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
-## DeleteCollectionItem
+## UpdateCollectionItem
 
 Delete an item from a collection
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="deleteCollectionItem" method="put" path="/library/collections/{collectionId}/items/{itemId}" -->
+<!-- UsageSnippet language="csharp" operationID="updateCollectionItem" method="put" path="/library/collections/{collectionId}/items/{itemId}" -->
 ```csharp
 using LukeHagar.PlexAPI.SDK;
 using LukeHagar.PlexAPI.SDK.Models.Components;
@@ -90,12 +90,12 @@ var sdk = new PlexAPI(
     token: "<YOUR_API_KEY_HERE>"
 );
 
-DeleteCollectionItemRequest req = new DeleteCollectionItemRequest() {
-    CollectionId = 320928,
-    ItemId = 406983,
+UpdateCollectionItemRequest req = new UpdateCollectionItemRequest() {
+    CollectionId = 640014,
+    ItemId = 2136,
 };
 
-var res = await sdk.LibraryCollections.DeleteCollectionItemAsync(req);
+var res = await sdk.LibraryCollections.UpdateCollectionItemAsync(req);
 
 // handle response
 ```
@@ -104,11 +104,11 @@ var res = await sdk.LibraryCollections.DeleteCollectionItemAsync(req);
 
 | Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
 | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| `request`                                                                           | [DeleteCollectionItemRequest](../../Models/Requests/DeleteCollectionItemRequest.md) | :heavy_check_mark:                                                                  | The request object to use for the request.                                          |
+| `request`                                                                           | [UpdateCollectionItemRequest](../../Models/Requests/UpdateCollectionItemRequest.md) | :heavy_check_mark:                                                                  | The request object to use for the request.                                          |
 
 ### Response
 
-**[DeleteCollectionItemResponse](../../Models/Requests/DeleteCollectionItemResponse.md)**
+**[UpdateCollectionItemResponse](../../Models/Requests/UpdateCollectionItemResponse.md)**
 
 ### Errors
 

@@ -14,6 +14,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 
     public class GetFirstCharactersDirectory
     {
+        [JsonProperty("title")]
+        public string? Title { get; set; }
+
         [JsonProperty("key")]
         public string? Key { get; set; }
 
@@ -22,8 +25,5 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// </summary>
         [JsonProperty("size")]
         public long? Size { get; set; }
-
-        [JsonProperty("title")]
-        public string? Title { get; set; }
     }
 }

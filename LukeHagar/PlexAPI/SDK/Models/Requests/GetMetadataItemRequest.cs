@@ -81,6 +81,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Marketplace")]
         public string? Marketplace { get; set; }
 
+        /// <summary>
+        /// Comma-separated list of IDs.
+        /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=ids")]
         public List<string> Ids { get; set; } = default!;
 
@@ -131,5 +134,77 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=augmentCount")]
         public BoolInt? AugmentCount { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
+
+        /// <summary>
+        /// Include intro/credits markers in the response.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeMarkers")]
+        public bool? IncludeMarkers { get; set; }
+
+        /// <summary>
+        /// Include external GUIDs (e.g. TMDB, TVDB) in the response.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeGuids")]
+        public bool? IncludeGuids { get; set; }
+
+        /// <summary>
+        /// Include chapter data in the response.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeChapters")]
+        public bool? IncludeChapters { get; set; }
+
+        /// <summary>
+        /// Include external/online media in the response.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeExternalMedia")]
+        public bool? IncludeExternalMedia { get; set; }
+
+        /// <summary>
+        /// Include trailers, behind-the-scenes, and other extras.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeExtras")]
+        public bool? IncludeExtras { get; set; }
+
+        /// <summary>
+        /// Include related items in the response.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeRelated")]
+        public bool? IncludeRelated { get; set; }
+
+        /// <summary>
+        /// Include On Deck status in the response.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeOnDeck")]
+        public bool? IncludeOnDeck { get; set; }
+
+        /// <summary>
+        /// Include popular episodes in the response.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includePopularLeaves")]
+        public bool? IncludePopularLeaves { get; set; }
+
+        /// <summary>
+        /// Include user reviews in the response.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeReviews")]
+        public bool? IncludeReviews { get; set; }
+
+        /// <summary>
+        /// Include radio station data in the response.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeStations")]
+        public bool? IncludeStations { get; set; }
+
+        /// <summary>
+        /// Comma-separated list of elements to exclude from the response.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=excludeElements")]
+        public string? ExcludeElements { get; set; }
+
+        /// <summary>
+        /// Comma-separated list of fields to exclude from the response.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=excludeFields")]
+        public string? ExcludeFields { get; set; }
     }
 }

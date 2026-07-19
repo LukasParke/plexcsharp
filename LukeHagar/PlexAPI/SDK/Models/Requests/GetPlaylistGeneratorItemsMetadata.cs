@@ -56,6 +56,12 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public string? Art { get; set; }
 
         /// <summary>
+        /// Blur hash for background art.
+        /// </summary>
+        [JsonProperty("artBlurHash")]
+        public string? ArtBlurHash { get; set; }
+
+        /// <summary>
         /// Some rating systems separate reviewer ratings from audience ratings.
         /// </summary>
         [JsonProperty("audienceRating")]
@@ -107,10 +113,28 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public List<Tag>? Director { get; set; }
 
         /// <summary>
+        /// Levenshtein distance for voice search results.
+        /// </summary>
+        [JsonProperty("distance")]
+        public long? Distance { get; set; }
+
+        /// <summary>
         /// When present, the duration for the item, in units of milliseconds.
         /// </summary>
         [JsonProperty("duration")]
         public int? Duration { get; set; }
+
+        /// <summary>
+        /// Edition string (e.g. "Director's Cut").
+        /// </summary>
+        [JsonProperty("editionTitle")]
+        public string? EditionTitle { get; set; }
+
+        /// <summary>
+        /// Whether credits marker generation is enabled for this item.
+        /// </summary>
+        [JsonProperty("enableCreditsMarkerGeneration")]
+        public bool? EnableCreditsMarkerGeneration { get; set; }
 
         /// <summary>
         /// Typically only seen in metadata at a library's top level.
@@ -199,6 +223,18 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         [JsonProperty("key")]
         public string Key { get; set; } = default!;
 
+        /// <summary>
+        /// Per-item language override.
+        /// </summary>
+        [JsonProperty("languageOverride")]
+        public string? LanguageOverride { get; set; }
+
+        /// <summary>
+        /// Timestamp of the last user rating.
+        /// </summary>
+        [JsonProperty("lastRatedAt")]
+        public long? LastRatedAt { get; set; }
+
         [JsonProperty("lastViewedAt")]
         public long? LastViewedAt { get; set; }
 
@@ -210,6 +246,12 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
 
         [JsonProperty("Media")]
         public List<Media>? Media { get; set; }
+
+        /// <summary>
+        /// Analysis version for music items.
+        /// </summary>
+        [JsonProperty("musicAnalysisVersion")]
+        public long? MusicAnalysisVersion { get; set; }
 
         /// <summary>
         /// When present, in the format YYYY-MM-DD [HH:MM:SS] (the hours/minutes/seconds part is not always present). The air date, or a higher resolution release date for an item, depending on type. For example, episodes usually have air date like 1979-08-10 (we don't use epoch seconds because media existed prior to 1970). In some cases, recorded over-the-air content has higher resolution air date which includes a time component. Albums and movies may have day-resolution release dates as well.
@@ -264,6 +306,12 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// </summary>
         [JsonProperty("parentTitle")]
         public string? ParentTitle { get; set; }
+
+        /// <summary>
+        /// Item ID within a playlist.
+        /// </summary>
+        [JsonProperty("playlistItemID")]
+        public long? PlaylistItemID { get; set; }
 
         /// <summary>
         /// Indicates that the item has a primary extra; for a movie, this is a trailer, and for a music track it is a music video. The URL points to the metadata details endpoint for the item.
@@ -326,16 +374,34 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public GetPlaylistGeneratorItemsSkipChildren? SkipChildren { get; set; }
 
         /// <summary>
+        /// Number of times this track has been skipped.
+        /// </summary>
+        [JsonProperty("skipCount")]
+        public long? SkipCount { get; set; }
+
+        /// <summary>
         /// When present on an episode or track item, indicates parent should be skipped in favor of grandparent (show).
         /// </summary>
         [JsonProperty("skipParent", NullValueHandling = NullValueHandling.Include)]
         public GetPlaylistGeneratorItemsSkipParent? SkipParent { get; set; }
 
         /// <summary>
+        /// URL-friendly slug for the item.
+        /// </summary>
+        [JsonProperty("slug")]
+        public string? Slug { get; set; }
+
+        /// <summary>
         /// Typically only seen in metadata at a library's top level.
         /// </summary>
         [JsonProperty("Sort")]
         public List<Sort>? Sort { get; set; }
+
+        /// <summary>
+        /// Remote or shared server item URI.
+        /// </summary>
+        [JsonProperty("sourceURI")]
+        public string? SourceURI { get; set; }
 
         /// <summary>
         /// When present, the studio or label which produced an item (e.g. movie studio for movies, record label for albums).
@@ -374,6 +440,12 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public string? Thumb { get; set; }
 
         /// <summary>
+        /// Blur hash for thumbnail.
+        /// </summary>
+        [JsonProperty("thumbBlurHash")]
+        public string? ThumbBlurHash { get; set; }
+
+        /// <summary>
         /// Whene present, this is the string used for sorting the item. It's usually the title with any leading articles removed (e.g. “Simpsons”).
         /// </summary>
         [JsonProperty("titleSort")]
@@ -384,6 +456,12 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// </summary>
         [JsonProperty("updatedAt")]
         public long? UpdatedAt { get; set; }
+
+        /// <summary>
+        /// Whether to display the original title.
+        /// </summary>
+        [JsonProperty("useOriginalTitle")]
+        public bool? UseOriginalTitle { get; set; }
 
         /// <summary>
         /// When the user has rated an item, this contains the user rating.

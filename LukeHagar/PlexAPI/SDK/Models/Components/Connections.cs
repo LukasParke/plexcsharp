@@ -16,28 +16,16 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     public class Connections
     {
         /// <summary>
-        /// The protocol used for the connection (http, https, etc).
-        /// </summary>
-        [JsonProperty("protocol")]
-        public PlexDeviceProtocol Protocol { get; set; } = default!;
-
-        /// <summary>
         /// The (ip) address or domain name used for the connection.
         /// </summary>
         [JsonProperty("address")]
         public string Address { get; set; } = default!;
 
         /// <summary>
-        /// The port used for the connection.
+        /// If the connection is using IPv6.
         /// </summary>
-        [JsonProperty("port")]
-        public int Port { get; set; } = default!;
-
-        /// <summary>
-        /// The full URI of the connection.
-        /// </summary>
-        [JsonProperty("uri")]
-        public string Uri { get; set; } = default!;
+        [JsonProperty("IPv6")]
+        public bool IPv6 { get; set; } = default!;
 
         /// <summary>
         /// If the connection is local address.
@@ -46,15 +34,27 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public bool Local { get; set; } = default!;
 
         /// <summary>
+        /// The port used for the connection.
+        /// </summary>
+        [JsonProperty("port")]
+        public int Port { get; set; } = default!;
+
+        /// <summary>
+        /// The protocol used for the connection (http, https, etc).
+        /// </summary>
+        [JsonProperty("protocol")]
+        public PlexDeviceProtocol Protocol { get; set; } = default!;
+
+        /// <summary>
         /// If the connection is relayed through plex.direct.
         /// </summary>
         [JsonProperty("relay")]
         public bool Relay { get; set; } = default!;
 
         /// <summary>
-        /// If the connection is using IPv6.
+        /// The full URI of the connection.
         /// </summary>
-        [JsonProperty("IPv6")]
-        public bool IPv6 { get; set; } = default!;
+        [JsonProperty("uri")]
+        public string Uri { get; set; } = default!;
     }
 }

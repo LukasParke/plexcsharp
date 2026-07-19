@@ -81,12 +81,6 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public string? Marketplace { get; set; }
 
         /// <summary>
-        /// The section where this collection will be created.
-        /// </summary>
-        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=sectionId")]
-        public string SectionId { get; set; } = default!;
-
-        /// <summary>
         /// The title to filter by or assign.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=title")]
@@ -97,12 +91,6 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=smart")]
         public bool? Smart { get; set; }
-
-        /// <summary>
-        /// The URI for processing the smart collection.  Required for a smart collection.
-        /// </summary>
-        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=uri")]
-        public string? Uri { get; set; }
 
         /// <summary>
         /// The type of media to retrieve or filter by.<br/>
@@ -121,5 +109,17 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=type")]
         public MediaType? Type { get; set; }
+
+        /// <summary>
+        /// The section where this collection will be created.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=sectionId")]
+        public string SectionId { get; set; } = default!;
+
+        /// <summary>
+        /// The URI for processing the smart collection.  Required for a smart collection.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=uri")]
+        public string? Uri { get; set; }
     }
 }

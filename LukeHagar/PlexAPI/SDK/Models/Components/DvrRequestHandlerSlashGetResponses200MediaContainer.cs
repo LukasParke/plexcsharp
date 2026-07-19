@@ -20,6 +20,6 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public DvrRequestHandlerSlashGetResponses200MediaContainerMediaContainer? MediaContainer { get; set; }
 
         [JsonProperty("DVR")]
-        public List<Models.Components.Dvr>? Dvr { get; set; }
+        public List<Dvr>? Dvr { get; set; }
     }
 }

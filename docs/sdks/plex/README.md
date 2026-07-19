@@ -2,6 +2,8 @@
 
 ## Overview
 
+Plex Plex operations
+
 ### Available Operations
 
 * [GetServerResources](#getserverresources) - Get Server Resources
@@ -12,7 +14,7 @@ Get Plex server access tokens and server connections
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="get-server-resources" method="get" path="/resources" -->
+<!-- UsageSnippet language="csharp" operationID="getServerResources" method="get" path="/resources" -->
 ```csharp
 using LukeHagar.PlexAPI.SDK;
 using LukeHagar.PlexAPI.SDK.Models.Components;
@@ -20,7 +22,7 @@ using LukeHagar.PlexAPI.SDK.Models.Requests;
 
 var sdk = new PlexAPI(
     accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
-    clientIdentifier: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+    clientIdentifier: "abc123",
     token: "<YOUR_API_KEY_HERE>"
 );
 
@@ -48,7 +50,7 @@ var res = await sdk.Plex.GetServerResourcesAsync(req);
 
 ### Errors
 
-| Error Type                                                         | Status Code                                                        | Content Type                                                       |
-| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| LukeHagar.PlexAPI.SDK.Models.Errors.GetServerResourcesUnauthorized | 401                                                                | application/json                                                   |
-| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException                   | 4XX, 5XX                                                           | \*/\*                                                              |
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Unauthorized | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |

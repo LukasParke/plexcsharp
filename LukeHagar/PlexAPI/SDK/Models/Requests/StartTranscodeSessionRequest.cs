@@ -94,16 +94,22 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public string? TranscodeSessionId { get; set; }
 
         /// <summary>
-        /// Extension.
-        /// </summary>
-        [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=extension")]
-        public Extension Extension { get; set; } = default!;
-
-        /// <summary>
         /// Indicates how incompatible advanced subtitles (such as ass/ssa) should be included: * 'burn' - Burn incompatible advanced text subtitles into the video stream * 'text' - Transcode incompatible advanced text subtitles to a compatible text format, even if some markup is lost.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=advancedSubtitles")]
         public Models.Components.AdvancedSubtitles? AdvancedSubtitles { get; set; }
+
+        /// <summary>
+        /// Client platform (some clients send this in addition to headers).
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=platform")]
+        public string? PlatformQueryParameter { get; set; }
+
+        /// <summary>
+        /// Extension.
+        /// </summary>
+        [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=extension")]
+        public Extension Extension { get; set; } = default!;
 
         /// <summary>
         /// Percentage of original audio loudness to use when transcoding (100 is equivalent to original volume, 50 is half, 200 is double, etc).
@@ -238,6 +244,24 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public StartTranscodeSessionQueryParamSubtitles? Subtitles { get; set; }
 
         /// <summary>
+        /// Client-side maximum video bitrate cap in kbps.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=maxVideoBitrate")]
+        public long? MaxVideoBitrate { get; set; }
+
+        /// <summary>
+        /// Cap resolution string (e.g. 1920x1080).
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=videoResolution")]
+        public string? VideoResolution { get; set; }
+
+        /// <summary>
+        /// Copy timestamps instead of re-encoding them.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=copyts")]
+        public BoolInt? Copyts { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
+
+        /// <summary>
         /// Target video bitrate (in kbps).
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=videoBitrate")]
@@ -248,12 +272,6 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=videoQuality")]
         public long? VideoQuality { get; set; }
-
-        /// <summary>
-        /// Target maximum video resolution.
-        /// </summary>
-        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=videoResolution")]
-        public string? VideoResolution { get; set; }
 
         /// <summary>
         /// See <a href="#section/API-Info/Profile-Augmentations">Profile Augmentations</a> .

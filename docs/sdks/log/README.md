@@ -14,7 +14,6 @@ Logging mechanism to allow clients to log to the server
 
 This endpoint will write multiple lines to the main Plex Media Server log in a single request. It takes a set of query strings as would normally sent to the above PUT endpoint as a linefeed-separated block of POST data. The parameters for each query string match as above.
 
-
 ### Example Usage
 
 <!-- UsageSnippet language="csharp" operationID="writeLog" method="post" path="/log" -->
@@ -53,7 +52,6 @@ var res = await sdk.Log.WriteLogAsync(req);
 This endpoint will write a single-line log message, including a level and source to the main Plex Media Server log.
 
 Note: This endpoint responds to all HTTP verbs **except POST** but PUT is preferred
-
 
 ### Example Usage
 
@@ -99,6 +97,7 @@ var res = await sdk.Log.WriteMessageAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## EnablePapertrail
@@ -106,7 +105,6 @@ var res = await sdk.Log.WriteMessageAsync(req);
 This endpoint will enable all Plex Media Server logs to be sent to the Papertrail networked logging site for a period of time
 
 Note: This endpoint responds to all HTTP verbs but POST is preferred
-
 
 ### Example Usage
 

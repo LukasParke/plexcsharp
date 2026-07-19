@@ -81,12 +81,6 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public string? Marketplace { get; set; }
 
         /// <summary>
-        /// Section identifier.
-        /// </summary>
-        [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=sectionId")]
-        public long SectionId { get; set; } = default!;
-
-        /// <summary>
         /// A querystring-based filtering language used to select subsets of media. Can be provided as an object with typed properties for type safety, or as a string for complex queries with operators and boolean logic.<br/>
         /// <br/>
         /// The query supports:<br/>
@@ -106,5 +100,11 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=mediaQuery")]
         public MediaQuery? MediaQuery { get; set; }
+
+        /// <summary>
+        /// Section identifier.
+        /// </summary>
+        [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=sectionId")]
+        public long SectionId { get; set; } = default!;
     }
 }

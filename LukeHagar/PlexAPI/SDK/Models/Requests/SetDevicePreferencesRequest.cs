@@ -91,5 +91,11 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=name")]
         public string? Name { get; set; }
+
+        /// <summary>
+        /// Preference value to set.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=value")]
+        public string? Value { get; set; }
     }
 }

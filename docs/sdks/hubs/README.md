@@ -8,6 +8,8 @@ The hubs within a media provider
 
 * [GetAllHubs](#getallhubs) - Get global hubs
 * [GetContinueWatching](#getcontinuewatching) - Get the continue watching hub
+* [GetContinueWatchingItems](#getcontinuewatchingitems) - Get Continue Watching Items
+* [GetHomeRecentlyAdded](#gethomerecentlyadded) - Get home hubs Recently Added
 * [GetHubItems](#gethubitems) - Get a hub's items
 * [GetPromotedHubs](#getpromotedhubs) - Get the hubs which are promoted
 * [GetMetadataHubs](#getmetadatahubs) - Get hubs for section by metadata item
@@ -71,6 +73,7 @@ var res = await sdk.Hubs.GetAllHubsAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetContinueWatching
@@ -121,6 +124,109 @@ var res = await sdk.Hubs.GetContinueWatchingAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetContinueWatchingItems
+
+Get direct access to Continue Watching items.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getContinueWatchingItems" method="get" path="/hubs/continueWatching/items" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetContinueWatchingItemsRequest req = new GetContinueWatchingItemsRequest() {};
+
+var res = await sdk.Hubs.GetContinueWatchingItemsAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `request`                                                                                   | [GetContinueWatchingItemsRequest](../../Models/Requests/GetContinueWatchingItemsRequest.md) | :heavy_check_mark:                                                                          | The request object to use for the request.                                                  |
+
+### Response
+
+**[GetContinueWatchingItemsResponse](../../Models/Requests/GetContinueWatchingItemsResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetHomeRecentlyAdded
+
+Get the recently added hub for the home screen.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getHomeRecentlyAdded" method="get" path="/hubs/home/recentlyAdded" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetHomeRecentlyAddedRequest req = new GetHomeRecentlyAddedRequest() {};
+
+var res = await sdk.Hubs.GetHomeRecentlyAddedAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `request`                                                                           | [GetHomeRecentlyAddedRequest](../../Models/Requests/GetHomeRecentlyAddedRequest.md) | :heavy_check_mark:                                                                  | The request object to use for the request.                                          |
+
+### Response
+
+**[GetHomeRecentlyAddedResponse](../../Models/Requests/GetHomeRecentlyAddedResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetHubItems
@@ -228,6 +334,7 @@ var res = await sdk.Hubs.GetPromotedHubsAsync(req);
 
 | Error Type                                       | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
 | LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
 
 ## GetMetadataHubs

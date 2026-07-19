@@ -9,7 +9,7 @@
 #nullable enable
 namespace LukeHagar.PlexAPI.SDK.Models.Requests
 {
-    using LukeHagar.PlexAPI.SDK.Models.Requests;
+    using LukeHagar.PlexAPI.SDK.Models.Components;
     using LukeHagar.PlexAPI.SDK.Utils;
     using System;
     using System.Collections.Generic;
@@ -35,7 +35,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// <summary>
         /// OK.
         /// </summary>
-        public GetContinueWatchingResponseBody? Object { get; set; }
+        public MediaContainerWithHubs? MediaContainerWithHubs { get; set; }
 
         public Dictionary<string, List<string>> Headers { get; set; } = new Dictionary<string, List<string>>();
     }

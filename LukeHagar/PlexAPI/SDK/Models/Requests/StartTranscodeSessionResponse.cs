@@ -33,6 +33,16 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// <summary>
         /// MPD file (see ISO/IEC 23009-1:2022), m3u8 file (see RFC 8216), or binary http stream.
         /// </summary>
-        public byte[]? Bytes { get; set; }
+        public byte[]? TwoHundredApplicationVndAppleMpegurlBinaryResponse { get; set; }
+
+        /// <summary>
+        /// MPD file (see ISO/IEC 23009-1:2022), m3u8 file (see RFC 8216), or binary http stream.
+        /// </summary>
+        public byte[]? TwoHundredTextHtmlBinaryResponse { get; set; }
+
+        /// <summary>
+        /// MPD file (see ISO/IEC 23009-1:2022), m3u8 file (see RFC 8216), or binary http stream.
+        /// </summary>
+        public byte[]? TwoHundredVideoXMatroskaBytes { get; set; }
     }
 }

@@ -13,6 +13,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// A MediaContainer that includes metadata items. When `includeCollections=1` is passed to endpoints such as `/library/sections/{sectionId}/all`, this container may also include `Collection` items.
+    /// </summary>
     public class MediaContainerWithMetadata
     {
         [JsonProperty("MediaContainer")]

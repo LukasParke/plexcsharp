@@ -82,6 +82,18 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public string? Marketplace { get; set; }
 
         /// <summary>
+        /// Pagination start offset.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=X-Plex-Container-Start")]
+        public long? XPlexContainerStart { get; set; }
+
+        /// <summary>
+        /// Pagination page size.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=X-Plex-Container-Size")]
+        public long? XPlexContainerSize { get; set; }
+
+        /// <summary>
         /// The account id to restrict view history.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=accountID")]
@@ -110,5 +122,47 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")]
         public List<string>? Sort { get; set; }
+
+        /// <summary>
+        /// Comma-separated list of elements to exclude from the response.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=excludeElements")]
+        public string? ExcludeElements { get; set; }
+
+        /// <summary>
+        /// Comma-separated list of fields to exclude from the response.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=excludeFields")]
+        public string? ExcludeFields { get; set; }
+
+        /// <summary>
+        /// Whitelist of fields to return.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeFields")]
+        public string? IncludeFields { get; set; }
+
+        /// <summary>
+        /// Whitelist of elements to include.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeElements")]
+        public string? IncludeElements { get; set; }
+
+        /// <summary>
+        /// Greater-than filter for viewedAt timestamp.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=viewedAt>")]
+        public long? ViewedAtGreaterThan { get; set; }
+
+        /// <summary>
+        /// Less-than filter for viewedAt timestamp.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=viewedAt<")]
+        public long? ViewedAtLessThan { get; set; }
+
+        /// <summary>
+        /// Filter by device ID.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=deviceID")]
+        public long? DeviceID { get; set; }
     }
 }

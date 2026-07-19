@@ -81,16 +81,16 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public string? Marketplace { get; set; }
 
         /// <summary>
-        /// The metadata ID for the hubs to fetch.
-        /// </summary>
-        [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=metadataId")]
-        public long MetadataId { get; set; } = default!;
-
-        /// <summary>
         /// Limit results to count items.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=count")]
         public long? Count { get; set; }
+
+        /// <summary>
+        /// The metadata ID for the hubs to fetch.
+        /// </summary>
+        [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=metadataId")]
+        public long MetadataId { get; set; } = default!;
 
         /// <summary>
         /// Only return hubs which are "transient", meaning those which are prone to changing after media playback or addition (e.g. On Deck, or Recently Added).

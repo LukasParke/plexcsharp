@@ -22,6 +22,12 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     public class PostUsersSignInDataUserPlexAccount
     {
         /// <summary>
+        /// The title of the account (username or friendly name).
+        /// </summary>
+        [JsonProperty("title")]
+        public string Title { get; set; } = default!;
+
+        /// <summary>
         /// Unknown.
         /// </summary>
         [JsonProperty("adsConsent")]
@@ -38,6 +44,9 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// </summary>
         [JsonProperty("anonymous")]
         public bool? Anonymous { get; set; } = false;
+
+        [JsonProperty("attributionPartner")]
+        public string? AttributionPartner { get; set; } = null;
 
         /// <summary>
         /// The account token.
@@ -76,6 +85,12 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public bool? EmailOnlyAuth { get; set; } = false;
 
         /// <summary>
+        /// List of devices your allowed to use with this account.
+        /// </summary>
+        [JsonProperty("entitlements")]
+        public List<string>? Entitlements { get; set; }
+
+        /// <summary>
         /// If experimental features are enabled.
         /// </summary>
         [JsonProperty("experimentalFeatures")]
@@ -86,12 +101,6 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// </summary>
         [JsonProperty("friendlyName")]
         public string FriendlyName { get; set; } = default!;
-
-        /// <summary>
-        /// List of devices your allowed to use with this account.
-        /// </summary>
-        [JsonProperty("entitlements")]
-        public List<string>? Entitlements { get; set; }
 
         /// <summary>
         /// If the account is a Plex Home guest user.
@@ -224,12 +233,6 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public string? Thumb { get; set; }
 
         /// <summary>
-        /// The title of the account (username or friendly name).
-        /// </summary>
-        [JsonProperty("title")]
-        public string Title { get; set; } = default!;
-
-        /// <summary>
         /// If two-factor authentication is enabled.
         /// </summary>
         [JsonProperty("twoFactorEnabled")]
@@ -247,13 +250,13 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         [JsonProperty("uuid")]
         public string Uuid { get; set; } = default!;
 
-        [JsonProperty("attributionPartner")]
-        public string? AttributionPartner { get; set; } = null;
-
         [JsonProperty("pastSubscriptions")]
         public List<PastSubscription> PastSubscriptions { get; set; } = default!;
 
         [JsonProperty("trials")]
         public List<Trials> Trials { get; set; } = default!;
+
+        [JsonProperty("additionalProperties")]
+        public Dictionary<string, object>? AdditionalProperties { get; set; }
     }
 }

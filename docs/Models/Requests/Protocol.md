@@ -1,21 +1,20 @@
 # Protocol
 
-Indicates the network streaming protocol to be used for the transcode session: * 'http' - include the file in the http response such as MKV streaming * 'hls' - hls stream (RFC 8216) * 'dash' - dash stream (ISO/IEC 23009-1:2022)
-
+Protocol to filter discovery.
 
 ## Example Usage
 
 ```csharp
 using LukeHagar.PlexAPI.SDK.Models.Requests;
 
-var value = Protocol.Http;
+var value = Protocol.Stream;
 ```
 
 
 ## Values
 
-| Name   | Value  |
-| ------ | ------ |
-| `Http` | http   |
-| `Hls`  | hls    |
-| `Dash` | dash   |
+| Name       | Value      |
+| ---------- | ---------- |
+| `Stream`   | stream     |
+| `Download` | download   |
+| `Livetv`   | livetv     |

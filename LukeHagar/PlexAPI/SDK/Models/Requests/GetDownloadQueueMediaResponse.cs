@@ -31,6 +31,11 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// </summary>
         public HttpResponseMessage RawResponse { get; set; } = default!;
 
+        /// <summary>
+        /// The raw media file.
+        /// </summary>
+        public byte[]? BinaryResponse { get; set; }
+
         public Dictionary<string, List<string>> Headers { get; set; } = new Dictionary<string, List<string>>();
     }
 }

@@ -40,6 +40,6 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public long? TotalSize { get; set; }
 
         [JsonProperty("Metadata")]
-        public List<HistoryAllGetResponses200Metadata>? Metadata { get; set; }
+        public List<PlaybackHistoryMetadata>? Metadata { get; set; }
     }
 }

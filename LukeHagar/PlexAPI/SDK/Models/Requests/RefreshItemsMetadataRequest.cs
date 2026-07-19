@@ -80,13 +80,28 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Marketplace")]
         public string? Marketplace { get; set; }
 
+        /// <summary>
+        /// Comma-separated list of IDs.
+        /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=ids")]
         public string Ids { get; set; } = default!;
 
+        /// <summary>
+        /// The identifier of the metadata agent to use.
+        /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=agent")]
         public string? Agent { get; set; }
 
+        /// <summary>
+        /// The markUpdated.
+        /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=markUpdated")]
         public BoolInt? MarkUpdated { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
+
+        /// <summary>
+        /// Skip synchronous refresh.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=skipRefresh")]
+        public BoolInt? SkipRefresh { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
     }
 }
