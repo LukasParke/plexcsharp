@@ -102,29 +102,8 @@ var sdk = new PlexAPI(
 
 ListPlaybackHistoryRequest req = new ListPlaybackHistoryRequest() {
     Sort = new List<string>() {
-        "v",
-        "i",
-        "e",
-        "w",
-        "e",
-        "d",
-        "A",
-        "t",
-        ":",
-        "d",
-        "e",
-        "s",
-        "c",
-        ",",
-        "a",
-        "c",
-        "c",
-        "o",
-        "u",
-        "n",
-        "t",
-        "I",
-        "D",
+        "viewedAt:desc",
+        "accountID",
     },
 };
 

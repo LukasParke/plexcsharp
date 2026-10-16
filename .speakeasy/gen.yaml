@@ -29,7 +29,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 csharp:
-  version: 0.21.0
+  version: 0.22.0
   additionalDependencies: []
   author: LukeHagar
   baseErrorName: PlexAPIError
@@ -42,6 +42,8 @@ csharp:
   enableSourceLink: true
   flattenGlobalSecurity: true
   flatteningOrder: ""
+  forwardCompatibleEnumsByDefault: false
+  forwardCompatibleUnionsByDefault: false
   httpClientPrefix: Speakeasy
   imports:
     option: openapi
@@ -63,6 +65,7 @@ csharp:
   presenceAwareJsonSerialization: false
   respectTitlesForPrimitiveUnionMembers: false
   responseFormat: envelope
+  schemaValidation: strict
   sourceDirectory: ""
   targetFramework: dotnetVersion
   unionStrategy: left-to-right

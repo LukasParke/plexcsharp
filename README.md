@@ -589,6 +589,7 @@ var res = await sdk.Transcoder.StartTranscodeSessionAsync(req);
 * [GetUsers](docs/sdks/users/README.md#getusers) - Get list of all connected users
 * [GetAccountXML](docs/sdks/users/README.md#getaccountxml) - Get Account (XML)
 * [GetAccountJSON](docs/sdks/users/README.md#getaccountjson) - Get Account (JSON)
+* [AcceptInvite](docs/sdks/users/README.md#acceptinvite) - Accept an Invite
 * [DeleteHomeUser](docs/sdks/users/README.md#deletehomeuser) - Delete Home User
 * [UpdateHomeUser](docs/sdks/users/README.md#updatehomeuser) - Update Home User
 * [UpdateRestrictedUser](docs/sdks/users/README.md#updaterestricteduser) - Update Restricted User
@@ -950,9 +951,9 @@ catch (System.Net.Http.HttpRequestException ex)
 * [`System.Net.Http.HttpRequestException`](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httprequestexception): Network connectivity error. For more details about the underlying cause, inspect the `ex.InnerException`.
 
 * Inheriting from [`PlexAPIError`](./LukeHagar/PlexAPI/SDK/Models/Errors/PlexAPIError.cs):
-  * [`Error`](./LukeHagar/PlexAPI/SDK/Models/Errors/Error.cs): Unauthorized. Status code `401`. Applicable to 276 of 403 methods.*
-  * [`Unauthorized`](./LukeHagar/PlexAPI/SDK/Models/Errors/Unauthorized.cs): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 4 of 403 methods.*
-  * [`BadRequest`](./LukeHagar/PlexAPI/SDK/Models/Errors/BadRequest.cs): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 3 of 403 methods.*
+  * [`Error`](./LukeHagar/PlexAPI/SDK/Models/Errors/Error.cs): Unauthorized. Status code `401`. Applicable to 277 of 404 methods.*
+  * [`Unauthorized`](./LukeHagar/PlexAPI/SDK/Models/Errors/Unauthorized.cs): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 4 of 404 methods.*
+  * [`BadRequest`](./LukeHagar/PlexAPI/SDK/Models/Errors/BadRequest.cs): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 3 of 404 methods.*
   * [`ResponseValidationError`](./LukeHagar/PlexAPI/SDK/Models/Errors/ResponseValidationError.cs): Thrown when the response data could not be deserialized into the expected type.
 </details>
 

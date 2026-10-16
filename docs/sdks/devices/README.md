@@ -415,20 +415,9 @@ SetChannelmapRequest req = new SetChannelmapRequest() {
     ChannelMapping = new LukeHagar.PlexAPI.SDK.Models.Requests.ChannelMapping() {},
     ChannelMappingByKey = new ChannelMappingByKey() {},
     ChannelsEnabled = new List<string>() {
-        "4",
-        "6",
-        ".",
-        "1",
-        ",",
-        "4",
-        "4",
-        ".",
-        "1",
-        ",",
-        "4",
-        "5",
-        ".",
-        "1",
+        "46.1",
+        "44.1",
+        "45.1",
     },
 };
 

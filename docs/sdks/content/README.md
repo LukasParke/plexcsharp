@@ -216,12 +216,17 @@ var sdk = new PlexAPI(
 );
 
 ListContentRequest req = new ListContentRequest() {
+    PmsApiVersion = "1.0",
     MediaQuery = new MediaQuery() {
         Type = MediaType.Episode,
         Sort = "duration:desc,index",
         SourceType = 2,
     },
     SectionId = 813218,
+    UpdatedAtAfter = 1792000000,
+    UpdatedAtBefore = 1792054845,
+    AddedAtAfter = 1791200000,
+    AddedAtBefore = 1791252847,
     IncludeMeta = BoolInt.True,
     IncludeGuids = BoolInt.True,
     IncludeCollections = BoolInt.True,
@@ -245,10 +250,12 @@ ListContentRequest req = new ListContentRequest() {
     IncludeThumb = BoolInt.True,
     IncludeBanner = BoolInt.True,
     IncludeTheme = BoolInt.True,
+    IncludeFields = "ratingKey,updatedAt,size,totalSize,offset",
     AsyncAugmentMetadata = BoolInt.True,
     AsyncRefreshLocalMediaAgent = BoolInt.True,
     Nocache = BoolInt.True,
     SkipRefresh = BoolInt.True,
+    IncludeOptionalElements = "Stream",
     Unwatched = BoolInt.True,
 };
 

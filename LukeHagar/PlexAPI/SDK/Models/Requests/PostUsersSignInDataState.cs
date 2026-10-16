@@ -17,7 +17,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using System.Linq;
 
     [JsonConverter(typeof(OpenEnumConverter))]
-    public class PostUsersSignInDataState : IEquatable<PostUsersSignInDataState>
+    public class PostUsersSignInDataState : IEquatable<PostUsersSignInDataState>, IOpenEnum<string>
     {
         public static readonly PostUsersSignInDataState Ended = new PostUsersSignInDataState("ended");
 
@@ -51,7 +51,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
             return _values.Values.ToArray();
         }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
 
         public bool IsKnown()
         {

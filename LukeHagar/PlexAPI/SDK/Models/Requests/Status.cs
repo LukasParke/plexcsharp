@@ -17,7 +17,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
     using System.Linq;
 
     [JsonConverter(typeof(OpenEnumConverter))]
-    public class Status : IEquatable<Status>
+    public class Status : IEquatable<Status>, IOpenEnum<string>
     {
         public static readonly Status Online = new Status("online");
         public static readonly Status Offline = new Status("offline");
@@ -53,7 +53,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
             return _values.Values.ToArray();
         }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
 
         public bool IsKnown()
         {

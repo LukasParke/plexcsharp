@@ -106,17 +106,5 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=sectionId")]
         public long SectionId { get; set; } = default!;
-
-        /// <summary>
-        /// The metadata type to filter on.
-        /// </summary>
-        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=type")]
-        public long? MediaType { get; set; }
-
-        /// <summary>
-        /// The metadata type to filter on.
-        /// </summary>
-        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")]
-        public long? Sort { get; set; }
     }
 }

@@ -20,6 +20,7 @@ Plex Users operations
 * [GetUsers](#getusers) - Get list of all connected users
 * [GetAccountXML](#getaccountxml) - Get Account (XML)
 * [GetAccountJSON](#getaccountjson) - Get Account (JSON)
+* [AcceptInvite](#acceptinvite) - Accept an Invite
 * [DeleteHomeUser](#deletehomeuser) - Delete Home User
 * [UpdateHomeUser](#updatehomeuser) - Update Home User
 * [UpdateRestrictedUser](#updaterestricteduser) - Update Restricted User
@@ -676,6 +677,63 @@ var res = await sdk.Users.GetAccountJSONAsync(req);
 ### Response
 
 **[GetAccountJSONResponse](../../Models/Requests/GetAccountJSONResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## AcceptInvite
+
+Accept a pending Plex friend, home, or server invitation.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="acceptInvite" method="put" path="/api/invites/requests/{inviteId}" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    clientIdentifier: "abc123",
+    product: "Plex for Roku",
+    version: "2.4.1",
+    platform: "Roku",
+    platformVersion: "4.3 build 1057",
+    device: "Roku 3",
+    model: "4200X",
+    deviceVendor: "Roku",
+    deviceName: "Living Room TV",
+    marketplace: "googlePlay",
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+AcceptInviteRequest req = new AcceptInviteRequest() {
+    InviteId = 530502,
+    Friend = BoolInt.True,
+    Home = BoolInt.True,
+    Server = BoolInt.True,
+};
+
+var res = await sdk.Users.AcceptInviteAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [AcceptInviteRequest](../../Models/Requests/AcceptInviteRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `serverURL`                                                         | *string*                                                            | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
+
+### Response
+
+**[AcceptInviteResponse](../../Models/Requests/AcceptInviteResponse.md)**
 
 ### Errors
 

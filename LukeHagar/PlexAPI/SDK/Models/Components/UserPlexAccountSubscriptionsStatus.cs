@@ -20,7 +20,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     /// String representation of subscriptionActive.
     /// </summary>
     [JsonConverter(typeof(OpenEnumConverter))]
-    public class UserPlexAccountSubscriptionsStatus : IEquatable<UserPlexAccountSubscriptionsStatus>
+    public class UserPlexAccountSubscriptionsStatus : IEquatable<UserPlexAccountSubscriptionsStatus>, IOpenEnum<string>
     {
         public static readonly UserPlexAccountSubscriptionsStatus Inactive = new UserPlexAccountSubscriptionsStatus("Inactive");
         public static readonly UserPlexAccountSubscriptionsStatus Active = new UserPlexAccountSubscriptionsStatus("Active");
@@ -56,7 +56,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
             return _values.Values.ToArray();
         }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
 
         public bool IsKnown()
         {

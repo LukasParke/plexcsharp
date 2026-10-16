@@ -81,6 +81,13 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public string? Marketplace { get; set; }
 
         /// <summary>
+        /// The PMS API version requested by the client. If omitted, the server assumes `0.0`.<br/>
+        /// Use `1.0` for the published PMS API response customization behavior.
+        /// </summary>
+        [SpeakeasyMetadata("header:style=simple,explode=false,name=X-Plex-Pms-Api-Version")]
+        public string? PmsApiVersion { get; set; }
+
+        /// <summary>
         /// The index of the first item to return. If not specified, the first item will be returned.<br/>
         /// If the number of items exceeds the limit, the response will be paginated.<br/>
         /// By default this is 0.
@@ -124,16 +131,44 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public long SectionId { get; set; } = default!;
 
         /// <summary>
-        /// Filter by metadata type (1=movie, 2=show, 3=season, 4=episode, 8=artist, 9=album, 10=track).
+        /// Return current items whose updatedAt is strictly greater than this Unix timestamp in seconds.<br/>
+        /// The query key is updatedAt&gt;&gt; (URL-encoded as updatedAt%3E%3E), for example updatedAt%3E%3E=1792000000.<br/>
+        /// Items updated exactly at the supplied timestamp are excluded; overlap polling windows and deduplicate ratingKey values to avoid missing same-second updates.<br/>
+        /// Verified for movies, episodes, and tracks on PMS 1.43.4.10903. Support on other server versions and library types may vary.<br/>
+        /// This filters current items, not a durable change log: deleted items are not returned, and it does not guarantee that every file, part, or stream change updates the parent timestamp.
         /// </summary>
-        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=type")]
-        public long? MediaType { get; set; }
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=updatedAt>>")]
+        public long? UpdatedAtAfter { get; set; }
 
         /// <summary>
-        /// Sort key and direction (e.g. addedAt:desc, titleSort).
+        /// Return current items whose updatedAt is strictly less than this Unix timestamp in seconds.<br/>
+        /// The query key is updatedAt&lt;&lt; (URL-encoded as updatedAt%3C%3C), for example updatedAt%3C%3C=1792054845.<br/>
+        /// Items updated exactly at the supplied timestamp are excluded. Combine with updatedAt&gt;&gt; to request a bounded interval; both conditions must match.<br/>
+        /// Verified for movies on PMS 1.43.4.10903. Support on other server versions and library types may vary.<br/>
+        /// This filters current items and does not provide an atomic snapshot, a replay cursor, or deleted items.
         /// </summary>
-        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")]
-        public string? Sort { get; set; }
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=updatedAt<<")]
+        public long? UpdatedAtBefore { get; set; }
+
+        /// <summary>
+        /// Return current items whose addedAt is strictly greater than this Unix timestamp in seconds.<br/>
+        /// The query key is addedAt&gt;&gt; (URL-encoded as addedAt%3E%3E), for example addedAt%3E%3E=1791200000.<br/>
+        /// Items added exactly at the supplied timestamp are excluded; overlap polling windows and deduplicate ratingKey values to avoid missing same-second additions.<br/>
+        /// Verified for movies on PMS 1.43.4.10903. Support on other server versions and library types may vary.<br/>
+        /// This filters surviving additions only; it does not identify later metadata updates or deleted items.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=addedAt>>")]
+        public long? AddedAtAfter { get; set; }
+
+        /// <summary>
+        /// Return current items whose addedAt is strictly less than this Unix timestamp in seconds.<br/>
+        /// The query key is addedAt&lt;&lt; (URL-encoded as addedAt%3C%3C), for example addedAt%3C%3C=1791252847.<br/>
+        /// Items added exactly at the supplied timestamp are excluded. Combine with addedAt&gt;&gt; to request a bounded interval; both conditions must match.<br/>
+        /// Support on server versions and library types may vary.<br/>
+        /// This filters surviving additions only; it does not identify later metadata updates or deleted items, or provide an atomic snapshot.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=addedAt<<")]
+        public long? AddedAtBefore { get; set; }
 
         /// <summary>
         /// Adds the Meta object to the response.
@@ -274,7 +309,11 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public BoolInt? IncludeTheme { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
 
         /// <summary>
-        /// Whitelist of fields to return.
+        /// Comma-separated whitelist of fields to return.<br/>
+        /// With PMS API version 1.0.0 or later, this projection also applies to container attributes.<br/>
+        /// Include size,totalSize,offset alongside item fields when paging, for example ratingKey,updatedAt,size,totalSize,offset.<br/>
+        /// Otherwise the response may omit the pagination attributes needed to determine whether the complete result has been retrieved.<br/>
+        /// This does not necessarily remove nested elements; use excludeElements to request their exclusion.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeFields")]
         public string? IncludeFields { get; set; }
@@ -308,6 +347,14 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=skipRefresh")]
         public BoolInt? SkipRefresh { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
+
+        /// <summary>
+        /// Comma-separated list of optional elements to add to the response.<br/>
+        /// Use `Stream` to request stream metadata within returned media parts.<br/>
+        /// Unlike `includeElements`, this adds optional elements without excluding the normal response elements.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeOptionalElements")]
+        public string? IncludeOptionalElements { get; set; }
 
         /// <summary>
         /// Comma-separated list of elements to exclude from the response.

@@ -108,12 +108,6 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public long SectionId { get; set; } = default!;
 
         /// <summary>
-        /// Item type.
-        /// </summary>
-        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=type")]
-        public long? MediaType { get; set; }
-
-        /// <summary>
         /// The "field" stands in for any field, the value is a partial string for matching.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=field.query")]
