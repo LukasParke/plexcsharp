@@ -1,20 +1,20 @@
 lockVersion: 2.0.0
 id: 5a8dbcbc-e0ee-41f0-9d84-b8b50567d1e9
 management:
-  docChecksum: 8af03503b21cc52f69a337438a295c73
+  docChecksum: 24258af83aa49f5bf67b4f2a55b5e3cc
   docVersion: 1.1.1
   speakeasyVersion: 1.802.0
   generationVersion: 2.948.4
-  releaseVersion: 0.22.0
-  configChecksum: a3065e50f27b969a097e29e4d87470d6
+  releaseVersion: 0.22.1
+  configChecksum: 2441ead76f0cf27f80af3f1ae3c3c3bc
   repoURL: https://github.com/LukasParke/plexcsharp.git
   repoSubDirectory: .
   installationURL: https://github.com/LukasParke/plexcsharp
   published: true
 persistentEdits:
-  generation_id: fbc0e7e1-99df-43a9-aeb0-b084b7aa4032
-  pristine_commit_hash: ddf1a1bd5a7f4e2629f6f6915d7c9a453728842b
-  pristine_tree_hash: 179c225d5d28ca693fdf7612ac2bacb80caeec4c
+  generation_id: daa6b0a4-e50c-4ea7-a4db-84dbbd1dbb37
+  pristine_commit_hash: 9c122699a43520cd35e5d2d4b751b0b3f6af49b6
+  pristine_tree_hash: 8d2cde94ae1c1acfc953f2ed0fafc6b87c468c08
 features:
   csharp:
     additionalDependencies: 0.1.0
@@ -129,8 +129,8 @@ trackedFiles:
     pristine_git_object: 42cf240181a6cdb287133235bef984c277ecbca9
   LukeHagar/PlexAPI/SDK/LukeHagar.PlexAPI.SDK.csproj:
     id: b9d7ab196850
-    last_write_checksum: sha1:1cc9dc1fb76a49913970faafdce7b5183f64a98e
-    pristine_git_object: 1d3db97eed0fa0936307cb06a1282ef7909e8d26
+    last_write_checksum: sha1:01fddb9b09639e263488c0f3c8513afc59b73799
+    pristine_git_object: ff22a4fa39d96fb02e21edf8828d9a3879ecd0e5
   LukeHagar/PlexAPI/SDK/Models/Components/Accepts.cs:
     id: 36fdb3e856de
     last_write_checksum: sha1:b4ccd06edc9336d6aad39940360529ac49179a39
@@ -481,8 +481,8 @@ trackedFiles:
     pristine_git_object: 6dc10414e7c1f7b212b9fe5adbea747ae921eeb9
   LukeHagar/PlexAPI/SDK/Models/Components/LibrarySection.cs:
     id: 5494d74fd672
-    last_write_checksum: sha1:4f00bb8a2da1e30f930e2f469d59414dab97c1cd
-    pristine_git_object: 5e30875e711cdd49fd9ad23f3bf368127a2947bc
+    last_write_checksum: sha1:cfaf0381c5449ec6bc4392606e1fd916df25261e
+    pristine_git_object: d66b04e274ac6cba2449e55626a1c8a2977d715d
   LukeHagar/PlexAPI/SDK/Models/Components/LibrarySectionAllowSync.cs:
     id: 00164ebf21f8
     last_write_checksum: sha1:7c75c51726b7ccde9f169368f68f54f06505b515
@@ -797,8 +797,8 @@ trackedFiles:
     pristine_git_object: eadaa1cf1b397f515794b3a0458f08afd4ca68ec
   LukeHagar/PlexAPI/SDK/Models/Components/MediaQuery.cs:
     id: 689de89e54b1
-    last_write_checksum: sha1:4b3058b0644e0242f4d51fd79c6b29cffaf2d714
-    pristine_git_object: b2260f224f3f2c5f1d5ce25552338f1dbd0df135
+    last_write_checksum: sha1:ffa824f19ad240c319be1a858b1b6d6de7a9f52d
+    pristine_git_object: bef59237ef294f8a8c5034915cacefd32bdd44aa
   LukeHagar/PlexAPI/SDK/Models/Components/MediaReviewsVisibility.cs:
     id: d594df75091b
     last_write_checksum: sha1:706b8dee2aafe66a898acdb10f86fcea5861fe72
@@ -809,12 +809,12 @@ trackedFiles:
     pristine_git_object: 82926ca8b226f2da80b5135af2e20ee0313f9abc
   LukeHagar/PlexAPI/SDK/Models/Components/MediaType.cs:
     id: 15e08a67d011
-    last_write_checksum: sha1:21925bd074cdb9ee27d2e0e8e76fa41c09c377e8
-    pristine_git_object: ffc60acd5894e37a3f880e2c65ff83861ecf6a4a
+    last_write_checksum: sha1:f73094b3684fcc505e72f87b90f903addda565c1
+    pristine_git_object: 8148dce0945370b31d08fe1c2589b7d879d2d595
   LukeHagar/PlexAPI/SDK/Models/Components/MediaTypeString.cs:
     id: 69110cea5d26
-    last_write_checksum: sha1:bd65c7f2bb3c377259f57ae83362be046da9e63e
-    pristine_git_object: 537df0b71211a933df8cd9cf9f451230be9ba59a
+    last_write_checksum: sha1:dd7f2055ab97387a0a92c4521cce4867b57e5bb4
+    pristine_git_object: 343b3d2316dcb9bfda5df8abebc03f745c344abc
   LukeHagar/PlexAPI/SDK/Models/Components/Metadata.cs:
     id: c922e991bc54
     last_write_checksum: sha1:a5c45b3c273b4a3cd87859108eb2656056d84bb1
@@ -1533,8 +1533,8 @@ trackedFiles:
     pristine_git_object: 0b5eb0b00553290956e56c6d3f29662f96f0c973
   LukeHagar/PlexAPI/SDK/Models/Requests/CreateCollectionRequest.cs:
     id: 6e505975b324
-    last_write_checksum: sha1:aab6f2b274ff3006768b645eb0e59ec8c605c91f
-    pristine_git_object: 9cda3979c63dee5d3042d83ffef84063a5b62f1e
+    last_write_checksum: sha1:29dc73fed1a5587f6c50f21352198ad37a7edf47
+    pristine_git_object: c3c5647effede58fbf5a892bb95e41bee6005b6b
   LukeHagar/PlexAPI/SDK/Models/Requests/CreateCollectionResponse.cs:
     id: 8248f34900a7
     last_write_checksum: sha1:c6310297327523b8e89ea1eb3c48bf7e27f923d3
@@ -2725,8 +2725,8 @@ trackedFiles:
     pristine_git_object: a57794d901162557113f3ca9aac82ae1c9e5737e
   LukeHagar/PlexAPI/SDK/Models/Requests/GetLibraryMatchesRequest.cs:
     id: c10ae28eec54
-    last_write_checksum: sha1:18ec866cb852cfcdc72d4cd95d4c5a2de121956c
-    pristine_git_object: 6da699ed25b182d9b5ca6a2d434c2d699db2cffa
+    last_write_checksum: sha1:d1f4c02621438823af647180607ee9bbe7b691b6
+    pristine_git_object: 3b2299dd722291bc3b6f6e83a3da9a2a4191f0c1
   LukeHagar/PlexAPI/SDK/Models/Requests/GetLibraryMatchesResponse.cs:
     id: 71e0990ea81d
     last_write_checksum: sha1:08a2324dc3e8eef3502b2315a63577aa1d02df1f
@@ -3533,8 +3533,8 @@ trackedFiles:
     pristine_git_object: 514f282f83f86cdcb53f4a470714521fa6f44b9f
   LukeHagar/PlexAPI/SDK/Models/Requests/GetTagsRequest.cs:
     id: 44d98e4201d9
-    last_write_checksum: sha1:97bc891c97c30a468692b621e697bc0dfa0d3f19
-    pristine_git_object: 83c47e7ff42419ca49b0ee91b5f38d0ce3382159
+    last_write_checksum: sha1:40b9f00dff85f8b8b57c9628621e78cfbea5924c
+    pristine_git_object: 936fd2c567a019078644beb369a322e1c4da6f7f
   LukeHagar/PlexAPI/SDK/Models/Requests/GetTagsResponse.cs:
     id: 6ff3504fd64e
     last_write_checksum: sha1:504700f7fed5b76e40a076c9636224593bfa5417
@@ -5117,8 +5117,8 @@ trackedFiles:
     pristine_git_object: 19b094c6634725c3e28e24c519824b3c4a6a47cc
   LukeHagar/PlexAPI/SDK/Models/Requests/VoiceSearchHubsRequest.cs:
     id: 3f500b9635dc
-    last_write_checksum: sha1:d85da45c2c8027824359b5d492b1d8990d831fb1
-    pristine_git_object: 283c56ac004fd9f59ee68eb08c1fab28a7b6c156
+    last_write_checksum: sha1:8adeee4b0e21dbfaaaa56fc9a3fcb523211bc9dc
+    pristine_git_object: f3f17fe988878e552c55fd49e1b234041df27d09
   LukeHagar/PlexAPI/SDK/Models/Requests/VoiceSearchHubsResponse.cs:
     id: 0b6a8a0d4be9
     last_write_checksum: sha1:e0ac42c124f342cc5fd760a731256491267ec8fe
@@ -5173,8 +5173,8 @@ trackedFiles:
     pristine_git_object: 7cbbc99bff28d4961eaf467e988b8de7ca94ca3e
   LukeHagar/PlexAPI/SDK/SDKConfig.cs:
     id: d6b3b7c181ac
-    last_write_checksum: sha1:5381c18acf57e543300489244ca559bdf64e7f2d
-    pristine_git_object: b14c27f9c67562f8af24d6cd2f9df121c46f8b6c
+    last_write_checksum: sha1:3bd8b4210a456abe6dad069e0a4118354398bf7f
+    pristine_git_object: 8fa785b1c1c8a106f768876bbd7359404aa69833
   LukeHagar/PlexAPI/SDK/Search.cs:
     id: 25ce7c8f381d
     last_write_checksum: sha1:ae5e3242d0f933bfb263fc07ce8da82d166e6d1a
@@ -5217,8 +5217,8 @@ trackedFiles:
     pristine_git_object: 73b6315f92d940466ba5f9dd91b23beca1d7c112
   LukeHagar/PlexAPI/SDK/Utils/Constants.cs:
     id: 3b8df0868897
-    last_write_checksum: sha1:d70c946316ff70f5e48a4b55590e6859fa5d2d0c
-    pristine_git_object: a1b06939fda16e82d96fc3965b530c56ea17d38f
+    last_write_checksum: sha1:9aab05c10d3d6220cc40422d4bb62db939c0a6b9
+    pristine_git_object: d794b55536dc4f784bf12a0fe43a3239ba2a0799
   LukeHagar/PlexAPI/SDK/Utils/DecimalStrConverter.cs:
     id: 0ed03fb709c5
     last_write_checksum: sha1:639243d1bf5bc48d1a90caeedb3b491b507b2043
@@ -5645,8 +5645,8 @@ trackedFiles:
     pristine_git_object: d5f55dd114ab4dfe807f8a566147c3a96d71fa3e
   docs/Models/Components/LibrarySection.md:
     id: ed5553d8f140
-    last_write_checksum: sha1:2fd452086035ad4501b7599060513fc4f10fdad3
-    pristine_git_object: 3e82178aaf36b9563cf09949076c4321ff604a5e
+    last_write_checksum: sha1:d539edc811a5b0318fb9ca9a576d8c1d97dc0af6
+    pristine_git_object: 1f761ab01f517c78273afaf234986efebbe35958
   docs/Models/Components/LibrarySectionAllowSync.md:
     id: 834c90f6f842
     last_write_checksum: sha1:9022d5e20e095002c52f59303d659afbfaf4d2e6
@@ -5961,8 +5961,8 @@ trackedFiles:
     pristine_git_object: b64bfd1c9a1132a2c61ece43814ac68212d487c0
   docs/Models/Components/MediaQuery.md:
     id: 71e6e7a9ae6a
-    last_write_checksum: sha1:7895f99b931bda13c3a14c724bc3715df6f9356e
-    pristine_git_object: 61996462681c4721f199d8f5f3767290f42d07bc
+    last_write_checksum: sha1:2cf1834999abeb097343053fc51366f51e5903b0
+    pristine_git_object: c5cf31a7d811351069f236b55f61db6187395b86
   docs/Models/Components/MediaReviewsVisibility.md:
     id: 76de8b9b0c5d
     last_write_checksum: sha1:41678c1134813c9db87593d37be4d443e50d158d
@@ -5973,12 +5973,12 @@ trackedFiles:
     pristine_git_object: 05d71ef8619dfa4a7a37ab16fa9793ab14fe148e
   docs/Models/Components/MediaType.md:
     id: c29ac29fa72c
-    last_write_checksum: sha1:715dd79951e1c47fd9cd10a298e590fe584a1523
-    pristine_git_object: 600a5a01bc713233af7274b2d22eec3e3b2df5cf
+    last_write_checksum: sha1:6393c04467b56d7a904380960545a9427eb3eefe
+    pristine_git_object: d4c15b564036935048a9ffe3137e1935ac55a9d6
   docs/Models/Components/MediaTypeString.md:
     id: 013a1609dbfe
-    last_write_checksum: sha1:4a2b3ce78765d2b2d84f4d1af74686f108ed42f4
-    pristine_git_object: fda7bf3169e73688cfe0df7c6a5f715efad87895
+    last_write_checksum: sha1:885343c36167c39ca61e3ced2305d354b93719f8
+    pristine_git_object: 646e95cecc538392165187434fc6c94cdc1a24f5
   docs/Models/Components/Metadata.md:
     id: 5b37a8eb1a69
     last_write_checksum: sha1:9312e55d9059334c9692260befe68cb1a65a12f4
@@ -6685,8 +6685,8 @@ trackedFiles:
     pristine_git_object: 781b8e5915d25c56ff9a7e6ba3df42df85fe6c7b
   docs/Models/Requests/CreateCollectionRequest.md:
     id: 930474d9c004
-    last_write_checksum: sha1:132ffa0a546e3b0f44588b0f5854cac2170f8b5c
-    pristine_git_object: a7915e514c5bd968fae675cffcde58a2a7ba2423
+    last_write_checksum: sha1:af573986344d36c8bdb4e7c22bdede10e502a66c
+    pristine_git_object: 85cc5afd76c56a4f1cddd371a2f5b765f16e4713
   docs/Models/Requests/CreateCollectionResponse.md:
     id: 3fbdf717dd6c
     last_write_checksum: sha1:21f0c2e74b0b59c54b7725d6f1867ee01210232a
@@ -7877,8 +7877,8 @@ trackedFiles:
     pristine_git_object: 5df45d5667d829bd197d6bc0a71b8fc254eb05d9
   docs/Models/Requests/GetLibraryMatchesRequest.md:
     id: c5a280c93087
-    last_write_checksum: sha1:ed75946fc44c885c90d6979673e827f09c77f86e
-    pristine_git_object: 581440501db8be36b17cf656863b6b1dbfe59c5d
+    last_write_checksum: sha1:84820358e3dcc145d40184d49c5099093aea5502
+    pristine_git_object: 8204010400eda5befe41205a613d357c63a90aa9
   docs/Models/Requests/GetLibraryMatchesResponse.md:
     id: ea6fc28850c1
     last_write_checksum: sha1:13604e305f962d60416aa2977ddb6f2792590d25
@@ -8685,8 +8685,8 @@ trackedFiles:
     pristine_git_object: 994c622c2fbfa5533bfb1bfd23d3c8f9cd2597ef
   docs/Models/Requests/GetTagsRequest.md:
     id: 72f471929b13
-    last_write_checksum: sha1:98dd7aef4738240df2602e217a34c88d8e7a6758
-    pristine_git_object: bbeda2177807632b2a1e0b674389f5c4d3ad8c34
+    last_write_checksum: sha1:b44ca43fa5ecee2a1e94d21b2de8dceebc8af8c2
+    pristine_git_object: bb54af285281db565cb84ebdc1508f567ff5a28c
   docs/Models/Requests/GetTagsResponse.md:
     id: 6a35e19071fb
     last_write_checksum: sha1:5fa96174c2dddccbb382490f6912823f89c6d704
@@ -10269,8 +10269,8 @@ trackedFiles:
     pristine_git_object: a182f8fb27c407dfb90340a87903749f70b65780
   docs/Models/Requests/VoiceSearchHubsRequest.md:
     id: cdeeb8fa7886
-    last_write_checksum: sha1:60997d1434fc8611dbe8b2f245547c3b7f58be0e
-    pristine_git_object: 325fa08e862b05e82ad9bd3b6e7e2c44fa418138
+    last_write_checksum: sha1:d9705d1d54c118debebcd11e291a19a9a3139a1f
+    pristine_git_object: 322bf787ae53f436557895c669ad369b90be1ec7
   docs/Models/Requests/VoiceSearchHubsResponse.md:
     id: 237cc6c89e03
     last_write_checksum: sha1:095f198540abd38b0ebd351ab998921b3e97ad1b
@@ -19884,7 +19884,7 @@ examples:
           application/json: {"errors": [{"code": 1, "message": "string value", "status": 1}]}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Csharp SDK Changes:\n* `PlexApi.Library.Autocomplete()`: \n  *  `request.MediaType` **Removed** (Breaking ⚠️)\n* `PlexApi.Library.GetCommon()`: \n  *  `request.MediaType` **Removed** (Breaking ⚠️)\n* `PlexApi.Library.GetFirstCharacters()`:  `request` **Changed** (Breaking ⚠️)\n* `PlexApi.Content.ListContent()`:  `request` **Changed** (Breaking ⚠️)\n* `PlexApi.Users.AcceptInvite()`: **Added**\n"
+releaseNotes: "## Csharp SDK Changes:\n* `PlexApi.Search.VoiceSearchHubs()`: \n  *  `request.Type` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetLibraryItems()`: \n  *  `request.MediaQuery` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetLibraryMatches()`: \n  *  `request.Type` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetSections()`:  `response.mediaContainer.Directory[].Type` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetTags()`: \n  *  `request.Type` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.Autocomplete()`: \n  *  `request.MediaQuery` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetCollections()`: \n  *  `request.MediaQuery` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetCommon()`: \n  *  `request.MediaQuery` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetFirstCharacters()`: \n  *  `request.MediaQuery` **Changed** (Breaking ⚠️)\n* `PlexApi.Library.GetSectionImage()`: \n  *  `request.MediaQuery` **Changed** (Breaking ⚠️)\n* `PlexApi.Collections.CreateCollection()`: \n  *  `request.Type` **Changed** (Breaking ⚠️)\n* `PlexApi.Content.ListContent()`: \n  *  `request.MediaQuery` **Changed** (Breaking ⚠️)\n"
 generatedFiles:
   - .gitattributes
   - LukeHagar.PlexAPI.SDK.sln

@@ -14,7 +14,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using System;
 
     /// <summary>
-    /// The type of media content in the Plex library. This can represent videos, music, or photos.
+    /// The Plex media type name, corresponding to the numeric MediaType schema.
     /// </summary>
     public enum MediaTypeString
     {
@@ -26,16 +26,26 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         Season,
         [JsonProperty("episode")]
         Episode,
+        [JsonProperty("trailer")]
+        Trailer,
+        [JsonProperty("person")]
+        Person,
         [JsonProperty("artist")]
         Artist,
         [JsonProperty("album")]
         Album,
         [JsonProperty("track")]
         Track,
-        [JsonProperty("photoalbum")]
-        PhotoAlbum,
+        [JsonProperty("clip")]
+        Clip,
         [JsonProperty("photo")]
         Photo,
+        [JsonProperty("photoalbum")]
+        PhotoAlbum,
+        [JsonProperty("playlist")]
+        Playlist,
+        [JsonProperty("playlistfolder")]
+        PlaylistFolder,
         [JsonProperty("collection")]
         Collection,
     }

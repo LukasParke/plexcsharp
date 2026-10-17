@@ -23,7 +23,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public string? Title { get; set; }
 
         /// <summary>
-        /// The type of media content in the Plex library. This can represent videos, music, or photos.
+        /// The Plex media type name, corresponding to the numeric MediaType schema.
         /// </summary>
         [JsonProperty("type")]
         public MediaTypeString Type { get; set; } = default!;

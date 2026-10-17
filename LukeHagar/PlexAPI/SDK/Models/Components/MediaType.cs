@@ -18,11 +18,17 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     /// 2 = show<br/>
     /// 3 = season<br/>
     /// 4 = episode<br/>
-    /// 5 = artist<br/>
-    /// 6 = album<br/>
-    /// 7 = track<br/>
-    /// 8 = photo_album<br/>
-    /// 9 = photo<br/>
+    /// 5 = trailer<br/>
+    /// 7 = person<br/>
+    /// 8 = artist<br/>
+    /// 9 = album<br/>
+    /// 10 = track<br/>
+    /// 12 = clip<br/>
+    /// 13 = photo<br/>
+    /// 14 = photoalbum<br/>
+    /// 15 = playlist<br/>
+    /// 16 = playlistfolder<br/>
+    /// 18 = collection<br/>
     /// <br/>
     /// E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries.
     /// </summary>
@@ -32,10 +38,16 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         TvShow = 2,
         Season = 3,
         Episode = 4,
-        Artist = 5,
-        Album = 6,
-        Track = 7,
-        PhotoAlbum = 8,
-        Photo = 9,
+        Trailer = 5,
+        Person = 7,
+        Artist = 8,
+        Album = 9,
+        Track = 10,
+        Clip = 12,
+        Photo = 13,
+        PhotoAlbum = 14,
+        Playlist = 15,
+        PlaylistFolder = 16,
+        Collection = 18,
     }
 }
