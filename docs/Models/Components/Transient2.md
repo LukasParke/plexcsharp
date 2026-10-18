@@ -1,11 +1,11 @@
-# Two1
+# Transient2
 
 ## Example Usage
 
 ```csharp
 using LukeHagar.PlexAPI.SDK.Models.Components;
 
-var value = Two1.Zero;
+var value = Transient2.Zero;
 ```
 
 

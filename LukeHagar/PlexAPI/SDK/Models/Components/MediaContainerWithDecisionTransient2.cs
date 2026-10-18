@@ -13,7 +13,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using Newtonsoft.Json;
     using System;
 
-    public enum One
+    public enum MediaContainerWithDecisionTransient2
     {
         [JsonProperty("0")]
         Zero,
@@ -21,16 +21,16 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         One,
     }
 
-    public static class OneExtension
+    public static class MediaContainerWithDecisionTransient2Extension
     {
-        public static string Value(this One value)
+        public static string Value(this MediaContainerWithDecisionTransient2 value)
         {
             return ((JsonPropertyAttribute)value.GetType().GetMember(value.ToString())[0].GetCustomAttributes(typeof(JsonPropertyAttribute), false)[0]).PropertyName ?? value.ToString();
         }
 
-        public static One ToEnum(this string value)
+        public static MediaContainerWithDecisionTransient2 ToEnum(this string value)
         {
-            foreach(var field in typeof(One).GetFields())
+            foreach(var field in typeof(MediaContainerWithDecisionTransient2).GetFields())
             {
                 var attributes = field.GetCustomAttributes(typeof(JsonPropertyAttribute), false);
                 if (attributes.Length == 0)
@@ -43,14 +43,14 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
                 {
                     var enumVal = field.GetValue(null);
 
-                    if (enumVal is One)
+                    if (enumVal is MediaContainerWithDecisionTransient2)
                     {
-                        return (One)enumVal;
+                        return (MediaContainerWithDecisionTransient2)enumVal;
                     }
                 }
             }
 
-            throw new Exception($"Unknown value {value} for enum One");
+            throw new Exception($"Unknown value {value} for enum MediaContainerWithDecisionTransient2");
         }
     }
 }

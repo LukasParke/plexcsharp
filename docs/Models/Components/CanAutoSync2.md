@@ -1,16 +1,17 @@
 # CanAutoSync2
 
-
-## Supported Types
-
-### One
+## Example Usage
 
 ```csharp
-CanAutoSync2.CreateOne(/* values here */);
+using LukeHagar.PlexAPI.SDK.Models.Components;
+
+var value = CanAutoSync2.Zero;
 ```
 
-### Boolean
 
-```csharp
-CanAutoSync2.CreateBoolean(/* values here */);
-```
+## Values
+
+| Name   | Value  |
+| ------ | ------ |
+| `Zero` | 0      |
+| `One`  | 1      |

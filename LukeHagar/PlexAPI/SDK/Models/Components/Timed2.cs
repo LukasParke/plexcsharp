@@ -13,7 +13,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using Newtonsoft.Json;
     using System;
 
-    public enum Two1
+    public enum Timed2
     {
         [JsonProperty("0")]
         Zero,
@@ -21,16 +21,16 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         One,
     }
 
-    public static class Two1Extension
+    public static class Timed2Extension
     {
-        public static string Value(this Two1 value)
+        public static string Value(this Timed2 value)
         {
             return ((JsonPropertyAttribute)value.GetType().GetMember(value.ToString())[0].GetCustomAttributes(typeof(JsonPropertyAttribute), false)[0]).PropertyName ?? value.ToString();
         }
 
-        public static Two1 ToEnum(this string value)
+        public static Timed2 ToEnum(this string value)
         {
-            foreach(var field in typeof(Two1).GetFields())
+            foreach(var field in typeof(Timed2).GetFields())
             {
                 var attributes = field.GetCustomAttributes(typeof(JsonPropertyAttribute), false);
                 if (attributes.Length == 0)
@@ -43,14 +43,14 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
                 {
                     var enumVal = field.GetValue(null);
 
-                    if (enumVal is Two1)
+                    if (enumVal is Timed2)
                     {
-                        return (Two1)enumVal;
+                        return (Timed2)enumVal;
                     }
                 }
             }
 
-            throw new Exception($"Unknown value {value} for enum Two1");
+            throw new Exception($"Unknown value {value} for enum Timed2");
         }
     }
 }

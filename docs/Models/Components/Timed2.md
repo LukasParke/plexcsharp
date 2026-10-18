@@ -1,11 +1,11 @@
-# One
+# Timed2
 
 ## Example Usage
 
 ```csharp
 using LukeHagar.PlexAPI.SDK.Models.Components;
 
-var value = One.Zero;
+var value = Timed2.Zero;
 ```
 
 

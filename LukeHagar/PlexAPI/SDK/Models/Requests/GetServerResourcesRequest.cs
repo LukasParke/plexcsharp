@@ -34,7 +34,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public IncludeHttps? IncludeHttps { get; set; } = LukeHagar.PlexAPI.SDK.Models.Requests.IncludeHttps.False;
 
         /// <summary>
-        /// Include Relay addresses in the results <br/>
+        /// Include Relay addresses in the results<br/>
         /// E.g: https://10-0-0-25.bbf8e10c7fa20447cacee74cd9914cde.plex.direct:32400.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeRelay")]

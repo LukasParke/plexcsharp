@@ -302,10 +302,10 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public int? Level { get; set; }
 
         /// <summary>
-        /// Integrated loudness in LUFS.
+        /// Integrated loudness in LUFS. Plex may return a numeric value as a number or numeric string, or the sentinel string "-inf".
         /// </summary>
-        [JsonProperty("loudness")]
-        public double? Loudness { get; set; }
+        [JsonProperty("loudness", NullValueHandling = NullValueHandling.Include)]
+        public Loudness? Loudness { get; set; }
 
         /// <summary>
         /// Loudness range in LU.
@@ -326,16 +326,16 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public bool? Original { get; set; }
 
         /// <summary>
-        /// Track peak amplitude.
+        /// Track peak amplitude. Plex may return a numeric value as a number or numeric string, or the sentinel string "-inf".
         /// </summary>
-        [JsonProperty("peak")]
-        public double? Peak { get; set; }
+        [JsonProperty("peak", NullValueHandling = NullValueHandling.Include)]
+        public Peak? Peak { get; set; }
 
         /// <summary>
         /// Whether the subtitle is an exact match.
         /// </summary>
-        [JsonProperty("perfectMatch")]
-        public bool? PerfectMatch { get; set; }
+        [JsonProperty("perfectMatch", NullValueHandling = NullValueHandling.Include)]
+        public PerfectMatch? PerfectMatch { get; set; }
 
         /// <summary>
         /// Video profile.
@@ -403,14 +403,14 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         /// <summary>
         /// Whether lyrics are timestamped.
         /// </summary>
-        [JsonProperty("timed")]
-        public bool? Timed { get; set; }
+        [JsonProperty("timed", NullValueHandling = NullValueHandling.Include)]
+        public Timed? Timed { get; set; }
 
         /// <summary>
         /// Whether the subtitle is temporary or downloaded.
         /// </summary>
-        [JsonProperty("transient")]
-        public bool? Transient { get; set; }
+        [JsonProperty("transient", NullValueHandling = NullValueHandling.Include)]
+        public Transient? Transient { get; set; }
 
         /// <summary>
         /// ID of the user who added the subtitle.
