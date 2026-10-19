@@ -358,6 +358,7 @@ var res = await sdk.Transcoder.StartTranscodeSessionAsync(req);
 * [GetSectionEpisodes](docs/sdks/library/README.md#getsectionepisodes) - Get Section Episodes
 * [GetSectionFilters](docs/sdks/library/README.md#getsectionfilters) - Get section filters
 * [GetFirstCharacters](docs/sdks/library/README.md#getfirstcharacters) - Get list of first characters
+* [GetSectionFolder](docs/sdks/library/README.md#getsectionfolder) - Get library folder contents
 * [GetLibrarySectionHubs](docs/sdks/library/README.md#getlibrarysectionhubs) - Get Section Hubs
 * [DeleteIndexes](docs/sdks/library/README.md#deleteindexes) - Delete section indexes
 * [DeleteIntros](docs/sdks/library/README.md#deleteintros) - Delete section intro markers
@@ -951,9 +952,9 @@ catch (System.Net.Http.HttpRequestException ex)
 * [`System.Net.Http.HttpRequestException`](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httprequestexception): Network connectivity error. For more details about the underlying cause, inspect the `ex.InnerException`.
 
 * Inheriting from [`PlexAPIError`](./LukeHagar/PlexAPI/SDK/Models/Errors/PlexAPIError.cs):
-  * [`Error`](./LukeHagar/PlexAPI/SDK/Models/Errors/Error.cs): Unauthorized. Status code `401`. Applicable to 277 of 404 methods.*
-  * [`Unauthorized`](./LukeHagar/PlexAPI/SDK/Models/Errors/Unauthorized.cs): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 4 of 404 methods.*
-  * [`BadRequest`](./LukeHagar/PlexAPI/SDK/Models/Errors/BadRequest.cs): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 3 of 404 methods.*
+  * [`Error`](./LukeHagar/PlexAPI/SDK/Models/Errors/Error.cs): Unauthorized. Status code `401`. Applicable to 278 of 405 methods.*
+  * [`Unauthorized`](./LukeHagar/PlexAPI/SDK/Models/Errors/Unauthorized.cs): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 4 of 405 methods.*
+  * [`BadRequest`](./LukeHagar/PlexAPI/SDK/Models/Errors/BadRequest.cs): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 3 of 405 methods.*
   * [`ResponseValidationError`](./LukeHagar/PlexAPI/SDK/Models/Errors/ResponseValidationError.cs): Thrown when the response data could not be deserialized into the expected type.
 </details>
 

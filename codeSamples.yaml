@@ -3941,6 +3941,7 @@ actions:
             );
 
             GetMetadataChildrenRequest req = new GetMetadataChildrenRequest() {
+                IncludeMeta = BoolInt.True,
                 Id = 240367,
             };
 
@@ -5909,6 +5910,30 @@ actions:
             };
 
             var res = await sdk.Library.GetFirstCharactersAsync(req);
+
+            // handle response
+  - target: $["paths"]["/library/sections/{sectionId}/folder"]["get"]
+    update:
+      x-codeSamples:
+        - lang: csharp
+          label: PlexCSharp
+          source: |-
+            using LukeHagar.PlexAPI.SDK;
+            using LukeHagar.PlexAPI.SDK.Models.Components;
+            using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+            var sdk = new PlexAPI(
+                accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+                token: "<YOUR_API_KEY_HERE>"
+            );
+
+            GetSectionFolderRequest req = new GetSectionFolderRequest() {
+                SectionId = 924129,
+                Parent = "3706",
+                IncludeMeta = BoolInt.True,
+            };
+
+            var res = await sdk.Library.GetSectionFolderAsync(req);
 
             // handle response
   - target: $["paths"]["/library/sections/{sectionId}/hubs"]["get"]

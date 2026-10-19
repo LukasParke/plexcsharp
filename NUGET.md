@@ -312,9 +312,9 @@ catch (System.Net.Http.HttpRequestException ex)
 * [`System.Net.Http.HttpRequestException`](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httprequestexception): Network connectivity error. For more details about the underlying cause, inspect the `ex.InnerException`.
 
 * Inheriting from [`PlexAPIError`](./LukeHagar/PlexAPI/SDK/Models/Errors/PlexAPIError.cs):
-  * [`Error`](./LukeHagar/PlexAPI/SDK/Models/Errors/Error.cs): Unauthorized. Status code `401`. Applicable to 277 of 404 methods.*
-  * [`Unauthorized`](./LukeHagar/PlexAPI/SDK/Models/Errors/Unauthorized.cs): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 4 of 404 methods.*
-  * [`BadRequest`](./LukeHagar/PlexAPI/SDK/Models/Errors/BadRequest.cs): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 3 of 404 methods.*
+  * [`Error`](./LukeHagar/PlexAPI/SDK/Models/Errors/Error.cs): Unauthorized. Status code `401`. Applicable to 278 of 405 methods.*
+  * [`Unauthorized`](./LukeHagar/PlexAPI/SDK/Models/Errors/Unauthorized.cs): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 4 of 405 methods.*
+  * [`BadRequest`](./LukeHagar/PlexAPI/SDK/Models/Errors/BadRequest.cs): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 3 of 405 methods.*
   * [`ResponseValidationError`](./LukeHagar/PlexAPI/SDK/Models/Errors/ResponseValidationError.cs): Thrown when the response data could not be deserialized into the expected type.
 
 \* Refer to the [relevant documentation](#available-resources-and-operations) to determine whether an exception applies to a specific operation.

@@ -81,6 +81,28 @@ namespace LukeHagar.PlexAPI.SDK.Models.Requests
         public string? Marketplace { get; set; }
 
         /// <summary>
+        /// The index of the first item to return. If not specified, the first item will be returned.<br/>
+        /// If the number of items exceeds the limit, the response will be paginated.<br/>
+        /// By default this is 0.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=X-Plex-Container-Start")]
+        public int? XPlexContainerStart { get; set; } = 0;
+
+        /// <summary>
+        /// The number of items to return. If not specified, all items will be returned.<br/>
+        /// If the number of items exceeds the limit, the response will be paginated.<br/>
+        /// By default this is 50.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=X-Plex-Container-Size")]
+        public int? XPlexContainerSize { get; set; } = 50;
+
+        /// <summary>
+        /// Include the Meta object in the response.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeMeta")]
+        public BoolInt? IncludeMeta { get; set; } = LukeHagar.PlexAPI.SDK.Models.Components.BoolInt.False;
+
+        /// <summary>
         /// The unique identifier of the item.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")]

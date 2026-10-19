@@ -39,7 +39,25 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         [JsonProperty("totalSize")]
         public long? TotalSize { get; set; }
 
+        /// <summary>
+        /// Navigation folders or metadata items returned under the Directory element.
+        /// </summary>
+        [JsonProperty("Directory")]
+        public List<Models.Components.Metadata>? Directory { get; set; }
+
         [JsonProperty("Metadata")]
         public List<Models.Components.Metadata>? Metadata { get; set; }
+
+        /// <summary>
+        /// Photo items returned under the Photo element.
+        /// </summary>
+        [JsonProperty("Photo")]
+        public List<Models.Components.Metadata>? Photo { get; set; }
+
+        /// <summary>
+        /// Video items, including photo-library clips, returned under the Video element.
+        /// </summary>
+        [JsonProperty("Video")]
+        public List<Models.Components.Metadata>? Video { get; set; }
     }
 }

@@ -360,7 +360,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Get Metadata Children.
         /// </summary>
         /// <remarks>
-        /// Get children of a show, season, artist, or album.<br/>
+        /// Get children of a show, season, artist, or album, including a photo album.<br/>
+        /// Photo album children can include both photos and video clips; omit media-type filters to retrieve all members.<br/>
         /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="GetMetadataChildrenRequest"/> parameter.</param>
@@ -1565,6 +1566,29 @@ namespace LukeHagar.PlexAPI.SDK
         /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
         public  Task<GetFirstCharactersResponse> GetFirstCharactersAsync(
             GetFirstCharactersRequest request,
+            RetryConfig? retryConfig = null
+        );
+
+        /// <summary>
+        /// Get library folder contents.
+        /// </summary>
+        /// <remarks>
+        /// Browse the physical folders and direct media items in a library section.<br/>
+        /// Omit parent to retrieve the root page. For a child folder, use the parent query value from the folder key returned by Plex.<br/>
+        /// A folder token is distinct from a metadata rating key; do not substitute an album rating key.<br/>
+        /// Photo libraries can return navigation directories, photos, and video clips in the same response.<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
+        /// </remarks>
+        /// <param name="request">A <see cref="GetSectionFolderRequest"/> parameter.</param>
+        /// <param name="retryConfig">The retry configuration to use for this operation.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetSectionFolderResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Error">Unauthorized. Thrown when the API returns a 401 response.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<GetSectionFolderResponse> GetSectionFolderAsync(
+            GetSectionFolderRequest request,
             RetryConfig? retryConfig = null
         );
 
@@ -4412,14 +4436,14 @@ namespace LukeHagar.PlexAPI.SDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    MediaContainerWithDirectory obj;
+                    GetLibrarySectionsFallbackResponseBody obj;
                     try
                     {
-                        obj = ResponseBodyDeserializer.DeserializeNotNull<MediaContainerWithDirectory>(httpResponseBody, NullValueHandling.Ignore);
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<GetLibrarySectionsFallbackResponseBody>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into MediaContainerWithDirectory.", httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into GetLibrarySectionsFallbackResponseBody.", httpResponse, httpResponseBody, ex);
                     }
 
                     var response = new GetLibrarySectionsFallbackResponse()
@@ -4428,7 +4452,7 @@ namespace LukeHagar.PlexAPI.SDK
                         ContentType = contentType,
                         RawResponse = httpResponse
                     };
-                    response.MediaContainerWithDirectory = obj;
+                    response.Object = obj;
                     return response;
                 }
 
@@ -5608,7 +5632,8 @@ namespace LukeHagar.PlexAPI.SDK
         /// Get Metadata Children.
         /// </summary>
         /// <remarks>
-        /// Get children of a show, season, artist, or album.<br/>
+        /// Get children of a show, season, artist, or album, including a photo album.<br/>
+        /// Photo album children can include both photos and video clips; omit media-type filters to retrieve all members.<br/>
         /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="GetMetadataChildrenRequest"/> parameter.</param>
@@ -16161,6 +16186,178 @@ namespace LukeHagar.PlexAPI.SDK
                         RawResponse = httpResponse
                     };
                     response.Object = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else if(responseStatusCode == 401)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    ErrorPayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<ErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into ErrorPayload.", httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new Error(payload, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else if(responseStatusCode >= 400 && responseStatusCode < 500)
+            {
+                throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else if(responseStatusCode >= 500 && responseStatusCode < 600)
+            {
+                throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+
+            throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
+        }
+
+
+        /// <summary>
+        /// Get library folder contents.
+        /// </summary>
+        /// <remarks>
+        /// Browse the physical folders and direct media items in a library section.<br/>
+        /// Omit parent to retrieve the root page. For a child folder, use the parent query value from the folder key returned by Plex.<br/>
+        /// A folder token is distinct from a metadata rating key; do not substitute an album rating key.<br/>
+        /// Photo libraries can return navigation directories, photos, and video clips in the same response.<br/>
+        /// <para>If set, this operation will use <see cref="LukeHagar.PlexAPI.SDK.Models.Components.Security.Token"/> from the global security.</para>
+        /// </remarks>
+        /// <param name="request">A <see cref="GetSectionFolderRequest"/> parameter.</param>
+        /// <param name="retryConfig">The retry configuration to use for this operation.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetSectionFolderResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Error">Unauthorized. Thrown when the API returns a 401 response.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<GetSectionFolderResponse> GetSectionFolderAsync(
+            GetSectionFolderRequest request,
+            RetryConfig? retryConfig = null
+        )
+        {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+            request.Accepts ??= SDKConfiguration.Accepts;
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/library/sections/{sectionId}/folder", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+            HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "Token" }).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getSectionFolder", null, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+            if (retryConfig == null)
+            {
+                if (this.SDKConfiguration.RetryConfig != null)
+                {
+                    retryConfig = this.SDKConfiguration.RetryConfig;
+                }
+                else
+                {
+                    var backoff = new BackoffStrategy(
+                        initialIntervalMs: 1000L,
+                        maxIntervalMs: 30000L,
+                        maxElapsedTimeMs: 300000L,
+                        exponent: 2
+                    );
+                    retryConfig = new RetryConfig(
+                        strategy: RetryConfig.RetryStrategy.BACKOFF,
+                        backoff: backoff,
+                        retryConnectionErrors: true
+                    );
+                }
+            }
+
+            List<string> statusCodes = new List<string>
+            {
+                "429",
+            };
+
+            Func<Task<HttpResponseMessage>> retrySend = async () =>
+            {
+                var _httpRequest = await SDKConfiguration.Client.CloneAsync(httpRequest);
+                return await SDKConfiguration.Client.SendAsync(_httpRequest);
+            };
+            var retries = new LukeHagar.PlexAPI.SDK.Utils.Retries.Retries(retrySend, retryConfig, statusCodes);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await retries.Run();
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    MediaContainerWithMetadata obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<MediaContainerWithMetadata>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into MediaContainerWithMetadata.", httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new GetSectionFolderResponse()
+                    {
+                        StatusCode = responseStatusCode,
+                        ContentType = contentType,
+                        RawResponse = httpResponse
+                    };
+                    response.MediaContainerWithMetadata = obj;
                     return response;
                 }
 

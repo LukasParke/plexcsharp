@@ -12,7 +12,6 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
     using LukeHagar.PlexAPI.SDK.Models.Components;
     using LukeHagar.PlexAPI.SDK.Utils;
     using Newtonsoft.Json;
-    using NodaTime;
     using System.Collections.Generic;
 
     /// <summary>
@@ -34,7 +33,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         /// The type of the video item, such as `movie`, `episode`, or `clip`.
         /// </summary>
         [JsonProperty("type")]
-        public string Type { get; set; } = default!;
+        public string? Type { get; set; }
 
         /// <summary>
         /// When present, contains the disc number for a track on multi-disc albums.
@@ -46,7 +45,7 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         /// In units of seconds since the epoch, returns the time at which the item was added to the library.
         /// </summary>
         [JsonProperty("addedAt")]
-        public long AddedAt { get; set; } = default!;
+        public long? AddedAt { get; set; }
 
         /// <summary>
         /// When present, the URL for the background artwork for the item.
@@ -243,6 +242,12 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         [JsonProperty("leafCount")]
         public int? LeafCount { get; set; }
 
+        /// <summary>
+        /// The library section containing this metadata item, when reported by the server.
+        /// </summary>
+        [JsonProperty("librarySectionID")]
+        public long? LibrarySectionID { get; set; }
+
         [JsonProperty("Media")]
         public List<Media>? Media { get; set; }
 
@@ -253,10 +258,12 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         public long? MusicAnalysisVersion { get; set; }
 
         /// <summary>
-        /// When present, in the format YYYY-MM-DD [HH:MM:SS] (the hours/minutes/seconds part is not always present). The air date, or a higher resolution release date for an item, depending on type. For example, episodes usually have air date like 1979-08-10 (we don't use epoch seconds because media existed prior to 1970). In some cases, recorded over-the-air content has higher resolution air date which includes a time component. Albums and movies may have day-resolution release dates as well.
+        /// The original release or capture date as reported by the server.<br/>
+        /// Values can be a date (YYYY-MM-DD), a date with a time (YYYY-MM-DD HH:MM:SS), or an ISO 8601 timestamp.<br/>
+        /// Preserve the string representation so higher-resolution timestamps are not reduced to a date-only value.
         /// </summary>
         [JsonProperty("originallyAvailableAt")]
-        public LocalDate? OriginallyAvailableAt { get; set; }
+        public string? OriginallyAvailableAt { get; set; }
 
         /// <summary>
         /// When present, used to indicate an item's original title, e.g. a movie's foreign title.

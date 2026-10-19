@@ -88,6 +88,7 @@ Library endpoints which are outside of the Media Provider API.  Typically this i
 * [GetSectionEpisodes](#getsectionepisodes) - Get Section Episodes
 * [GetSectionFilters](#getsectionfilters) - Get section filters
 * [GetFirstCharacters](#getfirstcharacters) - Get list of first characters
+* [GetSectionFolder](#getsectionfolder) - Get library folder contents
 * [GetLibrarySectionHubs](#getlibrarysectionhubs) - Get Section Hubs
 * [DeleteIndexes](#deleteindexes) - Delete section indexes
 * [DeleteIntros](#deleteintros) - Delete section intro markers
@@ -1026,7 +1027,8 @@ var res = await sdk.Library.UploadArtAsync(req);
 
 ## GetMetadataChildren
 
-Get children of a show, season, artist, or album.
+Get children of a show, season, artist, or album, including a photo album.
+Photo album children can include both photos and video clips; omit media-type filters to retrieve all members.
 
 ### Example Usage: include-stream
 
@@ -1052,6 +1054,7 @@ var sdk = new PlexAPI(
 );
 
 GetMetadataChildrenRequest req = new GetMetadataChildrenRequest() {
+    IncludeMeta = BoolInt.True,
     Id = 240367,
 };
 
@@ -1083,6 +1086,7 @@ var sdk = new PlexAPI(
 );
 
 GetMetadataChildrenRequest req = new GetMetadataChildrenRequest() {
+    IncludeMeta = BoolInt.True,
     Id = 240367,
 };
 
@@ -1114,6 +1118,7 @@ var sdk = new PlexAPI(
 );
 
 GetMetadataChildrenRequest req = new GetMetadataChildrenRequest() {
+    IncludeMeta = BoolInt.True,
     Id = 240367,
 };
 
@@ -4510,6 +4515,54 @@ var res = await sdk.Library.GetFirstCharactersAsync(req);
 ### Response
 
 **[GetFirstCharactersResponse](../../Models/Requests/GetFirstCharactersResponse.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| LukeHagar.PlexAPI.SDK.Models.Errors.Error        | 401                                              | application/json                                 |
+| LukeHagar.PlexAPI.SDK.Models.Errors.SDKException | 4XX, 5XX                                         | \*/\*                                            |
+
+## GetSectionFolder
+
+Browse the physical folders and direct media items in a library section.
+Omit parent to retrieve the root page. For a child folder, use the parent query value from the folder key returned by Plex.
+A folder token is distinct from a metadata rating key; do not substitute an album rating key.
+Photo libraries can return navigation directories, photos, and video clips in the same response.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getSectionFolder" method="get" path="/library/sections/{sectionId}/folder" -->
+```csharp
+using LukeHagar.PlexAPI.SDK;
+using LukeHagar.PlexAPI.SDK.Models.Components;
+using LukeHagar.PlexAPI.SDK.Models.Requests;
+
+var sdk = new PlexAPI(
+    accepts: LukeHagar.PlexAPI.SDK.Models.Components.Accepts.ApplicationXml,
+    token: "<YOUR_API_KEY_HERE>"
+);
+
+GetSectionFolderRequest req = new GetSectionFolderRequest() {
+    SectionId = 924129,
+    Parent = "3706",
+    IncludeMeta = BoolInt.True,
+};
+
+var res = await sdk.Library.GetSectionFolderAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `request`                                                                   | [GetSectionFolderRequest](../../Models/Requests/GetSectionFolderRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
+
+### Response
+
+**[GetSectionFolderResponse](../../Models/Requests/GetSectionFolderResponse.md)**
 
 ### Errors
 

@@ -24,6 +24,6 @@ namespace LukeHagar.PlexAPI.SDK.Models.Components
         /// The path of where this directory exists on disk.
         /// </summary>
         [JsonProperty("path")]
-        public object? Path { get; set; }
+        public string? Path { get; set; }
     }
 }
